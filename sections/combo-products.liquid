@@ -1,15 +1,18 @@
 <style>
-.collection-progress-section {
-  padding: 60px 0;
+.section-{{ section.id }}-margin  {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  padding-top: {{ section.settings.padding_text_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
 }
 
-.section-heading {
+.section-{{ section.id }} .section-heading {
   text-align: center;
   margin-bottom: 40px;
   font-size: 28px;
 }
 
-.combo-product-card {
+.section-{{ section.id }} .combo-product-card {
   border-radius: 8px;
   text-align: center;
   height: 100%;
@@ -17,27 +20,27 @@
   border: 1px solid #E7E7E7;
 }
 
-.product-image {
+.section-{{ section.id }} .product-image {
   overflow: hidden;
   max-height: 253px;
 }
 
-.product-image img {
+.section-{{ section.id }} .product-image img {
   width: 100%;
   border-radius: 6px;
   transition: transform 0.4s ease;
   height: auto;
 }
 
-.product-image img:hover {
+.section-{{ section.id }} .product-image img:hover {
   transform: scale(1.2);
 }
 
-.product-info {
+.section-{{ section.id }} .product-info {
  padding: 0 34px;
 }
 
-.product-info h3 {
+.section-{{ section.id }} .product-info h3 {
   font-size: 16px;
   margin: 24px 0 0;
   font-weight: 700;
@@ -46,7 +49,7 @@
   text-overflow: ellipsis;
 }
 
-.combo-btn {
+.section-{{ section.id }} .combo-btn {
   display: inline-block;
   padding: 10px 20px;
   border: 1px solid #000;
@@ -56,28 +59,28 @@
   transition: 0.3s;
 }
 
-.combo-btn:hover {
+.section-{{ section.id }} .combo-btn:hover {
   background: #000;
   color: #fff;
 }
 
-.swiper-pagination {
+.section-{{ section.id }} .swiper-pagination {
   position: relative !important;
   margin-top: 30px;
   height: 3px;
   background: #e5e5e5;
 }
 
-.swiper-pagination-progressbar-fill {
+.section-{{ section.id }} .swiper-pagination-progressbar-fill {
   background: #000 !important;
 }
 
-.view-all-wrapper {
+.section-{{ section.id }} .view-all-wrapper {
   text-align: center;
   margin-top: 40px;
 }
 
-.view-all-btn {
+.section-{{ section.id }} .view-all-btn {
   display: inline-block;
   padding: 14px 40px;
   border: 1px solid #000;
@@ -87,17 +90,17 @@
   transition: 0.3s;
 }
 
-.view-all-btn:hover {
+.section-{{ section.id }} .view-all-btn:hover {
   background: #000;
   color: #fff;
 }
 
-.view-all-wrapper .button-cta {
+.section-{{ section.id }} .view-all-wrapper .button-cta {
   padding: 1vw 10vw;
   width: fit-content;
   font-weight: 800;
 }
-.view-combo .button-cta {
+.section-{{ section.id }} .view-combo .button-cta {
   padding: .3vw 1.5vw;
   width: fit-content;
   text-transform: capitalize;
@@ -111,7 +114,7 @@
   margin-bottom: 30px;
 }
 
-.product-combo-info {
+.section-{{ section.id }} .product-combo-info {
   color: #000;
   text-align: center;
   font-family: 'Mosvita';
@@ -125,31 +128,37 @@
 }
 
 @media screen and (max-width: 768px) {
-    .view-combo .button-cta {
+  .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding-top: {{ section.settings.padding_text_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+    }
+    .section-{{ section.id }} .view-combo .button-cta {
       padding: 5px 25px;
       font-size: 14px;
     }
-    .view-all-wrapper .button-cta {
+    .section-{{ section.id }} .view-all-wrapper .button-cta {
       padding: 12px 52px;
       font-size: 14px;
     }
-    .product-info {
+    .section-{{ section.id }} .product-info {
       padding: 0 16px;
     }
-    .product-info h3 {
+    .section-{{ section.id }} .product-info h3 {
       margin: 20px 0 0;
     }
-    .view-combo .button-cta {
+    .section-{{ section.id }} .view-combo .button-cta {
       margin-bottom: 20px;
     }
-    .product-combo-info {
+    .section-{{ section.id }} .product-combo-info {
       padding: 12px 0;
       font-size: 12px;
     }
 }
 </style>
 
-<section class="collection-progress-section">
+<section class="collection-progress-section section-{{ section.id }}-margin section-{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
   <div class="container">
 
     {% if section.settings.heading != blank %}
@@ -240,6 +249,92 @@
 {
   "name": "Combo Coll ProgressBar",
   "settings": [
+  {
+    "type": "color",
+    "id": "background_color",
+    "label": "Background color",
+    "default": "#fff"
+  },
+  {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
     {
       "type": "text",
       "id": "heading",
