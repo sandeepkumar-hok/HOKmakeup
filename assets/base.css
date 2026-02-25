@@ -389,12 +389,13 @@ button.sc-fRfEKy.jHueim.yt-product-atc-disabled ,.sc-cWWfbf.geLTKC.yt-byob-quant
     z-index: 16000161 !important;
     width: 100%;
   }
-  .hok-toast {               /* adjust as needed */
+  .hok-toast {
+  width: 250px;                 /* adjust as needed */
   max-width: 100%;
   border-radius: 62px;
   border: 1.5px solid #FFAAC6;
   background: #F0437D;
-  padding: 14px 24px 14px 14px;
+  padding: 10px 24px 10px 14px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
   color: #fff;
   }
@@ -4265,16 +4266,4 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
-}
-
-.hok-toast__btn {
-  border: 1px solid #FFAAC6;
-  text-transform: capitalize;
-  background-color: #FE66998C;
-  font-family: 'NickySans';
-  font-weight: 600;
-  font-size: 12px;
-  padding: 4px 14px;
-  margin-left: 3rem;
-  cursor: pointer;
 }

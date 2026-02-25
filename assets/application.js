@@ -128,8 +128,7 @@ const reUseCart = async (event, method, variant_id, qty) => {
           ($("#toastifies").fadeIn(100),
           setTimeout(() => {
             $("#toastifies").fadeOut(100);
-          }, 5000)
-        );
+          }, 3000));
     })
     .catch((error) => {
       if (is_cart_reccommend) {
