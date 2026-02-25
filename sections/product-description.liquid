@@ -1,0 +1,153 @@
+<div class="container mt-0 mt-md-5">
+  <div class="b-accordion m-full">
+    <div
+      class="b-accordion-item {% if section.settings.tab_open_desc %}m-accordion-expanded{% endif %}"
+      id="searchAcc"
+    >
+      <span class="b-accordion-control {% if section.settings.tab_open_desc %}m-accordion-expanded{% endif %}">
+        {{ section.settings.head_title }}
+        {% comment %} <div class="accordion-glimpse">{{ product.description |  truncatewords: 4  }}</div> {% endcomment %}
+      </span>
+      <div
+        class="b-accordion-container{% if section.settings.tab_open_desc %} m-accordion-expanded{% endif %} b-pdp_accordion-column m-wide"
+      >
+        <div class="b-pdp_accordion-columns">
+          <div class="b-pdp_accordion-column m-wide">
+            <div id="product_para_desc">
+              <p>{{ product.description }}</p>
+            </div>
+            <!-- Product Sku -->
+            {% if section.settings.sku_code %}
+              <p class="b-pdp_accordion-product_code_wrapper mt-3">
+                {{ section.settings.SKU_title }}
+                <span class="b-pdp_accordion-product_code">{{ product.selected_or_first_available_variant.sku }}</span>
+              </p>
+            {% endif %}
+            <!-- Expiry -->
+            {% if product.metafields.custom.self_life != blank %}
+              <p class="product-info-details">
+                <span>Shelf Life :</span>
+                {{ product.metafields.custom.self_life | remove: '["' | remove: '"]' }}
+              </p>
+            {% endif %}
+            <!-- Product Weight -->
+            {% if product.metafields.custom.product_weight != blank %}
+              <p class="product-info-details">
+                <span>Product Weight :</span>
+                {{ product.metafields.custom.product_weight | capitalize }}
+              </p>
+            {% endif %}
+            <!-- Country Of Origin -->
+            {% if product.metafields.custom.country_of_origins %}
+              <p class="product-info-details">
+                <span>Country of Origin :</span>
+                {{ product.metafields.custom.country_of_origins }}
+              </p>
+            {% endif %}
+
+            <!-- Manufacturer Name -->
+            {% if product.metafields.custom.name_of_mfg != blank %}
+              <p class="product-info-details">
+                <span>Manufacturer Name :</span>
+                {{ product.metafields.custom.name_of_mfg }}
+              </p>
+            {% endif %}
+            <!-- Address of Manufacturer -->
+            {% if product.metafields.custom.address_of_mfg != blank %}
+              <p class="product-info-details">
+                <span>Address of Manufacturer :</span>
+                {{ product.metafields.custom.address_of_mfg }}
+              </p>
+            {% endif %}
+            <div>
+              <p class="mt-4"> {% if template contains 'bar-soaps' %}<b>Manufactured for</b>{% else %}<b>Manufactured For</b>{% endif %}</p>
+              <p class="product-info-details">
+                  <span>Name :</span>
+                  {% if product.vendor contains "Makeup" or product.vendor contains "revolution" or product.vendor contains "BH Cosmetics" %}
+                    Revolution Beauty India Private Limited
+                  {% else %}
+                   Kanvar Concos Distribution Private Limited
+                  {% endif %}
+                </p>
+              </div>
+              <p class="product-info-details">
+                  <span>Address :</span> A-26, Ground Floor Naraina Industrial Area, Phase-2 Naraina, Delhi (India) - 110028
+                </p>
+              <p class="product-info-details">
+                  <span>Email :</span> support@hokmakeup.com
+                </p>
+              <p class="product-info-details">
+                  <span>Phone number :</span> +91-9810245261
+                </p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Product Description",
+"settings": [
+{
+"type": "checkbox",
+"id": "tab_open_desc",
+"label": "Accordion Tab Open",
+"default": true,
+"info": "Make tab open by defaults"
+},
+{
+"type": "text",
+"id": "head_title",
+"label": "Heading",
+"default": "Details"
+},
+{
+"type": "checkbox",
+"id": "sku_code",
+"label": "Sku",
+"default": true,
+"info": "Show Sku code for the variantion"
+},
+{
+"type": "text",
+"id": "SKU_title",
+"label": "SKU Heading",
+"default": "Product code:"
+},
+{
+"type": "header",
+"content": "Product Pairs Perfectly"
+},
+{
+"type": "checkbox",
+"id": "Pro_pair",
+"label": "Pair Products with this one",
+"default": true,
+"info": "Show Pairs which is a perfectly paired with this product"
+
+},
+{
+"type": "text",
+"id": "recom_pro_title",
+"label": "Title",
+"default": "Pairs perfectly with"
+},
+{
+"type": "product_list",
+"id": "list_pro",
+"label": "product list"
+}
+
+],
+"presets": [
+{
+
+"name": "Product Description"
+
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,238 @@
+{% if customer %}
+<script>
+  async function getRewardsProgramAccount() {
+  try {
+    toggleLoading(true);
+
+    const res = await window.gw.sdk.rewards.methods.getRewardsProgramAccount();
+
+    document.getElementById("tierValue").textContent = res.result.tier.title;
+    document.getElementById("pointsValue").textContent = res.result.points.balance; 
+    document.getElementById("valueValue").textContent = "₹" + Math.floor(res.result.points.balance/100); 
+    console.log("Customer Rewards Data:", res);
+
+    toggleLoading(false);
+  } catch (error) {
+    console.error("Failed to fetch rewards program account:", error);
+
+    toggleLoading(false);
+  }
+  }
+  
+  function toggleLoading(isLoading) {
+    const loader = document.getElementById("gwLoader");
+    const blocks = document.querySelectorAll(".gw-rewards-your-status-widget__block");
+  
+    if (isLoading) {
+      loader.style.display = "block";
+      blocks.forEach((block) => (block.style.display = "none"));
+    } else {
+      loader.style.display = "none";
+      blocks.forEach((block) => (block.style.display = "flex"));
+    }
+  }
+  
+  function onSdkReady() {
+    const moduleName = window.gw.sdk.common.constants.modules.REWARDS;
+  
+    window.gw.sdk.runIfModuleReady(moduleName, () => {
+      getRewardsProgramAccount();
+    });
+  
+    // Add event listener to the redeem button
+    const redeemButtons = document.querySelectorAll(".gw-rewards-your-status-widget__redeem-btn");
+
+    redeemButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.gw.sdk.rewards.methods.openRewardsPopup();
+      });
+    });
+  }
+  
+  if (window.gw && window.gw.sdk) {
+    onSdkReady();
+  } else {
+    document.addEventListener("gwSdkReady", onSdkReady);
+  }
+</script>
+
+<div class="gw-rewards-your-status-widget container">
+  <p class="gw-rewards-your-status-widget__title">Your Status</p>
+  <div id="gwLoader" class="loader"></div>
+  <div class="gw-rewards-your-status-widget__block gw-rewards-your-status-widget__block-info">
+    <div class="gw-rewards-your-status-widget__block-item gw-rewards-your-status-widget__block-item-list">
+        <p class="gw-rewards-your-status-widget__list-title">Your Tier:</p>
+        <p id="tierValue" class="gw-rewards-your-status-widget__list-value"></p>
+      
+        <p class="gw-rewards-your-status-widget__list-title">Your Points:</p>
+        <p id="pointsValue" class="gw-rewards-your-status-widget__list-value">
+            <span
+                  class="gw-rd-customer-points-balance-inline-widget-placeholder"
+                  data-gw-enable-points-name="true"
+                  style="display: block"
+              ></span>
+          </p>
+
+      <p class="gw-rewards-your-status-widget__list-title">Value:</p>
+        <p id="valueValue" class="gw-rewards-your-status-widget__list-value">
+            
+          </p>
+    </div>
+    <div class="gw-rewards-your-status-widget__block-item">
+      <button class="gw-rewards-your-status-widget__redeem-btn gw-rewards-your-status-widget__redeem-desktop">Redeem Points</button>
+    </div>
+  </div>
+  <div class="gw-rewards-your-status-widget__block-item">
+    <div
+    class="gw-rd-vip-tiers-multi-progress-widget-placeholder"
+    style="display: block"
+></div>
+  </div>
+  <div class="gw-rewards-your-status-widget__redeem-btn gw-rewards-your-status-widget__redeem-mobile">Redeem Points</div>
+</div>
+
+
+
+<style>
+  .loader {
+    display: block;
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: l5 1s infinite linear alternate;
+  }
+  @keyframes l5 {
+      0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+      33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+      66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+      100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+  }
+  .gw-rewards-your-status-widget {
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    margin: 0 auto;
+  }
+
+  .gw-rewards-your-status-widget__block-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  .gw-rewards-your-status-widget__title {
+    color: #7e0b56;
+    text-align: center;
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 40px;
+    font-weight: 500;
+  }  
+
+  .gw-rewards-your-status-widget__block {
+    display: none;
+  }
+
+  .gw-rewards-your-status-widget__block-item-list {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 100px;
+  }
+
+  .gw-rewards-your-status-widget__block-list-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .gw-rewards-your-status-widget__block-list-item:last-child {
+    text-align: right;
+  }
+
+  .gw-rewards-your-status-widget__list-title {
+    color: #968181;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .gw-rewards-your-status-widget__list-value {
+    color: #8D346E;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    font-weight: 500;
+  }
+
+  .gw-rewards-your-status-widget__list-value {
+    text-align: right;
+  }
+
+  .gw-rewards-your-status-widget__redeem-btn {
+    width: 240px;
+    height: 44px;
+    box-sizing: border-box;
+    border-radius: 4px 4px 0px 0px;
+    background: linear-gradient(88deg, #C2A661 10.05%, #FDE3A4 123.89%);
+    border: none;
+    padding: 11px 40px;
+    color: #7E0B56;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); */
+    transition: 1s;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .gw-rewards-your-status-widget__redeem-btn:hover {
+    opacity: 0.8;
+  }
+
+  .gw-rewards-your-status-widget__redeem-mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 425px) {
+    .gw-rewards-your-status-widget__redeem-mobile {
+      display: block;
+      width: 100%;
+      height: 32px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .gw-rewards-your-status-widget__redeem-desktop {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .gw-rewards-your-status-widget__redeem-mobile {
+      display: block;
+      width: 100%;
+      height: 32px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .gw-rewards-your-status-widget__redeem-desktop {
+      display: none;
+    }
+
+    .gw-rewards-your-status-widget__title {
+      font-size: 20px;
+    }
+
+    .gw-rewards-your-status-widget__list-title,
+    .gw-rewards-your-status-widget__list-value {
+      font-size: 14px;
+    }
+  }
+</style>
+
+{% endif %}

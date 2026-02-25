@@ -1,0 +1,253 @@
+{%- style -%}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .product-tab-section {
+    padding: 40px 20px;
+    margin: auto;
+  }
+
+  .product-tab-header {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  }
+
+  .product-tab-button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: var(--header-family);
+  font-weight: 400;
+  color: #8F8F8F;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+  text-transform: uppercase;
+  }
+
+  .product-tab-button.active {
+  color: #000;
+  }
+
+  .product-tab-button.active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: black;
+  left: 0;
+  bottom: -4px;
+  }
+
+  .product-tab-grid-container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 320px; /* Fixed width for each column */
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0 24px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .product-tab-grid-container::-webkit-scrollbar{
+  height: 2px;
+  background: #D9D9D9;
+  }
+  .product-tab-grid-container::-webkit-scrollbar-thumb {
+  background: #181818;
+  }
+
+  .product-tab-block-section {
+  scroll-snap-align: start;
+  }
+
+  .product-tab-container {
+  display: none;
+  width: 100%;
+  }
+
+  .product-tab-container.active {
+  display: block;
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .product-tab-header{
+      gap: 12px;
+      justify-content: space-evenly;
+    }
+    .product-tab-button {
+      font-size: 20px;
+    }
+    .product-tab-grid-container {
+      grid-auto-columns: 230px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-margin">
+  <div class="product-tab-section{% if section.settings.showContainer %} {{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" >
+    <!-- Tabs -->
+    <div class="product-tab-header">
+      {% for block in section.blocks %}
+        <button
+          class="product-tab-button{% if forloop.first %} active{% endif %}"
+          data-tab="{{ section.id |  append: block.settings.title }}"
+        >
+          {{ block.settings.title }}
+        </button>
+      {% endfor %}
+    </div>
+    <!-- Containers -->
+    {% for block in section.blocks %}
+      <div
+        class="product-tab-container{% if forloop.first %} active{% endif %}"
+        id="{{ section.id |  append: block.settings.title }}"
+      >
+        <div class="product-tab-grid-container">
+          <div class="product-tab-block-section" >
+           <a href="{{ block.settings.collection.url }}" title="{{ block.settings.collection.title }}" >
+            <img
+              src="{{ block.settings.image |  image_url  }}"
+              alt="{{ block.settings.image }} "
+              loading="lazy"
+              width="100%"
+              height="100%"
+            >
+          </a>
+          </div>
+          {% for product in block.settings.collection.products limit: 7 %}
+            <div class="product-tab-block-section">
+              {% assign indexing = forloop.index0 %}
+              {% render 'new-pocket-skincare', product: product, fetch_priority: fetch_priority, indexIs: indexing %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Product cards tabs",
+  "class": "product-tabs-section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "page-width", "label": "Show FrameWork Container" },
+        { "value": "container", "label": "Show Bootstrap Container" }
+      ],
+      "default": "container"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "content",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Brand Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product cards tabs"
+    }
+  ]
+}
+{% endschema %}
+{% javascript %}
+  const tabPdButtons = document.querySelectorAll('.product-tab-button');
+  const productTabContainers = document.querySelectorAll('.product-tab-container');
+
+  tabPdButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // Remove 'active' from all buttons
+      tabPdButtons.forEach((btn) => btn.classList.remove('active'));
+      // Add 'active' to clicked button
+      button.classList.add('active');
+
+      // Hide all containers
+      productTabContainers.forEach((container) => container.classList.remove('active'));
+
+      // Show the one with matching id
+      const target = button.getAttribute('data-tab');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+{% endjavascript %}

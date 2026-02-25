@@ -1,0 +1,318 @@
+{%- style -%}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }} .product-tab-section {
+    padding: 40px 0;
+    margin: auto;
+    overflow:hidden;
+  }
+
+ .section-{{ section.id }} .product-tab-header {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  }
+
+ .section-{{ section.id }} .product-tab-button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 32px;
+  font-family: var(--family-regular);
+  font-weight: 800;
+  color: #8F8F8F;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+  text-transform: uppercase;
+  }
+
+  .product-tab-button.active {
+  color: #000;
+  }
+
+ .section-{{ section.id }} .product-tab-button.active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: black;
+  left: 0;
+  bottom: 2px;
+  }
+
+  /* .product-tab-grid-container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 320px;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0 24px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  } */
+  .section-{{ section.id }} .tabs_swiper{
+    top: unset !important;
+    bottom: -26px;
+    background: #F5F5F5;
+    z-index: 0;
+  }
+  .section-{{ section.id }} .tabs_swiper .swiper-pagination-progressbar-fill{
+    background: #6E6E6E;
+  }
+
+  .section-{{ section.id }} .product-tab-container {
+    display: none;
+    width: 100%;
+    overflow:unset !important;
+  }
+
+ .section-{{ section.id }} .product-tab-container.active {
+  display: block;
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+   .section-{{ section.id }} .product-tab-section{
+      padding: 0 12px;
+    }
+    .section-{{ section.id }} .product-tab-header{
+      gap:18px;
+      justify-content: space-evenly;
+      flex-wrap: nowrap;
+      overflow: scroll;
+      width: 100%;
+    }
+    .section-{{ section.id }} .product-tab-button {
+      font-size: 20px;
+      white-space: nowrap;
+      padding: 0;
+    }
+    .section-{{ section.id }} .product-tab-grid-container {
+      grid-auto-columns: 230px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-margin section-{{ section.id }}">
+  <div class="product-tab-section{% if section.settings.showContainer %} {{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <!-- Tabs -->
+    <div class="product-tab-header">
+      {% for block in section.blocks %}
+        <button
+          class="product-tab-button{% if forloop.first %} active{% endif %}"
+          data-tab="{{ section.id |  append: block.settings.title }}"
+        >
+          {{ block.settings.title }}
+        </button>
+      {% endfor %}
+    </div>
+    <!-- Containers -->
+    {% for block in section.blocks %}
+      <div
+        class="product-tab-container swiper slider{{ forloop.index }}{% if forloop.first %} active{% endif %}"
+        id="{{ section.id |  append: block.settings.title }}"
+      >
+        <div class="product-tab-grid-container swiper-wrapper">
+          <div class="product-tab-block-section swiper-slide h-auto">
+            <a href="{{ block.settings.collection.url }}" title="{{ block.settings.collection.title }}">
+              <img
+                src="{{ block.settings.image |  image_url  }}"
+                alt="{{ block.settings.image }} "
+                loading="eager"
+                width="100%"
+                height="100%"
+                class="desktop_screen rounded-4"
+              >
+              <img
+                src="{{ block.settings.mobile_image |  image_url  }}"
+                alt="{{ block.settings.mobile_image }} "
+                loading="eager"
+                width="100%"
+                height="100%"
+                class="mobile_screen rounded-4"
+              >
+            </a>
+          </div>
+          {% for product in block.settings.collection.products limit: 8 %}
+            <div class="product-tab-block-section swiper-slide">
+              {% assign indexing = forloop.index0 %}
+              {% render 'new-pocket', product: product, fetch_priority: fetch_priority, indexIs: indexing %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination tabs_swiper slidebar{{ forloop.index }}"><br></div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Product cards tabs",
+  "class": "product-tabs-section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "page-width", "label": "Show FrameWork Container" },
+        { "value": "container", "label": "Show Bootstrap Container" }
+      ],
+      "default": "container"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "content",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Brand Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Collection Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Collection Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product cards tabs"
+    }
+  ]
+}
+{% endschema %}
+{% javascript %}
+  let swiper_config = {
+    slidesPerView:1.4,
+      spaceBetween: 20,
+      breakpoints: {
+      768: {
+        slidesPerView: 2
+      },
+      1024: {
+        slidesPerView: 2.5,
+        spaceBetween: 20
+      },
+      1280: {
+        slidesPerView:4,
+        spaceBetween: 20
+      },
+      1536: {
+        slidesPerView: 4.5,
+        spaceBetween: 20
+      },
+    }
+  }
+    var swipercards1 = new Swiper(".product-tab-container.slider1", {
+      ...swiper_config,
+       pagination: {
+        el: ".slidebar1",
+        type: "progressbar",
+      },
+    });
+    var swipercards2 = new Swiper(".product-tab-container.slider2", {
+     ...swiper_config,
+       pagination: {
+        el: ".slidebar2",
+        type: "progressbar",
+      },
+    });
+    var swipercards3 = new Swiper(".product-tab-container.slider3", {
+     ...swiper_config,
+       pagination: {
+        el: ".slidebar3",
+        type: "progressbar",
+      },
+    });
+  const tabPdButtons = document.querySelectorAll('.product-tab-button');
+  const productTabContainers = document.querySelectorAll('.product-tab-container');
+
+  tabPdButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // Remove 'active' from all buttons
+      tabPdButtons.forEach((btn) => btn.classList.remove('active'));
+      // Add 'active' to clicked button
+      button.classList.add('active');
+
+      // Hide all containers
+      productTabContainers.forEach((container) => container.classList.remove('active'));
+
+      // Show the one with matching id
+      const target = button.getAttribute('data-tab');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+{% endjavascript %}

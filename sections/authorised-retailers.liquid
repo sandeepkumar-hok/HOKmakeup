@@ -1,0 +1,172 @@
+<!-- authorised-retailers.liquid -->
+<section id="retailers-{{ section.id }}" class="retailers" style="background-color: {{ section.settings.bg | default: '#F7F5F2' }};">
+  <div class="retailers__container page-width">
+    <div class="retailers__card">
+      <div class="retailers__head">
+        {% if section.settings.kicker != blank %}
+          <div class="retailers__kicker">
+            {{ section.settings.kicker | upcase }}
+          </div>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="retailers__title">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+      </div>
+      <div class="retailers__logos">
+        {% for block in section.blocks %}
+          {% assign b = block.settings %}
+          {% if b.image != blank %}
+            <div class="retailers__logo-tile">
+              {% if b.link != blank %}
+                <a
+                  href="{{ b.link }}"
+                  class="retailers__logo-link"
+                  target="{{ section.settings.link_target }}"
+                  rel="{% if section.settings.link_target == '_blank' %}noopener noreferrer{% endif %}"
+                >
+              {% endif %}   
+                    <img
+                      src="{{ b.image | image_url: width: 600 }}"
+                      alt="{{ b.alt | default: b.title | escape }}"
+                      width="145"
+                      height="42"
+                      class="retailers__logo-img"
+                      loading="lazy"
+                    >
+              {% if b.link != blank %}</a>{% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+#retailers-{{ section.id }}{
+ --logo-w-m: {{ section.settings.logo_width_mobile | default: 150 }}px;
+--logo-w-d: {{ section.settings.logo_width_desktop | default: 200 }}px;
+--img-h-m: {{ section.settings.img_max_h_mobile | default: 48 }}px;
+ --img-h-d: {{ section.settings.img_max_h_desktop | default: 56 }}px;
+        }
+#retailers-{{ section.id }}.retailers{
+  width: 100%;
+}
+#retailers-{{ section.id }} .retailers__container{
+  margin: 0 auto;
+  padding: 60px 16px;
+}
+#retailers-{{ section.id }} .retailers__card{
+  border: 1px solid #EEEAE4;
+  padding: 60px 16px;
+  border-radius: 10px;
+}
+#retailers-{{ section.id }} .retailers__head{
+  text-align: center;
+  margin-bottom: 60px;
+}
+#retailers-{{ section.id }} .retailers__kicker{
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  color: #2A5072;
+  text-transform: uppercase;
+}
+#retailers-{{ section.id }} .retailers__title{
+  margin:0px;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #2A5072;
+}
+#retailers-{{ section.id }} .retailers__logos{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+#retailers-{{ section.id }} .retailers__logo-tile{
+  width: var(--logo-w-d);
+}
+#retailers-{{ section.id }} .retailers__logo-link{
+  display: block;
+  text-decoration: none;
+}
+#retailers-{{ section.id }} .retailers__logo-img{
+  width: 100%;
+  height: 45px;
+  max-height: var(--img-h-d);
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 768px){
+  #retailers-{{ section.id }} .retailers__container{
+    padding: 32px 16px;
+  }
+  #retailers-{{ section.id }} .retailers__card{
+    border-radius: 30px;
+  }
+  #retailers-{{ section.id }} .retailers__head{
+    margin-bottom: 30px;
+  }
+  #retailers-{{ section.id }} .retailers__title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  #retailers-{{ section.id }} .retailers__logos{
+    padding: 0;
+    gap: 18px 10px;
+  }
+  #retailers-{{ section.id }} .retailers__logo-tile{
+    width: var(--logo-w-m);
+  }
+  #retailers-{{ section.id }} .retailers__logo-img{
+    max-height: var(--img-h-m);
+  }
+}
+</style>
+{% schema %}
+{
+  "name": "Authorised Retailers",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Authorised retailers" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find us at your go-to stores" },
+    { "type": "color", "id": "bg", "label": "Section background", "default": "#F7F5F2" },
+    {
+      "type": "select",
+      "id": "link_target",
+      "label": "Logo link target",
+      "default": "_blank",
+      "options": [
+        { "value": "_self", "label": "Open in same tab" },
+        { "value": "_blank", "label": "Open in new tab" }
+      ]
+    },
+    { "type": "range", "id": "logo_width_mobile", "label": "Logo width (mobile)", "min": 80, "max": 240, "step": 5, "default": 150 },
+    { "type": "range", "id": "logo_width_desktop", "label": "Logo width (desktop)", "min": 120, "max": 320, "step": 10, "default": 200 },
+    { "type": "range", "id": "img_max_h_mobile", "label": "Image max height (mobile)", "min": 20, "max": 80, "step": 2, "default": 48 },
+    { "type": "range", "id": "img_max_h_desktop", "label": "Image max height (desktop)", "min": 20, "max": 120, "step": 2, "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Retailer logo",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Name (for reference)", "default": "Nykaa" },
+        { "type": "image_picker", "id": "image", "label": "Logo image" },
+        { "type": "text", "id": "alt", "label": "Alt text", "default": "Nykaa" },
+        { "type": "url", "id": "link", "label": "Link URL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Authorised Retailers",
+      "category": "Image",
+      "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }]
+    }
+  ]
+}
+{% endschema %}

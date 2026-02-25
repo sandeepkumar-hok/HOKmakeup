@@ -1,0 +1,433 @@
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% assign numSlidesSm = section.settings['num-slides-sm'] %}
+{% assign numSlidesMd = section.settings['num-slides-md'] %}
+{% assign numSlidesLg = section.settings['num-slides-lg'] %}
+{% assign numSlidesXl = section.settings['num-slides-xl'] %}
+{% assign numSlides2xl = section.settings['num-slides-2xl'] %}
+<div class="section-{{ section.id }}-margin  carousel-section-outer">
+  <div
+    class="carousel-section-wrapper {%- case section.settings.showContainer %}{% when 'full-width' %} full-width {% when 'spacesDesktop' %} new-slider-wrapper {% when 'container' %} container {% else -%} new-slider-wrapper {% endcase %}"
+  >
+    {% if section.settings['carousel-title'] %}
+      <div class="carousel-section-title-wrapper">
+        <p class="carousel-section-title">{{- section.settings['carousel-title'] -}}</p>
+      </div>
+    {% endif %}
+
+    <div class="carousel-nav-wrapper flex_container">
+      <div
+        id="swiper-{{ section.id }}"
+        class="carousel-wrapper-outer {% if section.settings.showContainer == "container" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="carousel-slide-wrapper image-with-text-slide-wrapper swiper-slide">
+              <div class="carousel-slide image-with-text-slide">
+                <div class="image-with-text-media image-with-text-part">
+                  {% render 'image-video',
+                    mobileImage: block.settings['brand-image-mobile'],
+                    desktopImage: block.settings['brand-image-desktop'],
+                    mobileVideo: block.settings['brand-video-mobile'],
+                    desktopVideo: block.settings['brand-video-desktop'],
+                    class: 'carousel-media',
+                    showVideo: block.settings['use-video']
+                  %}
+                </div>
+                <div class="image-with-text-desc image-with-text-part py-4">
+                  <div class="image-with-text-desc--content">
+                    <span class="star-wrapper">
+                      {% for i in (1..5) %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11" viewBox="0 0 13 11" fill="none">
+                          <path d="M6.02447 0.463525C6.17415 0.00286925 6.82585 0.00286996 6.97553 0.463525L7.95934 3.49139C8.02628 3.6974 8.21826 3.83688 8.43487 3.83688H11.6186C12.1029 3.83688 12.3043 4.45669 11.9124 4.74139L9.33679 6.61271C9.16155 6.74003 9.08822 6.96572 9.15516 7.17173L10.139 10.1996C10.2886 10.6602 9.7614 11.0433 9.36955 10.7586L6.79389 8.88729C6.61865 8.75997 6.38135 8.75997 6.20611 8.88729L3.63045 10.7586C3.23859 11.0433 2.71136 10.6602 2.86103 10.1996L3.84484 7.17173C3.91178 6.96572 3.83845 6.74003 3.66321 6.61271L1.08755 4.74139C0.695696 4.45669 0.897084 3.83688 1.38145 3.83688H4.56513C4.78174 3.83688 4.97372 3.6974 5.04066 3.49139L6.02447 0.463525Z" fill="#585858"/>
+                        </svg>
+                      {% endfor %}
+                    </span>
+                    <span class="title-wrapper">
+                      {{ block.settings['brand-review-title'] }}
+                    </span>
+                    <span class="review-wrapper">
+                      {{ block.settings['brand-review'] }}
+                    </span>
+                    <span class="name-wrapper">
+                      {{ block.settings['brand-review-name'] }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="arrow_handler">
+        <button id="carousel-prev-{{ section.id }}" type="button" class="carousel-btn">
+          {{ 'arrow-back.svg' | inline_asset_content }}
+        </button>
+        <button id="carousel-next-{{ section.id }}" type="button" class="carousel-btn">
+          {{ 'arrow-next.svg' | inline_asset_content }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .image-with-text-section-inner {
+    padding: 0;
+  }
+
+  .image-with-text-section-inner > .carousel-section-title-wrapper {
+    padding-left: 12px;
+  }
+
+  .image-with-text-slide {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-with-text-media > img,
+  .image-with-text-media > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-with-text-part {
+    overflow: hidden;
+    flex: 1 1 0;
+    width: 100%;
+    min-height: 200px;
+    max-height: 380px;
+  }
+
+  .image-with-text-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 32px;
+    padding-bottom: 48px;
+    background: #f5f5f5;
+  }
+
+  .image-with-text-desc--content {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 13px;
+  }
+
+  .image-with-text-desc--content > .title-wrapper {
+    color: #212529;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 20px; /* 125% */
+
+    font-weight: 500;
+  }
+
+  .image-with-text-desc--content > .review-wrapper {
+    color: #212529;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 20px; /* 142.857% */
+  }
+
+  .image-with-text-desc--content > .name-wrapper {
+    color: #212529;
+    font-size: 11px;
+    line-height: 15px; /* 136.364% */
+    font-weight: 500;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .image-with-text-section-inner {
+      padding-left: var(--bs-gutter-x, 0.75rem);
+      padding-right: var(--bs-gutter-x, 0.75rem);
+    }
+
+    .image-with-text-desc {
+      padding-left: 70px;
+      padding-right: 70px;
+
+      padding-top: 68px;
+      padding-bottom: 68px;
+    }
+
+    .image-with-text-section-inner > .carousel-section-title-wrapper {
+      padding-left: 42px;
+    }
+
+    .image-with-text-slide {
+      flex-direction: row;
+    }
+
+    .image-with-text-part {
+      width: 0;
+    }
+
+    .image-with-text-desc--content > .title-wrapper {
+      font-size: 18px;
+
+      font-weight: 700;
+      line-height: 24px; /* 133.333% */
+    }
+
+    .image-with-text-desc--content > .review-wrapper {
+      font-size: 16px;
+      line-height: 22px; /* 137.5% */
+    }
+
+    .image-with-text-desc--content > .name-wrapper {
+      font-size: 14px;
+      line-height: 20px; /* 142.857% */
+    }
+  }
+</style>
+
+<script type="text/javascript">
+
+  document.addEventListener('DOMContentLoaded', function () {
+      var numSlidesSm = parseFloat('{{ numSlidesSm }}'), numSlidesMd = parseFloat('{{ numSlidesMd }}'), numSlidesLg = parseFloat('{{ numSlidesLg }}'), numSlidesXl = parseFloat('{{ numSlidesXl }}'), numSlides2xl = parseFloat('{{ numSlides2xl }}');
+
+      const brandSlider{{ section.id |  remove: '-' |  remove: '_'   }} = new Swiper('#swiper-{{ section.id }}', {
+        speed: 600,
+        slidesPerView: numSlidesSm,
+        parallax: true,
+        freeMode: {{ section.settings.showFreeScroll }},
+        autoHeight:true,
+        breakpoints: {
+          768: {
+            slidesPerView: numSlidesMd,
+          },
+          1024: {
+            slidesPerView: numSlidesLg,
+          },
+          12200: {
+            slidesPerView: numSlidesXl,
+          },
+          1536: {
+            slidesPerView: numSlides2xl,
+          },
+        },
+        navigation: {
+          prevEl: '#carousel-prev-{{ section.id }}',
+          nextEl: '#carousel-next-{{ section.id }}',
+        },
+      });
+
+      $('.square-banner-thumb-input').on('change', function () {
+        var slideIndex = $(this).data('slide-index');
+        brandSlider{{ section.id |  remove: '-' |  remove: '_'   }}.slideTo(slideIndex);
+      });
+      });
+</script>
+
+{% schema %}
+{
+  "name": "Image With Text Slider",
+  "class": "image-with-text-slider",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "spacesDesktop", "label": "Show Hok Container" },
+        { "value": "container", "label": "Show FrameWork Container" }
+      ],
+      "default": "spacesDesktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "showFreeScroll",
+      "label": "Free Scroll Container",
+      "info": "If enabled ,Free scroll wil be enabled",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "text",
+      "id": "carousel-title",
+      "label": "Carousel Title"
+    },
+    {
+      "type": "number",
+      "id": "slides-limit",
+      "label": "Total Num of Slides",
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "num-slides-sm",
+      "label": "Num Slides on sm Devices",
+      "default": "1",
+      "info": "Rounded to one decimal point. Breakpoint none"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-md",
+      "label": "Num Slides on md Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 768px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-lg",
+      "label": "Num Slides on lg Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1024px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-xl",
+      "label": "Num Slides on xl Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1280px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-2xl",
+      "label": "Num Slides on 2xl Devices",
+      "default": "3.5",
+      "info": "Rounded to one decimal point. Breakpoint 1536px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand-media",
+      "name": "Brand Media",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "brand-cta",
+          "label": "Brand CTA Text",
+          "default": "<p>Shop Now</p>"
+        },
+        {
+          "type": "url",
+          "id": "brand-url",
+          "label": "Brand URL"
+        },
+        {
+          "type": "richtext",
+          "id": "brand-review-title",
+          "label": "Brand Review Title",
+          "default": "<p>L.N Pro Filler Lip Liner</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "brand-review",
+          "label": "Brand Review Text",
+          "default": "<p>LN Pro Filler Lip Liner defines beautifully with rich color and creamy texture. Wipe-resistant, waterproof formula. Versatile design, long-lasting wear. A must-try alternative to matte lipstick!</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "brand-review-name",
+          "label": "Brand Review Name",
+          "default": "<p>- Shraddha Modi (12/05/2024)</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "brand-image-desktop",
+          "label": "Brand Image Desktop",
+          "info": "aspect-ratio 1:1, 1080x1080"
+        },
+        {
+          "type": "image_picker",
+          "id": "brand-image-mobile",
+          "label": "brand Image Mobile",
+          "info": "aspect-ratio 1:1, 1080x1080"
+        },
+        {
+          "type": "checkbox",
+          "id": "use-video",
+          "label": "Use Video brand?"
+        },
+        {
+          "type": "video",
+          "id": "brand-video-desktop",
+          "label": "brand Video Desktop",
+          "info": "aspect-ratio 1:1, 1080x1080"
+        },
+        {
+          "type": "video",
+          "id": "brand-video-mobile",
+          "label": "brand Video Mobile",
+          "info": "aspect-ratio 1:1, 1080x1080"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text slider"
+    }
+  ]
+}
+{% endschema %}

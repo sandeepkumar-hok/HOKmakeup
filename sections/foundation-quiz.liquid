@@ -1,0 +1,146 @@
+<style>
+    .quiz-banner {
+    background: url('{{ section.settings.bg-image | image_url }}') no-repeat center/cover;
+    padding: 30px 20px;
+    }
+
+    .quiz-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .quiz-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 0.6px solid #E2D4C7;
+    }
+
+    .quiz-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    }
+
+    .quiz-text {
+    flex: 1;
+    }
+
+    .quiz-title {
+      color: #583216;
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .quiz-subtitle {
+      font-size: 16px;
+      padding-top: 1rem;
+      line-height: 1.4;
+      color: #995B30;
+    }
+    .quiz-subtitle strong {
+      color: #643412;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 18px;
+    }
+
+    .quiz-arrow {
+    font-size: 20px;
+    flex-shrink: 0;
+    }
+
+    .quiz-button {
+    display: inline-block;
+    text-align: center;
+    background: #955927;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    /* .quiz-content {
+        align-items: flex-start;
+    } */
+    .quiz-icon img {
+        width: 46px;
+        height: 35px;   
+    }
+    .quiz-button {
+        width: 100%;
+    }
+
+    .quiz-title {
+        font-size: 20px;
+    }
+    .quiz-subtitle {
+        font-size: 13px;
+    }
+    }
+</style>
+<section class="quiz-banner">
+  <div class="quiz-container page-width">
+    <div class="quiz-content">
+      <div class="quiz-icon">
+        <img src="{{ section.settings.product_img |  image_url  }}" alt="{{ section.settings.product_img }}" loading="lazy" width="97" height="76">
+      </div>
+      <div class="quiz-text">
+        <h3 class="quiz-title">THE SEARCH ENDS HERE!</h3>
+      </div>
+      <div class="quiz-arrow">
+        {{ 'arrow-next.svg' | inline_asset_content }}
+      </div>
+    </div>
+    <p class="quiz-subtitle">
+        Your base, your way — Sheer, matte, dewy, full<br>
+        <strong>Take the Quiz</strong> ✨
+    </p>
+    <a href="{{ section.settings.url }}" class="quiz-button">FIND YOUR MATCH</a>
+  </div>
+</section>
+
+{% schema %}
+    {
+      "name": "Foundation Quiz Container",
+      "class": "quiz-section",
+      "tag": "section",
+      "settings": [
+        {
+            "type": "image_picker",
+            "id": "product_img",
+            "label": "Product Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg-image",
+            "label": "Background Image"
+        },
+        {
+            "type": "url",
+            "id": "url",
+            "label": "Link to redirect"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Foundation Quiz Container"
+        }
+      ]
+    }
+    {% endschema %}
+    

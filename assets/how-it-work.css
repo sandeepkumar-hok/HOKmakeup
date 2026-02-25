@@ -1,0 +1,99 @@
+.how-it-works-section-community {
+  background-color: #FEFFD9;
+  /* padding: 60px 20px; */
+  text-align: center;
+}
+
+.how-it-works-section-community h2 {
+  font-size: 40px;
+  padding-bottom: 40px;
+  font-family: 'Mosvita';
+  font-weight: 800;
+  margin-bottom:6.25rem;
+}
+.how-it-works-grid {
+  display: grid;
+  gap: 30px 30px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.how-it-works-card {
+  background-color: #DCED3E;
+  border-radius: 20px;
+  padding: 40px 57px 29px 57px;
+  text-align: center;
+  position: relative;
+}
+.choose-path-text ul{
+  margin-left: 45px;
+}
+.how-it-works-card .step-number {
+  position: absolute;
+  top: -14%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background: #F18C22;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  font-size: clamp(16px, 2vw ,29px);
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.how-it-works-card h3 {
+  margin-top: 20px;
+  font-size: clamp(14px, 2vw ,20px);
+    font-family: 'NickySans';
+  font-weight: 700;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+}
+  .how-it-works-card p {
+  font-size: clamp(12px, 2vw ,20px);
+  line-height: 1.4;
+  margin-top: 20px;
+   font-family: 'NickySans';
+   font-weight: 400;
+}
+.how-it-works-card a{
+  display: inline-block;
+  margin-top: 12px;
+    background: #ff00a0;
+    color: #fff;
+    padding: 7px 43px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+  @media (max-width: 767px) {
+    .how-it-works-card a{
+      padding: 6px 20px;
+      white-space: nowrap;
+      font-size: 14px;
+    }
+    .how-it-works-card h3{
+      margin-bottom: 10px;
+    }
+  .how-it-works-section-community h2{
+    margin-bottom: 20px;
+    font-size:24px;
+  }
+  .how-it-works-grid {
+    gap: 30px 13px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .choose-path-text ul{
+  margin-left: 0px;
+}
+  .how-it-works-card {
+    padding: 26px 18px 21px 12px;
+  }
+  .how-it-works-card .step-number {
+    top: -8%;
+    width: 36px;
+    height: 36px;
+  }
+}

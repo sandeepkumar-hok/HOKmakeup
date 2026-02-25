@@ -1,0 +1,388 @@
+<link href="https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&display=swap" rel="stylesheet">
+{%- style -%}
+    .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+        margin-inline:auto;
+    }
+    
+    .tabular-category-section {
+      /* max-width: 1200px; */
+      margin: 40px auto;
+    }
+
+    .tabular-category-header {
+      text-align: center;
+    }
+
+    .tabular-category-header h2 {
+      font-size: 40px;
+      font-family: var(--header-family);
+      margin-bottom: 40px;
+    }
+
+    .product-category-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 15px;
+    }
+
+    .tabular-category-btn {
+      background: #FFF;
+      color: #CFCDCD;
+      box-shadow: 0px 1px 6px 0px rgba(148, 147, 147, 0.25);
+      border: 1px solid #CFCDCD;
+      padding: 6px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .tabular-category-btn.active {
+      color: #000;
+      box-shadow: 0px 1px 8px 0px rgba(63, 62, 58, 0.25);
+      font-weight: 700;
+      border:none;
+    }
+    .tabular-productGrid{
+        display: none;    
+    }
+    .tabular-productGrid.active{
+        display: flex;
+        gap: 20px;   
+        overflow-x: auto;
+        padding-bottom: 2rem;
+    }
+    .tabular-productGrid.active::-webkit-scrollbar{
+        height: 2px;
+    }
+    .tabular-productGrid.active::-webkit-scrollbar-thumb{
+        background: #000;
+        border-radius: 10px;
+    }
+
+    .tabular-category-quote {
+      text-align: center;
+      font-style: italic;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .tabular-category-products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .tabular-product-card {
+      flex: 0 0 calc(33.33% - 20px);
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s ease;
+    }
+
+    .tabular-product-card img {
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .tabular-section-product-info {
+      margin-top: 1rem;
+      display: flex;
+      gap: 16px;
+    }
+
+    .tabular-section-product-info .sequence {
+      font-family: "Arapey", serif;
+      font-size: 80px;
+      line-height: 60px;
+    }
+    .tabular-section-product-info h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .tabular-section-product-info p {
+      font-size: 18px;
+      margin: 4px 0;
+    }
+
+    .tabular-section-product-info span {
+      font-size: 20px;
+      color: #000;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .tabular-product-card {
+        flex: 0 0 calc(45% - 20px);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+        .section-{{ section.id }}-margin {
+            margin-top: {{ section.settings.margin_top_mobile }}px;
+            margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        }
+        .tabular-category-header h2{
+          font-size: 22px;
+          margin-bottom: 16px;
+          text-align: start;
+        }
+        .product-category-tabs {
+          justify-content: start;
+          flex-wrap: nowrap;
+          gap: 8px;
+          overflow-x: auto;
+          padding: 10px 5px;
+        }
+        .product-category-tabs::-webkit-scrollbar {
+          display: none;
+        }
+        .tabular-category-btn {
+          padding: 8px 16px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+        .tabular-product-card {
+          flex: 0 0 calc(90% - 16px);
+      }
+      .tabular-section-product-info .sequence {
+        font-size: 44px;
+      }
+      .tabular-section-product-info {
+          gap: 8px;
+      }
+      .tabular-section-product-info span {
+        font-size: 14px;
+      }
+      .tabular-section-product-info p {
+          font-size: 12px;
+          margin: 0;
+      }
+
+    }
+  {%- endstyle -%}
+  <div class="section-{{ section.id }}-margin">
+<div class="tabular-section-container{% if section.settings.showContainer %} {{ section.settings.showContainer }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="tabular-category-section page-width">
+    <div class="tabular-category-header">
+      <h2>TOP 10 MUST HAVES AT HOK</h2>
+    </div>
+
+    <div class="product-category-tabs">
+      <button class="tabular-category-btn active" onclick="filterTab(event, 'Eyeliner')">Eyeliner</button>
+      <button class="tabular-category-btn" onclick="filterTab(event, 'Lip Oil')">Lip Oil</button>
+      <button class="tabular-category-btn" onclick="filterTab(event, 'Pencil Liner')">Pencil Liner</button>
+      <button class="tabular-category-btn" onclick="filterTab(event, 'Liquid Liner')">Liquid Liner</button>
+    </div>
+
+    <div class="tabular-category-quote">
+      "Didn’t expect this quality at this price! So smooth and long-lasting.” – Aisha K.<span style="font-style:normal;">&nbsp;|&nbsp;</span> <strong style="font-style:normal;">Pinkflash</strong>
+    </div>
+    <div class="tabular-productGrid active" data-category="Eyeliner">
+      {% for i in (1..6) %}
+        <div class="tabular-product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/la_33010555-449d-413a-891a-ae1cc9059888.png" alt="Lip Oil" width="100%" height="100%">
+          <div class="tabular-section-product-info">
+            <div class="sequence">
+              {{ i }}
+            </div>
+            <div>
+              <div class="d-flex gap-2"><img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/lacolors-logo.png?v=1745403507" alt="logo" width="auto" height="25">
+              <h4><span style="color:#D2D2D2">|</span><span> Steal at 25% Off</span></h4></div>
+              <p style="color: #3498db;font-weight:600;">Lowest price ever</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Lip Oil Grid -->
+    <div class="tabular-productGrid" data-category="Lip Oil">
+      {% for i in (1..6) %}
+        <div class="tabular-product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/la_33010555-449d-413a-891a-ae1cc9059888.png?v=1745319308" alt="Lip Oil" width="100%" height="100%">
+          <div class="tabular-section-product-info">
+            <div class="sequence">
+              {{ i }}
+            </div>
+            <div>
+              <div class="d-flex gap-2"><img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/lacolors-logo.png?v=1745403507" alt="logo" width="auto" height="25">
+              <h4><span style="color:#D2D2D2">|</span> <span> Steal at 25% Off</span></h4></div>
+              <p style="color: #3498db;">Lowest price ever</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Lip Oil Grid -->
+    <div class="tabular-productGrid" data-category="Pencil Liner">
+      {% for i in (1..6) %}
+        <div class="tabular-product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/la_33010555-449d-413a-891a-ae1cc9059888.png?v=1745319308" alt="Lip Oil" width="100%" height="100%">
+          <div class="tabular-section-product-info">
+            <div class="sequence">
+              {{ i }}
+            </div>
+            <div>
+              <div class="d-flex gap-2"><img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/lacolors-logo.png?v=1745403507" alt="logo" width="auto" height="25">
+              <h4><span style="color:#D2D2D2">|</span> <span> Steal at 25% Off</span></h4></div>
+              <p style="color: #3498db;">Lowest price ever</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Lip Oil Grid -->
+    <div class="tabular-productGrid" data-category="Liquid Liner">
+      {% for i in (1..6) %}
+        <div class="tabular-product-card">
+          <img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/pf_a34ec916-8f96-4c07-b67c-3cee6b9744a3.png?v=1745310339" alt="Lip Oil" width="100%" height="100%">
+          <div class="tabular-section-product-info">
+            <div class="sequence">
+              {{ i }}
+            </div>
+            <div>
+              <div class="d-flex gap-2"><img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/lacolors-logo.png?v=1745403507" alt="logo" width="auto" height="25">
+              <h4><span style="color:#D2D2D2">|</span> <span> Steal at 25% Off</span></h4></div>
+              <p style="color: #3498db;">Lowest price ever</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Add similar blocks for Pencil Liner and Liquid Liner as needed -->
+  </div>
+</div>
+</div>
+
+<script>
+function filterTab(event, category) {
+  // Toggle active class on buttons
+  document.querySelectorAll('.tabular-category-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Show/hide product grids
+  document.querySelectorAll('.tabular-productGrid').forEach(grid => {
+    if (grid.dataset.category === category) {
+      grid.classList.add('active');
+    } else {
+      grid.classList.remove('active');
+    }
+  });
+}
+// "blocks": [
+//     {
+//       "type": "image",
+//       "name": "content",
+//       "settings": [
+//         {
+//           "type": "color",
+//           "id": "colors",
+//           "label": "Background Color",
+//           "default": "#f9f0e1"  
+//         },  
+//         {
+//           "type": "product",
+//           "id": "product",
+//           "label": "Product"
+//         },
+//         {
+//           "type": "image_picker",
+//           "id": "image",
+//           "label": "Product Image"
+//         },
+//         {
+//           "type": "text",
+//           "id": "title",
+//           "label": "Brand Title"
+//         }
+//       ]
+//     }
+//   ],
+</script>
+{% schema %}
+    {
+      "name": "Tabular Categories",
+      "class": "tabular-cat-section",
+      "settings": [
+        {
+          "type": "radio", 
+          "id": "showContainer",
+          "label": "Choose Container Style",
+          "options": [
+            { "value": "full-width", "label": "Show Full Container" },
+            { "value": "page-width", "label": "Show FrameWork Container" },
+            { "value": "container", "label": "Show Bootstrap Container" }
+          ],
+          "default": "container"
+        },
+        {
+          "type": "url",
+          "id": "combos_url",
+          "label": "Combos URL"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        },
+        {
+          "type": "header",
+          "content": "Mobile Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        }
+      ],
+      "presets": [
+        {
+          "name": "Tabular Categories"
+        }
+      ]
+    }
+    {% endschema %}

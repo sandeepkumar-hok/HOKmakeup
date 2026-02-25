@@ -1,0 +1,366 @@
+{% comment %} Quick View Modal for {{ first_variant }} {% endcomment %}
+{% liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign offer_name = 'default'
+  for collection in product.collections
+    if collection.handle == 'buy-any-3-at-949'
+      assign offer_name = 'pd-bundle'
+    elsif collection.handle contains 'buy-any-4-at-999'
+      assign offer_name = 'buy4_999'
+    elsif collection.handle contains 'la-girl-buy-any-4-at-1499'
+      assign offer_name = 'Lagirl@1499'
+    elsif collection.handle contains 'flat-50-on-orders-799'
+      assign offer_name = '799_50OFF'
+    elsif collection.handle contains 'buy-any-3-get-3-free'
+      assign offer_name = 'buy3_get3'
+    elsif collection.handle contains 'organic-works-bar-soaps'
+      assign offer_name = 'bar_soaps'
+    elsif collection.handle contains 'buy-any-3-at-799'
+      assign offer_name = 'buy3_799'
+    elsif collection.handle contains 'hok-makeup-x-sweetons'
+      assign offer_name = 'candy'
+    elsif collection.handle contains 'buy-any-4-at-1299' or collection.handle contains 'mix-buy-any-4-at-1299' or collection.handle contains 'eveline-buy-any-4-at-1299'
+      assign offer_name = 'buy4_1299'
+    elsif collection.handle == 'eveline-festive-sale'
+      assign offer_name = 'eveline--sale'
+    elsif collection.handle == 'buy-2-get-2-free'
+      assign offer_name = 'b2g2'
+     elsif collection.handle == 'buy-any-5-1099'
+      assign offer_name = 'C--CAT'
+    elsif collection.handle contains 'lamel-any-4-at-1099'
+        assign offer_name = 'lamelbuy4_1299'
+    elsif collection.handle == 'combos'
+      assign offer_name = 'combos'
+    elsif product.vendor == 'HOK Makeup ORG'
+      assign offer_name = 'org-sale'
+    elsif collection.handle == 'bogo-sale-limited-time-only'
+      assign offer_name = 'bogo'
+    elsif collection.handle == '9-to-9-sale' or collection.handle == '9-to-9-sale-b' or collection.handle == 'customized-combo' or collection.handle == 'lot-by' or collection.handle == 'the-add-to-heart-sale-up-to-60-off'
+      assign offer_name = 'offerHidden'
+    elsif collection.handle == 'foundation-sale' or collection.handle == 'slay-the-base'
+      assign offer_name = 'foundation-sale'
+    elsif collection.handle == 'giverny' 
+      assign offer_name = 'giverny'
+    elsif collection.handle == 'flat-70-off-orders-above-599' 
+      assign offer_name = 'flat-70-off-orders-above-599'
+    endif
+  endfor
+%}
+{% comment %} quick-view-slide-open {% endcomment %}
+<div
+  class="quick-view-slide-container{% if first_variant %} quick-view-slide-open{% endif %}"
+  id="product_Quick_View"
+  sectionId="{{ section.id }}"
+>
+  <div class="quick-view-main-container h-100">
+    <div class="hok-quick-view">
+      {% if first_variant == 'null' or first_variant == blank %}
+        <div id="quickview-spinner-wrapper" class="d-center h-100">
+          <span class="quick_view_loader">
+            <wbr>
+          </span>
+        </div>
+      {% else %}
+        <div class="hok-quick-view-header border-0">
+          <h2 class="hok-quick-view-title text-center mb-0" id="staticBackdropLabel">{{ product.title }}</h2>
+          <button type="button" class="hok-quick-view-close close_overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 1L13 13" stroke="#393939" stroke-linecap="round" />
+              <path d="M13 1L1 13" stroke="#393939" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div class="hok-quick-view-images">
+          <div class="quick-slideshow">
+            <div class="quick-view-slider overflow-hidden" id="quick_view_image_slider">
+              <div class="swiper-pagination quick-view-slider-pagination"><br></div>
+            </div>
+          </div>
+        </div>
+        <div class="quick-view-details">
+          <div class="live-count d-flex align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="21"
+              viewBox="0 0 22 21"
+              fill="none"
+              class="desktop_screen"
+            >
+              <path d="M13.1838 13.3159C15.1038 11.8439 17.9198 9.6679 17.9198 1.5399V0.899902H3.83984V1.5399C3.83984 9.6679 6.71984 11.8439 8.57584 13.3159C9.66384 14.1479 10.2398 14.5959 10.2398 15.6199V17.5399C9.21584 17.6679 8.19184 18.0519 7.80784 18.8199H6.39984C5.69584 18.8199 5.11984 19.3959 5.11984 20.0999H16.6398C16.6398 19.3959 16.0638 18.8199 15.3598 18.8199H13.9518C13.5678 18.0519 12.6078 17.6679 11.5198 17.5399V15.6199C11.5198 14.5959 12.0318 14.1479 13.1838 13.3159ZM10.8798 13.6359C10.4958 13.1239 9.91984 12.6759 9.40784 12.2919C7.67984 10.9479 5.31184 9.1559 5.18384 2.1799H16.7038C16.5758 9.0919 14.2078 10.9479 12.4798 12.2919C11.8398 12.7399 11.2638 13.1239 10.8798 13.6359Z" fill="black"/>
+              <path d="M6.912 11.7799C6.848 11.7799 0 10.3079 0 2.81993V2.17993H4.48V3.45993H1.28C1.664 9.34793 7.104 10.4999 7.168 10.4999L6.912 11.7799ZM14.848 11.7799L14.592 10.4999C14.848 10.4359 20.096 9.28393 20.48 3.45993H17.28V2.17993H21.76V2.81993C21.76 10.3079 14.912 11.7799 14.848 11.7799Z" fill="black"/>
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="14"
+              viewBox="0 0 16 14"
+              fill="none"
+              class="mobile_screen"
+            >
+              <path d="M9.61323 9.05346C11.0133 7.98011 13.0666 6.39342 13.0666 0.466673V0H2.7998V0.466673C2.7998 6.39342 4.89983 7.98011 6.25319 9.05346C7.04653 9.66014 7.46654 9.98681 7.46654 10.7335V12.1335C6.71986 12.2268 5.97318 12.5068 5.69318 13.0669H4.6665C4.15316 13.0669 3.73315 13.4869 3.73315 14.0002H12.1333C12.1333 13.4869 11.7133 13.0669 11.1999 13.0669H10.1732C9.89324 12.5068 9.19323 12.2268 8.39988 12.1335V10.7335C8.39988 9.98681 8.77322 9.66014 9.61323 9.05346ZM7.93321 9.2868C7.65321 8.91346 7.2332 8.58679 6.85986 8.30678C5.59984 7.32677 3.87315 6.02008 3.77982 0.933346H12.1799C12.0866 5.97342 10.3599 7.32677 9.09989 8.30678C8.63322 8.63345 8.21321 8.91346 7.93321 9.2868Z" fill="black"/>
+              <path d="M5.04007 7.9332C4.9934 7.9332 0 6.85986 0 1.39978V0.933105H3.26671V1.86645H0.933346C1.21335 6.15985 5.18007 6.99986 5.22674 6.99986L5.04007 7.9332ZM10.8268 7.9332L10.6401 6.99986C10.8268 6.95319 14.6535 6.11318 14.9335 1.86645H12.6002V0.933105H15.8669V1.39978C15.8669 6.85986 10.8735 7.9332 10.8268 7.9332Z" fill="black"/>
+            </svg>
+
+            <p>
+              Earn upto <strong>{{ first_variant.price | divided_by: 100 }}</strong> points on this purchase
+            </p>
+          </div>
+          {% if product.available and product.variants.size > 1 %}
+            <div class="quick-view-current-shade d-none">
+              SHADE: <span>{{ first_variant.title }}</span>
+            </div>
+          {% endif %}
+          <div class="quick-view-price d-flex">
+            <span class="selling-price">{{ first_variant.price | money_without_trailing_zeros }}</span>
+            <span class="old-price">
+              {% if first_variant.compare_at_price > first_variant.price %}
+                {{ first_variant.compare_at_price | money_without_trailing_zeros -}}
+              {% endif %}
+            </span>
+            <span class="discount">
+              {% if first_variant.compare_at_price > first_variant.price %}
+                {{-
+                  first_variant.compare_at_price
+                  | minus: first_variant.price
+                  | times: 100.0
+                  | divided_by: first_variant.compare_at_price
+                  | money_without_currency
+                  | times: 100
+                  | remove: '.0'
+                -}}
+                % Off
+              {% endif %}
+            </span>
+          </div>
+          {% comment %} Available Offer {% endcomment %}
+          {% unless offer_name == 'offerHidden' %}
+            <section class="quickview_accordion">
+              <div class="quickview_tab">
+                <input type="checkbox" name="quickview_accordion-1" id="quickview_acc">
+                <label for="quickview_acc" class="quickview_tab__label">% &nbsp; Available Offers</label>
+                <div class="quickview_tab__content">
+                  <ul class="bogo-offer-wrapper">
+                    {% if product.vendor == 'Sweetons' or product.vendor == 'Fini' %}
+                      {% unless product.title contains '1 Kg' or product.title contains '1.8 Kg' %}
+                        <li class="bogo-text-wrapper"><b>Buy 2 Get Extra 15% OFF</b></li>
+                        <li class="bogo-text-wrapper"><b>Buy 3 Get Extra 25% OFF</b></li>
+                        <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                          <b>
+                            Offers on Selected
+                            <a
+                              href="/collections/small-pack-candies"
+                              class="text-decoration-underline"
+                              >Collection</a
+                            ></b
+                          >
+                        </p>
+                      {% endunless %}
+                    {% elsif offer_name == 'foundation-sale' %}
+                      <li class="bogo-text-wrapper">
+                        <b
+                          >Get Extra <strong>₹100 OFF</strong> + <strong>FREE ₹425 </strong> Foundation Brush on every
+                          order!</b
+                        >
+                      </li>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                        <b>
+                          Offers on Selected
+                          <a
+                            href="collections/slay-the-base"
+                            class="text-decoration-underline"
+                            >Collection</a
+                          ></b
+                        >
+                      </p>
+                      {% elsif offer_name == 'b2g2' %}
+                       <li class="bogo-text-wrapper">
+                        Buy <strong>2</strong> get <strong>2</strong> free + Surprise Gift
+                       </li>
+                      {% elsif offer_name == 'buy4_999'%}
+                       <li class="bogo-text-wrapper">
+                        Buy any <strong>3</strong> at <strong>₹999</strong> - Limited Time Offer!
+                       </li>
+                       <li class="bogo-text-wrapper">
+                         Buy any <strong>6</strong> at <strong>₹1499</strong> - Limited Time Offer!
+                        </li>
+                      {% elsif offer_name == 'Lagirl@1499'%}
+                       <li class="bogo-text-wrapper">
+                        Buy any <strong>4</strong> at <strong>₹1499</strong> - Limited Time Offer!
+                       </li>
+                      {% elsif offer_name == '799_50OFF'%}
+                       <li class="bogo-text-wrapper">
+                        Flat <strong>50%</strong> on orders above <strong>799</strong> 
+                       </li>
+                      {% elsif offer_name == 'buy3_get3'%}
+                       <li class="bogo-text-wrapper">
+                        Buy any <strong>3</strong> at <strong>₹1499</strong> + Get <b>3 Free</b> Gifts
+                       </li>
+                      {% elsif offer_name == 'bar_soaps'%}
+                       <li class="bogo-text-wrapper">
+                        Receive a <b>₹250</b> lip balm absolutely free
+                       </li>
+                      {% elsif offer_name == 'buy3_799'%}
+                       <li class="bogo-text-wrapper">
+                        Buy any <strong>3</strong> at <strong>₹799</strong>
+                       </li>
+                      {% elsif offer_name == 'buy4_1299'%}
+                       <li class="bogo-text-wrapper">
+                        Buy any <strong>4</strong> at <strong>₹1299</strong> - Limited Time Offer!
+                       </li>
+                      {% elsif offer_name == 'eveline--sale' %}
+                       <li class="bogo-text-wrapper">
+                        Buy Any <strong>3 at ₹1099</strong>
+                       </li>
+                       <li class="bogo-text-wrapper">
+                        Buy Any <strong>5 at ₹1699</strong>
+                       </li>
+                       {% elsif offer_name == 'lamelbuy4_1299' %}
+                       <li class="bogo-text-wrapper">
+                        Buy Any <strong>4 at ₹1099</strong>
+                       </li>
+                       {% elsif offer_name == 'C--CAT' %}
+                       <li class="bogo-text-wrapper">
+                        Buy Any <strong>5 at ₹1099</strong> + Extra ₹100 OFF instantly (Prepaid only)
+                       </li>
+                       <li class="bogo-text-wrapper">
+                        Buy Any <strong>3 for ₹699</strong> (Prepaid only)
+                       </li>
+                    {% elsif offer_name == 'org-sale' %}
+                      <li class="bogo-text-wrapper">Surprise Gift on Order above <b>₹999</b></li>
+                      {% if product.title == 'Stella Makeup Organizer' %}
+                        <li class="bogo-text-wrapper">Extra <b>₹250 OFF</b> on orders <b>₹1600+</b></li>
+                      {% endif %}
+                    {% elsif offer_name == 'pd-bundle' %}
+                      <li class="bogo-text-wrapper"><b>Buy Any 3 at ₹999 + Free Pouch - Limited Time Offer!</b></li>
+                      <li class="bogo-text-wrapper"><b>Buy Any 4 at ₹1299 + Free Pouch - Limited Time Offer!</b></li>
+                      <li class="bogo-text-wrapper"><b>Buy Any 5 at ₹1499 + Free Pouch - Limited Time Offer!</b></li>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                        <b>
+                          Offers on Selected
+                          <a
+                            href="/collections/buy-any-3-at-949"
+                            class="text-decoration-underline"
+                            >Collection</a
+                          ></b
+                        >
+                      </p>
+                    {% elsif offer_name == 'combos' %}
+                      <p class="bogo-text-wrapper">Get a <b>Surprise Gift</b> on orders above <b>₹999</b></p>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;"> 
+                        <b>
+                          Offers on Selected
+                          <a
+                            href="/collections/combos"
+                            class="text-decoration-underline"
+                            >Collection</a
+                          ></b
+                        >
+                      </p>
+                    {% elsif offer_name == 'bogo' %}
+                      <li class="bogo-text-wrapper"><b>Buy One Get One Free</b></li>
+                      <li class="bogo-text-wrapper"><b>Buy Two Get Two Free</b></li>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                        <b>
+                          Offers on Selected
+                          <a
+                            href="https://www.hokmakeup.com/collections/bogo-sale-limited-time-only"
+                            class="text-decoration-underline"
+                            >Collection</a
+                          ></b
+                        >
+                      </p>
+                    {% elsif offer_name == 'candy' %}
+                      <li class="bogo-text-wrapper">Buy Any <b>2</b> & Get Extra <b>15% OFF</b></li>
+                      <li class="bogo-text-wrapper">Buy Any <b>3</b> & Get Extra <b>20% OFF</b></li>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                        <b>
+                          Offers on Selected
+                          <a
+                            href="https://www.hokmakeup.com/collections/hok-makeup-x-sweetons"
+                            class="text-decoration-underline"
+                            >Collection</a
+                          ></b
+                        >
+                      </p>
+                    {% elsif offer_name == 'giverny' %}
+                       <li class="bogo-text-wrapper"> Buy Any  <strong> 3 at 1250 + Surprise Gift </strong> </li>
+                     {% elsif offer_name == 'flat-70-off-orders-above-599' %}
+                       <li class="bogo-text-wrapper"> Flat <strong>70%</strong> OFF on Orders <strong>599+</strong> </li>
+                    {% elsif offer_name == 'default' %}
+                      <li class="bogo-text-wrapper">Extra <b>15% OFF</b> on orders below ₹1250 + Surprise Gift</li>
+                      <li class="bogo-text-wrapper">Extra <b>25% OFF</b> on orders above ₹1250 + Surprise Gift</li>
+                      <li class="bogo-text-wrapper"><b>On Prepaid Orders: Extra 5% OFF</b></li>
+                      <p class="bogo-text-wrapper" style="color: #991054;text-align: center;">
+                        <small style="font-size: 10px;">*Offers will be applied at checkout</small>
+                      </p>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </section>
+          {% endunless %}
+          {% comment %} Available Offer {% endcomment %}
+          <div class="quick-view-shades d-flex flex-column-reverse flex-wrap">
+            {% if product.available and product.variants.size > 1 %}
+              {% render 'new-swatches' with 'Color' as swatch, product: product, showall: true, showdropdown: true %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="hok-quick-view-container">
+          <div class="add-to-bag-btn hok-quick-view-footer d-center">
+            <a href="{{ product.url }}" class="view-product-btn">
+              View Product Details
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="6" viewBox="0 0 19 6" fill="none">
+                  <path d="M18.0328 3.28284C18.1891 3.12663 18.1891 2.87337 18.0328 2.71716L15.4873 0.171573C15.331 0.0153632 15.0778 0.0153632 14.9216 0.171573C14.7654 0.327783 14.7654 0.581048 14.9216 0.737258L17.1843 3L14.9216 5.26274C14.7654 5.41895 14.7654 5.67222 14.9216 5.82843C15.0778 5.98464 15.331 5.98464 15.4873 5.82843L18.0328 3.28284ZM0.25 3.4H17.75V2.6H0.25V3.4Z" fill="black"/>
+                </svg></span
+            ></a>
+
+            <button
+              type="button"
+              class="add-quick-bag-btn rounded-pill"
+              data-product_id="{{ first_variant.id }}"
+              data-product_quantity="1"
+            >
+              Add to bag
+            </button>
+            <a
+              href="
+                {% if section.id contains " product_quickview" %}javascript:void(0){% else %}{{ product.url }}{%
+                endif %}
+              "
+              class="add-quick-bag-btn-notify rounded-pill opacity-50"
+              style="display: none;"
+            >
+              {% if section.id contains 'product_quickview' %}Out Of Stock{% else %}Notify Me{% endif %}
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Pd Quick View",
+"class": "pdp_quick_view",
+"settings": [
+  {
+    "type": "header",
+    "content": "Default Product"
+  },
+  {
+    "type": "product",
+    "id": "default_product",
+    "label": "Default Product"
+  }
+],
+"presets": [
+  {
+    "name": "Pd Quick View"
+  }
+]
+}
+{% endschema %}

@@ -1,0 +1,348 @@
+<!-- section/custom-tabs-collection.liquid -->
+{{ 'custom-tabs-collection.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding  {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+  .tabbed-collections {
+    background-color: {{ section.settings.background-color }};
+  }
+  .tabbed-collections-para{
+    color:{{ section.settings.heading_color }};
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding  {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="tabbed-collections section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <p class="tabbed-collections-para">{{ section.settings.title }}</p>
+  <div class="tabbed-collections-outer">
+    <!-- Tab Buttons -->
+    <div class="tabbed-collections-tabs tabs">
+      {% for block in section.blocks %}
+        <div
+          class="tab {% if forloop.first %}active{% endif %} tab_{{ forloop.index }}"
+          data-tab="{{ block.id }}"
+          style="background:{{ block.settings.tab_color }}"
+          {% comment %}
+            data-aos="custom-fade-rotate"
+            data-aos-delay="100"
+            data-aos-easing="linear"
+            data-aos-duration="1000"
+          {% endcomment %}
+        >
+          {{ block.settings.tab_title }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="tabbed-collections-products">
+      <!-- Product Containers with Swiper -->
+      {% for block in section.blocks %}
+        <div class="products-container {% if forloop.first %}active{% endif %}" id="{{ block.id }}">
+          <div class="swiper swiper-{{ block.id }}">
+            <div class="tab-collection-wrapper swiper-wrapper">
+              {% for product in collections[block.settings.collection].products
+                limit: block.settings['products_to_show-1']
+              %}
+                <div class="swiper-slide product-card tabbed-collections-card">
+                  <div class="product__pocket_deal_day" product_slider="true">
+                    {% assign indexing = forloop.index0 %}
+                    {% render 'new-product-card-double', product: product, indexIs: indexing %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- Navigation Arrows -->
+          <div class="swiper-button-prev swiper-button-prev-{{ block.id }}"></div>
+          <div class="swiper-button-next swiper-button-next-{{ block.id }}"></div>
+          <div class="veiw-all-product-btn" data-tab="popup{{ block.id }}">
+            <a href="{{ block.settings.collection-url}}">
+              {{ block.settings['collection-text-button'] | upcase -}}
+            </a>
+          </div>
+
+          <!-- Popup Modal -->
+          <div id="popup-modal" class="popup-modal popup{{ block.id }}">
+            <div class="popup-content">
+              <span class="close-btn">&times;</span>
+              <!-- <h2>{{ 'popup collection' }}</h2> -->
+
+              <div class="product_card popup-product">
+                {% for product in collections[block.settings['collection-popup']].products
+                  limit: block.settings.productslimitpopup
+                %}
+                  <div class="product-card tabbed-collections-card">
+                    {% assign indexing = forloop.index0 %}
+                    {% render 'new-product-card-double', product: product, indexIs: indexing %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script>
+       document.addEventListener("DOMContentLoaded", function () {
+         // Tab functionality
+         let tabs = document.querySelectorAll(".tab");
+         let containers = document.querySelectorAll(".products-container");
+
+         tabs.forEach(tab => {
+           tab.addEventListener("click", function () {
+             tabs.forEach(t => t.classList.remove("active"));
+             this.classList.add("active");
+
+             containers.forEach(c => c.classList.remove("active"));
+             document.getElementById(this.getAttribute("data-tab")).classList.add("active");
+           });
+         });
+
+         // Swiper initialization for each block
+         {% for block in section.blocks %}
+            if (window.innerWidth >= 768){
+           new Swiper(".swiper-{{ block.id }}", {
+             slidesPerView: 2,
+             spaceBetween: 20,
+             navigation: {
+               nextEl: ".swiper-button-next-{{ block.id }}",
+               prevEl: ".swiper-button-prev-{{ block.id }}",
+             },
+             breakpoints: {
+                0: { slidesPerView: 1.2 },
+                425: { slidesPerView: 1.2 },
+               768: { slidesPerView: 1.5 },
+               1024: { slidesPerView: 3.5 }
+             }
+           });
+           }
+         {% endfor %}
+       });
+
+
+  // popup javascript script start
+
+    let buttons = document.querySelectorAll(".veiw-all-product-btn");
+      let popups = document.querySelectorAll(".popup-modal");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          popups.forEach((popup) => {
+            popup.style.display = "none";
+          });
+
+          let targetPopup = document.querySelector("." + this.getAttribute("data-tab"));
+          if (targetPopup) {
+            targetPopup.style.display = "block";
+          }
+        });
+      });
+      document.querySelectorAll(".close-btn").forEach((closeBtn) => {
+        closeBtn.addEventListener("click", function () {
+          this.closest(".popup-modal").style.display = "none";
+        });
+      });
+
+      window.addEventListener("click", function (event) {
+        popups.forEach((popup) => {
+          if (event.target === popup) {
+            popup.style.display = "none";
+          }
+        });
+      });
+    // popup javascript script end
+</script>
+
+{% schema %}
+{
+  "name": "Tabbed Collections",
+  "settings": [
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Beauty without Breaking your Bank"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#E13F9F"
+    },
+   {
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 10,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 10,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_top_desktop",
+    "min": 10,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_desktop",
+    "min": 10,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Bottom",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_top_mobile",
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "Margin Top (Mobile)",
+    "default": 20
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_mobile",
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "Margin Bottom (Mobile)",
+    "default": 20
+  },
+  {
+    "type": "range",
+    "id": "padding_top_mobile",
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "Padding Top (Mobile)",
+    "default": 20
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_mobile",
+    "min": 5,
+    "max": 100,
+    "step": 1,
+    "unit": "px",
+    "label": "Padding Bottom (Mobile)",
+    "default": 20
+  },
+
+
+    {
+"type": "color",
+"id": "background-color",
+"label": "Background Color",
+"default": "#F5EEEE"
+}
+
+
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "html",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "<p>Lipsticks Under <br><strong> ₹299</strong></p>"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+         {
+      "type": "range",
+      "id": "products_to_show-1",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 8,
+      "label": "Number of products to show"
+    },
+    {
+      "type": "color",
+      "id": "tab_color",
+      "label": "Tab Background Color",
+      "default": "#ffffff"
+    },
+       {
+"type": "url",
+"id": "collection-url",
+"label": "collection url"
+
+},{
+  "type": "html",
+"id": "collection-text-button",
+"label": "collection button text",
+"default":"see all under <strong>₹299</strong>"
+
+},
+  {
+          "type": "collection",
+          "id": "collection-popup",
+          "label": "Select Collection for popup"
+        },
+         {
+      "type": "range",
+      "id": "productslimitpopup",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 8,
+      "label": "Number of products to show on popup"
+    },
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Collections",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

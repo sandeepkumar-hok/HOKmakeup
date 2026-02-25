@@ -1,0 +1,249 @@
+<!-- section/product-tabs-mobile-skin-care.liquid -->
+{{ 'tabs-mobile-skin-care.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        display: block !important;
+      }
+    
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-margin mobile_screen container">
+  <div
+    class="product-tab-section-skin-care "
+  >
+    <h2 class="category-slider-section-heading  mobile_screen">{{ section.settings.maintitle }}</h2>
+
+    <div class="main_container_tab">
+      <!-- Tabs -->
+
+      <div class="product-tab-header-wrapper">
+        {% for block in section.blocks %}
+          <button
+            class="product-tab-button{% if forloop.first %} active{% endif %}"
+            data-tab="{{ section.id | append: block.settings.title }}"
+          >
+            {{ block.settings.title }}
+          </button>
+        {% endfor %}
+      </div>
+
+      <!-- Containers -->
+
+      {% for block in section.blocks %}
+        <div
+          class="product-tab-container{% if forloop.first %} active{% endif %}"
+          id="{{ section.id |  append: block.settings.title }}"
+        >
+          <div class="swiper product-tab-swiper">
+            <!-- Swiper container -->
+
+            <div class="product-tab-grid-container swiper-wrapper">
+              <!-- Swiper wrapper -->
+
+              <div class="product-tab-block-section swiper-slide">
+                <!-- Swiper slide -->
+                <a
+                  href="{{ block.settings.collection.url }}"
+                  title="{{ block.settings.collection.title }}"
+                  class="skin-care-tabs-link"
+                >
+                  <p class="banner-heading">{{ block.settings.heading }}</p>
+                  <img
+                    src="{{ block.settings.mobile_image | image_url }}"
+                    alt="{{ block.settings.mobile_image.alt }}"
+                    loading="eager"
+                    width="235"
+                    height="465"
+                    class="mobile_screen"
+                  >
+                  {% if block.settings.button_text != blank %}
+                    <button class="banner-button">
+                      {{ block.settings.button_text }}
+                    </button>
+                  {% endif %}
+                 
+                </a>
+              </div>
+
+              {% for product in block.settings.collection.products limit:4 %}
+                <div class="product-tab-block-section swiper-slide">
+                  {% assign indexing = forloop.index0 %}
+                  {% render 'new-pocket-skincare', product: product, fetch_priority: fetch_priority, indexIs: indexing %}
+                </div>
+              {% endfor %}
+            </div>
+
+            <div class="swiper-scrollbar"></div>
+            <!-- Optional scrollbar -->
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% for block in section.blocks %}
+    <div
+      class="view-all all-skin "
+      data-tab="{{ section.id |  append: block.settings.title }}"
+      {% if forloop.first %}
+        style="display:block; margin:0;"
+      {% else %}
+        style="display:none"
+      {% endif %}
+    >
+      <a href="{{ block.settings.url }}" class="view-all-button">{{ 'SHOP ALL' }}</a>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+"name": "shop by concern mobile",
+"class": "product-tabs-section-mobile",
+"settings": [
+
+{
+"type": "header",
+"content": "Desktop Margin"
+},
+{
+"type": "text",
+"id": "maintitle",
+"label": "title",
+"default": "SHOP BY CONCER"
+},
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom",
+"default": 36
+},
+{
+"type": "header",
+"content": "Mobile Margin"
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom",
+"default": 36
+}
+],
+"blocks": [
+{
+"type": "image",
+"name": "content",
+"settings": [
+{
+"type": "collection",
+"id": "collection",
+"label": "Brand Collection"
+},
+{
+"type": "image_picker",
+"id": "mobile_image",
+"label": "Collection Mobile Image"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "Is your skin craving hydration?"
+},
+{
+"type": "text",
+"id": "button_text",
+"label": "Button Text",
+"default": "Fix Dry Skin"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Brand Title"
+},
+{
+"type": "url",
+"id": "url",
+"label": "Brand url"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Product skincare tabs"
+}
+]
+}
+{% endschema %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tabs Switch
+    const tabPdButtons = document.querySelectorAll('.product-tab-button');
+    const productTabContainers = document.querySelectorAll('.product-tab-container');
+    const viewAllButtons = document.querySelectorAll('.view-all');
+
+    tabPdButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        tabPdButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        productTabContainers.forEach((container) => container.classList.remove('active'));
+        const target = button.getAttribute('data-tab');
+        document.getElementById(target).classList.add('active');
+
+        viewAllButtons.forEach((btn) => {
+          if (btn.getAttribute('data-tab') === target) {
+            btn.style.display = 'block';
+          } else {
+            btn.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Swiper Initialization
+    document.querySelectorAll('.product-tab-swiper').forEach((swiperContainer) => {
+      new Swiper(swiperContainer, {
+        slidesPerView: "auto",
+        spaceBetween: 16,
+        slidesOffsetAfter: 20,
+        freeMode: true,
+        scrollbar: {
+          el: swiperContainer.querySelector('.swiper-scrollbar'),
+          hide: false,
+        },
+      });
+    });
+  });
+</script>

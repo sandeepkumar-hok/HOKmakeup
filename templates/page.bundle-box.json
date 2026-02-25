@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}",
+        "h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "bundle_box_8A8qzp": {
+      "type": "bundle-box",
+      "blocks": {
+        "offer_card_efFk6r": {
+          "type": "offer_card",
+          "settings": {
+            "image": "shopify://shop_images/sale_byob.png",
+            "savings_text": "<p>Up to<strong> 80%</strong> savings </p>",
+            "item_count_text": "<p>Grab <strong>[3] </strong>items for<strong> ₹999</strong>, then click Next</p>",
+            "button_text": "CREATE YOUR SET",
+            "button_link": ""
+          }
+        },
+        "offer_card_jApDrn": {
+          "type": "offer_card",
+          "settings": {
+            "image": "shopify://shop_images/4_1299.png",
+            "savings_text": "<p>Up to<strong> 80%</strong> savings </p>",
+            "item_count_text": "<p>Grab <strong>[4] </strong>items for<strong> ₹1299</strong>, then click Next</p>",
+            "button_text": "CREATE YOUR SET",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "offer_card_efFk6r",
+        "offer_card_jApDrn"
+      ],
+      "name": "Create Your Perfect Set",
+      "settings": {
+        "heading": "CREATE YOUR PERFECT SET",
+        "subheading": "MIX, match, and save BIG!",
+        "instructions": "1. Choose offer → 2. Pick items → 3. Add to cart.",
+        "bg": "#fff8ef",
+        "sub_color": "#b4491f",
+        "ribbon_color": "#8a5a47"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "bundle_box_8A8qzp"
+  ]
+}

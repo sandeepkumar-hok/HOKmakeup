@@ -1,0 +1,330 @@
+<!-- section/custom-collection-list-deal-day.liquid -->
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding  {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+   padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+    @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.padding_top_mobile }}px;
+      margin-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+     .section-{{ section.id }}-padding  {
+      padding-top: {{ section.settings.margin_top_mobile }}px;
+     padding-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section
+  class="custom-collection-list-outer section-{{ section.id }}-margin section-{{ section.id }}-padding"
+  style="background-color: {{ section.settings.background }};"
+>
+  <div class="custom-collection-list-swiper-container">
+    {% if section.settings.coll_title %}
+      <div class="custom-collection-list-title-wrapper">
+        <p class="custom-collection-list-sub-title-desktop">
+          {{ section.settings.coll_title }}
+        </p>
+        <p class="custom-collection-list-sub-title-mabile">
+          {{ section.settings['coll_title-2'] }}
+        </p>
+      </div>
+    {% endif %}
+
+    <!-- Swiper Wrapper -->
+    <div class="swiper custom-collection-list-swiper page-width">
+      <div class="custom-collection-list-wrapper swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            {% if block.settings.link %}
+              <a href="{{ block.settings.link }}">
+                <img src="{{ block.settings.slider_image | img_url: 'master' }}" alt="Slide Image">
+                <p class="custom-list-collection-name">{{ block.settings.coll_name }}</p>
+              </a>
+            {% else %}
+              <img src="{{ block.settings.slider_image | img_url: 'master' }}" alt="Slide Image">
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Swiper Navigation Buttons -->
+      <div class="custom-collection-list-btn ">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+
+      <!-- Swiper Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "custom collection list",
+"settings": [
+{
+"type": "color",
+"id": "background",
+"label": "Background Color",
+"default": "#FFF"
+},
+{
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Bottom",
+    "default": 36
+  },
+{
+"type": "text",
+"id": "coll_title",
+"label": "Collection Title desktop",
+"default": "Explore Combos | Your Perfect Pairings"
+},
+{
+"type": "html",
+"id": "coll_title-2",
+"label": "Collection Title Mobile",
+"default": "Explore Combos | Your Perfect Pairings"
+}
+],
+"blocks": [
+{
+"type": "image",
+"name": "Slider Image",
+"settings": [
+{
+"type": "image_picker",
+"id": "slider_image",
+"label": "Upload Image"
+},
+{
+"type": "text",
+"id": "coll_name",
+"label": "Collection name",
+"default": "BUY BIG, SAVE MORE"
+},
+{
+"type": "url",
+"id": "link",
+"label": "Link (Optional)"
+}
+]
+}
+],
+"presets": [
+{
+"name": "custom collection list",
+"category": "Custom"
+}
+]
+}
+{% endschema %}
+<style>
+   .custom-collection-list-sub-title-mabile {
+     display: none;
+   }
+
+   .custom-collection-list-title-wrapper {
+     background: #E8E0DA;
+     text-align: left;
+     margin-bottom: 39px;
+   }
+
+   .custom-collection-list-outer .custom-collection-list-sub-title {
+     color: #212121;
+     font-family: "Sweet Sans Pro", sans-serif;
+     font-size: 24px;
+     font-style: normal;
+     font-weight: 500;
+     line-height: normal;
+     padding: 15px;
+   }
+
+   .custom-collection-list-outer {
+     text-align: center;
+     /* padding: 20px; */
+     background: #f5f5f5;
+   }
+
+   .custom-collection-list-outer .custom-list-collection-name {
+     font-family: "Sweet Sans Pro";
+     font-size: 24px;
+     font-style: normal;
+     font-weight: 500;
+     line-height: normal;
+     padding: 15px;
+     color: #fff;
+     background: #000;
+     margin-top: 8px;
+     text-align: center;
+     border: 0.65px solid #343333;
+   }
+
+   .custom-collection-list-swiper-container {
+     position: relative;
+     max-width: 100%;
+     overflow: hidden;
+   }
+
+   .custom-collection-list-outer .swiper {
+     width: 100%;
+     /* padding-bottom: 30px; */
+   }
+
+   .custom-collection-list-outer .swiper-slide {
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+   }
+
+   .custom-collection-list-outer .swiper-slide img {
+     width: 100%;
+     height: auto;
+     border-radius: 10px;
+   }
+  .custom-collection-list-outer  .swiper-button-next{
+    right: 26%;
+  }
+   .custom-collection-list-outer  .swiper-button-prev{
+     left:26%;
+   }
+   .custom-collection-list-outer .swiper-button-prev,
+   .custom-collection-list-outer .swiper-button-next {
+     color: #000;
+    border: 1px solid #000;
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+   }
+  .custom-collection-list-outer .swiper-button-next:after,  .custom-collection-list-outer .swiper-button-prev:after{
+    line-height:unset;
+    font-size: 21px;
+    padding: 10px;
+  }
+   .custom-collection-list-outer div:empty {
+     display: block;
+   }
+
+   p.custom-collection-list-sub-title-desktop {
+     color: #212121;
+     font-family: "Sweet Sans Pro";
+     font-size: 24px;
+     padding: 20px 50px;
+     font-style: normal;
+     font-weight: 500;
+     line-height: normal;
+   }
+
+   /* Media query for mobile (below 768px) */
+   @media screen and (max-width: 768px) {
+     .custom-collection-list-sub-title-mabile {
+       display: block;
+       padding: 12px 17px;
+     }
+
+     .custom-collection-list-outer {
+       padding: unset;
+     }
+
+     .custom-collection-list-wrapper {
+       padding-left: 20px;
+     }
+
+     .custom-collection-list-sub-title-desktop,
+     .custom-collection-list-btn {
+       display: none;
+     }
+
+     .custom-collection-list-sub-title-mabile a.back-link {
+       font-family: "Sweet Sans Pro";
+       font-size: 12px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: normal;
+     }
+
+     .custom-collection-list-sub-title-mabile span {
+       font-family: "Sweet Sans Pro";
+       font-size: 32px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: normal;
+     }
+
+     .custom-collection-list-outer .custom-list-collection-name {
+       padding: 8px;
+       color: #000;
+       font-size: 14px;
+       font-weight: 700;
+       background: #fff;
+       margin-top: 8px;
+       text-align: center;
+       border-radius: 30px;
+       border: 0.65px solid #343333;
+     }
+   }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper(".custom-collection-list-swiper", {
+      slidesPerView: 3.2,
+      centeredSlides: true,
+      spaceBetween: 10,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      breakpoints: {
+        0: { slidesPerView: 1.2, centeredSlides: false, },
+        768: { slidesPerView: 1.2 },
+        1024: { slidesPerView: 2.2 },
+        1440: { slidesPerView: 2.2 }
+      }
+    });
+  });
+</script>

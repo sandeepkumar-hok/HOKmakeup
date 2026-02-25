@@ -1,0 +1,37 @@
+<div class="headingtext">
+  {% if section.settings['text-content'] != blank %}
+    <div class="page_heading">
+      {{ section.settings['text-content'] }}
+    </div>
+  {% endif %}
+  {% if section.settings['txt_htl_sc'] != blank %}
+    <div class="txt">{{ section.settings.txt_htl_sc }}</div>
+  {% endif %}
+</div>
+{% if template.suffix == 'about-us' %}
+    {% style %}
+      h2.h2.text-center {font-size: clamp(2.5rem, 2vw, 3rem);font-weight: 500;}.about-section{margin:8px 0 0 0}.section-one,.section-two,.section-four,.section-five{position:relative;overflow:hidden}.section-two{background-color:#f3f3fc}.section-four{background-color:#fff2f7}.section-five{background-color:#f3fff8;padding:165px 120px 165px 165px}.slider-section{padding:100px 48px;background:url(https://cdn.shopify.com/s/files/1/0673/6396/3172/files/Timeline.svg?v=1697608687);background-size:cover}.about-text-section{display:flex;flex-direction:column;justify-content:center;gap:16px;padding:32px}.brand-vertical-text{position:absolute;width:fit-content;font-size:160px;font-weight:600;text-transform:uppercase;line-height:160px;z-index:-1;padding:0}.section-one>.brand-vertical-text{right:-135px;bottom:90px;color:#fffadd;transform:rotate(-90deg)}.section-two>.about-text-section{padding-left:160px}.section-two>.brand-vertical-text{left:-130px;bottom:125px;color:#e1e2fc;transform:rotate(90deg);z-index:1}.section-four>.about-text-section{padding:120px 110px 50px 62px}.section-four>.brand-vertical-text{color:#ffd2e2;right:-230px;top:230px;z-index:1;transform:rotate(-90deg)}.section-five>.brand-vertical-text{color:#abe2c7;left:-230px;bottom:230px;z-index:1;transform:rotate(90deg)}.section-one-video{transform:rotateY(180deg)}.about-text{font-size:20px;line-height:32px}.about-heading{font-size:28px;font-weight:600;line-height:32px}.about-section-title{font-size:32px;font-weight:500;line-height:25px;text-transform:capitalize;margin-bottom:24px}.about-bold-text{font-size:20px;font-weight:700;}.swiper-wrapper.about{display:flex;gap:20px;overflow-x:auto;padding-bottom:10px}.swiper-wrapper.about .slider-card.swiper-slide{flex:0 0 25%}img[alt="about-brand"]:first-of-type{border-radius:16px;background:#ffffff80}.swiper-wrapper.about::-webkit-scrollbar-track{border:1px solid #000;background-color:#F5F5F5;border-radius:4px}.swiper-wrapper.about::-webkit-scrollbar{height:8px;background-color:#F5F5F5;border-radius:4px}.swiper-wrapper.about::-webkit-scrollbar-thumb{background-color:#6b6b6b;border-radius:4px}@media screen and (max-width:768px){.about-text-section{padding:16px 0}.section-two>.about-text-section,.section-four>.about-text-section,.section-five,.about-section.slider-section{padding:32px 16px}.about-text,.about-bold-text{font-size:16px;line-height:28px}.about-heading,.about-section-title{font-weight:700;font-size:20px}.section-two>.brand-vertical-text{display:none}.swiper-wrapper.about .slider-card.swiper-slide{flex:0 0 70%}}
+    {% endstyle %}
+  {% endif %}
+{% schema %}
+{
+  "name": "PageContent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text-content",
+      "label": "Section text"
+    },
+    {
+      "type": "html",
+      "id": "txt_htl_sc",
+      "label": "Section SubText"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PageContent"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,143 @@
+{% liquid
+  assign product_name = section.settings.product_name
+  assign burst_shot = product_name.metafields.custom.product_sequence_image.value
+  assign image_sequence_images = ''
+  for image_seq in burst_shot
+    if forloop.first
+      assign first_arr = image_seq.image.value | sort | json
+    elsif forloop.index == 2
+      assign second_arr = image_seq.image.value | sort | json
+    elsif forloop.index == 3
+      assign third_arr = image_seq.image.value | sort | json
+    elsif forloop.index == 4
+      assign fourth_arr = image_seq.image.value | sort | json
+    elsif forloop.index == 5
+      assign fifth_arr = image_seq.image.value | sort | json
+    endif
+  endfor
+  assign image_sequence_images = first_arr | append: second_arr | append: third_arr | append: fourth_arr | append: fifth_arr | replace: '][', ','
+%}
+<div id="product-scroll-model">
+  <canvas id="image-scoll-model" class="d-center" width="1080" height="1080"></canvas>
+  <!--
+    <div class="row">
+      <div class="col-6">
+      </div>
+      <div class="col-6">
+        <h1>Test Data</h1>
+      </div>
+    </div>
+  -->
+</div>
+<style>
+  #product-scroll-model  {
+      position: relative;
+      height: 1080px;
+    }
+  canvas#image-scoll-model {
+     position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 1080px;
+      max-height: 1080px;
+    }
+  @media screen and (max-width:768px){
+    #product-scroll-model{
+      height: 500px !important;
+      overflow: hidden;
+    }
+    canvas#image-scoll-model {
+       height: 500px !important;
+       /* transform: translate(-50%, -50%) scale(1.8) !important; */
+    }
+  }
+</style>
+<script>
+   // console.clear();
+
+  gsap.registerPlugin(ScrollTrigger);
+    // looking for a non-scrubbing version? https://codepen.io/GreenSock/pen/QWYdgjG
+  document.addEventListener("DOMContentLoaded", () => {
+    // console.log({{ image_sequence_images }});
+  let frameCount = 260,
+      urls = {{ image_sequence_images }};
+    gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#product-scroll-model",
+        start: "top top+=15%",
+        end: "+=200%",
+        pin: true,
+        scrub: 2, // important!
+        ease: "power1.out",
+        // markers: true,
+      }
+    })
+    gsap.registerPlugin(ScrollTrigger);
+
+  imageSequence({
+    urls, // Array of image URLs
+    canvas: "#image-scoll-model", // <canvas> object to draw images to
+    //clear: true, // only necessary if your images contain transparency
+    //onUpdate: (index, image) => console.log("drew image index", index, ", image:", image),
+    scrollTrigger: {
+      trigger: '#product-scroll-model',
+     start: 'top top+=15%', // when the top of the trigger hits the bottom of the viewport
+      end: '+=200%',
+      scrub: 2, // important!
+      ease: "power1.out",
+      // markers: true,
+    }
+  });
+  function imageSequence(config) {
+    let playhead = {frame: 0},
+        canvas = gsap.utils.toArray(config.canvas)[0] || console.warn("canvas not defined"),
+        ctx = canvas.getContext("2d"),
+        curFrame = -1,
+        onUpdate = config.onUpdate,
+        images,
+        updateImage = function() {
+          let frame = Math.round(playhead.frame);
+          if (frame !== curFrame) { // only draw if necessary
+            config.clear && ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(images[Math.round(playhead.frame)], 0, 0);
+            curFrame = frame;
+            onUpdate && onUpdate.call(this, frame, images[frame]);
+          }
+        };
+    images = config.urls.map((url, i) => {
+      let img = new Image();
+      img.src = url;
+      i || (img.onload = updateImage);
+      return img;
+    });
+    return gsap.to(playhead, {
+      frame: images.length - 1,
+      ease: "none",
+      onUpdate: updateImage,
+      duration: images.length / (config.fps || 30),
+      paused: !!config.paused,
+      scrollTrigger: config.scrollTrigger
+    });
+  }
+    });
+</script>
+{% schema %}
+{
+  "name": "scroll-model",
+  "class": "scroll-model",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_name",
+      "label": "Product Name"
+    }
+  ],
+  "presets": [
+    {
+      "name": "scroll-model"
+    }
+  ]
+}
+{% endschema %}

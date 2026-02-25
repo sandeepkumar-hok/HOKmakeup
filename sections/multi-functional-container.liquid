@@ -1,0 +1,663 @@
+<!-- section/multi-functional-container.liquid -->
+{%- style -%}
+   #shopify-section-{{ section.id }}{
+     background:linear-gradient({{ section.settings.bg_color }},{{ section.settings.bg_color_second }})
+   }
+   .section-{{ section.id }}-margin {
+     margin-top: {{ section.settings.margin_top_desktop }}px;
+     margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+   }
+   {% if template == 'page.skin-care' %}
+     .carousel-wrapper-inner.swiper-wrapper {
+      height: unset;
+     }
+   .swiper-scrollbar.custom_bar,.swiper-scrollbar.custom_bar .swiper-scrollbar-drag{
+     display:block;
+   }
+  .swiper-scrollbar.custom_bar{background: #F5F5F5;}
+  .swiper-scrollbar.swiper-scrollbar-horizontal {
+  background: #f5f5f5;
+}
+   .carousel-wrapper-inner.swiper-wrapper.skin-care-cls{height:unset !important;}
+   .carousel-wrapper-inner.swiper-wrapper.skin-care-cls .square-banner-slide .cta_text{
+     text-align: center;
+   }
+   
+   {% endif %}
+   {% if section.settings.enableShuffle %}
+     @media screen and (min-width:768px){
+       #square-banner-carousel-{{ section.id }} .carousel-wrapper-outer{
+          aspect-ratio: 57 / 22;
+       }
+     }
+   {% endif %}
+   @media screen and (max-width: 768px) {
+     .section-{{ section.id }}-margin {
+       margin-top: {{ section.settings.margin_top_mobile }}px;
+       margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+     }
+   }
+   .carousel-section-title-wrapper p svg{
+     vertical-align: baseline;
+     margin-left: -9px;
+   }
+{%- endstyle -%}
+{% liquid
+  assign num_slides_sm = section.settings['num-slides-sm']
+  assign num_slides_md = section.settings['num-slides-md']
+  assign num_slides_lg = section.settings['num-slides-lg']
+  assign num_slides_xl = section.settings['num-slides-xl']
+  assign num_slides_2xl = section.settings['num-slides-2xl']
+  assign image_priority = section.settings.image_priority
+  assign preffered_width = section.settings.preffered_width
+  if image_priority
+    assign fetch_priority = 'high'
+    assign load_video = 'metadata'
+  else
+    assign fetch_priority = 'auto'
+    assign load_video = 'none'
+  endif
+%}
+<div class="section-{{ section.id }}-margin">
+  <div
+    class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  >
+    {% if section.settings['carousel-title'] != blank %}
+      <div class="carousel-section-title-wrapper" style="padding-top:{{ section.settings.title-top-padding }}px">
+        <p>
+          {{- section.settings['carousel-title'] -}}
+          {% if section.settings['carousel-sub-title'] != blank %}
+            <br>
+            <span class="carousel-sub-title">{{- section.settings['carousel-sub-title'] -}}</span>
+          {% endif %}
+        </p>
+      </div>
+    {% endif %}
+    {% if section.settings['hero-banner'] != blank %}
+      <a href="{{ section.settings.carousel-sub-title-links }}">
+        <img
+          loading="lazy"
+          class="{% if section.settings['hero-banner-mobile'] != blank %}mobile_screen{% endif %}"
+          width="100%"
+          height="100%"
+          src="{{ section.settings['hero-banner'] |  image_url  }}"
+          alt="{{ section.settings['hero-banner'] | escape }}"
+        >
+      </a>
+    {% endif %}
+    {% if section.settings['hero-banner-mobile'] != blank %}
+      <a href="{{ section.settings.carousel-sub-title-links }}" class="img-center">
+        <img
+          loading="lazy"
+          class="desktop_screen"
+          width="100%"
+          height="100%"
+          src="{{ section.settings['hero-banner-mobile'] |  image_url  }}"
+          alt="{{ section.settings['hero-banner'] | escape }}"
+        >
+      </a>
+    {% endif %}
+
+    <div class="carousel-nav-wrapper">
+      <div
+        id="square-banner-carousel-{{ section.id }}"
+        class="carousel-wrapper-outer {% if section.settings.showContainer == "page-width" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper {% if template == 'page.skin-care' %}skin-care-cls{% endif %}">
+          {% for block in section.blocks %}
+            <div class="square-banner-slide-wrapper swiper-slide">
+              <a
+                href="{{ block.settings['banner-url'] }}" aria-label="{{ section.settings.seo_text | default: 'Shop collection' | append: ' - banner ' | append: forloop.index | escape }}"
+                class="square-banner-slide"
+                {% if section.settings.seo_text %}
+                  data-location="{{ section.settings.seo_text | append:forloop.index }}"
+                {% endif %}
+              >
+                {% case block.type %}
+                  {% when 'image-media' %}
+                      {% liquid
+                        assign sizes = '(min-width: 768px) {{ preffered_width | append:"px" }}, 100vw' 
+                        assign widths = '480, 768, 1100, 1500, 1920' 
+                        assign primary_ratio = block.settings.banner-image-desktop.aspect_ratio | default: 1.777 
+                      %}
+                    {% if block.settings['banner-image-mobile'] != blank %}
+                       {% assign mobile_ratio = block.settings.banner-image-mobile.aspect_ratio | default: 1.777 %}
+                       <div class="swiper-media-container desktop_screen"  style="aspect-ratio: {{ primary_ratio }}">
+                        {{
+                          block.settings['banner-image-desktop']
+                          | image_url: width: preffered_width
+                          | image_tag:
+                            height: '100%',
+                            sizes: sizes,
+                            alt: block.settings.banner-image-desktop.alt ,
+                            widths: widths,
+                            fetchpriority: fetch_priority
+                        }}
+                        </div>
+                         <div class="swiper-media-container mobile_screen" style="aspect-ratio: {{ mobile_ratio }}">
+                          {{
+                            block.settings['banner-image-mobile']
+                            | image_url: width: 550 ,  format: 'webp'
+                            | image_tag:
+                              height: '100%',
+                              sizes: sizes,
+                              alt: block.settings.banner-image-mobile.alt ,
+                              widths: widths,
+                              fetchpriority: fetch_priority
+                          }}
+                        </div>     
+                      {% else %}
+                        <div class="swiper-media-container" style="aspect-ratio: {{ primary_ratio }}">
+                          {{
+                            block.settings['banner-image-desktop']
+                            | image_url: width: preffered_width
+                            | image_tag:
+                              height: '100%',
+                              alt: block.settings.banner-image-desktop.alt , 
+                              sizes: sizes,
+                              widths: widths,
+                              fetchpriority: fetch_priority
+                          }}
+                          </div>
+                      {% endif %}
+                    
+                  {% when 'video-media' %}
+                    {% assign media_desktop = block.settings['banner-video-desktop'] %}
+                    {% assign primary_ratio = block.settings.banner-video-desktop.aspect_ratio | default: 1.777 %}
+                    {% if block.settings['banner-video-mobile'] != blank %}
+                      {% assign media_mobile = block.settings['banner-video-mobile'] %}
+                      {% assign mobile_ratio = block.settings.banner-video-mobile.aspect_ratio | default: 1.777 %}
+                       <div class="swiper-media-container desktop_screen" style="aspect-ratio: {{ primary_ratio }}">
+                        {{
+                          media_desktop
+                          | video_tag: 
+                            image_size: '250x',
+                            width: '100%',
+                            height: 'auto',
+                            preload: load_video ,
+                            class: 'lazy-video square-banner-media',
+                            autoplay: true,
+                            loop: true,
+                            muted: true,
+                            controls: false
+                        }}
+                      </div>
+                      <div class="swiper-media-container mobile_screen" style="aspect-ratio: {{ mobile_ratio }}">
+                      {{
+                        media_mobile
+                        | video_tag:
+                          image_size: '150x',
+                          width: '100%',
+                          height: 'auto',
+                          preload: load_video ,
+                          class: 'lazy-video square-banner-media',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false
+                      }}
+                      </div>
+                    {% else %}
+                     <div class="swiper-media-container" style="aspect-ratio: {{ primary_ratio }}">
+                        {{
+                          media_desktop
+                          | video_tag:
+                            image_size: '250x',
+                            width: '100%',
+                            height: 'auto',
+                            preload: load_video ,
+                            class: 'square-banner-media lazy-video d-block',
+                            autoplay: true,
+                            loop: true,
+                            muted: true,
+                            controls: false
+                        }}
+                      </div>
+                    {% endif %}
+                {% endcase %}
+                {% if block.settings.shopcatagorytxt != blank %}
+                  <p class="cta_text{% if section.settings.showSliderArrow %} arrows{% endif %}">
+                    {{ block.settings.shopcatagorytxt -}}
+                    <span>
+                      {% if section.settings.showArrow %}
+                        {{ 'arrow-next.svg' | inline_asset_content }}
+                      {% endif -%}
+                    </span>
+                  </p>
+                {% endif %}
+              </a>
+
+              {% if section.settings['show-shop-now'] %}
+                <a
+                  style="text-decoration: none; color: #000; display: flex; justify-content: baseline; align-items: center; column-gap: 6px"
+                  href="{{ block.settings['banner-url'] }}"
+                  class="shop-now-link cta_text"
+                >
+                  Shop Now
+                  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                    <path d="M1.5 10.4375L6 5.9375L1.5 1.4375" stroke="#393939" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        {% if template == 'page.skin-care' %}
+          <div class="swiper-scrollbar custom_bar"></div>
+        {% endif %}
+      </div>
+      {% if section.settings.showSliderArrow %}
+        <div class="arrow_handler">
+          <div id="carousel-prev-{{ section.id }}" class="carousel-btn">
+            {{ 'arrow-back.svg' | inline_asset_content }}
+          </div>
+          <div id="carousel-next-{{ section.id }}" class="carousel-btn">
+            {{ 'arrow-next.svg' | inline_asset_content }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script async type="text/javascript">
+  // document.addEventListener('DOMContentLoaded', function () {
+  {% assign section_unique_name = section.id |  remove: '-' |  remove: '_'  %}
+  let numSlidesSm{{ section_unique_name }} = parseFloat('{{ num_slides_sm }}'),numSlidesMd{{ section_unique_name }} = parseFloat('{{ num_slides_md }}'),numSlidesLg{{ section_unique_name }} = parseFloat('{{ num_slides_lg }}'),numSlidesXl{{ section_unique_name }} = parseFloat('{{ num_slides_xl }}'),numSlides2xl{{ section_unique_name }} = parseFloat('{{ num_slides_2xl }}');
+  {% if section.settings.enableShuffle %}
+     function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    };
+    const swiperWrapper = document.querySelector('#square-banner-carousel-{{ section.id }} .swiper-wrapper');
+    const slides = Array.from(swiperWrapper.children);
+    shuffle(slides);
+    swiperWrapper.innerHTML = '';
+    slides.forEach(slide => swiperWrapper.appendChild(slide));
+    {% endif %}
+
+  const bannerSlider{{ section_unique_name }} = new Swiper('#square-banner-carousel-{{ section.id }}', {
+    spaceBetween: 12,
+    paginationClickable: true,
+    speed: {{ section.settings.slide_speed |  remove: 'px'  }} ,
+    slidesPerView: numSlidesSm{{ section_unique_name }},
+    centeredSlides: {{ section.settings.showCenter }},
+    autoHeight:true,
+    freeMode: {{ section.settings.showFreeScroll }},
+    loop: {{ section.settings.loop }} ,
+
+    grabCursor: true,
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      hide: false,
+    },
+
+    navigation: {
+      prevEl: '#carousel-prev-{{ section.id }}',
+      nextEl: '#carousel-next-{{ section.id }}',
+      disabledClass: 'disabled_swiper_button'
+    },
+    touchStartForcePreventDefault:true,
+    breakpoints: {
+      768: {
+        slidesPerView: numSlidesMd{{ section_unique_name }}
+
+      },
+      1024: {
+        slidesPerView: numSlidesLg{{ section_unique_name }},
+        spaceBetween: 20
+      },
+      1280: {
+        slidesPerView: numSlidesXl{{ section_unique_name }},
+        spaceBetween: 20
+      },
+      1536: {
+        slidesPerView: numSlides2xl{{ section_unique_name }},
+        spaceBetween: 20
+      },
+    }
+  });
+  // });
+</script>
+
+{% schema %}
+{
+  "name": "Multi-functional",
+  "class": "square-banner-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "page-width", "label": "Show FrameWork Container" }
+      ],
+      "default": "page-width"
+    },
+      {
+      "type": "text",
+      "id": "seo_text",
+      "label": "Seo Tag Trigger Team",
+      "info": "Used for GTM (Anil)"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_priority",
+      "label": "Image Priority",
+      "info": "By setting fetchpriority to true for an image, you’re telling the browser to prioritize loading that image, which can help improve the LCP metric.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enableShuffle",
+      "label": "Auto Shuffle",
+      "info": "If enabled ,All Bunners will be Randomly shuffled",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show-shop-now",
+      "label": "Show Shop Now Text?",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Add Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_second",
+      "label": "Add Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "checkbox",
+      "id": "showCenter",
+      "label": "Show Center Container",
+      "info": "If enabled ,Container will show in center",
+      "default": false
+    },
+     {
+      "type": "checkbox",
+      "id": "showSliderArrow",
+      "label": "Show Slider Arrow",
+      "info": "If enabled ,Slider arrows will be seen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "showFreeScroll",
+      "label": "Free Scroll Container",
+      "info": "If enabled ,Free scroll will be enabled",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Infinite Loop",
+      "info": "If enabled ,Infinite container will enabled",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "addInnerPadding",
+      "label": "Add Inner Padding ?",
+      "info": "If enabled ,Desktop: 56px 0 & mobile:32px 0",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 100,
+      "max": 800,
+      "step": 100,
+      "unit": "px",
+      "label": "Slider Speed",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title-top-padding",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "title Top padding",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "html",
+      "id": "carousel-title",
+      "label": "Carousel Title"
+    },
+    {
+      "type": "text",
+      "id": "carousel-sub-title",
+      "label": "Carousel Sub Title"
+    },
+    {
+      "type": "url",
+      "id": "carousel-sub-title-links",
+      "label": "Carousel Sub Title Link"
+    },
+    {
+      "type": "number",
+      "id": "preffered_width",
+      "label": "Preffered Width",
+      "default" : 1335
+    },
+    {
+      "type": "image_picker",
+      "id": "hero-banner",
+      "label": "Hero Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero-banner-mobile",
+      "label": "Hero Banner Mobile"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-sm",
+      "label": "Num Slides on sm Devices",
+      "default": "1",
+      "info": "Rounded to one decimal point. Breakpoint none"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-md",
+      "label": "Num Slides on md Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 768px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-lg",
+      "label": "Num Slides on lg Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1024px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-xl",
+      "label": "Num Slides on xl Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1280px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-2xl",
+      "label": "Num Slides on 2xl Devices",
+      "default": "3.5",
+      "info": "Rounded to one decimal point. Breakpoint 1536px"
+    },
+    {
+      "type": "checkbox",
+      "id": "showArrow",
+      "label": "Show Text Arrow",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image-media",
+      "name": "Image Media",
+      "settings": [
+        {
+          "type": "url",
+          "id": "banner-url",
+          "label": "Banner URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-desktop",
+          "label": "Banner Image Desktop",
+          "info": "Default - aspect-ratio 1:1, 1080x1080 , Hero Banner- 1950x735px"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-mobile",
+          "label": "Banner Image Mobile",
+          "info": "If Empty , desktop image will be seen on Mobile - aspect-ratio 1:1, 1080x1080 "
+        },
+        {
+          "type": "text",
+          "id": "cta-text",
+          "label": "CTA Text"
+        },
+        {
+          "type": "text",
+          "id": "cta-text-color",
+          "label": "CTA Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "cta-bg-color",
+          "label": "CTA Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "shopcatagorytxt",
+          "label": "Container Text"
+        }
+      ]
+    },
+    {
+      "type": "video-media",
+      "name": "Video Media",
+      "settings": [
+        {
+          "type": "url",
+          "id": "banner-url",
+          "label": "Banner URL"
+        },
+        {
+          "type": "video",
+          "id": "banner-video-desktop",
+          "label": "Banner Video Desktop",
+          "info": "aspect-ratio 1:1, 900px:900px"
+        },
+        {
+          "type": "video",
+          "id": "banner-video-mobile",
+          "label": "Banner Video Mobile",
+          "info": "aspect-ratio 1:1, 900px:900px"
+        },
+        {
+          "type": "text",
+          "id": "cta-text",
+          "label": "CTA Text"
+        },
+        {
+          "type": "text",
+          "id": "cta-text-color",
+          "label": "CTA Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "cta-bg-color",
+          "label": "CTA Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "shopcatagorytxt",
+          "label": "Container Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-functional"
+    }
+  ]
+}
+{% endschema %}

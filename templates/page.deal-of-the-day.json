@@ -1,0 +1,589 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}",
+        "h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "updated_announcement_bar_cNCw3i": {
+      "type": "updated-announcement-bar",
+      "settings": {
+        "text": "<p>End Of Season Sale is Live: Up to 50% + Surprise Gifts</p>",
+        "link": ""
+      }
+    },
+    "banner_section_deal_of_the_day_96pPKr": {
+      "type": "banner-section-deal-of-the-day",
+      "disabled": true,
+      "settings": {
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "margin_top_mobile": 36,
+        "margin_bottom_mobile": 36,
+        "link": ""
+      }
+    },
+    "banner_section_deal_of_the_day_9bHqD4": {
+      "type": "banner-section-deal-of-the-day",
+      "settings": {
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 40,
+        "link": "shopify://collections/30-off",
+        "video": "shopify://files/videos/Top Banner-Desktop.mp4",
+        "video_mobile": "shopify://files/videos/Top Banner-Mob.mp4"
+      }
+    },
+    "custom_best_seller_deal_day_ENrxAV": {
+      "type": "custom-best-seller-deal-day",
+      "custom_css": [
+        ".animated_product .b-product_promo_vendor-name_link,.animated_product .b-product_price-value.rack-rate {font-size: 18px;}",
+        ".animated_product .b-product_promo_tile-name_link {font-size: 16px; margin-top: 5px;}",
+        ".animated_product .discount_label {font-size: 15px;}",
+        ".animated_product .b-product_price-value {font-size: 20px;}",
+        ".animated_product .product-prices.d-flex.align-items-center.gap-2 {gap: 8px !important;}",
+        ".animated_product .b-product_tile-picture_container {background: none;}"
+      ],
+      "settings": {
+        "showContainer": "full-width",
+        "bg-image": "shopify://shop_images/spring-cloud_1_a93c9f1f-e3ed-405a-a129-fda1b13c2015.webp",
+        "image_priority": false,
+        "coll-title": "Deal of the day",
+        "url": "",
+        "url-title": "",
+        "collection": "deal-of-the-day",
+        "swat_alig": true,
+        "showCenter": false,
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 0,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "margin_top_mobile": 40,
+        "margin_bottom_mobile": 0,
+        "padding_top_mobile": 12,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "custom_featured_collection_deal_day_cGCqCB": {
+      "type": "custom-featured-collection-deal-day",
+      "settings": {
+        "showContainer": "full-width",
+        "image": "shopify://shop_images/Artboard_1-min.jpg",
+        "image_mobile": "shopify://shop_images/Artboard_2-min.png",
+        "image_priority": true,
+        "coll-title-sub": "",
+        "coll-title": "Best <em>sellers</em>",
+        "url": "shopify://collections/best-seller-all-time",
+        "url-title": "View All",
+        "collection": "best-seller-all-time",
+        "products_to_show": 30,
+        "swat_alig": true,
+        "showCenter": false,
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 0,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "margin_top_mobile": 40,
+        "margin_bottom_mobile": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "image_text_deal_day_mdCRi4": {
+      "type": "image-text-deal-day",
+      "blocks": {
+        "text_dqCL9t": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/1080x1080_d210f211-8536-4883-b8ca-3c7ea8da0c36.jpg",
+            "title": "BYOB: Pick Your Faves & Rule the Glow Game",
+            "offer": "",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://collections/buy-any-3-at-949"
+          }
+        },
+        "text_VK3Niz": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Eyeshadow-D-min.png",
+            "title": "Add to Cart, We will Add the Eyeshadow",
+            "offer": "",
+            "cta_text": "EXPLORE",
+            "cta_link": "https://hokmakeup.com/products/makeup-revolution-reloaded-red-alert?variant=49736129511703"
+          }
+        },
+        "text_WhEGye": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Rosy_gold-D-min_6f48a9d0-2199-4e34-a2e9-62faa006c5ad.png",
+            "title": "Buy More, Slay More—Free Lipstick Inside",
+            "offer": "",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://products/orange-ember-matte-lipstick"
+          }
+        },
+        "text_wcaAJi": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Baking_powder-D-min.png",
+            "title": "Glow More, Spend Less—Up to 60% OFF in The Saving Store",
+            "offer": "",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://collections/lot-by"
+          }
+        }
+      },
+      "block_order": [
+        "text_dqCL9t",
+        "text_VK3Niz",
+        "text_WhEGye",
+        "text_wcaAJi"
+      ],
+      "settings": {
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 76,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "margin_top_mobile": 24,
+        "margin_bottom_mobile": 40,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "subtitle": "Picks for you!",
+        "maintitle": "Your Beauty, Our Expertise"
+      }
+    },
+    "custom_collection_list_rFyCEe": {
+      "type": "custom-collection-list",
+      "blocks": {
+        "image_VbgNWK": {
+          "type": "image",
+          "settings": {
+            "coll_name": "BUY BIG, SAVE MORE",
+            "link": ""
+          }
+        },
+        "image_M6xXJ3": {
+          "type": "image",
+          "settings": {
+            "coll_name": "BUY BIG, SAVE MORE",
+            "link": ""
+          }
+        },
+        "image_3M8atx": {
+          "type": "image",
+          "settings": {
+            "coll_name": "BUY BIG, SAVE MORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_VbgNWK",
+        "image_M6xXJ3",
+        "image_3M8atx"
+      ],
+      "disabled": true,
+      "settings": {
+        "background": "#f3f3f3",
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "padding_top_desktop": 36,
+        "padding_bottom_desktop": 36,
+        "coll_title": "Explore Combos | Your Perfect Pairings",
+        "coll_title-2": "Explore Combos | Your Perfect Pairings"
+      }
+    },
+    "image_text_deal_day_dcijiy": {
+      "type": "image-text-deal-day",
+      "blocks": {
+        "text_7edwTx": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/81555357252_3_0ba408ed-dba8-40b3-96c6-f819eea20f43.jpg",
+            "title": "Free Lipstick On Orders Above ₹ 1299",
+            "offer": "Free Lipstick on Orders Above $129",
+            "cta_text": "EXPLORE",
+            "cta_link": ""
+          }
+        },
+        "text_VjjeDk": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/81555357245_4_f7af3ae7-2510-4968-ac7f-fc1549bfef85.jpg",
+            "title": "Free Lipstick On Orders Above ₹ 1299",
+            "offer": "Free Lipstick on Orders Above $129",
+            "cta_text": "EXPLORE",
+            "cta_link": ""
+          }
+        },
+        "text_w3d3CL": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/7_caf1da00-37c8-42bb-a61a-fd2b15a7378c.jpg",
+            "title": "Free Lipstick On Orders Above ₹ 1299",
+            "offer": "Free Lipstick on Orders Above $129",
+            "cta_text": "EXPLORE",
+            "cta_link": ""
+          }
+        },
+        "text_EYzKXK": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/81555357214_2_75842e43-a5b2-4227-aabc-c341efe17855.jpg",
+            "title": "Free Lipstick On Orders Above ₹ 1299",
+            "offer": "Free Lipstick on Orders Above $129",
+            "cta_text": "EXPLORE",
+            "cta_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_7edwTx",
+        "text_VjjeDk",
+        "text_w3d3CL",
+        "text_EYzKXK"
+      ],
+      "disabled": true,
+      "settings": {
+        "margin_top_desktop": 120,
+        "margin_bottom_desktop": 36,
+        "padding_top_desktop": 36,
+        "padding_bottom_desktop": 36,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 80,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 100,
+        "subtitle": "Picks for you!",
+        "maintitle": "Your Beauty – Our Expertise"
+      }
+    },
+    "exclusive_offer_deal_day_6VYHry": {
+      "type": "exclusive-offer-deal-day",
+      "blocks": {
+        "text_block_94DAQD": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "Sroll for",
+            "text_color": "#6a68f9"
+          }
+        },
+        "text_block_nR6nnH": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "exclusive",
+            "text_color": "#ef4ba4"
+          }
+        },
+        "text_block_LaqwRn": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "savings",
+            "text_color": "#ef4ba4"
+          }
+        },
+        "text_block_jU4cTw": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "with our",
+            "text_color": "#6a68f9"
+          }
+        },
+        "text_block_nEEGCV": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "offers!",
+            "text_color": "#6a68f9"
+          }
+        },
+        "text_block_Jbgjdx": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "exclusive savings",
+            "text_color": "#ef4ba4"
+          }
+        },
+        "text_block_kzw8iG": {
+          "type": "text_block",
+          "settings": {
+            "text_content": "with our offers!",
+            "text_color": "#6a68f9"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_94DAQD",
+        "text_block_nR6nnH",
+        "text_block_LaqwRn",
+        "text_block_jU4cTw",
+        "text_block_nEEGCV",
+        "text_block_Jbgjdx",
+        "text_block_kzw8iG"
+      ],
+      "custom_css": [],
+      "settings": {
+        "offer_text": "<p>Extra 10% Off <br><span>on your first app purchase</span></p>",
+        "discount_code": "WELCOMETOHOK",
+        "background_color": "#ff4da6",
+        "text_color": "#ffff00",
+        "button_bg": "#000000",
+        "button_text": "#ffffff",
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 40,
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 36,
+        "margin_top_mobile": 40,
+        "margin_bottom_mobile": 50,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 20
+      }
+    },
+    "custom_tabs_collection_bHAUfT": {
+      "type": "custom-tabs-collection",
+      "blocks": {
+        "collection_PLkQf3": {
+          "type": "collection",
+          "settings": {
+            "tab_title": "<p><span>Lipstick</span> <br>Under <br><strong> ₹499</strong></p>",
+            "collection": "lipstick-under-budget",
+            "products_to_show-1": 8,
+            "tab_color": "#ffffff",
+            "collection-url": "shopify://collections/lipstick-under-budget",
+            "collection-text-button": "see all under <strong>₹499</strong>",
+            "collection-popup": "lipstick-under-budget",
+            "productslimitpopup": 16
+          }
+        },
+        "collection_AGXYWr": {
+          "type": "collection",
+          "settings": {
+            "tab_title": "<p><span>Mascara<br>\n</span> Under <br><strong> ₹499</strong></p>",
+            "collection": "mascara-under-budget",
+            "products_to_show-1": 8,
+            "tab_color": "#ffffff",
+            "collection-url": "shopify://collections/mascara-under-budget",
+            "collection-text-button": "see all under <strong>₹499</strong>",
+            "collection-popup": "mascara-under-budget",
+            "productslimitpopup": 16
+          }
+        },
+        "collection_MiQ6GC": {
+          "type": "collection",
+          "settings": {
+            "tab_title": "<p style=\"max-width: 104px; \"><span>Eye Shadow</span><br> Under <br><strong> ₹799</strong></p>",
+            "collection": "blush-under-budget",
+            "products_to_show-1": 8,
+            "tab_color": "#ffffff",
+            "collection-url": "shopify://collections/blush-under-budget",
+            "collection-text-button": "see all under <strong> ₹499</strong>",
+            "collection-popup": "blush-under-budget",
+            "productslimitpopup": 16
+          }
+        }
+      },
+      "block_order": [
+        "collection_PLkQf3",
+        "collection_AGXYWr",
+        "collection_MiQ6GC"
+      ],
+      "settings": {
+        "title": "<em>Beauty</em> without Breaking your Bank",
+        "heading_color": "#e13f9f",
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 40,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "margin_top_mobile": 60,
+        "margin_bottom_mobile": 60,
+        "padding_top_mobile": 10,
+        "padding_bottom_mobile": 32,
+        "background-color": "#def31c"
+      }
+    },
+    "combo_card_offer_XwPtzT": {
+      "type": "combo-card-offer",
+      "blocks": {
+        "text_VT7wHp": {
+          "type": "text",
+          "settings": {
+            "text": "<div style=\"padding: 72px 6px 0 6px; text-align: center;\">\n  <p>\n   Your <em>eyes</em> deserve these -\n  </p>\n  <h2 style=\"color: #E03F9F\">\n  <em>Iconic Eyeshadow Palettes</em>\n  </h2>\n</div>"
+          }
+        },
+        "text_hymJGG": {
+          "type": "text",
+          "settings": {
+            "text": "<div style=\" padding: 72px 6px 0 6px; text-align: center;\">\n  <p>\n   Your <i>skin</i> deserves  \n  </p>\n  <h2 style=\"color: #E03F9F\">\n  <i>These flawless Foundations</i>\n  </h2>\n</div>"
+          }
+        },
+        "text_fYBFkJ": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<div style=\"background-color: #e6f500; padding: 72px 6px 28px 6px; text-align: center;\">\n  <p>\n    The only Red Flag you need –\n  </p>\n  <h2 style=\"color: #E03F9F\">\n    A Bold Red Lipsticks\n  </h2>\n</div>"
+          }
+        },
+        "collection_card_B8dich": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "eyeshadow",
+            "url_collecion_link": "shopify://collections/eyeshadow",
+            "text-image": "<p>\nYour <em>eyes</em> deserve these - </p>\n  <h2 style=\"color: #E03F9F;font-size: 40px;\">\n   <em>Iconic Eyeshadow Palettes</em>\n  </h2>",
+            "image": "shopify://shop_images/MUR_Eyeshadow_D-min.jpg",
+            "mobile_image": "shopify://shop_images/MUR_Eyeshadow_M.png",
+            "text-bottom-image": "<div style=\"color: #fff;\">\n  <p style=\"font-size:18px;\">Upto  50% Off</p>\n  \n  <p style=\"font-size:16px;\">\n    The most \n<span style=\"font-weight: 500;\">versatile palettes.</span>\n  </p>\n<p style=\"font-size:18px;color:#DEF31C;\">\n    You cannot miss out on these!\n  </p>\n</div>",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://collections/eyeshadow"
+          }
+        },
+        "collection_card_Pej4i8": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "foundation",
+            "url_collecion_link": "shopify://collections/foundation",
+            "text-image": "<p>\n Your <em>skin</em> deserves \n </p>\n  <h2 style=\"color: #E03F9F;font-size: 40px; \">\n   <em>These flawless Foundations</em>\n  </h2>",
+            "image": "shopify://shop_images/Artboard_1_copy_068527f3-5820-46b7-b07c-aa93ac4fd50d.png",
+            "mobile_image": "shopify://shop_images/Artboard_2_copy_f910d59b-65e7-4b1e-af7b-214f4ad5b559.png",
+            "text-bottom-image": "<div style=\"color: #fff;\">\n   <p style=\"font-size:18px;\">Upto 60% Off</p>\n  <p style=\"font-size:16px;\">\n    A shade for <span style=\"font-weight: 500;\">every complexion.</span>\n  </p>\n<p style=\"font-size:18px;color:#DEF31C;\">\n    Check out <span style=\" font-weight: 500;\">now</span> !\n  </p>\n</div>",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://collections/foundation"
+          }
+        },
+        "collection_card_gYxtVJ": {
+          "type": "collection_card",
+          "disabled": true,
+          "settings": {
+            "collection": "929a",
+            "url_collecion_link": "shopify://collections/9-to-9-sale-b",
+            "text-image": "<p>\n    The only Red Flag you need –\n  </p>\n  <h2 style=\"color: #E03F9F;font-size: 40px; \">\n    A  Red Lipsticks\n  </h2>",
+            "image": "shopify://shop_images/Eveline_Mascara-D.png",
+            "text-bottom-image": "<div style=\"color: #fff;\">\n   <p style=\"font-size:18px;\">Min. 20 - 50% Off</p>\n  \n  <p style=\"font-size:16px;\">\n    Buy <span style=\"font-weight: 500;\">Bold Shades</span>\n  </p>\n<p style=\"font-size:18px;color:#DEF31C;\">\n    Impress with <span style=\" font-weight: 500;\">RED</span> this season\n  </p>\n</div>",
+            "cta_text": "EXPLORE",
+            "cta_link": "shopify://collections/929b-offer"
+          }
+        },
+        "html_JyKN3k": {
+          "type": "html",
+          "settings": {
+            "text-bottom": "<div>\n  <h2>\n    Upto 50% Off\n  </h2>\n  <p>\nThe most \n    <span style=\" color: #cc0000; font-weight: 500;\">versatile </span> palettes.\n  </p>\n  <p>\n    You cannot miss out on these!\n  </p>\n</div>"
+          }
+        },
+        "html_L46UYC": {
+          "type": "html",
+          "settings": {
+            "text-bottom": "<div>\n  <h2>\n     Upto 40% Off\n  </h2>\n  <p>\n     A shade for <span style=\" color: #cc0000; font-weight: 500;\">every </span> complexion.\n  </p>\n  <p>\n    Check out <span style=\"font-weight: 500;\">now</span>!\n  </p>\n</div>"
+          }
+        },
+        "html_AqgNEe": {
+          "type": "html",
+          "disabled": true,
+          "settings": {
+            "text-bottom": "<div>\n  <h2>\n    Min. 40 - 50% Off\n  </h2>\n  <p>\n    Impress with <span style=\" color: #cc0000; font-weight: 500;\">RED</span> this season\n  </p>\n  <p>\n    Buy <span style=\"font-weight: 500;\">Bold Shades</span>\n  </p>\n</div>"
+          }
+        }
+      },
+      "block_order": [
+        "text_VT7wHp",
+        "text_hymJGG",
+        "text_fYBFkJ",
+        "collection_card_B8dich",
+        "collection_card_Pej4i8",
+        "collection_card_gYxtVJ",
+        "html_JyKN3k",
+        "html_L46UYC",
+        "html_AqgNEe"
+      ],
+      "custom_css": [],
+      "settings": {
+        "margin_top_desktop": 120,
+        "margin_bottom_desktop": 90,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 20,
+        "padding_top_mobile": 8,
+        "padding_bottom_mobile": 8
+      }
+    },
+    "combo_product_card_CkTbtV": {
+      "type": "combo-product-card",
+      "disabled": true,
+      "custom_css": [
+        ".combo-product-card .b-product_promo_tile-content {padding: 0px 12px;}"
+      ],
+      "settings": {
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 60,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 60,
+        "heading-sub": "Explore Combos",
+        "heading": "Your Perfect <em> Pairings</em>",
+        "collection": "50-off-revolution-combo"
+      }
+    },
+    "end_deal_of_the_day_3r3D34": {
+      "type": "end-deal-of-the-day",
+      "settings": {
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 40,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 20,
+        "margin_top_mobile": 40,
+        "margin_bottom_mobile": 20,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "background_color": "#ecf406",
+        "heading": "That’s all for today’s best deals",
+        "subtext": "<p><em>Hope you found something special!</em></p>",
+        "link_text": "Check back every 2 days for fresh drops",
+        "link_url": "",
+        "back_to_top_url": "",
+        "continue_url": "shopify://collections/best-seller-products"
+      }
+    },
+    "floating_nav_T7WjPA": {
+      "type": "floating-nav",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "updated_announcement_bar_cNCw3i",
+    "banner_section_deal_of_the_day_96pPKr",
+    "banner_section_deal_of_the_day_9bHqD4",
+    "custom_best_seller_deal_day_ENrxAV",
+    "custom_featured_collection_deal_day_cGCqCB",
+    "image_text_deal_day_mdCRi4",
+    "custom_collection_list_rFyCEe",
+    "image_text_deal_day_dcijiy",
+    "exclusive_offer_deal_day_6VYHry",
+    "custom_tabs_collection_bHAUfT",
+    "combo_card_offer_XwPtzT",
+    "combo_product_card_CkTbtV",
+    "end_deal_of_the_day_3r3D34",
+    "floating_nav_T7WjPA"
+  ]
+}

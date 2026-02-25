@@ -1,0 +1,360 @@
+<!-- section/skin-routine-tabs.liquid -->
+{{ 'skin-routine-tabs.css' | asset_url | stylesheet_tag }}
+{% style %}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  padding-top: {{ section.settings.padding_text_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+  }
+
+  {% for block in section.blocks %}
+  .product-description-image.tertiary-class .product-description-text{
+  padding-top:{{block.settings.padding-text-top}}px;
+  }
+  {% endfor %}
+  @media screen and (max-width: 768px) {
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_mobile }}px;
+  margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  padding-top: {{ section.settings.padding_text_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+  }
+
+  }
+{% endstyle %}
+<section class="routine-tabs-section section-{{ section.id }}-margin full-width">
+  <div class="choose-routine-text">
+    <h2 class="routine-heading">{{ section.settings.heading }}</h2>
+    <p class="routine-subheading">{{ section.settings.subheading }}</p>
+  </div>
+  {% assign tab_names = 'acne,dry,oily,sensitive' | split: ',' %}
+
+  <div class="tabs">
+    {% for tab in tab_names %}
+      <button class="tab-button-skincare-routine {% if forloop.first %}active{% endif %}" data-tab="{{ tab }}">
+        {{ tab | capitalize }} Skin Routine
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="tab-content-skincare-routines">
+    {% for tab in tab_names %}
+      <div class="tab-content-skincare-routine {% if forloop.first %}active{% endif %}" id="{{ tab }}">
+        <div class="swiper routine-swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% if block.type == 'routine_card' and block.settings.tab_group == tab %}
+                <div class="swiper-slide routine-card skin-{{ tab | capitalize }}">
+                  <h3>{{ block.settings.title }}</h3>
+                  <span class="step-label">step {{ block.settings.step }}</span>
+                  <div class="product-description-image {{ block.settings.custom_class }} image-text{{ forloop.index }}">
+                    <p class="product-description-text text{{ forloop.index }}">{{ block.settings.description }}</p>
+                    {% if block.settings.image %}
+                       <a href="{{ block.settings.button_link }}" class="product_url">
+                      <img
+                        src="{{ block.settings.image |  image_url: width: 600 }}"
+                        alt="Extra Product Image"
+                        title="{{ product.title }}"
+                        width="150"
+                        class="routine-product-image-{{ forloop.index }}-{{ tab | capitalize }}"
+                        height="300"
+                        
+                      >
+                      </a>
+                    {% endif %}
+                  </div>
+                  <a href="{{ block.settings.button_link }}" class="view-all-link">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="25"
+                      height="21"
+                      viewBox="0 0 25 21"
+                      fill="none"
+                    >
+                      <path
+                          d="M14 6.34521V3.84646C14 3.23552 13.9965 3.02188 13.9493 2.85571C13.8484 2.4916 13.5985 2.1571 13.2312 1.89464C12.8639 1.63217 12.3959 1.45356 11.8864 1.38145C11.6538 1.34896 11.3549 1.34521 10.5 1.34521C9.64511 1.34521 9.34615 1.34896 9.11364 1.3827C8.60414 1.45481 8.13608 1.63342 7.76881 1.89589C7.40154 2.15835 7.15161 2.49285 7.0507 2.85696C7.00525 3.02188 7 3.23552 7 3.84646V6.34521"
+                          stroke="black" stroke-width="1.5" />
+                      <path
+                          d="M19.9136 18.0505C19.7666 18.4765 19.4881 18.8337 19.1248 19.0597C18.7065 19.3169 18.1245 19.3169 16.9617 19.3169H4.05479C2.87405 19.3169 2.28487 19.3169 1.86779 19.0558C1.50329 18.8246 1.22364 18.461 1.08023 18.0298C0.916504 17.5362 1.02167 16.9011 1.23081 15.6399L2.3518 8.88598C2.50238 7.96901 2.57887 7.51312 2.79159 7.17153C2.97988 6.87064 3.24194 6.63307 3.54808 6.48574C3.89465 6.31689 4.3213 6.31689 5.17339 6.31689L6.99178 6.33378H14.0194H15.9435"
+                          stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                      <path
+                          d="M20 6.20312C20.178 6.20312 20.3487 6.27354 20.4746 6.39941L20.5586 6.50195C20.6315 6.61137 20.6718 6.7406 20.6719 6.87402V9.63086H23.4287C23.6067 9.6309 23.7774 9.70224 23.9033 9.82812L23.9873 9.93066C24.0602 10.0401 24.0996 10.1693 24.0996 10.3027C24.0996 10.4361 24.0602 10.5654 23.9873 10.6748L23.9033 10.7773C23.7774 10.9032 23.6067 10.9746 23.4287 10.9746H20.6719V13.7314C20.6718 13.8649 20.6315 13.9941 20.5586 14.1035L20.4746 14.2061C20.3487 14.3319 20.178 14.4023 20 14.4023C19.8666 14.4023 19.7374 14.3629 19.6279 14.29L19.5254 14.2061C19.3995 14.0802 19.3282 13.9095 19.3281 13.7314V10.9746H16.5713C16.4379 10.9746 16.3086 10.9342 16.1992 10.8613L16.0967 10.7773C15.9708 10.6514 15.9004 10.4808 15.9004 10.3027C15.9004 10.1247 15.9708 9.95404 16.0967 9.82812L16.1992 9.74414C16.3086 9.67123 16.4379 9.63089 16.5713 9.63086H19.3281V6.87402C19.3282 6.696 19.3995 6.5253 19.5254 6.39941L19.6279 6.31543C19.7374 6.24256 19.8666 6.20312 20 6.20312Z"
+                          fill="black" stroke="black" stroke-width="0.2" />
+                    </svg>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.tab-button-skincare-routine');
+      const contents = document.querySelectorAll('.tab-content-skincare-routine');
+      let swipers = [];
+
+
+      function initSwipers() {
+          document.querySelectorAll('.tab-content-skincare-routine.active .routine-swiper').forEach((swiperContainer) => {
+              if (!swiperContainer.classList.contains('swiper-initialized')) {
+                  const swiper = new Swiper(swiperContainer, {
+                      slidesPerView: 1.2,
+                      spaceBetween: 16,
+                       slidesOffsetAfter: 10,
+                      slidesOffsetBefore: 10,
+                      breakpoints: {
+                    480: {
+                      slidesPerView: 1.7
+                    },
+                    768: {
+                      slidesPerView: 2.3
+                    },
+                    1024: {
+                      slidesPerView: 2.6
+                    },
+                    1400: {
+                      slidesPerView: 3.6
+                    },
+                    1700: {
+                      slidesPerView: 4.6 
+                    },
+                    
+                  },
+                                  });
+                  swiperContainer.classList.add('swiper-initialized');
+                  swipers.push(swiper);
+              }
+          });
+      }
+
+
+      initSwipers();
+
+      tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+              const target = tab.dataset.tab;
+
+              tabs.forEach(t => t.classList.remove('active'));
+              contents.forEach(c => c.classList.remove('active'));
+
+              tab.classList.add('active');
+              document.getElementById(target).classList.add('active');
+
+              initSwipers();
+          });
+      });
+  });
+</script>
+
+{% schema %}
+{
+"name": "Skin Routine Tabs",
+"class":"skincare-routine-section",
+"settings": [
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "CHOOSE YOUR ROUTINE"
+},
+{
+"type": "text",
+"id": "subheading",
+"label": "Subheading",
+"default": "TESTED. PROVEN. CURATED FOR YOU."
+},
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top Desktop",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom Desktop",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_text_top_desktop",
+"label": "Padding Top (Desktop)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_text_bottom_desktop",
+"label": "Padding Bottom (Desktop)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 20
+},
+{
+"type": "header",
+"content": "Mobile Margin"
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top Mobile",
+"default": 24
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom Mobile",
+"default": 24
+},
+{
+"type": "range",
+"id": "padding_text_top_mobile",
+"label": "Padding Top (Mobile)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 15
+},
+{
+"type": "range",
+"id": "padding_text_bottom_mobile",
+"label": "Padding Bottom (Mobile)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 15
+}
+],
+"blocks": [
+{
+"type": "routine_card",
+"name": "Routine Card",
+"settings": [
+{
+"type": "select",
+"id": "custom_class",
+"label": "Select custom class",
+"options": [
+{
+"label": "Primary Style",
+"value": "primary-class"
+},
+{
+"label": "Secondary Style",
+"value": "secondary-class"
+},
+{
+"label": "Tertiary Style",
+"value": "tertiary-class"
+}
+],
+"default": "primary-class"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Card Title",
+"default": "Cleanse"
+},
+{
+"type": "number",
+"id": "step",
+"label": "Step Number",
+"default": 1
+},
+{
+"type": "range",
+"id": "padding-text-top",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding text top",
+"default": 100
+},
+{
+"type": "richtext",
+"id": "description",
+"label": "Description"
+
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Product Image"
+},
+  {
+  "type": "url",
+  "id": "button_link",
+  "label": "product Link"
+},
+
+{
+"type": "select",
+"id": "tab_group",
+"label": "Assign to Tab",
+"options": [
+{ "value": "acne", "label": "Acne Skin Routine" },
+{ "value": "dry", "label": "Dry Skin Routine" },
+{ "value": "oily", "label": "Oily Skin Routine" },
+{ "value": "sensitive", "label": "Sensitive Skin Routine" }
+],
+"default": "acne"
+}
+]
+}
+],
+"max_blocks": 50,
+"presets": [
+{
+"name": "Skin Routine Tabs",
+"blocks": [
+{
+"type": "routine_card",
+"settings": {
+"title": "Cleanse",
+"step": 1,
+"description": "<p>Use Eveline's gel wash for a refreshing cleanse.</p>",
+"tab_group": "acne"
+}
+},
+{
+"type": "routine_card",
+"settings": {
+"title": "Tone",
+"step": 2,
+"description": "<p>Apply toner to balance your skin's pH.</p>",
+"tab_group": "acne"
+}
+}
+]
+}
+]
+}
+{% endschema %}

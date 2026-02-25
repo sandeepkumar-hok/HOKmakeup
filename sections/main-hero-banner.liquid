@@ -1,0 +1,733 @@
+<!-- section/main-hero-banner -->
+{%- style -%}
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+    #carousel-prev-{{ section.id }},
+     #carousel-next-{{ section.id }} {
+    position: relative;
+    /* padding: 16.5px 20px; */
+    border-radius: 50px;
+    background: transparent;
+    border: 1px solid transparent;
+    height: 48px;
+    aspect-ratio: 1;
+    display: none;
+  }
+
+  #carousel-prev-{{ section.id }}  {
+    left: 28px;
+  }
+
+  #carousel-next-{{ section.id }}  {
+    right: 28px;
+  }
+
+  #carousel-prev-{{ section.id }}>svg,
+  #carousel-next-{{ section.id }}>svg {
+    width: 10px;
+    height: 17px;
+  }
+  .carousel-nav-wrapper:hover #carousel-prev-{{ section.id }},
+  .carousel-nav-wrapper:hover #carousel-next-{{ section.id }} {
+    background-color:  rgba(35, 35, 35, 0.14);
+  }
+
+  .carousel-nav-wrapper:hover #carousel-prev-{{ section.id }},
+  .carousel-nav-wrapper:hover #carousel-next-{{ section.id }} {
+    background-color:  rgba(35, 35, 35, 0.14);
+  }
+     #carousel-pagination-wrapper-{{ section.id }} {
+    height: auto;
+    position: relative;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet {
+    height: 6px;
+    width: 6px;
+    color: transparent;
+    font-size: 0;
+    background-color: rgba(33, 33, 33, 0.8);
+  }
+
+  #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet-active {
+
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .main-carousel-cta-btn-wrapper-outter {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    left: 0;
+    bottom: 30px;
+    display: flex;
+    column-gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .main-carousel-cta-btn {
+    overflow: hidden;
+    height: 100%;
+    flex: 1;
+    max-width: 285px;
+    /* width: 190px; */
+   font-weight: 800;
+    font-size: 13px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  .main-carousel-cta-btn-wrapper {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* bg and hover styles */
+  .bg-white {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid transparent;
+  }
+
+  .bg-black {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid transparent;
+  }
+
+  .bg-transparent {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid transparent;
+  }
+
+  .text-black {
+    color: #000;
+  }
+
+  .main-carousel-cta-btn-2.text-black {
+    border: 1px solid #000;
+  }
+
+  .text-white {
+    color: #fff;
+  }
+
+  .main-carousel-cta-btn-2.text-white {
+    border: 1px solid #fff;
+  }
+
+  .text-hover-black:hover {
+    color: #000 !important;
+    border: 1px solid #000;
+  }
+
+  .text-hover-white:hover {
+    color: #fff !important;
+    border: 1px solid #fff;
+  }
+
+  .main-carousel-cta-btn.bg-hover-white:hover:before,
+  .main-carousel-cta-btn.bg-hover-white:hover:after {
+    background-color: #fff !important;
+    color: #000;
+    border: 1px solid #000 !important;
+  }
+
+  .main-carousel-cta-btn.bg-hover-black:hover:before,
+  .main-carousel-cta-btn.bg-hover-black:hover:after {
+    background-color: #000 !important;
+    color: #fff;
+  }
+
+  .main-carousel-cta-btn.bg-hover-transparent:hover:before,
+  .main-carousel-cta-btn.bg-hover-transparent:hover:after {
+    background-color: transparent !important;
+    color: #000;
+  }
+
+  .mobile_screen.bg-black {
+    border: 1px solid #fff;
+    color: #fff;
+  }
+
+  .mobile_screen.bg-white {
+    border: 1px solid #000;
+    color: #000;
+  }
+
+  .mobile_screen.bg-white:hover {
+    color: #fff !important;
+    border: 1px solid #fff;
+  }
+
+  .mobile_screen.bg-black:hover {
+    color: #000 !important;
+    border: 1px solid #000;
+  }
+
+  .mobile_screen.bg-white:hover:before,
+  .mobile_screen.bg-white:hover:after {
+    background-color: #000;
+  }
+
+  .mobile_screen.bg-black:hover:after,
+  .mobile_screen.bg-black:hover:after {
+    background-color: #fff;
+  }
+  @media only screen and (min-width: 768px) {
+    #carousel-prev-{{ section.id }},
+    #carousel-next-{{ section.id }} {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main-carousel-cta-btn-wrapper-outter {
+      bottom: 8%;
+      padding: 0 5%;
+      height: 34px;
+      justify-content: flex-start;
+    }
+    #carousel-pagination-wrapper-{{ section.id }} {
+      position: absolute;
+      bottom: 4%;
+      margin-top: 0px;
+    }
+
+    #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet {
+      height: 8px;
+      width: 8px;
+      color: transparent;
+      font-size: 0;
+      background-color: rgb(250, 249, 246);
+  }
+
+  #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet-active {
+    background-color: rgb(255, 255, 255)
+  }
+  }
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+    }
+    @media only screen and (min-width: 1200px) {
+    .main-carousel-cta-btn-wrapper-outter {
+      bottom: 10%;
+      padding: 0 5%;
+      height: 44px;
+      justify-content: flex-start;
+    }
+
+    .main-carousel-cta-btn {
+      font-size: 15px;
+      max-width: 200px;
+    }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    .main-carousel-cta-btn-wrapper-outter {
+      bottom: 10%;
+      padding: 0 5%;
+
+      height: 48px;
+      justify-content: flex-start;
+    }
+
+    .main-carousel-cta-btn {
+      max-width: 250px;
+    }
+  }
+
+  @media only screen and (min-width: 1900px) {
+    .main-carousel-cta-btn-wrapper-outter {
+      bottom: 13%;
+      height: 50px;
+    }
+
+    .main-carousel-cta-btn {
+      max-width: 300px;
+    }
+  }
+  {%- endstyle -%}
+  <div class="section-{{ section.id }}-margin">
+    <div class="carousel-nav-wrapper position-relative">
+        <div id="hero-carousel-{{ section.id }}" class="w-100 h-100 overflow-hidden">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              <div class="swiper-slide">
+                <a href="{{ block.settings['banner-url'] }}" data-location="Hero-banner-{{ forloop.index }}">
+                  {% if block.type == 'image' %}
+                      <img
+                          src="{{ block.settings.banner-image-desktop | image_url: width: 1920, height: 835 , format: 'webp' }}"
+                          class="{% if block.settings['banner-image-mobile'] != blank %}desktop_screen{% endif %}"
+                          width="auto" 
+                          height="auto"
+                          fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}"
+                          loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                      >
+                        {% if block.settings['banner-image-mobile'] != blank %}
+                            <img
+                            src="{{ block.settings.banner-image-mobile | image_url: width: 390, height: 600 , format: 'webp' }}"
+                            class="mobile_screen"
+                            height="auto"
+                            width="auto"
+                            fetchpriority="{% if forloop.first %}high{% else %}auto{% endif %}"
+                            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                            >
+                        {% endif %}
+                    {% elsif block.type == 'video' %}
+                      {% assign media_desktop = block.settings['banner-video-desktop'] %}
+                      {% assign media_mobile =  block.settings['banner-video-mobile'] %}
+                        <video poster="{{ media_desktop.preview_image.src | image_url: width: 1920, height: 835 , format: 'webp' }}" class="lazyvideo desktop_screen square-banner-media" autoplay loop muted playsinline>
+                          <source data-src="{{ media_desktop.sources[1].url }}" type="video/mp4">
+                          Your browser does not support the video tag
+                        </video>
+                        <video poster="{{ media_mobile.preview_image.src | image_url: width: 390, height: 600 , format: 'webp' }}" class="lazyvideo mobile_screen square-banner-media" autoplay loop muted playsinline>
+                          <source data-src="{{ media_mobile.sources[1].url }}" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                  {% endif %}
+                </a>
+                <div class="main-carousel-cta-btn-wrapper-outter">
+                {% if block.settings['cta-btn-1-text'] != blank %}
+                  {% comment %} button 1 mobile {% endcomment %}
+                  <a
+                    href="{{ block.settings['btn1-url'] }}" data-location="Hero-banner-{{ forloop.index }}a"
+                    class="
+                      mobile_screen button-cta main-carousel-cta-btn main-carousel-cta-btn-1
+                      {% if block.settings['btn1-bg-mobile'] == '#ffffff' %}bg-white
+                      {% elsif block.settings['btn1-bg-mobile'] == '#000000' %}bg-black
+                      {% else %}bg-transparent
+                      {% endif %}
+                    "
+                  >
+                    <div class="main-carousel-cta-btn-wrapper">
+                      <span class="main-carousel-cta-text">
+                        {{ block.settings['cta-btn-1-text'] }}
+                      </span>
+                    </div>
+                  </a>
+
+                  {% if block.settings['show-cta-on-desktop'] == true %}
+                    {% comment %} button 1 desktop {% endcomment %}
+                    <a
+                      href="{{ block.settings['btn1-url'] }}" data-location="Hero-banner-{{ forloop.index }}a"
+                      class="desktop_screen button-cta square_pill main-carousel-cta-btn main-carousel-cta-btn-1{% if block.settings['btn1-bg-desktop'] == '#ffffff' %} bg-white{% elsif block.settings['btn1-bg-desktop'] == '#000000' %} bg-black{% else %} bg-transparent{% endif %}{% if block.settings['btn1-bg-hover-desktop'] == '#ffffff' %} bg-hover-white{% elsif block.settings['btn1-bg-hover-desktop'] == '#000000' %} bg-hover-black{% else %} bg-hover-transparent{% endif %}
+{% if block.settings['btn1-text-desktop'] == '#ffffff' %} text-white{% elsif block.settings['btn1-text-desktop'] == '#000000' %} text-black{% endif %}
+{% if block.settings['btn1-text-hover-desktop'] == '#ffffff' %} text-hover-white{% elsif block.settings['btn1-text-hover-desktop'] == '#000000' %} text-hover-black{% endif %}"
+                    >
+                      <div class="main-carousel-cta-btn-wrapper">
+                        <span class="main-carousel-cta-text">
+                          {{ block.settings['cta-btn-1-text'] }}
+                        </span>
+                      </div>
+                    </a>
+                  {% endif %}
+                {% endif %}
+
+                {% if block.settings['cta-btn-2-text'] != blank %}
+                  {% comment %} btn 2 mobile {% endcomment %}
+                  <a
+                    href="{{ block.settings['btn2-url'] }}"
+                    class="
+                      mobile_screen button-cta main-carousel-cta-btn main-carousel-cta-btn-2 {% if block.settings['btn2-bg-mobile'] == '#ffffff' %}bg-white
+                      {% elsif block.settings['btn2-bg-mobile'] == '#000000' %}bg-black
+                      {% else %}bg-transparent
+                      {% endif %}
+                    " data-banner="Hero-banner-{{ forloop.index }}b"
+                  >
+                    <div class="main-carousel-cta-btn-wrapper">
+                      <span class="main-carousel-cta-text">
+                        {{ block.settings['cta-btn-2-text'] }}
+                      </span>
+                    </div>
+                  </a>
+
+                  {% if block.settings['show-cta-on-desktop'] == true %}
+                    {% comment %} button 1 desktop {% endcomment %}
+                    <a
+                      href="{{ block.settings['btn2-url'] }}" data-location="Hero-banner-{{ forloop.index }}b"
+                      class="desktop_screen button-cta square_pill main-carousel-cta-btn main-carousel-cta-btn-2{% if block.settings['btn2-bg-desktop'] == '#ffffff' %} bg-white{% elsif block.settings['btn2-bg-desktop'] == '#000000' %} bg-black{% else %} bg-transparent{% endif %}
+{% if block.settings['btn2-bg-hover-desktop'] == '#ffffff' %} bg-hover-white{% elsif block.settings['btn2-bg-hover-desktop'] == '#000000' %} bg-hover-black{% else %} bg-hover-transparent{% endif %}
+{% if block.settings['btn2-text-desktop'] == '#ffffff' %} text-white{% elsif block.settings['btn2-text-desktop'] == '#000000' %} text-black{% endif %}
+{% if block.settings['btn2-text-hover-desktop'] == '#ffffff' %} text-hover-white{% elsif block.settings['btn2-text-hover-desktop'] == '#000000' %} text-hover-black{% endif %}"
+                    >
+                      <div class="main-carousel-cta-btn-wrapper">
+                        <span class="main-carousel-cta-text">
+                          {{ block.settings['cta-btn-2-text'] }}
+                        </span>
+                      </div>
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+       
+        <div class="arrow_handler">
+          <div id="carousel-prev-{{ section.id }}" class="carousel-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+            <path d="M9 15.5L2 8.5L9 1.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          </div>
+          <div id="carousel-next-{{ section.id }}" class="carousel-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+              <path d="M1 15.5L8 8.5L1 1.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div id="carousel-pagination-wrapper-{{ section.id }}" ></div>
+    </div>
+  </div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    const heroSlider{{ section.id | remove: '-' | remove: '_' }} = new Swiper('#hero-carousel-{{ section.id }}', {
+        preloadImages: false, // Disable preloading for lazy loading
+        lazy: true,           // Enable lazy loading
+        spaceBetween: 12,
+        speed: {{ section.settings.slide_speed }},
+        touchStartForcePreventDefault:true,
+        {% if section.settings.autoplay %}
+        autoplay: {
+            delay: {{ section.settings.autoplay_time }},
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        {% endif %}
+        navigation: {
+            prevEl: '#carousel-prev-{{ section.id }}',
+            nextEl: '#carousel-next-{{ section.id }}',
+        },
+        pagination: {
+            el: "#carousel-pagination-wrapper-{{ section.id }}",
+            clickable: true,
+        }
+    });
+});
+</script>
+  
+  {% schema %}
+  {
+    "name": "Main Hero Banner",
+    "class": "square-banner-carousel",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "slide_speed",
+        "min": 100,
+        "max": 800,
+        "step": 100,
+        "unit": "px",
+        "label": "Slider Speed",
+        "default": 500
+      },
+      {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "info": "If enabled ,Autoplay container will enabled",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "autoplay_time",
+      "label": "Autoplay Time",
+      "default": 2500
+    },
+      {
+        "type": "header",
+        "content": "Desktop Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Mobile Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      }
+    ],
+    "blocks": [
+        {
+      "name": "Image Picker",
+      "type": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner-image-desktop",
+          "label": "Choose your Desktop Banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-mobile",
+          "label": "Choose your Mobile Banner",
+          "info": "If Blank, then Desktop Image will be shown in all devices"
+        },
+        {
+            "type": "url",
+            "id": "banner-url",
+            "label": "Container Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "show-cta-on-desktop",
+          "label": "Show CTA on desktop?",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "btn1-url",
+          "label": "Btn 1 Url"
+        },
+        {
+          "type": "url",
+          "id": "btn2-url",
+          "label": "Btn 2 Url"
+        },
+        {
+          "type": "text",
+          "id": "cta-btn-1-text",
+          "label": "CTA Button 1 Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "text",
+          "id": "cta-btn-2-text",
+          "label": "CTA Button 2 Text",
+          "default": "Shop Now"
+        },
+
+        {
+          "type": "color",
+          "id": "btn1-bg-mobile",
+          "label": "Button 1 BG Color Mobile",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-bg-desktop",
+          "label": "Button 1 BG Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-bg-hover-desktop",
+          "label": "Button 1 BG Hover Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-text-desktop",
+          "label": "Button 1 Text Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn1-text-hover-desktop",
+          "label": "Button 1 Text Hover Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-mobile",
+          "label": "Button 2 BG Color Mobile",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-desktop",
+          "label": "Button 2 BG Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-hover-desktop",
+          "label": "Button 2 BG Hover Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-text-desktop",
+          "label": "Button 2 Text Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn2-text-hover-desktop",
+          "label": "Button 2 Text Hover Color Desktop",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "name": "Video Picker",
+      "type": "video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "banner-video-desktop",
+          "label": "Choose your Desktop Video"
+        },
+        {
+          "type": "video",
+          "id": "banner-video-mobile",
+          "label": "Choose your Mobile Video",
+          "info": "If Blank, then Desktop video will be shown in all devices"
+        },
+        {
+            "type": "url",
+            "id": "banner-url",
+            "label": "Container Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "show-cta-on-desktop",
+          "label": "Show CTA on desktop?",
+          "default": true
+        },
+        {
+          "type": "url",
+          "id": "btn1-url",
+          "label": "Btn 1 Url"
+        },
+        {
+          "type": "url",
+          "id": "btn2-url",
+          "label": "Btn 2 Url"
+        },
+        {
+          "type": "text",
+          "id": "cta-btn-1-text",
+          "label": "CTA Button 1 Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "text",
+          "id": "cta-btn-2-text",
+          "label": "CTA Button 2 Text",
+          "default": "Shop Now"
+        },
+
+        {
+          "type": "color",
+          "id": "btn1-bg-mobile",
+          "label": "Button 1 BG Color Mobile",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-bg-desktop",
+          "label": "Button 1 BG Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-bg-hover-desktop",
+          "label": "Button 1 BG Hover Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn1-text-desktop",
+          "label": "Button 1 Text Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn1-text-hover-desktop",
+          "label": "Button 1 Text Hover Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-mobile",
+          "label": "Button 2 BG Color Mobile",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-desktop",
+          "label": "Button 2 BG Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-bg-hover-desktop",
+          "label": "Button 2 BG Hover Color Desktop",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "btn2-text-desktop",
+          "label": "Button 2 Text Color Desktop",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn2-text-hover-desktop",
+          "label": "Button 2 Text Hover Color Desktop",
+          "default": "#000000"
+        }
+      ]
+    } 
+    ],
+    "presets": [
+      {
+        "name": "Main Hero Banner"
+      }
+    ]
+  }
+  {% endschema %}

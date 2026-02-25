@@ -1,0 +1,235 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "sections": {
+      "banner": {
+        "type": "main-collection-banner",
+        "disabled": true,
+        "settings": {
+          "show_collection_description": true,
+          "show_collection_image": false,
+          "color_scheme": "scheme-1"
+        }
+      },
+      "multi_layout_collection_4nHFii": {
+        "type": "multi-layout-collection",
+        "settings": {
+          "bg_color": "#ffffff",
+          "margin_top_desktop": 24,
+          "margin_bottom_desktop": 24,
+          "margin_top_mobile": 16,
+          "margin_bottom_mobile": 16,
+          "carousel-title-2": "{{ collection.metafields.custom.nica_section.value.title_2.value }}",
+          "carousel-title-3": "{{ collection.metafields.custom.nica_section.value.title_third.value }}"
+        }
+      },
+      "multi_functional_container_FbdpXp": {
+        "type": "multi-functional-container",
+        "blocks": {
+          "image_media_LxEJMa": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/makeup-revolution",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_6.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_ikdGaM": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/focallure-beauty",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_8.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_U3UCr7": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/la-girl",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_3_c5648c75-4b69-454a-9a68-4db07301b22f.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_NG9aAH": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/lamel",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_3a3577bf-b4dd-484b-a560-3482bddb0354.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_cnyGiK": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/milani",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_2_ffd422fa-5401-4036-9513-880821ab6b65.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_tEgDV3": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/pink-flash",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_9.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_YWfpbA": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/jessup",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_11.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_bbWnMm": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/eveline-cosmetics",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_10.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_QKALNF": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/la-colors",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_4_5d0d4a89-2b90-4da1-9bf9-6cd190782358.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_Bca6WY": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/ln-pro",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_a45825cd-0665-44b8-868d-3bc18b8325d8.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          },
+          "image_media_NYA7Rj": {
+            "type": "image-media",
+            "settings": {
+              "banner-url": "https://hokmakeup.com/collections/ardell",
+              "banner-image-desktop": "shopify://shop_images/Artboard_1_copy_5.jpg",
+              "cta-text": "",
+              "cta-text-color": "#ffffff",
+              "cta-bg-color": "#000000",
+              "shopcatagorytxt": ""
+            }
+          }
+        },
+        "block_order": [
+          "image_media_LxEJMa",
+          "image_media_ikdGaM",
+          "image_media_U3UCr7",
+          "image_media_NG9aAH",
+          "image_media_cnyGiK",
+          "image_media_tEgDV3",
+          "image_media_YWfpbA",
+          "image_media_bbWnMm",
+          "image_media_QKALNF",
+          "image_media_Bca6WY",
+          "image_media_NYA7Rj"
+        ],
+        "name": "Multi-functional",
+        "settings": {
+          "showContainer": "page-width",
+          "seo_text": "",
+          "image_priority": false,
+          "enableShuffle": false,
+          "show-shop-now": false,
+          "bg_color": "#ffffff",
+          "bg_color_second": "#ffffff",
+          "showCenter": false,
+          "showSliderArrow": true,
+          "showFreeScroll": false,
+          "loop": false,
+          "addInnerPadding": false,
+          "slide_speed": 500,
+          "margin_top_desktop": 36,
+          "margin_bottom_desktop": 36,
+          "margin_top_mobile": 36,
+          "margin_bottom_mobile": 36,
+          "title-top-padding": 2,
+          "title_alignment": "left",
+          "carousel-title": "Shop by brand",
+          "carousel-sub-title": "",
+          "carousel-sub-title-links": "",
+          "num-slides-sm": "2.5",
+          "num-slides-md": "5.5",
+          "num-slides-lg": "6.25",
+          "num-slides-xl": "6.25",
+          "num-slides-2xl": "6.25",
+          "showArrow": false
+        }
+      },
+      "product-grid": {
+        "type": "main-collection-product-grid",
+        "custom_css": [
+          ".product-count-vertical.light {display: none;}"
+        ],
+        "settings": {
+          "products_per_page": 20,
+          "columns_desktop": 4,
+          "color_scheme": "scheme-1",
+          "advertisement_1": "{{ collection.metafields.custom.ad_product_1.value }}",
+          "advertisement_2": "{{ collection.metafields.custom.advertisement_2_product.value }}",
+          "image_ratio": "adapt",
+          "image_shape": "default",
+          "show_secondary_image": true,
+          "show_vendor": false,
+          "show_rating": false,
+          "quick_add": "none",
+          "enable_filtering": true,
+          "filter_type": "vertical",
+          "enable_sorting": true,
+          "columns_mobile": "2",
+          "padding_top": 16,
+          "padding_bottom": 36
+        }
+      }
+    },
+    "order": [
+      "banner",
+      "multi_layout_collection_4nHFii",
+      "multi_functional_container_FbdpXp",
+      "product-grid"
+    ]
+  }

@@ -1,0 +1,293 @@
+{%- style -%}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .new-slider-title-wrapper{
+  margin-bottom:clamp(24px, 2vw, 40px);
+  }
+  .new-slider-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr) repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  }
+  .video-hero-container { grid-area: 1 / 1 / 3 / 3;   
+    width: 100%;
+    overflow: hidden; 
+}
+  .image-container-for-collection {
+  grid-area: 1 / 3 / 2 / 5;
+  position:relative;
+  }
+  .image-sec-container-for-collection { grid-area: 2 / 3 / 3 / 5; }
+  .banner-full{
+    display: block;
+    position: relative;
+      height: 100%;
+      width: 100%;
+  }
+  .banner__href{
+      font-weight: 500;
+      font-size: clamp(14px, 2vw, 18px);
+      z-index: 1;
+      color: #fff;
+      white-space: nowrap;
+      line-height: 17px;
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+  }
+
+  @media screen and (max-width: 768px) {
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_mobile }}px;
+  margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+
+  .new-slider-container {
+    grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  }
+  .video-hero-container { grid-area: 1 / 1 / 2 / 3; }
+  .image-container-for-collection { grid-area: 2 / 1 / 3 / 2; }
+  .image-sec-container-for-collection { grid-area: 2 / 2 / 3 / 3; }
+  .banner__href{
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  }
+{%- endstyle -%}
+{% capture white_arrow %} 
+  <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+  <path d="M1.5 10.4375L6 5.9375L1.5 1.4375" stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
+</svg>
+ {% endcapture %}
+<div class="section-{{ section.id }}-margin ">
+  <div class="container new-slider-wrapper new-slider-gap-fix scroll-trigger animate--fade-in">
+    <div class="new-slider-title-wrapper">
+      {% if section.settings.title != blank %}
+        <div class="carousel-section-title-wrapper lll">
+          <p>{{- section.settings.title -}}</p>
+        </div>
+      {% endif %}
+    </div>
+    <div class="new-slider-content">
+      <div class="new-slider-container">
+      {% assign ratio = section.settings.cont_1_img.aspect_ratio | default: 1.777 %}
+        <div class="video-hero-container" style="aspect-ratio: {{ ratio }}" >
+          <a href="{{ section.settings.coll_link_1 }}" class="banner-full" data-location="trends-card-1">
+            {% assign media_poster = section.settings.cont_1_img.preview_image.src | image_url: width: 390, format: 'webp' %}
+            {{ section.settings.cont_1_img | video_tag:
+                image_size: '540x',
+                autoplay: false,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true,
+                preload: 'none',
+                class: 'video lazy-video d-block',
+                poster: media_poster
+              }}
+          </a>
+        </div>
+        <div class="image-container-for-collection" >
+          <a
+            class="banner-full"
+            href="{{ section.settings.coll_link_2 }}" data-location="trends-card-2"
+          >
+            <div class="banner__href">
+              {{ section.settings.content_2 }}
+              {{ white_arrow }}
+            </div>
+
+            <img
+              class="img-fluid mobile_screen"
+              src="{{ section.settings.cont_2_img | image_url: width: 175, format: 'webp' }}"
+              alt="{{ section.settings.content_2 | escape }}"
+              width="175"
+              height="auto"
+              loading="lazy"
+            >
+            <img
+              class="img-fluid desktop_screen"
+              src="{{ section.settings.cont_2_img_desktop | image_url: width: 500, format: 'webp' }}"
+              alt="{{ section.settings.content_2 | escape }}"
+              width="560"
+              height="auto"
+              loading="lazy"
+            >
+          </a>
+        </div>
+        <div class="image-sec-container-for-collection">
+          <a
+            class="banner-full"
+            href="{{ section.settings.coll_link_3 }}" data-location="trends-card-3"
+          >
+            <div class="banner__href">
+              {{ section.settings.content_3 }}
+              {{ white_arrow }}
+            </div>
+             <img
+              class="img-fluid mobile_screen"
+              src="{{ section.settings.cont_3_img| image_url: width: 175, format: 'webp' }}"
+              alt="{{ section.settings.content_3 | escape }}"
+              width="175"
+              height="auto"
+              loading="lazy"
+            >
+            <img
+              class="img-fluid desktop_screen"
+              src="{{ section.settings.cont_3_img_desktop | image_url: width: 500, format: 'webp' }}"
+              alt="{{ section.settings.content_3 | escape }}"
+              width="560"
+              height="auto"
+              loading="lazy"
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Grid Media Collection",
+"class": "product-slider-section",
+"settings": [
+{
+"type": "header",
+"content": "Desktop Margin"
+},
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom",
+"default": 36
+},
+{
+"type": "header",
+"content": "Mobile Margin"
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom",
+"default": 36
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title",
+"default": "TRENDS YOU CAN'T MISS"
+},
+{
+"type": "text",
+"id": "url-title",
+"label": "Url Title",
+"default": "View All G.O.A.T"
+},
+{
+"type": "url",
+"id": "veiw-all-url",
+"label": "View All URL"
+},
+{
+"type": "text",
+"id": "content_1",
+"label": "Add Your Text"
+},
+{
+"type": "url",
+"id": "coll_link_1",
+"label": "Add Your 1st Link"
+},
+{
+"type": "image_picker",
+"id": "cont_big_img_banner",
+"label": "Add Your hero Image"
+},
+{
+"type": "video",
+"id": "cont_1_img",
+"label": "Add Your 1st Video(hidden)"
+},
+{
+"type": "text",
+"id": "content_2",
+"label": "Add Your Text"
+},
+{
+"type": "url",
+"id": "coll_link_2",
+"label": "Add Your 2nd Link"
+},
+{
+"type": "image_picker",
+"id": "cont_2_img",
+"label": "Add Your 2nd Image mobile"
+},
+{
+"type": "image_picker",
+"id": "cont_2_img_desktop",
+"label": "Add Your 2nd Image Desktop"
+},
+{
+"type": "html",
+"id": "content_3",
+"label": "Add Your Text"
+},
+{
+"type": "url",
+"id": "coll_link_3",
+"label": "Add Your 3rd Link"
+},
+{
+"type": "image_picker",
+"id": "cont_3_img",
+"label": "Add Your 3rd Image Mobile"
+},
+{
+"type": "image_picker",
+"id": "cont_3_img_desktop",
+"label": "Add Your 3rd Image Desktop "
+}
+],
+"presets": [
+{
+"name": "Grid Media Collection"
+}
+]
+}
+{% endschema %}

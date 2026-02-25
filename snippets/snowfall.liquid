@@ -1,0 +1,156 @@
+<canvas id="snowfall" width="1900" height="900"></canvas>
+<style>
+  canvas {
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100%;
+  	z-index: 99999;
+  	user-select: none;
+  	pointer-events: none;
+  }
+</style>
+<script>
+  // Get the canvas element
+  var canvas = document.getElementById("snowfall");
+
+  // Set the canvas size to be the same as the window size
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Get the canvas context
+  var ctx = canvas.getContext("2d");
+
+  // Set the fill style for the snowflakes
+  ctx.fillStyle = "white";
+
+  // Set up the array to store the snowflakes
+  var snowflakes = [];
+
+  // Set the initial number of snowflakes
+  var numSnowflakes = 40;
+
+  // Set the range of possible snowflake sizes
+  var minSize = 1;
+  var maxSize = 5;
+
+  // Set the range of possible snowflake speeds
+  var minSpeed = 1;
+  var maxSpeed = 3;
+
+  // Set the probability of a snowflake changing direction
+  var directionChangeProbability = 0.2;
+
+  // Set the probability of a snowflake being reset
+  var resetProbability = 0.01;
+
+  // Set the maximum number of steps a snowflake can take before being reset
+  var maxSteps = 300;
+
+  // Set the initial step count for each snowflake
+  var stepCount = 0;
+
+  // Set up the snowflake object
+  function Snowflake() {
+  	// Set the initial position
+  	this.x = Math.random() * canvas.width;
+  	this.y = Math.random() * canvas.height;
+
+  	// Set the initial size
+  	this.size = minSize + Math.random() * (maxSize - minSize);
+
+  	// Set the initial horizontal speed
+  	this.speed = minSpeed + Math.random() * (maxSpeed - minSpeed);
+
+  	// Set the initial direction
+  	this.direction = Math.random() < 0.5 ? 0.1 : -0.1;
+
+  	// Set the step count
+  	this.steps = 0;
+  }
+
+  // Set up the update function for the snowflakes
+  Snowflake.prototype.update = function () {
+
+  	// Update the position of the snowflake
+  	this.x += this.direction * this.speed;
+  	this.y += this.speed;
+
+  	// Increment the step count
+  	this.steps++;
+
+  	// Check if the snowflake has gone off the canvas
+  	if (this.x > canvas.width + this.size || this.x < -this.size ||
+  		this.y > canvas.height + this.size || this.y < -this.size ||
+  		this.steps > maxSteps) {
+  		// If so, reset the snowflake
+  		this.reset();
+  	}
+  }
+
+  // Set up the reset function for the snowflakes
+  Snowflake.prototype.reset = function () {
+  	// Set the initial position
+  	this.x = Math.random() * canvas.width;
+  	this.y = 0
+  	// Set the initial size
+  	this.size = minSize + Math.random() * (maxSize - minSize);
+
+  	// Set the initial horizontal speed
+  	this.speed = minSpeed + Math.random() * (maxSpeed - minSpeed);
+
+  	// Set the initial direction
+  	this.direction = Math.random() < 0.5 ? 0.1 : -0.1;
+
+  	// Set the step count
+  	this.steps = 0;
+  }
+
+  // Set up the draw function for the snowflakes
+  Snowflake.prototype.draw = function () {
+  	// Draw the snowflake
+  	ctx.beginPath();
+  	ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  	ctx.fill();
+  }
+
+
+  // Set up the animation loop
+  function animate() {
+
+  	// Clear the canvas
+  	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  	// Update and draw the snowflakes
+  	for (var i = 0; i < snowflakes.length; i++) {
+  		snowflakes[i].update();
+  		snowflakes[i].draw();
+  	}
+
+  	// Request another frame
+  	requestAnimationFrame(animate);
+  }
+
+  // Set up the window resize event listener
+  window.addEventListener("resize", function () {
+  	// Set the canvas size to be the same as the window size
+  	canvas.width = window.innerWidth;
+  	canvas.height = window.innerHeight;
+  	ctx.fillStyle = "white";
+  });
+
+  // Initialize the snowflakes
+  for (var i = 0; i < numSnowflakes; i++) {
+  	snowflakes.push(new Snowflake());
+  }
+   window.addEventListener("scroll", function () {
+         var scrollY = window.scrollY;
+         if (scrollY <= 250 ) {
+             canvas.style.visibility = "visible";
+         } else{
+             canvas.style.visibility = "hidden";
+         }
+       });
+   animate();
+</script>

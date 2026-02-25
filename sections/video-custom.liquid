@@ -1,0 +1,227 @@
+<!-- section/video-custom.liquid -->
+<div
+  class=" {% if template == 'page.deal-of-the-day' %}banner-deal-of-the-day {% else %}costom-video-wrapper-paw-paw{% endif %}"
+  id="custom-video">
+  {% assign media_desktop = section.settings['banner-video-desktop'] %}
+  {% if section.settings['banner-video-mobile'] != blank %}
+  {% assign media_mobile = section.settings['banner-video-mobile'] %}
+  {{
+  media_desktop
+  | video_tag:
+  width: '100%',
+  height: '100%',
+  class: 'desktop_screen square-banner-media',
+  autoplay: true,
+  loop: true,
+  muted: true,
+  controls: false
+  }}
+  {{
+  media_mobile
+  | video_tag:
+  width: '100%',
+  height: '100%',
+  class: 'mobile_screen square-banner-media',
+  autoplay: true,
+  loop: true,
+  muted: true,
+  controls: false
+  }}
+  {% else %}
+  {{
+  media_desktop
+  | video_tag:
+  width: '100%',
+  height: '100%',
+  class: 'square-banner-media d-block',
+  autoplay: true,
+  loop: true,
+  muted: true,
+  controls: false
+  }}
+  {% endif %}
+  {% if section.settings.show_badge %}
+  {% if section.settings['cta-text'] != blank %}
+  <a href="{{ section.settings.cta-text-url }}" class="btn-video"
+    style="color:{{ section.settings.cta-text-color }}; background:{{ section.settings.cta-bg-color }};">
+    {{ section.settings['cta-text'] }}
+  </a>
+  {% endif %}
+  {% endif %}
+  {% if template == 'page.deal-of-the-day' %}
+  <div class="swipe-button">
+    <div class="arrow-container-banner">
+      <svg class="swipe-arrow" xmlns="http://www.w3.org/2000/svg" fill="#fff" height="30px" width="40px"
+        viewBox="0 0 330 330">
+        <path
+          d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z" />
+      </svg>
+      <svg class="swipe-arrow" xmlns="http://www.w3.org/2000/svg" fill="#fff" height="30px" width="40px"
+        viewBox="0 0 330 330">
+        <path
+          d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z" />
+      </svg>
+    </div>
+    <p>{{ 'Swipe to See' }}</p>
+  </div>
+  {% endif %}
+</div>
+{% schema %}
+{
+"name": "video custom",
+"class": "custom-video",
+"settings": [
+{
+"type": "video",
+"id": "banner-video-desktop",
+"label": "Banner Video Desktop",
+"info": "aspect-ratio 1:1, 900px:900px"
+},
+{
+"type": "video",
+"id": "banner-video-mobile",
+"label": "Banner Video Mobile",
+"info": "aspect-ratio 1:1, 900px:900px"
+},
+{
+"type": "checkbox",
+"id": "show_badge",
+"label": "Show button on video",
+"default": true
+},
+{
+"type": "text",
+"id": "cta-text",
+"label": "button Text",
+"default":"Meet Dr. PawPaw"
+},
+{
+"type": "url",
+"id": "cta-text-url",
+"label": "button link"
+},
+{
+"type": "color",
+"id": "cta-text-color",
+"label": "button Text Color",
+"default": "#FFF8E7"
+},
+{
+"type": "color",
+"id": "cta-bg-color",
+"label": "button Background Color",
+"default": "#111"
+},
+],
+"presets": [
+{
+"name": "video custom"
+}
+]
+}
+{% endschema %}
+<style>
+  .costom-video-wrapper-paw-paw .square-banner-media {
+    border-radius: 30px;
+  }
+
+  .costom-video-wrapper-paw-paw .btn-video {
+
+    display: block;
+    font-weight: 500;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: normal;
+    padding: 10px 45px;
+    border-radius: 50px;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    bottom: 5%;
+    border: 1.7px solid #000;
+  }
+
+  .costom-video-wrapper-paw-paw {
+    position: relative;
+    background: #000;
+    padding: 5px;
+  }
+
+  .custom-video {
+    background: #000;
+  }
+
+  .banner-deal-of-the-day {
+    position: relative;
+  }
+
+  .swipe-button {
+    text-align: center;
+    margin: auto;
+    width: 150px;
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    color: #fff;
+    transform: translateX(-50%);
+  }
+
+  .swipe-button p {
+    font-size: clamp(15px, 2vw, 17px);
+    font-weight: 500;
+  }
+
+  .arrow-container-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .swipe-arrow {
+    width: 26px;
+    height: 18px;
+    margin-top: -7px;
+  }
+
+  .swipe-arrow:nth-child(1) {
+    animation: arrowMove 1.3s infinite ease-in-out;
+  }
+
+  .swipe-arrow:nth-child(2) {
+    animation: arrowMove 1.3s infinite ease-in-out;
+    animation-delay: 0.1s;
+  }
+
+  @keyframes arrowMove {
+    0% {
+      transform: translateY(10px);
+      opacity: 0.5;
+    }
+
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(-10px);
+      opacity: 0.5;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .costom-video-wrapper-paw-paw .btn-video {
+      /* width: 53%; */
+      white-space: nowrap;
+      font-size: 18px;
+      padding: 10px 29px;
+      min-height: 34px;
+      font-weight: 700;
+    }
+
+    .costom-video-wrapper-paw-paw {
+      padding: 2px;
+    }
+  }
+</style>

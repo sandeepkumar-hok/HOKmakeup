@@ -1,0 +1,295 @@
+<!-- section/custom-best-seller-deal-day.liquid -->
+{%- style -%}
+    .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+  .Best-sellers-slider-outer {
+    background-image: url('{{section.settings.bg-image.src | img_url: "master" }}');
+    animation: animatedBackground 40s linear infinite alternate;
+    background-repeat: repeat-x;
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+{{ 'custom-best-seller-deal-day.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign image_priority = section.settings.image_priority
+  if image_priority
+    assign fetch_priority = 'high'
+  else
+    assign fetch_priority = 'auto'
+  endif
+%}
+<div
+  class="section-{{ section.id }}-margin section-{{ section.id }}-padding Best-sellers-slider-outer"
+  data-aos="fade-up"
+  data-aos-delay="500"
+  data-aos-duration="1000"
+>
+  <div class="animated_product">
+    {% if section.settings['coll-title'] %}
+      <div
+        class="carousel-section-title-wrapper w-100"
+      >
+        <p class="carousel-sub-title">{{ section.settings['coll-title'] | capitalize }}</p>
+        <p class="new-slider-url">
+          {{- section.settings['url-title'] | link_to: section.settings.url }}
+        </p>
+      </div>
+    {% endif %}
+    <div class="carousel-nav-wrapper slider">
+      <div
+        id="product-slider-{{ section.id }}"
+        class="carousel-wrapper-outer-slider {% if section.settings.showContainer == "container" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper">
+          {% for product in section.settings.collection.products %}
+            <div class="swiper-slide" product_slider="true">
+              {% assign indexing = forloop.index0 %}
+              {% render 'pocket-deal-of-the-day', product: product, fetch_priority: fetch_priority, indexIs: indexing %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var swiper = new Swiper('.carousel-wrapper-outer-slider', {
+      loop: true,
+      slidesPerView: 5,
+      spaceBetween: 20,
+      centeredSlides: true,
+
+     pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          dynamicBullets: true
+      },
+      effect: 'coverflow',
+      coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false
+      },
+      breakpoints: {
+          320: {
+              slidesPerView: 2,
+              spaceBetween: 5
+          },
+          480: {
+              slidesPerView: 2,
+              spaceBetween: 15
+          },
+          768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+          },
+          1024: {
+              slidesPerView: 4,
+              spaceBetween: 20
+          },
+          1280: {
+              slidesPerView: 5,
+              spaceBetween: 20
+          }
+      },
+      on: {
+          init: function () {
+              setTimeout(setActiveSlideZoom, 100);
+          },
+          slideChangeTransitionEnd: function () {
+              setTimeout(setActiveSlideZoom, 100);
+          }
+      }
+  });
+
+  function setActiveSlideZoom() {
+      document.querySelectorAll('.swiper-slide').forEach(slide => {
+          slide.classList.remove('active-zoom');
+          slide.classList.remove('unique-active-slide');
+      });
+      let activeSlide = document.querySelector('.swiper-slide-active');
+      if (activeSlide) {
+          activeSlide.classList.add('active-zoom');
+          activeSlide.classList.add('unique-active-slide');
+
+      }
+  }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Best Sellers Slider",
+  "class": "product-slider-section",
+  "settings": [
+    {
+    "type": "radio",
+    "id": "showContainer",
+    "label": "Choose Container Style",
+    "options": [
+      { "value": "full-width", "label": "Show Full Container" },
+      { "value": "container", "label": "Show FrameWork Container" }
+    ],
+    "default": "full-width"
+   },
+    {
+      "type": "image_picker",
+      "id": "bg-image",
+      "label": "Custom Background Image"
+    },
+   {
+    "type": "checkbox",
+    "id": "image_priority",
+    "label": "Image Priority",
+    "info": "By setting fetchpriority to true for an image, you’re telling the browser to prioritize loading that image, which can help improve the LCP metric.",
+    "default": false
+    },
+    {
+      "type": "text",
+      "id": "coll-title",
+      "label": "Collection Title"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Collection URL"
+    },
+    {
+      "type": "text",
+      "id": "url-title",
+      "label": "Url Title",
+      "default": "View All"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choose Collection"
+    },
+     {
+      "type": "checkbox",
+      "id": "swat_alig",
+      "label": "Align swatches",
+      "default": true
+    },
+
+  {
+  "type": "checkbox",
+  "id": "showCenter",
+  "label": "Show Center Container",
+  "info": "If enabled ,Container will show in center",
+  "default": false
+  },
+
+
+  {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers Slider"
+    }
+  ]
+}
+{% endschema %}

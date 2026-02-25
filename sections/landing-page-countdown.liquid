@@ -1,0 +1,313 @@
+{%- style -%}
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+  
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin  {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+    }
+  {%- endstyle -%}
+  {% if request.path == '/pages/coming-soon' %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    >
+  {%- endif %}
+  <div id="notify_me_for_pink-flash">
+    <a href="#countdown">
+      <button type="button" class="btn">Notify Me</button>
+    </a>
+  </div>
+  <div class="section-{{ section.id }}-margin ">
+    <!-- deskNmobPadding -->
+    <div class="hero-video">
+      {% assign not_to_show_count = false %}
+      {% if section.settings.dfgtjhdfsjkgh != blank %}
+        <p class="main-text desktop_screen">{{ section.settings.dfgtjhdfsjkgh }}</p>
+        <p class="main-text mobile_screen">{{ section.settings.asdasdasdas }}</p>
+      {% endif %}
+      <div class="row">
+        {% comment %}
+          <div class="col-12 col-md-6 p-0">
+            {% if section.settings.dhgfsdfh %}
+              <div class="">
+                {{
+                  section.settings.dhgfsdfh
+                  | video_tag:
+                    width: '100%',
+                    height: '100%',
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    playsinline: true,
+                    class: 'main-video'
+                }}
+              </div>
+            {% else %}
+              <img
+                src="{{ section.settings.ffsdfsf | image_url }}"
+                class="desktop_screen"
+                height="100%"
+                width="100%"
+                loading="lazy"
+              >
+              <img
+                src="{{ section.settings.jjjjj | image_url }}"
+                class="mobile_screen"
+                height="100%"
+                width="100%"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endcomment %}
+        <div class="p-0 nocountTimer" style="display:none">
+          <a href="{{ section.settings.showoo_link }}">
+            <img
+              src="{{ section.settings.showoo | image_url }}"
+              class="desktop_screen"
+              height="100%"
+              width="100%"
+              loading="lazy"
+            >
+            <img
+              src="{{ section.settings.showoo_mobile | image_url }}"
+              class="mobile_screen"
+              height="100%"
+              width="100%"
+              loading="lazy"
+            >
+          </a>
+        </div>
+  
+        <div class="countTimer" style="background:url('{{ section.settings.imgurls | image_url }}');">
+          <div
+            class="d-center gap-12-sm-8 text-light px-4 py-5 text-center"
+            style="color:{{ section.settings.dfasdasdas }} !important;"
+          >
+            <h1 class="mt-0-8rem">
+              {{ section.settings.ioujgbnve }}
+              <br>
+              <span class="bio-med">{{ section.settings.dkhgsjkghks }}</span>
+            </h1>
+            <h2 class="mt-1-6rem">
+              {{ section.settings.potiruvms }}
+            </h2>
+            <div id="countdown">
+              <div class="row d-col w-100">
+                <div class="col-4 timer-data" id="launch_days"></div>
+                <div class="col-4 timer-data" id="launch_hours"></div>
+                <div class="col-4 timer-data" id="launch_mins"></div>
+              </div>
+            </div>
+            <p class="notify_text">{{ section.settings.lfjcnsccjn }}</p>
+            {%- form 'customer', id: newsletter_id, class: 'Newsletter Form' -%}
+              {%- if form.posted_successfully? -%}
+                <p class="rightt">You are all set for Updates. Stay Tuned!</p>
+              {%- else -%}
+                {%- if form.errors -%}
+                  <p class="Form__Alert Alert Alert--error">Some Error Occured</p>
+                {%- endif -%}
+                <div class="search_notify">
+                  <input type="hidden" name="contact[tags]" value="pink_flash_customer_update">
+  
+                  <input placeholder="ENTER YOUR EMAIL" type="email" name="contact[email]" aria-label="Your Email">
+                  <button type="submit">JOIN</button>
+                </div>
+              {%- endif -%}
+            {%- endform -%}
+  
+            <!--
+              <a class="button--primary mt-1-6rem" href="{{ section.settings.h0wiiwiqo }}">
+                  {{ section.settings.lfjcnsccjn }}
+              </a>
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    #notify_me_for_pink-flash{
+      position: fixed;
+      left: -50px;
+      top: 60%;
+      z-index: 2;
+      transform: rotate(90deg);
+      background-color: #F591A7;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: rgb(87 84 84 / 48%) 11px 8px 16px 0px, rgb(183 112 112 / 80%) 7px 1px 18px -5px;
+    }
+    #notify_me_for_pink-flash button{
+    font-size: 16px;
+    color: #fff !important;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-weight: 600;
+    }
+  
+          .mt-0-8rem .bio-med {
+         font-size: 16px;
+         line-height: 24px;
+     }
+      #countdown{font-size:3.4rem;width: 100%;max-width: 600px;}.row.d-col{display:flex;justify-content:space-evenly;width:60%}.timer-data{display:flex;flex-direction:column;color:#212529;font-size:5.2vw;font-weight:600;padding:0}.countTimer{background-size: cover !important;background-repeat: no-repeat !important;}div.timer-data:after{color:#000;font-size:18px;font-style:normal;font-weight:400;line-height:normal}div#launch_days:after{content:'Days'}div#launch_hours:after{content:'Hours'}div#launch_mins:after{content:'Minutes'}.notify_text{color:#000;font-size:1vw;font-weight:500}.search_notify{display:inline-block;position:relative}.search_notify input[type='email']{width:23.5vw;padding:16px 40px;border:none;border-radius:40px;background:#fff;color:#000;font-size:12px;font-weight:500}.rightt{width:23.5vw;height:45p;color:#fff;background:#414141;padding:16px;font-weight:500;border-radius:40px}.search_notify button[type='submit']{background-color:#414141;border:none;color:#fff;cursor:pointer;padding:16px 2vw;border-radius:0 40px 40px 0;box-shadow:0 0 10px rgb(0 0 0 / .1);position:absolute;top:0;right:0;bottom:0;transition:0.5s ease}.search_notify button[type='submit']:hover{transform:scale(1.05);color:#fefefe}.hero-video{overflow:hidden;margin:44px 0 0}.main-text{font-weight:500;text-align:center;text-transform:uppercase;margin-bottom:32px}.main-text.desktop_screen{font-size:28px}.main-text.mobile_screen{font-size:20px}.reverse{flex-direction:row-reverse!important}.main-video{display:block;width:100%;height:500px;object-fit:cover}.d-center{display:flex;justify-content:center;align-items:center;flex-direction:column;height:100%}.gap-12-sm-8{gap:12px}.p-4-2{padding:4rem 2rem}.mt-0-8rem{font-size:2.5vw;font-weight:700;text-transform:uppercase}.bio-med{font-family:var(--family-header)!important;font-weight:600}.mt-1-6rem{color:#351b25;font-size:18px;margin:bottom}.button--primary{color:#212529;font-size:24px;font-weight:600;text-transform:uppercase;text-decoration:underline}@media screen and (min-width:768px){.mt-0-8rem{line-height:3vw}}@media screen and (max-width:768px){.search_notify input[type='email'],.rightt{width:27vw}}@media screen and (max-width:768px){.search_notify input[type='email'],.rightt{width:340px}.row.d-col{width:100%}.timer-data{font-size:50px}div.timer-data:after,.notify_text{font-size:13px;font-weight:400}.gap-12-sm-8{gap:8px}.hero-video{margin:28px 0 0}.main-video{height:354px}.mt-0-8rem{font-size:26px;line-height:40px}.mt-0-8rem .bio-med {font-size: 12px;}
+       .mt-1-6rem{font-size:15px}.button--primary{font-size:18px}.search_notify button[type='submit']{width:80px}}
+         h2.mt-1-6rem p {
+             margin: 0;
+             line-height: 22px;
+         }
+  </style>
+  <script>
+    function minTwoDigits(n){return(n<10?'0':'')+n}
+    var deadline=new Date('Sep 06, 2024 12:00:00').getTime();var x=setInterval(function(){var now=new Date().getTime();var t=deadline-now;var days=Math.floor(t/(1000*60*60*24));var hours=Math.floor((t%(1000*60*60*24))/(1000*60*60));var minutes=Math.floor((t%(1000*60*60))/(1000*60));document.getElementById('launch_days').innerHTML=minTwoDigits(days);document.getElementById('launch_hours').innerHTML=minTwoDigits(hours);document.getElementById('launch_mins').innerHTML=minTwoDigits(minutes);if(t<0){clearInterval(x);$('.countTimer').hide();$('.nocountTimer').show()}},1000)
+  </script>
+  {% schema %}
+  {
+    "name": "landing-page-countdown",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Desktop Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Mobile Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 0
+      },
+      {
+        "type": "video",
+        "id": "dhgfsdfh",
+        "label": "Add Your Video here"
+      },
+      {
+        "type": "image_picker",
+        "id": "ffsdfsf",
+        "label": "Add Your Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "jjjjj",
+        "label": "Add Your Mobile Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "showoo",
+        "label": "Add Your After Countdown Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "showoo_mobile",
+        "label": "Add Your After Countdown Mobile Image"
+      },
+      {
+        "type": "url",
+        "id": "showoo_link",
+        "label": "Add Your After Countdown link"
+      },
+  
+      {
+        "type": "text",
+        "id": "dfgtjhdfsjkgh",
+        "label": "Add Text for Desktop"
+      },
+      {
+        "type": "text",
+        "id": "asdasdasdas",
+        "label": "Add Text for Mobile"
+      },
+      {
+        "type": "color",
+        "id": "sklkskd",
+        "default": "#a3a7e4",
+        "label": "Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "imgurls",
+        "label": "Background Image"
+      },
+      {
+        "type": "color",
+        "id": "dfasdasdas",
+        "default": "#191919",
+        "label": "text Color"
+      },
+      {
+        "type": "text",
+        "id": "ioujgbnve",
+        "label": "Add Your Heading Here"
+      },
+      {
+        "type": "text",
+        "id": "dkhgsjkghks",
+        "label": "Add Your Heading 2 Here"
+      },
+      {
+        "type": "richtext",
+        "id": "potiruvms",
+        "label": "Add Your Description Here"
+      },
+      {
+        "type": "text",
+        "id": "lfjcnsccjn",
+        "label": " Button Text "
+      },
+      {
+        "type": "url",
+        "id": "h0wiiwiqo",
+        "label": "Add Button Link here"
+      }
+    ],
+    "presets": [
+      {
+        "name": "landing-page-countdown"
+      }
+    ]
+  }
+  {% endschema %}

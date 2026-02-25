@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}",
+        "h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "scroll_animation_eLqcpg": {
+      "type": "scroll-animation",
+      "settings": {
+        "outer-image-desktop": "shopify://shop_images/JESSUP-LANDING-PAGE-COVER-DESKTOP-BANNER_ed5437e8-bf90-46a3-a813-43f6d4370012.png",
+        "outer-image-mobile": "shopify://shop_images/JESSUP-LANDING-PAGE-COVER-MOBILE--BANNER_209894d6-7335-428a-b502-77ef23c1fed9.png",
+        "inner-image-desktop": "shopify://shop_images/JESSUP-LANDING-PAGE-MAIN-DESKTOP-BANNER_1.jpg",
+        "inner-image-mobile": "shopify://shop_images/JESSUP-LANDING-PAGE-MAIN-MOBILE-BANNER_4302fa9d-e867-4ed8-a70b-50e788ef6820.jpg"
+      }
+    },
+    "image_with_text_slider_dKyH9H": {
+      "type": "image-with-text-slider",
+      "blocks": {
+        "brand_media_hRcgpJ": {
+          "type": "brand-media",
+          "settings": {
+            "brand-cta": "<p>Shop Now</p>",
+            "brand-url": "#",
+            "brand-review-title": "<p>Precision, Passion, Perfection</p>",
+            "brand-review": "<p>JESSUP is a Hong Kong brand founded in 2013 by Daniel X and his wife Jessie X, named after Jessie and their vision for a better life (“Jess” + “Up”). We transform ideas into innovative cosmetic brushes and other accessories. We believe and invest in the value of craftsmanship, technique and quality, which are it's tradition and zenith. Our professional makeup brush fibers are antimicrobial, hypoallergenic, pure vegan and 100% cruelty-free, and helps to minimize product absorption.</p>",
+            "brand-review-name": "",
+            "brand-image-mobile": "shopify://shop_images/Jessup_About_Us_Desktop.jpg",
+            "use-video": false
+          }
+        }
+      },
+      "block_order": [
+        "brand_media_hRcgpJ"
+      ],
+      "custom_css": [
+        ".arrow_handler,.star-wrapper {display: none;}",
+        ".image-with-text-part {max-height: 500px;}",
+        ".carousel-wrapper-inner {height: 100% !important;}",
+        "@media only screen and (min-width: 768px) {.image-with-text-desc--content > .review-wrapper {line-height: 24px !important; }}",
+        "@media only screen and (max-width: 768px) {.image-with-text-part {flex: 0 0 100%; }}"
+      ],
+      "settings": {
+        "showContainer": "full-width",
+        "showFreeScroll": true,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 36,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 36,
+        "carousel-title": "",
+        "slides-limit": 1,
+        "num-slides-sm": "1",
+        "num-slides-md": "1",
+        "num-slides-lg": "1",
+        "num-slides-xl": "1",
+        "num-slides-2xl": "1"
+      }
+    },
+    "hok_featured_collection_EXtwbz": {
+      "type": "hok-featured-collection",
+      "settings": {
+        "showContainer": "container",
+        "image_priority": false,
+        "coll-title": "New Launch",
+        "url": "shopify://collections/jessup",
+        "url-title": "View All",
+        "collection": "jessup",
+        "products_to_show": 11,
+        "swat_alig": true,
+        "slide_speed": 300,
+        "showCenter": false,
+        "showFreeScroll": false,
+        "loop": false,
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "margin_top_mobile": 36,
+        "margin_bottom_mobile": 36,
+        "slides-limit": 7,
+        "num-slides-sm": "1",
+        "num-slides-md": "2.2",
+        "num-slides-lg": "3.4",
+        "num-slides-xl": "4.2",
+        "num-slides-2xl": "5"
+      }
+    },
+    "landing_page_countdown_HJDk8x": {
+      "type": "landing-page-countdown",
+      "custom_css": [
+        "img.desktop_screen {object-fit: cover;}",
+        ".countTimer {background-size: cover !important;}"
+      ],
+      "settings": {
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 48,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 32,
+        "ffsdfsf": "shopify://shop_images/Newsletter_Subscription_Desktop_1.jpg",
+        "jjjjj": "shopify://shop_images/Newsletter_Subscription_Mobile_1.jpg",
+        "showoo": "shopify://shop_images/Artboard_1_copy.jpg",
+        "showoo_mobile": "shopify://shop_images/Artboard_2_ac8c5a05-bdf6-4b8b-ba4c-2a2df49ec32b.jpg",
+        "showoo_link": "shopify://collections/jessup",
+        "dfgtjhdfsjkgh": "",
+        "asdasdasdas": "a",
+        "sklkskd": "#a3a7e4",
+        "imgurls": "shopify://shop_images/Newsletter_Subscription_Desktop_2.jpg",
+        "dfasdasdas": "#191919",
+        "ioujgbnve": "Subscribe and Get",
+        "dkhgsjkghks": "₹250 OFF ",
+        "potiruvms": "<p>on your first purchase </p>",
+        "lfjcnsccjn": "",
+        "h0wiiwiqo": "shopify://collections/all"
+      }
+    },
+    "glb_shoot_pHadc4": {
+      "type": "glb-shoot",
+      "custom_css": [
+        "@media (width <= 768px) {br {display: none; }}"
+      ],
+      "settings": {}
+    },
+    "infinite_image_eckbRp": {
+      "type": "infinite-image",
+      "blocks": {
+        "image_wA9maA": {
+          "type": "Image",
+          "settings": {
+            "aloefruinc": "shopify://shop_images/Infinite_Desktop_16993a8b-2b7b-4eff-9887-d89563cbfeb8.jpg",
+            "sdfgfsd": "shopify://shop_images/Infinite_Mobile_7a853bb6-66b7-4c40-b097-2f60bdfa1fb6.jpg",
+            "sdfasdf": "/"
+          }
+        },
+        "image_APikht": {
+          "type": "Image",
+          "settings": {
+            "aloefruinc": "shopify://shop_images/Infinite_Desktop_16993a8b-2b7b-4eff-9887-d89563cbfeb8.jpg",
+            "sdfgfsd": "shopify://shop_images/Infinite_Mobile_7a853bb6-66b7-4c40-b097-2f60bdfa1fb6.jpg",
+            "sdfasdf": "/"
+          }
+        }
+      },
+      "block_order": [
+        "image_wA9maA",
+        "image_APikht"
+      ],
+      "settings": {
+        "qsirguwfh": "",
+        "asdasd": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "scroll_animation_eLqcpg",
+    "image_with_text_slider_dKyH9H",
+    "hok_featured_collection_EXtwbz",
+    "landing_page_countdown_HJDk8x",
+    "glb_shoot_pHadc4",
+    "infinite_image_eckbRp"
+  ]
+}

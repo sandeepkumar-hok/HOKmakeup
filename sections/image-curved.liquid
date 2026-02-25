@@ -1,0 +1,117 @@
+<!-- section/image-curved-cover.iquid-->
+{%- style -%}
+  .shopify-section.image-curved-cover{
+  background-color: {{ section.settings.bg_color }};
+  }
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+ .image-curved-section .show-on-mobile-curve{
+    display:none ;
+  }
+  @media screen and (max-width: 768px) {
+  .section-{{ section.id }}-padding{
+  padding-top: {{ section.settings.padding_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+    .image-curved-section .show-on-mobile-curve{
+    display:block ;
+  }
+  }
+{%- endstyle -%}
+
+<div class="image-curved-section section-{{ section.id }}-padding">
+  {% if section.settings.image != blank %}
+    <img
+      src="{{ section.settings.image | image_url }}"
+      alt="Curved Image"
+      class="desktop_screen"
+      style="mix-blend-mode: {{ section.settings.blend_mode }};"
+      width="100%"
+      height="auto"
+    >
+  {% endif %}
+  {% if section.settings['image-mobile'] != blank %}
+    <img
+      src="{{ section.settings.image-mobile | image_url }}"
+      alt="Curved Image"
+      class="show-on-mobile-curve"
+      style="mix-blend-mode: {{ section.settings.blend_mode }};"
+      width="100%"
+      height="auto"
+    >
+  {% endif %}
+</div>
+
+{% schema %}
+{
+"name": "image-curved",
+"class": "image-curved-cover",
+"settings": [
+{
+"type": "color",
+"id": "bg_color",
+"label": "Background color",
+"default": "#FBFAF9"
+},
+
+{
+"type": "range",
+"id": "padding_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "padding Top desktop",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "padding Bottom desktop",
+"default": 36
+},
+
+{
+"type": "range",
+"id": "padding_top_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "padding Top mobile",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "padding Bottom mobile",
+"default": 36
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Upload Image for desktop"
+},
+{
+"type": "image_picker",
+"id": "image-mobile",
+"label": "Upload Image for mobile"
+}
+],
+"presets": [
+{
+"name": "Image Curved"
+}
+]
+}
+{% endschema %}

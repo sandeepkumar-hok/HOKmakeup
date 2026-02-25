@@ -1,0 +1,132 @@
+<!-- section/scroll-quotes-text.liquid -->
+{% style %}
+  .section-{{ section.id }}-margin {
+     margin-top: {{ section.settings.margin_top_desktop }}px;
+     margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+   }
+
+   @media screen and (max-width: 768px) {
+     .section-{{ section.id }}-margin {
+       margin-top: {{ section.settings.margin_top_mobile }}px;
+       margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+     }
+   }
+{% endstyle %}
+<style>
+   .scrolling-quote-wrapper {
+     border-top: 1px solid #232323;
+     border-bottom: 1px solid #232323;
+     overflow: hidden;
+     text-align: center;
+     font-size: clamp(16px, 2vw, 30px);
+     font-weight: 300;
+     background: #fff;
+     line-height: unset;
+     white-space: nowrap;
+   }
+
+   .scrolling-quote-inner {
+     display: inline-block;
+     white-space: nowrap;
+     animation: none;
+   }
+
+   .scrolling-quote-text {
+     padding: 20px 0;
+   }
+
+   .scrolling-quote-text strong {
+     font-style: italic;
+   }
+
+   @keyframes scroll-left {
+     0% {
+       transform: translateX(0%);
+     }
+     100% {
+       transform: translateX(-50%);
+     }
+   }
+  .scrolling-quote-text.second-text{display:none;}
+   @media (max-width: 768px) {
+     .scrolling-quote-inner {
+       animation: scroll-left 20s linear infinite;
+     }
+     .scrolling-quote-text{display: inline-block !important;}
+   }
+</style>
+
+<div class="scrolling-quote-wrapper section-{{ section.id }}-margin">
+  <div class="scrolling-quote-inner">
+    <div class="scrolling-quote-text">{{ section.settings.quote_text }} &nbsp;&nbsp;&nbsp;</div>
+    <div class="scrolling-quote-text second-text">{{ section.settings.quote_text }} &nbsp;&nbsp;&nbsp;</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling Quote",
+  "settings": [
+    {
+ "type": "header",
+  "content": "Desktop Margin"
+},
+{
+  "type": "range",
+  "id": "margin_top_desktop",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Top Desktop",
+  "default": 36
+},
+{
+  "type": "range",
+  "id": "margin_bottom_desktop",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Bottom Desktop",
+  "default": 36
+},
+{
+  "type": "header",
+  "content": "Mobile Margin"
+},
+{
+  "type": "range",
+  "id": "margin_top_mobile",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Top Mobile",
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "margin_bottom_mobile",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Bottom Mobile",
+  "default": 24
+},
+    {
+      "type": "textarea",
+      "id": "quote_text",
+      "label": "Quote Text",
+      "default": "“<strong>Invest in your skin</strong>. It is going to <strong>represent</strong> you for a <strong>very long time</strong>” — Linden Tyler"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Quote",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

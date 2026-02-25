@@ -1,0 +1,394 @@
+{%- style -%}
+    .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .carousel-section-wrapper.force-gap{
+            row-gap: 12px;
+        }
+    .carousel_title_wrapper {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 24px;
+        }
+    @media only screen and (min-width: 768px) {
+        .carousel-section-wrapper.force-gap{
+            row-gap: 20px;
+        }
+        .carousel_title_wrapper {
+            position: relative;
+            left: 52px;
+            max-width: calc(100% - 52px);
+            font-weight: 700;
+            font-size:28px;
+            line-height: 34px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        gap: 1rem;
+      }
+    }
+  {%- endstyle -%}
+  {%- assign collection_meta = collection.metafields.custom.nica_section.value -%}
+  <div class="section-{{ section.id }}-margin">
+    {% comment %} First Section {% endcomment %}
+    {% if collection_meta.show_first_section %}
+      {% for link in collection_meta.hero_media_1_link.value %}
+        {% if forloop.first %}
+          {% assign section_1 = link.url %}
+        {% elsif forloop.index == 2 %}
+          {% assign section_2 = link.url %}
+        {% elsif forloop.index == 3 %}
+          {% assign section_3 = link.url %}
+        {% endif %}
+      {% endfor %}
+      <div class="container{% if request.path contains 'focallure-beauty' %}-fluid p-0{% endif %} carousel-section-wrapper scroll-trigger animate--fade-in">
+        <div class="carousel-nav-wrapper desktop_screen">
+          <div id="collection_media_first" class="carousel-wrapper-outer{% if request.path contains 'focallure-beauty' %}spacing{% endif %} swiper">
+            <div class="carousel-wrapper-inner swiper-wrapper">
+              {% for media in collection_meta.hero_media_1.value %}
+                <div class="square-banner-slide-wrapper swiper-slide">
+                  <a
+                    href=" {% if forloop.first %}{{ section_1 }}{% elsif forloop.index == 2 %}{{ section_2 }}{% elsif forloop.index == 3 %}{{ section_3 }}{% endif %}"
+                    rel="noopener noreferrer"
+                  >
+                    {% if media.media_type == 'video' %}
+                      {%- assign media_poster = media | image_url -%}
+                      {{
+                        media
+                        | video_tag:
+                          width: '100%',
+                          height: '100%',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          playsinline: true,
+                          poster: media_poster
+                      }}
+                    {% else %}
+                      <img
+                        src="{{ media | image_url }}"
+                        height="100%"
+                        width="100%"
+                        loading="eager"
+                        alt="hero_collection_banner_{{ forloop.index }}"
+                      >
+                    {% endif %}
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="arrow_handler {% if request.path contains 'focallure-beauty' %}d-none{% endif %}">
+            <div id="carousel-prev-desktop" class="carousel-btn">
+                {{ 'arrow-back.svg' | inline_asset_content }}
+                </div>
+                <div id="carousel-next-desktop" class="carousel-btn">
+                {{ 'arrow-next.svg' | inline_asset_content }}
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav-wrapper mobile_screen">
+          <div id="collection_media_second" class="carousel-wrapper-outer spacing  swiper">
+            <div class="carousel-wrapper-inner swiper-wrapper">
+              {% for media in collection_meta.hero_media_mobile.value %}
+                <div class="square-banner-slide-wrapper swiper-slide">
+                  <a
+                    href=" {% if forloop.first %}{{ section_1 }}{% elsif forloop.index == 2 %}{{ section_2 }}{% elsif forloop.index == 3 %}{{ section_3 }}{% endif %}"
+                    rel="noopener noreferrer"
+                  >
+                    {% if media.media_type == 'video' %}
+                      {%- assign media_poster = media | image_url -%}
+                      {{
+                        media
+                        | video_tag:
+                          width: '100%',
+                          height: '100%',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          playsinline: true,
+                          poster: media_poster
+                      }}
+                    {% else %}
+                      <img
+                        src="{{ media | image_url }}"
+                        height="100%"
+                        width="100%"
+                        loading="eager"
+                        alt="hero_collection_banner_{{ forloop.index }}"
+                      >
+                    {% endif %}
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="arrow_handler">
+            <div id="carousel-prev-mobile" class="carousel-btn">
+                {{ 'arrow-back.svg' | inline_asset_content }}
+            </div>
+            <div id="carousel-next-mobile" class="carousel-btn">
+                {{ 'arrow-next.svg' | inline_asset_content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% comment %} Second Section {% endcomment %}
+    {% if collection_meta.show_second_section %}
+      {% for link in collection_meta.hero_media_2_link.value %}
+        {% if forloop.first %}
+          {% assign section_1_b = link.url %}
+        {% elsif forloop.index == 2 %}
+          {% assign section_2_b = link.url %}
+        {% elsif forloop.index == 3 %}
+          {% assign section_3_b = link.url %}
+        {% elsif forloop.index == 4 %}
+          {% assign section_4_b = link.url %}
+        {% elsif forloop.index == 5 %}
+          {% assign section_5_b = link.url %}
+        {% elsif forloop.index == 6 %}
+          {% assign section_6_b = link.url %}
+        {% endif %}
+      {% endfor %}
+      <div class="container carousel-section-wrapper force-gap scroll-trigger animate--fade-in">
+        {% if section.settings['carousel-title-2'] != blank %}
+          <div class="carousel_title_wrapper">
+            <p>{{- section.settings['carousel-title-2'] -}}</p>
+          </div>
+        {% endif %}
+        <div class="carousel-nav-wrapper">
+          <div id="collection_media_third" class="carousel-wrapper-outer spacing swiper">
+            <div class="carousel-wrapper-inner swiper-wrapper">
+              {% for media in collection_meta.hero_media_2.value %}
+                <div class="square-banner-slide-wrapper swiper-slide">
+                  <a
+                    href="
+                      {% if forloop.first %}{{ section_1_b }}{% elsif forloop.index == 2 %}{{ section_2_b }}{% elsif forloop.index == 3 %}{{ section_3_b }}
+                      {% elsif forloop.index == 4 %}{{ section_4_b }}{% elsif forloop.index == 5 %}{{ section_5_b }}{% elsif forloop.index == 6 %}{{ section_6_b }}{% endif %}
+                    "
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="{{ media | image_url }}"
+                      height="100%"
+                      width="100%"
+                      alt="hero_collection_banner_{{ forloop.index }}"
+                      loading="eager"
+                    >
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% comment %} First Section {% endcomment %}
+    {% if collection_meta.show_third_section %}
+      {% for link in collection_meta.hero_media_3_link.value %}
+        {% if forloop.first %}
+          {% assign section_1_c = link.url %}
+        {% elsif forloop.index == 2 %}
+          {% assign section_2_c = link.url %}
+        {% elsif forloop.index == 3 %}
+          {% assign section_3_c = link.url %}
+        {% elsif forloop.index == 4 %}
+          {% assign section_4_c = link.url %}
+        {% elsif forloop.index == 5 %}
+          {% assign section_5_c = link.url %}
+        {% elsif forloop.index == 6 %}
+          {% assign section_6_c = link.url %}
+        {% endif %}
+      {% endfor %}
+      <div class="container carousel-section-wrapper force-gap scroll-trigger animate--fade-in">
+        {% if section.settings['carousel-title-3'] != blank %}
+          <div class="carousel_title_wrapper">
+            <p>{{- section.settings['carousel-title-3'] -}}</p>
+          </div>
+        {% endif %}
+        <div class="carousel-nav-wrapper">
+          <div id="collection_media_fourth" class="carousel-wrapper-outer spacing  swiper">
+            <div class="carousel-wrapper-inner swiper-wrapper">
+              {% for media in collection_meta.hero_media_3.value %}
+                <div class="square-banner-slide-wrapper swiper-slide">
+                  <a
+                    href="
+                      {% if forloop.first %}{{ section_1_c }}{% elsif forloop.index == 2 %}{{ section_2_c }}{% elsif forloop.index == 3 %}{{ section_3_c }}
+                      {% elsif forloop.index == 4 %}{{ section_4_c }}{% elsif forloop.index == 5 %}{{ section_5_c }}{% elsif forloop.index == 6 %}{{ section_6_c }}{% endif %}
+                    "
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="{{ media | image_url }}"
+                      height="100%"
+                      width="100%"
+                      alt="hero_collection_banner_{{ forloop.index }}"
+                      loading="eager"
+                    >
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <script type="text/javascript">
+  //document.addEventListener('DOMContentLoaded', function () {
+    {% if collection_meta.show_first_section %}
+     const bannerSlider_desktop = new Swiper('#collection_media_first', {
+       spaceBetween: 12,
+       autoHeight: true,
+       speed: 100 ,
+       navigation: {
+         prevEl: '#carousel-prev-desktop',
+         nextEl: '#carousel-next-desktop',
+       },
+       autoplay: {
+         delay: 7000,
+       },
+       touchStartForcePreventDefault:true,
+     });
+     const bannerSlider_mobile = new Swiper('#collection_media_second', {
+       spaceBetween: 20,
+       autoHeight: true,
+       speed: 100 ,
+       navigation: {
+         prevEl: '#carousel-prev-mobile',
+         nextEl: '#carousel-next-mobile',
+       },
+       autoplay: {
+         delay: 5000,
+       },
+       touchStartForcePreventDefault:true,
+     });
+     {% endif %}
+     {% if collection_meta.show_second_section %}
+     const bannerSlider_second = new Swiper('#collection_media_third', {
+       spaceBetween: 20,
+       slidesPerView: 3.5 ,
+       speed: 100 ,
+       touchStartForcePreventDefault:true,
+         breakpoints: {
+       768: {
+         slidesPerView: 3.8
+       },
+       1024: {
+         slidesPerView: 5.5
+       },
+       1536: {
+          slidesPerView: 8
+       },
+     }
+     });
+     {% endif %}
+     {% if collection_meta.show_third_section %}
+     const bannerSlider_third = new Swiper('#collection_media_fourth', {
+       spaceBetween: 12,
+       speed: 100 ,
+       slidesPerView: 4,
+       touchStartForcePreventDefault:true,
+       breakpoints: {
+       768: {
+         slidesPerView: 4.6
+       },
+       1024: {
+         slidesPerView: 5.5
+       },
+       1536: {
+         slidesPerView: 8
+       },
+     }
+     });
+     {% endif %}
+    //});
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Multi Layout Collection",
+    "class": "square-banner-carousel",
+    "tag": "section",
+    "settings": [
+  
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Add Background Color",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Mobile Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      },
+      {
+        "type": "text",
+        "id": "carousel-title-2",
+        "label": "Carousel Title Second Section"
+      },
+      {
+        "type": "text",
+        "id": "carousel-title-3",
+        "label": "Carousel Title third Section"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Multi Layout Collection"
+      }
+    ]
+  }
+  {% endschema %}  

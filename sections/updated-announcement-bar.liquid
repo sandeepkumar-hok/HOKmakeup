@@ -1,0 +1,60 @@
+<div
+  id="siteAnnouncement"
+  class="
+    {% if template == 'page.deal-of-the-day' %}
+      deal-of-the-day-siteAnnouncement
+    {% endif %}
+  "
+>
+  <div class="px-2">
+    <a href="{{ section.settings.link }}">
+      <p>{{ section.settings.text }}</p>
+    </a>
+  </div>
+</div>
+<style>
+    #siteAnnouncement {
+        padding: 10px 15px;
+        background-color: #272727;
+    }
+    #siteAnnouncement p {
+        margin: 0;
+        padding: 0;
+        line-height: 1.3em;
+        font-size: clamp(10px, 2vw, 13px);
+        font-weight: 500;
+        color: #ffffff;
+        /* text-transform: capitalize; */
+        text-align: center;
+    }
+  .deal-of-the-day-siteAnnouncement:first-of-type {
+    display: none;
+  }
+  #MainContent .deal-of-the-day-siteAnnouncement{ display: block;position: sticky;
+    top: 160px;}
+</style>
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "announcement",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Announcement Heading",
+      "default": "<p>Welcome to our store</p>"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement Bar Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Updated Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

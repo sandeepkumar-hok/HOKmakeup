@@ -1,0 +1,527 @@
+
+.left_grid {
+  position: relative;
+}
+
+.left_grid .product-card {
+  height: 550px;
+  transition: height 0.3s ease;
+}
+
+.left_grid .product-card:hover {
+  height: 620px;
+}
+
+.left_grid a .product-card .badge_svg,
+.left_grid a .product-card .product-pricing,
+.left_grid a .product-card .product-description {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.left_grid .product-card:hover .badge_svg,
+.left_grid .product-card:hover .product-pricing,
+.left_grid .product-card:hover .product-description {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.left_grid .product-card .product-image {
+  margin: 24px 0px;
+}
+
+
+.skincare-essentials .left_grid {
+  flex: 0 0 35%;
+}
+
+.skincare-essentials .left_grid a:hover~.view-all-btn-left {
+  display: none !important;
+}
+
+.skincare-essentials {
+  text-align: center;
+}
+
+.shopify-section.essentials-skin {
+  background: #fcfbf9;
+}
+
+.skincare-essentials-outer {
+  margin: auto;
+}
+
+.skincare-essentials .title-essentials {
+  color: #000;
+  font-family: var(--family-regular);
+  font-weight: 800;
+  font-size: 32px;
+  text-transform: uppercase;
+  line-height: normal;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.skincare-essentials .subtitle-essentials {
+  max-width: 67%;
+  margin: 0 auto 30px;
+  color: #000;
+  font-size: 20px;
+  line-height: normal;
+  text-align: center;
+}
+
+.left_grid a .product-card .badge_svg img {
+  width: 166px;
+  height: 48px;
+}
+
+.left_grid a .product-card .badge_svg p {
+  border-radius: 30px;
+  background: #ECAFAF;
+  color: #000;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 500;
+  width: 80%;
+  margin: 12px auto auto;
+}
+
+.swiper-essential-1 {
+  display: none;
+}
+
+.right_grid a .product-card .product-title-essentials p {
+  font-size: 14px;
+}
+
+.left_grid .product-card:hover .product-image img {
+  width: 382px;
+  height: 360px;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.left_grid a .product-card .product-image img {
+  width: 505px;
+  height: 450px;
+}
+
+.right_grid .product-grid a .product-card .product-title-essentials,
+.right_grid .product-grid a .product-card .product-pricing,
+.right_grid .product-grid a .product-card .product-description {
+  display: none;
+}
+
+.right_grid .product-grid a:hover .product-card .product-title-essentials,
+.right_grid .product-grid a:hover .product-card .product-pricing,
+.right_grid .product-grid a:hover .product-card .product-description {
+  display: block;
+}
+
+.skincare-essentials .products {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  max-height: 624px;
+  overflow: hidden;
+
+}
+
+.skincare-essentials .left_section_product,
+.right_grid {
+  /* width: 35%; */
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skincare-essentials .left_grid a {
+  display: block;
+  width: 100%;
+}
+
+.skincare-essentials .view-all-btn-left {
+  display: block;
+  border-radius: 50px;
+  border: 1px solid #000;
+  width: 87%;
+  margin: 24px auto 0px auto;
+  padding: 9px 20px;
+  background: #fff;
+}
+
+.skincare-essentials .view-all-btn-left a {
+  color: #000;
+  text-align: center;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.right_grid .product-grid .product-card:hover .product-image img {
+  width: 90px;
+  height: 114px;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.skincare-essentials .left_grid.points-badge,
+.skincare-essentials .right_grid .points-badge {
+  font-size: clamp(12px, 2vw, 16px);
+  padding: 7px 12px;
+  margin-top: 12px;
+}
+
+.skincare-essentials .left_grid.current-price,
+.skincare-essentials .left_grid.compare-price,
+.skincare-essentials .left_grid.discount {
+  font-size: clamp(14px, 2vw, 22px);
+}
+
+.skincare-essentials .left_grid.product-description {
+  font-size: clamp(14px, 2vw, 16px);
+  min-height: 30px;
+}
+
+.skincare-essentials .product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.skincare-essentials .product-card {
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right_grid .product-grid .product-card .product-image img {
+  width: 270px;
+  height: 263px;
+}
+
+.skincare-essentials .product-title-essentials img {
+  width: auto;
+  height: 24px;
+}
+
+.skincare-essentials .product-description {
+  color: #3C3C3C;
+
+  font-size: clamp(14px, 2vw, 16px);
+  min-height: 50px;
+}
+
+.right_grid .product-grid a .product-card .product-description {
+  font-size: clamp(14px, 2vw, 14px);
+}
+
+.skincare-essentials .badge_svg p,
+.product-title-essentials p {
+  color: #000;
+  font-weight: 500;
+  border-radius: 30px;
+  background: #ECAFAF;
+  padding: 4px 11px;
+  margin: 12px auto auto;
+}
+
+.skincare-essentials .product-pricing .current-price {
+  color: #000;
+  font-weight: 700;
+}
+
+.skincare-essentials .product-pricing .compare-price {
+  color: #000;
+  font-weight: 300;
+  text-decoration: line-through;
+}
+
+.skincare-essentials .product-pricing .discount {
+  color: #E33F75;
+  font-family: var(--header-family);
+  font-weight: 800;
+  font-size: clamp(14px, 2vw, 16px);
+  margin-left: 4px;
+}
+
+.skincare-essentials .view-all {
+  text-align: center;
+  display: block;
+}
+
+.right_grid .product-pricing .compare-price,
+.skincare-essentials .right_grid .product-pricing .discount,
+.skincare-essentials .right_grid .product-pricing .current-price {
+  font-size: clamp(14px, 2vw, 16px);
+  margin-right: 8px;
+}
+
+.left_grid a .product-card .product-pricing .current-price {
+  font-weight: 700;
+  font-size: 22px;
+  font-style: normal;
+  line-height: normal;
+  margin-right: 8px;
+}
+
+.left_grid a .product-card .product-pricing .compare-price {
+  font-weight: 300;
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+  margin-right: 12px;
+}
+
+.left_grid a .product-card .product-pricing .discount {
+  font-weight: 800;
+  font-size: 18px;
+  font-style: normal;
+  line-height: normal;
+}
+
+.skincare-essentials .right_grid .product-card {
+  height: 300px;
+  padding: 45px 12px 24px 12px;
+}
+
+.skincare-essentials .view-all.all-skin {
+  display: none;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+.show-on-desktop {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .essentials-swiper .swiper-slide .product-card {
+    min-width: 250px;
+    flex-shrink: 0;
+  }
+
+  .right_grid {
+    width: 100%;
+  }
+
+  .product-grid .product-card {
+    padding: 5px;
+    box-shadow: 0px 2px 10px 0px rgba(144, 112, 122, 0.25);
+  }
+
+  .skincare-essentials .product-description {
+    min-height: 50px;
+  }
+
+  .right_grid .product-grid .product-card .product-image img {
+    width: 200px !important;
+    height: 205px !important;
+  }
+
+  .right_grid .product-pricing .compare-price,
+  .skincare-essentials .right_grid .product-pricing .discount,
+  .skincare-essentials .right_grid .product-pricing .current-price {
+    margin-right: unset;
+  }
+
+  .swiper-essential-1 {
+    display: block;
+
+  }
+
+  .right_grid.essentials-swiper.show-on-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    /* overflow-x: visible !important; */
+  }
+
+  .right_grid .product-grid a .product-card .product-title-essentials,
+  .right_grid .product-grid a .product-card .product-description,
+  .left_grid.left_grid a .product-card .badge_svg,
+  .left_grid.left_grid a .product-card .product-description {
+    display: block;
+  }
+
+  .left_grid.left_grid a .product-card .product-pricing,
+  .right_grid .product-grid a .product-card .product-pricing {
+    display: flex !important;
+    gap: 8px;
+  }
+
+  .left_grid .product-card .product-image .skin-image.mobile_screen {
+    width: 270px;
+    height: 263px;
+  }
+
+  .right_grid a {
+    display: block;
+    padding: 4px 0px 0px 4px;
+  }
+
+  .skincare-essentials .product-card,
+  .skincare-essentials .right_grid .product-card {
+    padding: 20px
+  }
+
+  .left_grid.left_grid a .product-card .badge_svg p {
+    width: 100%;
+  }
+
+  .left_grid a .product-card .badge_svg img,
+  .skincare-essentials .product-title-essentials img {
+    width: auto;
+    height: 24px;
+  }
+
+  .left_grid.left_grid {
+    padding: unset;
+    margin-bottom: 20px;
+    height: auto;
+  }
+
+  .skincare-essentials .product-card .product-title-essentials,
+  .skincare-essentials .product-card .product-description,
+  .skincare-essentials .product-card .points-badge,
+  .skincare-essentials .product-card .product-pricing,
+  .skincare-essentials .left_grid.badge_svg {
+    display: block;
+  }
+
+  .skincare-essentials .products {
+    display: none;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .left_grid {
+    min-width: 250px;
+  }
+
+  .skincare-essentials .right_grid .product-card {
+    min-width: 250px;
+    scroll-snap-align: start;
+    min-height: 420px;
+  }
+
+  .skincare-essentials .left_grid {
+    min-height: unset;
+  }
+
+  .skincare-essentials {
+    padding: 30px 16px;
+  }
+
+  .skincare-essentials .title-essentials {
+    font-size: 22px;
+  }
+
+  .skincare-essentials .subtitle-essentials {
+    font-size: 14px;
+    max-width: 80%;
+  }
+
+  .skincare-essentials .right_grid .product-grid {
+    display: flex;
+    gap: 5px;
+  }
+
+  .skincare-essentials .left_grid.view-all-btn-left {
+    display: none;
+  }
+
+  .skincare-essentials .view-all.all-skin {
+    display: block;
+    border-radius: 50px;
+    border: 1px solid #000;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 20px auto;
+  }
+
+  .skincare-essentials .view-all.all-skin a {
+    font-weight: 800;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+
+  .skincare-essentials .hide_mobi {
+    display: block;
+  }
+
+  .product-title-essentials p {
+    font-size: 12px;
+  }
+
+  .left_grid .product-card .product-image {
+    margin: unset;
+  }
+
+  .skincare-essentials .left_grid.product-description {
+    min-height: 50px;
+  }
+
+  .swiper-scrollbar.swiper-scrollbar-horizontal {
+    margin: 16px 0px 24px 0px;
+  }
+
+  .swiper-scrollbar.essentials-scrollbar.swiper-scrollbar-horizontal .swiper-scrollbar-drag {
+    display: block;
+  }
+
+  .right_grid {
+    overflow: hidden;
+  }
+}
+
+@media (hover: none),
+(pointer: coarse) {
+  .show-on-mobile {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .left_grid .product-card .product-image img {
+    width: 270px !important;
+    height: 263px !important;
+  }
+
+  .skincare-essentials .product-card .points-badge {
+    height: auto;
+  }
+
+  .right_grid .product-grid .product-card:hover .product-image img {
+    width: 200px !important;
+    height: 205px !important;
+    transition: none !important;
+  }
+
+  .skincare-essentials .left_grid:hover {
+    all: unset;
+  }
+
+  .skincare-essentials .right_grid .product-card {
+    /* height: auto !important; */
+    min-height: 420px;
+  }
+
+  /* .right_grid.essentials-swiper.show-on-mobile.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+  overflow: hidden;
+} */
+  .swiper-scrollbar.essentials-scrollbar.swiper-scrollbar-horizontal .swiper-scrollbar-drag {
+    display: block;
+  }
+
+  .skincare-essentials .right_grid .product-grid {
+    display: flex !important;
+  }
+}

@@ -1,0 +1,151 @@
+<div class="content-item" {{ product.id }}>
+  <div class="b-product_promo_tile">
+    {% liquid
+      assign first_variant = product.selected_or_first_available_variant
+      assign pdptag = true
+      assign img_url = first_variant.featured_image
+      assign img_url_1 = product.images[0].src
+      assign img_url_2 = product.images[1].src
+      for tags in product.tags
+        if tags contains 'New Arrival'
+          assign pdptag = false
+        endif
+      endfor
+    %}
+    {% comment %} PDP Image Starts {% endcomment %}
+    <div class="customize pdp-img-container">
+      {% comment %}
+        <div
+          style="display: block;"
+          class="gw-add-to-wishlist-product-card-placeholder"
+          data-gw-product-id="{{ product.id }}"
+          data-gw-variant-id="{{ product.first_available_variant.id }}"
+        ></div>
+      {% endcomment %}
+      {% if showCross %}
+        <div class="handle_product_overlay">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M10 18L18.0023 10M10 10L18.0023 18" stroke="#212529" stroke-linecap="round"/>
+          </svg>
+        </div>
+      {% endif %}
+      <a class="b-product_tile-picture_container customize" href="{{ product.url }}">
+        {% if product.images.size > 1 %}
+          <img
+            class="img-fluid img_url_1"
+            src="{{ img_url_1 | image_url }}"
+            alt="{{ product.images[0].alt }}"
+            width="310"
+            height="310"
+            fetchpriority="{{ fetch_priority }}"
+          >
+          <img
+            class="img-fluid img_url_2"
+            src="{{ img_url_2 | image_url }}"
+            alt="{{ product.images[1].alt }}"
+            width="310"
+            height="310"
+            fetchpriority="{{ fetch_priority }}"
+          >
+        {% else %}
+          <img
+            class="img-fluid"
+            src="{{ product.featured_image | image_url }}"
+            alt="{{ product.title }}"
+            title="{{ product.title }}"
+            width="310"
+            fetchpriority="{{ fetch_priority }}"
+            height="310"
+          >
+        {% endif %}
+      </a>
+    </div>
+    {% comment %} PDP Image Ends {% endcomment %}
+    {% comment %} PDP Details Starts {% endcomment %}
+    <div class="b-product_promo_tile-content">
+      <p class="b-product_promo_vendor-name">
+        <a class="b-product_promo_vendor-name_link" href="{{- product.url -}}">
+          {{-
+            product.vendor
+            | remove: 'BOGO'
+            | remove: '929A'
+            | remove: '929B'
+            | remove: '929B'
+            | remove: 'CLUB'
+            | remove: 'bg-free'
+            | remove: '3-for-2'
+          -}}
+        </a>
+        <a class="b-product_promo_tile-name_link" href="{{- product.url -}}">
+          {{- product.title | remove: product.vendor | truncatewords: 5, '...' -}}
+        </a>
+      </p>
+      <div class="product-prices d-flex align-items-center {% if template contains 'collection' %}gap-1{%  else %}gap-2{% endif %}">
+        <span class="b-product_price-value">
+          {{ first_variant.price | money_without_trailing_zeros }}
+        </span>
+        <span
+          class="b-product_price-value rack-rate"
+          {% if first_variant.price == first_variant.compare_at_price %}
+            style="display:none"
+          {% endif %}
+        >
+          {{ first_variant.compare_at_price | money_without_trailing_zeros }}
+        </span>
+        {% unless showCross %}
+          <span
+            class="discount_svg_container position-relative"
+            {% if first_variant.price == first_variant.compare_at_price %}
+              style="display:none"
+            {% endif %}
+          >
+            {% comment %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="76" height="20" viewBox="0 0 76 20" fill="none">
+                <path d="M0.5 0H75.5C75.5 0 73.3873 5.94689 73.3873 10C73.3873 14.0531 75.5 20 75.5 20H0.5V0Z" class="position-relative" fill="#9D806B"/>
+              </svg>
+            {% endcomment %}
+            <span class="discount_label">
+              {{
+                first_variant.compare_at_price
+                | minus: first_variant.price
+                | times: 100.0
+                | divided_by: first_variant.compare_at_price
+                | money_without_currency
+                | times: 100
+                | remove: '.0'
+              -}}
+              % Off
+            </span>
+          </span>
+        {% endunless %}
+      </div>
+
+      <form
+        action="/cart/add"
+        method="post"
+        id="AddToCartForm{{ first_variant.id }}"
+      >
+        <div class="b-add_to_bag">
+          <input
+            type="hidden"
+            class="b-add_to_bag-button b-add_to_bagId"
+            name="id"
+            value="{{ first_variant.id }}"
+            min="1"
+          >
+          <button
+            class="b-add_to_bag-button button-cta atc pocket"
+            type="submit"
+            {% if first_variant.inventory_quantity <= 0 %}
+              disabled="true"
+            {% endif %}
+            cartid="{{ first_variant.id }}"
+          >
+            {% if first_variant.inventory_quantity > 0 %}Add to Bag{% else %}Out of Stock{% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+    {% comment %} PDP Details Ends {% endcomment %}
+  </div>
+</div>

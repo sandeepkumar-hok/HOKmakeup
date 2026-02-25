@@ -1,0 +1,363 @@
+<!-- section/image-text-day-deal.liquid -->
+{%- style -%}
+.section-{{ section.id }}-margin {
+margin-top: {{ section.settings.margin_top_desktop }}px;
+margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+}
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top_desktop }}px;
+padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+}
+
+@media screen and (max-width: 768px) {
+.section-{{ section.id }}-margin {
+margin-top: {{ section.settings.margin_top_mobile }}px;
+margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+}
+.section-{{ section.id }}-padding {
+padding-top: {{ section.settings.padding_top_mobile }}px;
+padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+}
+}
+{%- endstyle -%}
+
+<section class="top_image_text_deal_day section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <div>
+    <div class="title-content" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="300">
+      {% if section.settings.maintitle != blank %}
+      <p>{{ section.settings.maintitle }}</p>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+      <h3>{{ section.settings.subtitle }}</h3>
+      {% endif %}
+    </div>
+    <!-- Swiper Container (Mobile Only) -->
+
+    <div class="swiper deal_day-grid-outer" id="deal_day-grid-outer-{{ section.id }}">
+      <div class="deal_day-grid-image-text-inner swiper-wrapper">
+        {% for block in section.blocks %}
+        <div class="deal_day-card swiper-slide">
+          {% if block.settings.image %}
+          <img src="{{ block.settings.image | image_url }}" alt="{{ block.settings.title }}" width="100%" height="100%">
+          {% endif %}
+          <div class="deal_content_text">
+            {% if block.settings.title %}
+            <h4>{{ block.settings.title }}</h4>
+            {% endif %}
+            {% if block.settings.offer %}
+            <p>{{ block.settings.offer }}</p>
+            {% endif %}
+            {% if block.settings.cta_link %}
+            <a href="{{ block.settings.cta_link }}" class="btn button-cta">{{ block.settings.cta_text }}</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+"name": "text image deal day",
+"settings": [
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_top_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_bottom_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Mobile)",
+"default": 20
+},
+{
+"id": "subtitle",
+"type": "text",
+"label": "Title",
+"default": "Picks for you!"
+},
+{
+"id": "maintitle",
+"type": "text",
+"label": "Sub Title",
+"default": "Your Beauty – Our Expertise"
+},
+],
+"blocks": [
+{
+"type": "text",
+"name": "text image",
+"settings": [
+{
+"id": "image",
+"type": "image_picker",
+"label": "Product Image"
+},
+{
+"id": "title",
+"type": "text",
+"label": "card title",
+"default": "Free Lipstick On Orders Above ₹ 1299"
+},
+{
+"id": "offer",
+"type": "text",
+"label": "Offer Text",
+"default": "Free Lipstick on Orders Above $129"
+},
+{
+"id": "cta_text",
+"type": "text",
+"label": "CTA text",
+"default":"EXPLORE"
+},
+{
+"id": "cta_link",
+"type": "url",
+"label": "CTA Link"
+
+}
+]
+}
+],
+"presets": [
+{
+"name": "text image deal day",
+"category": "Custom"
+}
+]
+}
+{% endschema %}
+<style>
+   
+  .top_image_text_deal_day .title-content {
+    background: #DEF31C;
+    min-height: 350px;
+    padding: 20px 30px;
+    width: 83%;
+    margin: auto;
+  }
+  .top_image_text_deal_day .title-content p {
+    margin-top: 41px;
+    font-size: clamp(16px, 2vw, 20px);
+  }
+  .swiper.deal_day-grid-outer {
+    margin-top: -145px
+  }
+
+  .top_image_text_deal_day p {
+    color: #2C2C2C;
+    margin-top: 10px;
+    text-align: center;
+    font-size: clamp(16px, 2vw, 28px);
+  }
+  .top_image_text_deal_day h3 {
+    font-size: 60px;
+    font-family: var(--family-regular);
+    text-align: center;
+    /* font-style:italic; */
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #E03F9F;
+  }
+
+  .deal_day-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .deal_content_text {
+    padding: 12px 20px;
+    background: #EF4BA4;
+    text-align: left;
+  }
+  .deal_day-card {
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .deal_content_text p,
+  .deal_content_text h4 {
+    color: #fff;
+  }
+
+  .deal_content_text p {
+    margin: 0px;
+    text-align: left !important;
+  }
+  .deal_day-card img {
+    width: 100%;
+    /* max-height: 308px; */
+  }
+  .deal_content_text h4 {
+    font-size: clamp(14px, 2vw, 16px);
+    font-family: var(--family-regular);
+    margin: 10px 0px 0px;
+    min-height: 40px;
+  }
+  .deal_content_text p {
+    font-size: clamp(11px, 2vw, 14px);
+    margin-bottom: 13px;
+  }
+  .deal_day-card .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #191919;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .deal_day-grid-image-text-inner.swiper-wrapper {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .deal_day-card {
+      flex: 0 0 22%;
+    }
+  }
+  @media screen and (max-width: 768px) {
+
+    .top_image_text_deal_day .title-content,
+    .swiper.deal_day-grid-outer {
+      width: 90%;
+    }
+    .title-content p {
+      font-size: 16px;
+    }
+
+    .top_image_text_deal_day h3 {
+      font-size: 40px;
+    }
+    .deal_day-card {
+      max-width: 100%;
+      border-radius: unset;
+    }
+    .swiper.deal_day-grid-outer {
+      margin-top: -168px;
+    }
+    .deal_day-card.swiper-slide {
+      transition: transform 0.5s ease-in-out;
+      transform: scale(0.8);
+    }
+    .deal_day-card.swiper-slide-active {
+      transform: scale(1);
+      z-index: 2;
+    }
+    .deal_day-grid-image-text-inner.swiper-wrapper {
+      justify-content: normal;
+      gap: unset;
+    }
+    .top_image_text_deal_day .swiper-pagination-bullets.swiper-pagination-horizontal {
+      position: initial;
+      margin-top: 12px;
+    }
+
+    .top_image_text_deal_day .swiper-pagination-bullet-active {
+      background: #000;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+      var swiper = new Swiper("#deal_day-grid-outer-{{ section.id }}", {
+        slidesPerView: 1.3,
+        centeredSlides: false,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        on: {
+          touchStart: function () {
+            if (!swiper.params.centeredSlides) {
+
+              swiper.params.centeredSlides = true;
+              swiper.update();
+            }
+          },
+        },
+      });
+    }
+  });
+</script>

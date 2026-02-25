@@ -1,0 +1,114 @@
+<div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div id="landing-main-container" class="d-center">
+                          <h2 id="landing-header">MAKEUP BRUSHES MADE TO LAST</h2>
+                        <div class="landing-text">
+                            <p>Hot Selling in <strong>200 countries</strong> and loved by <strong>10 million</strong> customers. <br aria-hidden="true"> Build your own artistry with Jessup Brushes.</p>
+                         <div class="landing-icons">
+                           <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Asset_1.png?v=1722690736" alt="image"  width="100%" height="100%" loading="lazy" >
+                           <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Asset_2.png?v=1722691418" alt="image"  width="100%" height="100%" loading="lazy" >
+                           <img src="https://cdn.shopify.com/s/files/1/1743/7443/files/Asset_3.png?v=1722691417" alt="image"  width="100%" height="100%" loading="lazy" >
+                         </div>
+                          <!-- <ul class="list-unstyled lh-base">
+                                <li><strong>Sustainable Brushes</strong></li>
+                                <li><strong>100% Vegan</strong></li>
+                                <li><strong>Cruelty Free</strong></li>
+                            </ul> -->
+                        </div>
+                        <!-- <div class="text-with-image__btn-container">
+                            <button id="landing-page-button" type="button" title="Buy Now" class="button-cta atc" >Buy Now</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="text-with-image__column--img-container h-zoom-effect">    
+                      <model-viewer id="model-viewer" class="w-100 w-lg-75 h-zoom-effect" src="https://cdn.shopify.com/3d/models/700b7aaec0b99069/brush.glb" ar ar-modes="scene-viewer quick-look" camera-controls touch-action="none" alt="A 3D model of an makeup product" tone-mapping="neutral"
+                        shadow-intensity="1" auto-rotate auto-rotate-speed="100" disable-pan max-camera-orbit="auto 90deg" min-camera-orbit="auto 90deg"  poster="https://cdn.shopify.com/s/files/1/1743/7443/files/6-Photoroom.png?v=1722698242" > 
+                      <div id="error" class="d-none">AR is not supported on this device</div>
+                    </model-viewer>
+                       {% comment %} <img loading="lazy" src="https://cdn.shopify.com/s/files/1/1743/7443/files/Jessup_pdp.webp?v=1722249997" alt="product image"  width="100%" height="100%"
+                           class="w-100 w-lg-75"
+                           > {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+<style>
+  .threeD-container{
+      background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/Bubble-bg.webp?v=1722250111);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  #landing-main-container{
+    height:100%;
+    flex-direction:column;
+    gap:16px;
+  }
+  #landing-header{
+    font-weight: 800;
+    font-size: 2vw;
+    text-align:center;
+  }
+  .landing-text{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    text-align:center;
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .landing-icons{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .landing-text img{
+    width:75px;
+    height:75px;
+  }
+  /* #landing-page-button{
+    border-radius: 30px;
+    width: 130px;
+  } */
+  .text-with-image__column--img-container{
+    /* mix-blend-mode: multiply; */
+  }
+  .h-zoom-effect{
+    height: 500px
+  }
+  @media screen and (width <= 768px){
+    #landing-main-container{
+      padding: 2rem 0;
+    }
+     #landing-header{
+        font-size: 28px;
+      }
+    .landing-text {
+           font-size: 10px;
+        line-height: 14px;
+    }
+    .landing-text img {
+          width: 65px;
+          height: 64px;
+      }
+    .h-zoom-effect{
+    height: 380px
+  }
+  }
+</style>
+{% schema %}
+  {
+    "name": "3d Media with Text",
+    "class": "threeD-container",
+    "settings": [],
+    "presets": [
+      {
+        "name": "3d Media with Text"
+      }
+    ]
+  }
+{% endschema %}

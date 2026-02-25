@@ -1,0 +1,72 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+  {% capture 'icon-next' %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="8" viewBox="0 0 5 8" fill="none">
+         <path d="M1 7L4 4L1 1" stroke="#212121" stroke-linecap="round"/>
+        </svg>
+    {% endcapture %}
+
+  <nav class="breadcrumb gap-2" role="navigation" aria-label="breadcrumbs">
+    <a href="/" title="Home">Home</a>
+
+    {% if template contains 'page' %}
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      <span>{{ page.title }}</span>
+
+    {% elsif template contains 'product' %}
+      {% if collection.url %}
+        <span aria-hidden="true">{{ icon-next }}</span>
+
+        {{ collection.title | link_to: collection.url | truncatewords: 3 }}
+      {% endif %}
+
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      <span>{{ product.title | truncatewords: 3 }}</span>
+
+    {% elsif template contains 'collection' and collection.handle %}
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      {% if current_tags %}
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+
+        {{ collection.title | link_to: url }}
+
+        <span aria-hidden="true">{{ icon-next }}</span>
+
+        <span>{{ current_tags | join: ' + ' }}</span>
+
+      {% else %}
+        <span>{{ collection.title }}</span>
+      {% endif %}
+
+    {% elsif template == 'blog' %}
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      {% if current_tags %}
+        {{ blog.title | link_to: blog.url }}
+
+        <span aria-hidden="true">{{ icon-next }}</span>
+
+        <span>{{ current_tags | join: ' + ' }}</span>
+
+      {% else %}
+        <span>{{ blog.title }}</span>
+      {% endif %}
+
+    {% elsif template == 'article' %}
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      {{ blog.title | link_to: blog.url }}
+
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      <span>{{ article.title }}</span>
+
+    {% else %}
+      <span aria-hidden="true">{{ icon-next }}</span>
+
+      <span>{{ page_title }}</span>
+    {% endif %}
+  </nav>
+{% endunless %}

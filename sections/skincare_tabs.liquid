@@ -1,0 +1,880 @@
+{% style %}
+#about:checked ~ .text-skincare-content .skincare_product_type,
+#code:checked ~ .text-skincare-content .skincare_product_type,
+#skincare_concern:checked ~ .text-skincare-content .skincare_product_type,
+#skincare_ingredients:checked ~ .text-skincare-content .skincare_product_type,
+.skin-tab-panel,
+.skincare-content .text,
+.skincare-content input {
+    display: none;
+}
+.skincare-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10rem 0;
+    gap: 0;
+}
+.skin-sidebar,
+.skincare-content .list {
+    height: 56rem;
+    overflow: hidden;
+}
+.skincare-content .list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    width: 12%;
+    gap: 20px;
+}
+.skincare-content .list label {
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.5s;
+    z-index: 1;
+    flex: 1;
+    aspect-ratio: 1;
+    letter-spacing: 0px;
+}
+#skincare_concern:checked ~ .list label.skincare_concern,
+#skincare_ingredients:checked ~ .list label.skincare_ingredients,
+#skincare_product_type:checked ~ .list label.skincare_product_type {
+    color: #22272c;
+    background: #e3dfd0;
+    font-weight: bold;
+    box-shadow: 0 4px 10px 0 #d8d5ca;
+}
+
+.skincare-content .text-skincare-content {
+    width: 85%;
+    height: 100%;
+    color: rgba(0, 0, 0, 0.7);
+}
+.w-10 {
+    width: 10%;
+}
+.skincare-content .text .title {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+#skincare-container .text .para { 
+    margin-top: 1px;
+    letter-spacing:0;
+    font-size: clamp(10px, 2vw, 14px);
+    text-align: center;
+}
+.skincare_banner_header {
+    color: #000;
+    font-family: var(--header-family);
+    font-size: 7rem;
+    text-transform: uppercase;
+}
+.skincare_banner_content {
+    color: #000;
+    font-weight: 300;
+    font-size: 2rem;
+}
+.skincare-content .text-skincare-content .skincare_product_type {
+    display: block;
+}
+#skincare_concern:checked ~ .text-skincare-content .skincare_concern,
+#skincare_ingredients:checked ~ .text-skincare-content .skincare_ingredients,
+#skincare_product_type:checked ~ .text-skincare-content .skincare_product_type {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+.main-tab-title {
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 6px;
+    background: #f4f2eb;
+    box-shadow: 0 4px 10px 0 #d8d5ca;
+    max-width: calc(52rem / 3);
+}
+.skin-sidebar {
+    position: relative;
+    flex: 0 0 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 200px;
+    justify-self: center;
+}
+.skin-tab-item {
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    color: #000;
+    text-align: center;
+}
+.skin-tab-item img {
+    object-fit: contain;
+    max-width: 130px;
+    max-height: 130px;
+    border-radius: 15px;
+    border: 3px solid #f6f6f6;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(224, 213, 213, 0.25);
+}
+.skin-tab-item.active {
+  color: #000;
+  font-weight: 700;
+}
+.skin-tab-item.active img {
+    filter: brightness(60%);
+    border: 3px solid #ffffff;
+}
+.tab-skincare-content {
+    flex: 3;
+    margin: 0 0 16px 20px;
+    flex: 0 0 85%;
+    overflow-x: auto;
+    padding-bottom: clamp(16px, 2vw, 32px);
+}
+.tab-skincare-content :where(.b-product_promo_vendor-name,.product-prices){
+  text-align: center;
+  justify-content: center;
+}
+.skin-tab-panel .b-product_promo_tile {
+    max-width: 320px;
+}
+.skin-tab-panel.active {
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+}
+.tab-skincare-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2);
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+.tab-skincare-content::-webkit-scrollbar {
+    height: 2px;
+    background-color: #f5f5f5;
+}
+.tab-skincare-content::-webkit-scrollbar-thumb {
+    background-color: #353535;
+    border-radius: 2px;
+}
+.product-tab-card {
+    flex: 1;
+    min-width: 320px;
+    max-width: 320px;
+    scroll-snap-align: center;
+}
+.skincare-arrow_handler {
+    display: none !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 560px;
+}
+@media screen and (min-width: 990px) and (max-width: 1320px) {
+  .skincare_banner_header {
+    font-size: 4.5rem;
+  }
+}
+@media screen and (min-width: 578px) and (max-width: 786px) {
+  div#skincare-container::after {
+    max-width: 540px !important;
+  }
+}
+@media screen and (max-width: 990px) {
+    .sm-margin {
+        margin: 26px 0 18px;
+    }
+    div#skincare-container::after {
+      content: "";
+      background-image: url(https://cdn.shopify.com/s/files/1/0896/2320/0023/files/bar-line.png);
+      width: calc(100% - 40px);
+      max-width: 720px;
+      background-position: unset;
+      background-size: cover;
+      background-repeat: round;
+      position: absolute;
+      top: 26%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      height: 53px;
+      z-index: 1;
+    }
+    .tab-skincare-content {
+      margin-top: 60px; 
+    }
+    .skincare-content {
+      width: calc(100% - 16px);
+      margin: -15px auto 0;
+      padding: 15px 15px 0;
+      gap: 16px;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0 4px 20px 0 rgba(52, 66, 71, 0.1);
+    }
+    .tab-skincare-content{
+      width: 75%;
+      margin-inline: auto !important;
+    }
+    .z--1 {
+        z-index: -1;
+    }
+    .skincare_banner_header {
+        font-size: 24px;
+    }
+    .skincare_banner_content {
+        font-size: 14px;
+    }
+    .skin-tab-item {
+        display: flex;
+        flex-direction: column !important;
+    }
+    .skin-tab-item img {
+        object-fit: contain;
+        max-width: 83px;
+        max-height: 77px;
+    }
+    .skincare-content .list {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 26px;
+        gap: 5px;
+        border-bottom: 0.5px solid #cdcdcd;
+    }
+    .skincare-arrow_handler {
+        display: none;
+    }
+    .main-tab-title {
+        background: #fff;
+        box-shadow: unset;
+    }
+    #skincare_concern:checked ~ .list label.skincare_concern,
+    #skincare_ingredients:checked ~ .list label.skincare_ingredients,
+    #skincare_product_type:checked ~ .list label.skincare_product_type {
+      border-radius: 6px 6px 0 0;
+      background: #efeeea;
+      font-weight: 700;
+      box-shadow: unset;
+    }
+    .skincare-content .list label {
+        cursor: pointer;
+        font-size: 13px;
+    }
+    .skincare-content,
+    .skincare_concern,
+    .skincare_ingredients,
+    .skincare_product_type {
+        flex-direction: column;
+    }
+    .skin-sidebar {
+        max-width: unset;
+        height: 100%;
+    }
+    .skin-tab-panel .b-product_promo_tile {
+        max-width: 260px;
+    }
+    .product-tab-card {
+        min-width: 220px;
+        max-width: 220px;
+    }
+    .skin-sidebar,
+    .tab-skincare-content {
+        flex: 0 0 100%;
+        margin-left: 0;
+    }
+    .skincare-content .text-skincare-content {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 990px) {
+    #skincare-container {
+        background: #efeeea;
+    }
+    .skincare-content .list {
+      padding-bottom: 1rem;
+    }
+    .skin-tab-panel .b-product_promo_tile button.b-add_to_bag-button.button-cta {
+        color: #fff;
+        background: #000;
+    }
+    .skin-tab-panel .b-product_promo_tile button.b-add_to_bag-button.button-cta[disabled="true"]{
+      background-color: #ededed;
+      border: 0.5px solid #d7d7d7;
+      color: #a0a0a0;
+    }
+    .skin-tab-panel .b-product_promo_tile button.b-add_to_bag-button.button-cta:hover {
+        color: #000;
+    }
+}
+
+  {% endstyle %}
+  {%- capture up_arrow -%}
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="11" viewBox="0 0 18 11" fill="none">
+    <path d="M16 9L9.16279 2L2 9" stroke="#A39C84" stroke-width="2.5" stroke-linecap="round" />
+  </svg>
+  {%- endcapture -%}
+  {%- capture down_arrow -%}
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="11" viewBox="0 0 18 11" fill="none">
+    <path d="M16 2L9.16279 9L2 2" stroke="#A39C84" stroke-width="2.5" stroke-linecap="round" />
+  </svg>
+  {%- endcapture -%}
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-3 sm-margin">
+        <div class="skincare_banner_header">These belong to your shelf</div>
+        <div class="skincare_banner_content">Refresh, renew, and glow.</div>
+      </div>
+      <div class="col-12 col-md-9 z--1">
+        {% assign media_desktop =  section.settings['banner-video-desktop']  %}
+        <video poster="{{ media_desktop.preview_image.src | image_url }}" class="d-block square-banner-media" autoplay loop muted playsinline>
+          <source src="{{ media_desktop.sources[1].url }}" data-src="{{ media_desktop.sources[1].url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid position-relative" id="skincare-container">
+    <div class="container skincare-content">
+      <input type="radio" name="slider" checked id="skincare_product_type">
+      <input type="radio" name="slider" id="skincare_concern">
+      <input type="radio" name="slider" id="skincare_ingredients">
+
+      <div class="list">
+        <label for="skincare_product_type" class="skincare_product_type main-tab-title d-center">
+          <div>Product type</div>
+        </label>
+        <label for="skincare_concern" class="skincare_concern main-tab-title d-center">
+          <div>Concern</div>
+        </label>
+        <label for="skincare_ingredients" class="skincare_ingredients main-tab-title d-center">
+          <div>Ingredients</div>
+        </label>
+      </div>
+
+      <div class="text-skincare-content">
+        <div class="skincare_product_type text">
+          <!-- skin-Sidebar with Tabs -->
+          <div class="skin-sidebar" id="main-tab-1">
+            <div class="swiper-wrapper position-relative">
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column active"
+                data-tab="skincare_Cleansers">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Layer_2.png?v=1737443202"
+                  alt="Skincare Cleansers" loading="lazy">
+                <p class="para">Cleansers</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_tmw">
+                <img width="100%" height="100%"
+                  src="https://hokmakeup.com/cdn/shop/files/5903416034285_1_391dc6aa-8fc9-448c-883d-63103d14d028.jpg?v=1737441864"
+                  alt="Skincare Toners and Micellar Water" loading="lazy">
+                <p class="para">Toners and Micellar Water</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_Serums">
+                <img width="100%" height="100%"
+                  src="https://hokmakeup.com/cdn/shop/files/5901761949070_1_25d70dfe-605f-45de-aebf-22a867fba028.jpg?v=1737708554"
+                  alt="Skincare Serums" loading="lazy">
+                <p class="para">Serums</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_Moisturisers">
+                <img width="100%" height="100%"
+                  src="https://hokmakeup.com/cdn/shop/files/1_2a28a606-7a9e-4b85-8c34-3dc639310f7a.jpg?v=1737708542"
+                  alt="Skincare Moisturisers" loading="lazy">
+                <p class="para">Moisturisers</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_Eyecare">
+                <img width="100%" height="100%"
+                  src="https://hokmakeup.com/cdn/shop/files/5901761941975_1_0d95ccfe-5ef0-4b79-9311-a1b65344eccc.jpg?v=1737708697"
+                  alt="Skincare Eyecare" loading="lazy">
+                <p class="para">Eyecare</p>
+              </div>
+            </div>
+            <div class="skincare-arrow_handler" id="main-arrow-1">
+              <div id="carousel-prev-1{{ section.id }}">
+                {{ up_arrow }}
+              </div>
+              <div id="carousel-next-1{{ section.id }}">
+                {{ down_arrow }}
+              </div>
+            </div>
+          </div>
+          <!-- Tab skincare-content -->
+          <div class="tab-skincare-content" id="main-tab-content-1">
+            <!-- Dehydration Tab -->
+            <div class="skin-tab-panel active" id="skincare_Cleansers">
+              {% for product in section.settings.collection.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Acne Tab -->
+            <div class="skin-tab-panel" id="skincare_tmw">
+              {% for product in section.settings.collection2.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_Serums">
+              {% for product in section.settings.collection3.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_Moisturisers">
+              {% for product in section.settings.collection4.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_Eyecare">
+              {% for product in section.settings.collection5.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="skincare_concern text">
+          <div class="skin-sidebar" id="main-tab-2">
+            <div class="swiper-wrapper position-relative">
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column active"
+                data-tab="skincare_tab2_acne">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Acne_D.jpg?v=1737372794"
+                  alt="Skincare Acne" loading="lazy">
+                <p class="para">Acne</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab2_Hyperpigmentation">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Pigmentation_D.jpg?v=1737372793"
+                  alt="Skincare Hyperpigmentation" loading="lazy">
+                <p class="para">Pigmentation</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_tab2_Aging">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Anti-aging_D.jpg?v=1737372793"
+                  alt="Skincare Aging" loading="lazy">
+                <p class="para">Aging</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tabs2_OilySkin">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Oily_D.jpg?v=1737372793"
+                  alt="Skincare Oily Skin" loading="lazy">
+                <p class="para">Oily Skin</p>
+              </div>
+              {% comment %} <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab2_DehydratedSkin">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Dehydration_D.jpg?v=1737372793"
+                  alt="Skincare Dehydrated Skin" loading="lazy">
+                <p class="para">Dehydrated Skin</p>
+              </div> {% endcomment %}
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab2_DullSkin">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Dull_D.jpg?v=1737372793"
+                  alt="Skincare Dull Skin" loading="lazy">
+                <p class="para">Dull Skin</p>
+              </div>
+            </div>
+            <div class="skincare-arrow_handler" id="main-arrow-2">
+              <div id="carousel-prev-2{{ section.id }}">
+                {{ up_arrow }}
+              </div>
+              <div id="carousel-next-2{{ section.id }}">
+                {{ down_arrow }}
+              </div>
+            </div>
+          </div>
+          <!-- Tab skincare-content -->
+          <div class="tab-skincare-content" id="main-tab-content-2">
+            <!-- Dehydration Tab -->
+            <div class="skin-tab-panel active" id="skincare_tab2_acne">
+              {% for product in section.settings.collectiona.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Acne Tab -->
+            <div class="skin-tab-panel" id="skincare_tab2_Hyperpigmentation">
+              {% for product in section.settings.collection2a.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tab2_Aging">
+              {% for product in section.settings.collection3a.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tabs2_OilySkin">
+              {% for product in section.settings.collection4a.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            {% comment %} <div class="skin-tab-panel" id="skincare_tab2_DehydratedSkin">
+              {% for product in section.settings.collection5a.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div> {% endcomment %}
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tab2_DullSkin">
+              {% for product in section.settings.collection6a.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="skincare_ingredients text">
+          <!-- skin-Sidebar with Tabs -->
+          <div class="skin-sidebar" id="main-tab-3">
+            <div class="swiper-wrapper position-relative">
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column active"
+                data-tab="skincare_tab3_HyaluronicAcid">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Hyaluronic_acid_D.jpg?v=1736922510"
+                  alt="Skincare Hyaluronic Acid" loading="lazy">
+                <p class="para">Hyaluronic Acid</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab3_VitaminC">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Vitamin_C_D.jpg?v=1736922510"
+                  alt="Skincare Vitamin C" loading="lazy">
+                <p class="para">Vitamin C</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column" data-tab="skincare_tab3_Retinol">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Retinol_D.jpg?v=1736922509"
+                  alt="Skincare Retinol" loading="lazy">
+                <p class="para">Retinol</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab3_Niacinamide">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Niacinamide_D.jpg?v=1736922509"
+                  alt="Skincare Niacinamide" loading="lazy">
+                <p class="para">Niacinamide</p>
+              </div>
+              <div class="swiper-slide skin-tab-item d-center flex-row flex-md-column"
+                data-tab="skincare_tab3_SalicylicAcid">
+                <img width="100%" height="100%"
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Salicylic_acid_D.jpg?v=1736922509"
+                  alt="Skincare Salicylic Acid" loading="lazy">
+                <p class="para">Salicylic Acid</p>
+              </div>
+            </div>
+            <div class="skincare-arrow_handler" id="main-arrow-3">
+              <div id="carousel-prev-3{{ section.id }}">
+                {{ up_arrow }}
+              </div>
+              <div id="carousel-next-3{{ section.id }}">
+                {{ down_arrow }}
+              </div>
+            </div>
+          </div>
+          <!-- Tab skincare-content -->
+          <div class="tab-skincare-content" id="main-tab-content-3">
+            <!-- Dehydration Tab -->
+            <div class="skin-tab-panel active" id="skincare_tab3_HyaluronicAcid">
+              {% for product in section.settings.collectionb.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Acne Tab -->
+            <div class="skin-tab-panel" id="skincare_tab3_VitaminC">
+              {% for product in section.settings.collection2b.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tab3_Retinol">
+              {% for product in section.settings.collection3b.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tab3_Niacinamide">
+              {% for product in section.settings.collection4b.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Oily Skin Tab -->
+            <div class="skin-tab-panel" id="skincare_tab3_SalicylicAcid">
+              {% for product in section.settings.collection5b.products limit: 6 %}
+              <div class="product-tab-card">
+                {% render 'new-pocket-skincare', product: product, fetch_priority: 'high', indexIs: forloop.index0 ,
+                remove_extra_details:true %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get all tab items and tab panels
+      const tabs = document.querySelectorAll('#main-tab-1 .skin-tab-item');
+      const panels = document.querySelectorAll('#main-tab-content-1 .skin-tab-panel');
+      const tabs2 = document.querySelectorAll('#main-tab-2 .skin-tab-item');
+      const panels2 = document.querySelectorAll('#main-tab-content-2 .skin-tab-panel');
+      const tabs3 = document.querySelectorAll('#main-tab-3 .skin-tab-item');
+      const panels3 = document.querySelectorAll('#main-tab-content-3 .skin-tab-panel');
+
+      // Add click event to each tab
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs.forEach(item => item.classList.remove('active'));
+          // Add active class to the clicked tab
+          tab.classList.add('active');
+          // Hide all panels
+          panels.forEach(panel => panel.classList.remove('active'));
+          // Show the corresponding panel
+          const tabContent = document.getElementById(tab.getAttribute('data-tab'));
+          tabContent.classList.add('active');
+        });
+      });
+
+      // Add click event to each tab
+      tabs2.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs2.forEach(item => item.classList.remove('active'));
+          // Add active class to the clicked tab
+          tab.classList.add('active');
+          // Hide all panels
+          panels2.forEach(panel => panel.classList.remove('active'));
+          // Show the corresponding panel
+          const tabContent = document.getElementById(tab.getAttribute('data-tab'));
+          tabContent.classList.add('active');
+        });
+      });
+      // Add click event to each tab
+      tabs3.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs
+          tabs3.forEach(item => item.classList.remove('active'));
+          // Add active class to the clicked tab
+          tab.classList.add('active');
+          // Hide all panels
+          panels3.forEach(panel => panel.classList.remove('active'));
+          // Show the corresponding panel
+          const tabContent = document.getElementById(tab.getAttribute('data-tab'));
+          tabContent.classList.add('active');
+        });
+      });
+      let main_tab_1 = new Swiper("#main-tab-1", {
+        direction: "horizontal",
+        slidesPerView: 3.8,
+        spaceBetween: 4,
+        mousewheel: true,
+        navigation: {
+          prevEl: '#carousel-prev-1{{ section.id }}',
+          nextEl: '#carousel-next-1{{ section.id }}',
+          disabledClass: 'disabled_swiper_button'
+        },
+        breakpoints: {
+          990: {
+            direction: "vertical",
+            slidesPerView: 3.2,
+          }
+        },
+      });
+      let main_tab_2 = new Swiper("#main-tab-2", {
+        direction: "horizontal",
+        slidesPerView: 3.8,
+        spaceBetween: 4,
+        mousewheel: true,
+        navigation: {
+          prevEl: '#carousel-prev-2{{ section.id }}',
+          nextEl: '#carousel-next-2{{ section.id }}',
+          disabledClass: 'disabled_swiper_button'
+        },
+        breakpoints: {
+          // when window width is <= 990px
+          990: {
+            direction: "vertical",
+            slidesPerView: 3.2,
+          }
+        }
+      });
+      let main_tab_3 = new Swiper("#main-tab-3", {
+        direction: "horizontal",
+        slidesPerView: 3.8,
+        spaceBetween: 4,
+        mousewheel: true,
+        navigation: {
+          prevEl: '#carousel-prev-3{{ section.id }}',
+          nextEl: '#carousel-next-3{{ section.id }}',
+          disabledClass: 'disabled_swiper_button'
+        },
+        breakpoints: {
+          // when window width is <= 990px
+          990: {
+            direction: "vertical",
+            slidesPerView: 3.2,
+          }
+        }
+      });
+    });
+  </script>
+  {% schema %}
+  {
+  "name": "Skincare Tabs and Pills",
+  "settings": [
+  {
+  "type": "video",
+  "id": "banner-video-desktop",
+  "label": "Banner Video Desktop"
+  },
+  {
+  "type": "video",
+  "id": "banner-video-mobile",
+  "label": "Banner Video Mobile"
+  },
+  {
+  "type": "collection",
+  "id": "collection",
+  "label": "Choose Collection 1"
+  },
+  {
+  "type": "collection",
+  "id": "collection2",
+  "label": "Choose Collection 2"
+  },
+  {
+  "type": "collection",
+  "id": "collection3",
+  "label": "Choose Collection 3"
+  },
+  {
+  "type": "collection",
+  "id": "collection4",
+  "label": "Choose Collection 4"
+  },
+  {
+  "type": "collection",
+  "id": "collection5",
+  "label": "Choose Collection 5"
+  },
+  {
+  "type": "collection",
+  "id": "collectiona",
+  "label": "Choose Tab 2 Collection 1 "
+  },
+  {
+  "type": "collection",
+  "id": "collection2a",
+  "label": "Choose Tab 2 Collection 2"
+  },
+  {
+  "type": "collection",
+  "id": "collection3a",
+  "label": "Choose Tab 2 Collection 3"
+  },
+  {
+  "type": "collection",
+  "id": "collection4a",
+  "label": "Choose Tab 2 Collection 4"
+  },
+  {
+  "type": "collection",
+  "id": "collection6a",
+  "label": "Choose Tab 2 Collection 6"
+  },
+  {
+  "type": "collection",
+  "id": "collectionb",
+  "label": "Choose Tab 3 Collection 1 "
+  },
+  {
+  "type": "collection",
+  "id": "collection2b",
+  "label": "Choose Tab 3 Collection 2"
+  },
+  {
+  "type": "collection",
+  "id": "collection3b",
+  "label": "Choose Tab 3 Collection 3"
+  },
+  {
+  "type": "collection",
+  "id": "collection4b",
+  "label": "Choose Tab 3 Collection 4"
+  },
+  {
+  "type": "collection",
+  "id": "collection5b",
+  "label": "Choose Tab 3 Collection 5"
+  }
+  ],
+  "presets": [
+  {
+  "name": "Skincare Tabs and Pills"
+  }
+  ]
+  }
+  {% endschema %}

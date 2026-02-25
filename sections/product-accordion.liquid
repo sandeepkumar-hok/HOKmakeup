@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="b-accordion m-full">
+    <div class="b-accordion-item">
+      <span class="b-accordion-control">
+        {{ section.settings.acc_head }}
+        {% comment %}
+          <div class="accordion-glimpse">{% if section.settings.pag_info != blank %}
+          {{ section.settings.pag_info.content | truncatewords: 4 }}
+          {% else %}
+          {{ section.settings.pg_cont | truncatewords: 4 }}
+          {% endif %}</div>
+        {% endcomment %}
+      </span>
+      <div class="b-accordion-container b-pdp_accordion-column m-wide">
+        <p>
+          {% if section.settings.pag_info != blank %}
+            {{ section.settings.pag_info.content }}
+          {% else %}
+            {{ section.settings.pg_cont }}
+          {% endif %}
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+            {% endcase %}
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Product Accordion",
+"settings": [
+{
+"type": "text",
+"id": "acc_head",
+"label": "Accordion Heading"
+},
+{
+"type": "richtext",
+"id": "pg_cont",
+"label": "Accordion Content"
+},
+{
+"type": "page",
+"id": "pag_info",
+"label": "Page Info"
+}
+
+],
+"blocks":[
+{
+"type": "@app"
+}
+],
+"presets": [
+{
+
+"name": "Product Accordion"
+
+}
+]
+}
+{% endschema %}

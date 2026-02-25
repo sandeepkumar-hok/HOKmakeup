@@ -1,0 +1,52 @@
+.banner-deal-of-the-day{
+position: relative;
+}
+.swipe-button {
+text-align: center;
+margin: auto;
+width: 150px;
+position: absolute;
+top: 82%;
+left: 50%;
+color:#fff;
+transform: translateX(-50%);
+}
+.swipe-button p{
+font-size: clamp(15px, 2vw, 17px);
+font-weight: 500;
+}
+.arrow-container-banner {
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+
+.swipe-arrow {
+width: 26px;
+height: 18px;
+margin-top: -7px;
+}
+
+.swipe-arrow:nth-child(1) {
+animation: arrowMove 1.3s infinite ease-in-out;
+}
+.swipe-arrow:nth-child(2) {
+animation: arrowMove 1.3s infinite ease-in-out;
+animation-delay: 0.1s;
+}
+
+@keyframes arrowMove {
+0% {
+transform: translateY(10px);
+opacity: 0.5;
+}
+50% {
+transform: translateY(0);
+opacity: 1;
+}
+100% {
+transform: translateY(-10px);
+opacity: 0.5;
+}
+}

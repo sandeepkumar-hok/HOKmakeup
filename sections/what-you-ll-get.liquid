@@ -1,0 +1,221 @@
+<!--section/what-you-ll-get.liquid-->
+{{ 'what-you-ll-get.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    padding-left: {{ section.settings.padding_top_desktop }}px;
+    padding-right: {{ section.settings.padding_top_desktop }}px;
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+{%- endstyle -%}
+{% schema %}
+{
+  "name": "What You'll Get",
+  "tag": "section",
+   "settings": [
+      {
+    "type": "header",
+    "content": "Desktop Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Top",
+    "default": 0
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Bottom",
+    "default": 0
+  },
+  {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+  {
+    "type": "header",
+    "content": "Mobile Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Top",
+    "default": 0
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Bottom",
+    "default": 0
+  },
+      {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "WHAT YOU’LL GET?"
+        },
+        {
+          "type": "richtext",
+          "id": "subheading",
+          "label": "sub-Heading",
+          "default": "<p>Get free products every month to start your content journey</p>"
+        }   
+   ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Tier Block",
+      "settings": [
+        
+        {
+          "type": "text",
+          "id": "level_title",
+          "label": "Level Title",
+          "default": "Level 1"
+        },
+        {
+          "type": "text",
+          "id": "level_name",
+          "label": "Level Name",
+          "default": "BEGINNER"
+        },
+        {
+          "type": "richtext",
+          "id": "note",
+          "label": "contents",
+          "default": "<p>Get free products every month to start your content journey</p>"
+        }
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What You'll Get Section",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+<section class="what-you-get-section section-{{ section.id }}-margin ">
+  <div class="what-you-get-container container"> 
+    <h2 class="section-title"> {{ section.settings.heading }}</h2>
+    <div class="section-subtitle">
+     {{ section.settings.subheading }}
+    </div>
+    <!-- Swiper container -->
+    <div class="swiper what-you-get-swiper section-{{ section.id }}-padding">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="contaiter--text swiper-slide">
+            <div class="tier-box {% if block.settings.highlight %}star-level{% endif %}">
+              <div class="what-you-get-content content-{{ forloop.index }}">
+              <h3 class="tier-level">{{ block.settings.level_title }}</h3>
+              <h4 class="tier-name tier-text{{ forloop.index }}">{{ block.settings.level_name }}</h4>
+               </div>
+              {% if block.settings.note != blank %}
+                <div class="tier-note">{{ block.settings.note }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+         <div class="swiper-scrollbar essentials-scrollbar" ></div>  
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+      const swiper = new Swiper(".what-you-get-swiper", {
+        slidesPerView: 1.1,
+        spaceBetween: 22,
+        loop: false,
+        centeredSlides: true,
+        scrollbar: {
+          el: ".essentials-scrollbar",
+          hide: false,
+          draggable: true
+        }
+      });
+    }
+  });
+</script>
+
+
+

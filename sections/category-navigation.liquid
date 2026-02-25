@@ -1,0 +1,153 @@
+<div class="mobile_screen flex-column container">
+  <div
+    class="tab-nav"
+    location="{% if template == "index" %}home{% elsif template == "page.makeup-page" %}makeup{% else %}skincare{% endif %}"
+  >
+    <a
+      href="{% if template == "index" %}javascript:void(0){% else %}/{% endif %}"
+      class="tab-button{% if template == "index" %} active{% endif %}"
+      data-tab="home"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+          <path d="M8.81543 0.601562C9.18937 0.287078 9.71554 0.26754 10.1084 0.542969L10.1846 0.601562L18.252 7.39746V7.39648C18.502 7.60735 18.6483 7.92358 18.6484 8.25879V8.60938H18.6504V17.5352C18.6504 18.1574 18.1579 18.6502 17.5684 18.6504H13.584C12.9944 18.6504 12.502 18.1575 12.502 17.5352V13.2334C12.5019 12.2394 11.7107 11.4189 10.7197 11.4189H8.28027C7.28935 11.4189 6.4981 12.2394 6.49805 13.2334V17.5352C6.49805 18.1575 6.00565 18.6504 5.41602 18.6504H1.43164C0.842134 18.6502 0.349609 18.1574 0.349609 17.5352V8.26074C0.349636 7.9254 0.496954 7.60938 0.74707 7.39844L8.81543 0.601562Z" stroke="black" stroke-width="0.7"/>
+        </svg>
+        <span class="position-relative top-1px">
+          Home
+        </span>
+    </a>
+    <a href="{% if template == "page.makeup-page" %}javascript:void(0){% else %}/pages/mega-festive-sale{% endif %}"
+      class="tab-button{% if template == "page.makeup-page" %} active{% endif %}"
+      data-tab="makeup"
+    >
+      <span class="before-extra"></span>
+      <div class="div-left"><br></div>
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+        <path d="M7.41749 5.48289C7.73792 5.48289 7.99673 5.71721 7.99673 6.00377V17.8414C7.99673 18.1296 7.73616 18.3623 7.41749 18.3623H1.28349C0.963059 18.3623 0.704248 18.128 0.704248 17.8414V6.00377C0.704248 5.71563 0.96482 5.48289 1.28349 5.48289H7.41749ZM7.41749 4.84961H1.28349C0.573962 4.84961 0 5.36732 0 6.00377V17.8414C0 18.4795 0.575723 18.9956 1.28349 18.9956H7.41749C8.12702 18.9956 8.70098 18.4779 8.70098 17.8414V6.00377C8.70098 5.36574 8.12526 4.84961 7.41749 4.84961Z" fill="black"/>
+        <path d="M5.01777 8.01414C6.66042 8.01414 7.99673 9.2158 7.99673 10.6929V17.8443C7.99673 18.1324 7.73616 18.3652 7.41749 18.3652H1.28349C0.963059 18.3652 0.704248 18.1309 0.704248 17.8443V10.6929C0.704248 9.2158 2.04056 8.01414 3.68322 8.01414H5.01777ZM5.01777 7.38086H3.68322C1.6497 7.38086 0 8.86433 0 10.6929V17.8443C0 18.4823 0.575723 18.9984 1.28349 18.9984H7.41749C8.12702 18.9984 8.70098 18.4807 8.70098 17.8443V10.6929C8.70098 8.86433 7.05128 7.38086 5.01777 7.38086Z" fill="black"/>
+        <path d="M17.7144 11.0591C18.0348 11.0591 18.2936 11.2934 18.2936 11.5799V17.8463C18.2936 18.1344 18.033 18.3672 17.7144 18.3672H11.5804C11.2599 18.3672 11.0011 18.1328 11.0011 17.8463V11.5799C11.0011 11.2918 11.2617 11.0591 11.5804 11.0591H17.7144ZM17.7144 10.4258H11.5804C10.8708 10.4258 10.2969 10.9435 10.2969 11.5799V17.8463C10.2969 18.4843 10.8726 19.0004 11.5804 19.0004H17.7144C18.4239 19.0004 18.9979 18.4827 18.9979 17.8463V11.5799C18.9979 10.9419 18.4221 10.4258 17.7144 10.4258Z" fill="black"/>
+        <path d="M17.5193 2.0918V10.5794H11.9258V4.16738" stroke="black" stroke-width="0.7" stroke-miterlimit="10"/>
+        <path d="M15.8425 0.633284C16.177 0.633284 16.4587 0.714027 16.6788 0.872348C17.4886 1.45655 17.2774 2.95585 16.2175 4.14326C15.4833 4.96494 14.4569 5.4969 13.603 5.4969C13.2684 5.4969 12.9867 5.41616 12.7667 5.25784C12.2825 4.90795 12.2561 4.30158 12.2843 3.97069C12.3388 3.31999 12.6839 2.59646 13.2279 1.98693C13.9621 1.16524 14.9886 0.633284 15.8425 0.633284ZM15.8425 0C14.8019 0 13.5854 0.574705 12.6786 1.58954C11.3546 3.07301 11.1962 4.93645 12.3265 5.7518C12.6822 6.00828 13.1241 6.13019 13.603 6.13019C14.6435 6.13019 15.8618 5.55548 16.7668 4.54064C18.0908 3.05718 18.2492 1.19374 17.1189 0.378387C16.7633 0.121907 16.3214 0 15.8425 0Z" fill="black"/>
+        <path d="M12.0352 8.36719H17.4579" stroke="black" stroke-width="0.7" stroke-miterlimit="10"/>
+      </svg>
+       <span class="position-relative top-1px">
+         Makeup
+        </span>
+      <div class="div-right"><br></div>
+      <span class="after-extra"></span>
+    </a>
+    <a
+      href="{% if template == "page.skin-care" %}javascript:void(0){% else %}/pages/skincare{% endif %}"
+      class="tab-button{% if template == "page.skin-care" %} active{% endif %}"
+      data-tab="skincare"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="19" viewBox="0 0 13 19" fill="none">
+        <path d="M8.89162 14.3994C9.63767 14.3994 10.2434 15.0067 10.2434 15.7512V17.0106C10.2434 17.7566 9.63608 18.3624 8.89162 18.3624H3.78244C3.03639 18.3624 2.43062 17.755 2.43062 17.0106V15.7512C2.43062 15.0051 3.03798 14.3994 3.78244 14.3994H8.89162ZM8.89162 13.7617H3.78244C2.68409 13.7617 1.79297 14.6528 1.79297 15.7512V17.0106C1.79297 18.1089 2.68409 19 3.78244 19H8.89162C9.98998 19 10.8811 18.1089 10.8811 17.0106V15.7512C10.8811 14.6528 9.98998 13.7617 8.89162 13.7617Z" fill="black"/>
+        <path d="M11.6818 0.637651C11.8794 0.637651 12.0389 0.798658 12.0389 0.994736V1.62442C12.0389 1.82209 11.8778 1.9815 11.6818 1.9815H0.994737C0.797065 1.9815 0.637651 1.82049 0.637651 1.62442V0.994736C0.637651 0.797064 0.798659 0.637651 0.994737 0.637651H11.6818ZM11.6818 0H0.994737C0.444763 0 0 0.444762 0 0.994736V1.62442C0 2.17439 0.444763 2.61915 0.994737 2.61915H11.6818C12.2317 2.61915 12.6765 2.17439 12.6765 1.62442V0.994736C12.6765 0.444762 12.2317 0 11.6818 0Z" fill="black"/>
+        <path d="M11.4507 2.59859L9.4835 13.9057H3.17394L1.20679 2.59859H11.4491M12.2095 1.96094H0.451172L2.63991 14.5434H10.0207L12.2095 1.96094Z" fill="black"/>
+        <path d="M2.13281 10.989C7.12403 9.49846 10.4478 11.2807 10.4478 11.2807" stroke="black" stroke-width="0.7" stroke-miterlimit="10"/>
+      </svg>
+      <span class="position-relative top-1px">
+          Skincare
+        </span>
+      <span class="after-extra"></span>
+    </a>
+  </div>
+  <div
+    class="tab-content active"
+    id="{% if template == "index" %}home{% elsif template == "page.makeup-page" %}makeup{% else %}skincare{% endif %}"
+  >
+    <div class="category-cards">
+      {% for block in section.blocks %}
+         {% liquid 
+              assign img = block.settings.image
+               if forloop.index < 4
+                assign fetch_priority = 'high'
+                assign lazy_loading = 'eager'
+              else
+                assign fetch_priority = 'auto'
+                 assign lazy_loading = 'lazy'
+              endif
+              if template == 'index'
+                assign card_width = '90'
+                assign card_height = '90'
+              else
+                assign card_width = 'auto'
+                assign card_height = '55'
+              endif
+            %}
+        <div class="tab-product-cards">
+          {% assign primary_ratio = img.aspect_ratio | default: 1.777 %}
+          <a href="{{ block.settings.collection_link }}" title="{{ block.settings.title | escape }}">
+           <div class="swiper-media-container" style="aspect-ratio: {{ primary_ratio }}">
+             {% comment %} {{
+                img
+                | image_url: width: card_width , height: card_height , format: 'webp'
+                | image_tag:
+                  width: '100%',
+                  height: 'auto',
+                  loading: lazy_loading,
+                  fetchpriority: fetch_priority,
+                  alt: block.settings.title
+              }} {% endcomment %}
+              <img
+                width="{{ card_width }}"
+                height="{{ card_height }}"
+                src="{{ img | image_url }}"
+                loading="{{ lazy_loading }}"
+                fetchpriority="{{ fetch_priority }}"
+                alt="{{ block.settings.title | escape }}"
+              >
+            </div>
+            {% if block.settings.title %}
+              <p class="fw-semibold">{{ block.settings.title }}</p>
+            {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+  {% if template == 'index' %}
+  <style>
+    .top-nav-categories{
+      background: #ffffff;
+    }
+  </style>
+  {% endif %}
+{% schema %}
+{
+  "name": "Category Navigation",
+  "class": "top-nav-categories",
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Categories",
+      "settings": [
+          {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "Category Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Makeup"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Navigation"
+    }
+  ]
+}
+{% endschema %}

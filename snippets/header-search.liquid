@@ -1,0 +1,227 @@
+<!-- header-search.liuid-->
+<details-modal class="header__search">
+  <details open>
+  <summary class="visually-hidden" aria-hidden="true">Search</summary>
+
+    <div
+      class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+      tabindex="-1"
+    >
+      {%- if settings.predictive_search_enabled -%}
+        <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+      {%- else -%}
+        <search-form class="search-modal__form">
+      {%- endif -%}
+
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+        <div class="field">
+          <input
+            class="search__input field__input"
+            id="{{ input_id }}"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder='Search for "facewash"'
+            data-rotate='["cleansers","toners","brands","foundation"]'
+            data-rotate-interval="2200"
+            {%- if settings.predictive_search_enabled -%}
+              role="combobox"
+              aria-expanded="false"
+              aria-owns="predictive-search-results"
+              aria-controls="predictive-search-results"
+              aria-haspopup="listbox"
+              aria-autocomplete="list"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+            {%- endif -%}
+          >
+          <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+          <input type="hidden" name="options[prefix]" value="last">
+
+          <button
+            type="reset"
+            class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+            aria-label="{{ 'general.search.reset' | t }}"
+          >
+            <span class="svg-wrapper">
+              {{- 'icon-reset.svg' | inline_asset_content -}}
+            </span>
+          </button>
+
+          <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}" type="submit">
+            <span class="svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M15.5356 15.5417L18.2023 18.2083" stroke="#393939" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8.20833 15.5417C12.2584 15.5417 15.5417 12.2584 15.5417 8.20833C15.5417 4.15824 12.2584 0.875 8.20833 0.875C4.15824 0.875 0.875 4.15824 0.875 8.20833C0.875 12.2584 4.15824 15.5417 8.20833 15.5417Z" stroke="black" stroke-width="1.3"/>
+            <path d="M13.542 13.5417L18.8753 18.875" stroke="black" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </span>
+          </button>
+        </div>
+
+        {%- if settings.predictive_search_enabled -%}
+          <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+            {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+          </div>
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+        {%- endif -%}
+      </form>
+
+      {%- if settings.predictive_search_enabled -%}
+        </predictive-search>
+      {%- else -%}
+        </search-form>
+      {%- endif -%}
+    </div>
+  </details>
+</details-modal>
+<style>
+.header__search .search-modal__content {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+.header__search .search-modal__form,
+.header__search form.search {
+  width: 90%;
+}
+.header__search .field {
+  position: relative;
+  width: 100%;
+  max-width: 720px; 
+  margin: 0 auto;
+}
+
+.header__search .search__input.field__input {
+  width: 100%;
+  height: 46px;
+  border-radius: 50px !important;
+  border: 1.5px solid #DDDBDB !important;
+  background: #fff !important;
+  padding:22px  22px !important; 
+  box-shadow: none !important;
+}
+.header__search .search__input.field__input:focus {
+  background: #fff !important;
+  border-color:#DDDBDB !important;
+  outline: none !important;
+}
+
+.header__search .field__label {
+  display: none !important;
+}
+.header__search .reset__button {
+  display: none !important;
+}
+.header__search .search__button.field__button {
+  position: absolute !important;
+  right: 22px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  line-height:44px;
+  cursor: pointer;
+}
+.header__search .search__button .svg-wrapper {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header__search .predictive-search.predictive-search--header {
+  margin-top: 8px;
+  border-radius: 12px;
+  z-index: 9999;
+}
+#Search-In-Modal-1::placeholder {
+  opacity: 1 !important;
+  color: #B0AEAE!important;
+ font-size: 14px;
+ font-style: normal;
+ line-height: normal;
+}
+#Search-In-Modal-1::-webkit-input-placeholder {
+  opacity: 1 !important;
+  color: #B0AEAE !important;
+  font-size: 14px;
+}
+#Search-In-Modal-1::-moz-placeholder {
+  opacity: 1 !important;
+  color: #B0AEAE !important;
+  font-size: 14px;
+}
+#Search-In-Modal-1:-ms-input-placeholder {
+  opacity: 1 !important;
+  color: #B0AEAE !important;
+  font-size: 16px;
+  
+}
+
+@media screen and (max-width: 769px) {
+  .header__search .search-modal__form,
+.header__search form.search {
+  width: 100%;
+}
+  .header__search .search__input.field__input {
+  border-radius:50px !important;}
+  #Search-In-Modal-1::placeholder {
+     font-size: 12px;
+  }
+  .header__search .search__button.field__button {
+    line-height:normal;
+    display:block;
+  }
+  .header__search .search__input.field__input{
+    height:20px !important;
+    margin:8px 0px 12px 0px;
+    padding:18px !important;;
+  }
+  #Search-In-Modal-1 input[type="search"]::placeholder {
+    font-weight:300px !important;
+  }
+  #Search-In-Modal-1::placeholder{
+    font-size: 16px;
+  }
+  .header__search .search__button .svg-wrapper {padding-bottom:7px;}
+}
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const inputs = document.querySelectorAll('input[data-rotate]');
+
+  inputs.forEach((input) => {
+    let words = [];
+    try {
+      words = JSON.parse(input.getAttribute("data-rotate"));
+    } catch (e) {
+      return;
+    }
+
+    if (!words.length) return;
+
+    const interval =
+      parseInt(input.getAttribute("data-rotate-interval"), 10) || 1200;
+
+    let index = 0;
+
+    const setPlaceholder = (word) => {
+      input.placeholder = `Search for "${word}"`;
+    };
+    setPlaceholder(words[index]);
+
+    setInterval(() => {
+      if (document.activeElement === input && input.value.length > 0) return;
+      index = (index + 1) % words.length;
+      setPlaceholder(words[index]);
+    }, interval);
+  });
+});
+</script>

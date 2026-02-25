@@ -1,0 +1,441 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}",
+        "h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_community_PXfd43": {
+      "type": "image-with-text-community",
+      "name": "image with text community",
+      "settings": {
+        "image": "shopify://shop_images/Frame_37504.png",
+        "image_mobile": "shopify://shop_images/Frame_37769.png",
+        "description_text": "<p><strong>Ready to be part of something bigger? A community of beauty besties</strong><br/><br/>Think: a glam squad of creators, influencers, and college cool kids all rising together. Wanna grow your page, get brand perks, and drop content? <br/><br/>This is <em><strong>your sign.</strong></em> Here to hype, help, and make <strong>you </strong>the next big thing. <br/>Let’s fly, fam</p>",
+        "padding_top_desktop": 100,
+        "padding_bottom_desktop": 70,
+        "padding_top_mobile": 70,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "rich_text_3mXMAh": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_PgzWfg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Flock Together with #HOKSQUAD",
+            "heading_size": "h1"
+          }
+        },
+        "text_NxEcax": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We’re not gatekeeping this glow-up</p><p></p><ol><li>Whether you're serving lewks or just finding your light — there's room for you here.</li><li>This isn’t just a creator fam. It’s your beauty launchpad.</li></ol><p>               <em>Come through, trendsetters!</em></p><p>                 <strong>  Let’s do this!</strong></p>"
+          }
+        },
+        "button_ynnWPh": {
+          "type": "button",
+          "settings": {
+            "button_label": "Apply Now",
+            "button_link": "#",
+            "button_style_secondary": true,
+            "button_label_2": "",
+            "button_link_2": "#",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_PgzWfg",
+        "text_NxEcax",
+        "button_ynnWPh"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 990px) {.rich-text__blocks {max-width: 100%; }}",
+        "@media screen and (max-width: 768) {.rich-text__wrapper {width: calc(100% - 3rem / var(--font-body-scale)); }}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "background_color": "#ffffff",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top_desktop": 180,
+        "padding_bottom_desktop": 120,
+        "padding_top_mobile": 120,
+        "padding_bottom_mobile": 64
+      }
+    },
+    "community_creator_brand_DMYLqr": {
+      "type": "community-creator-brand",
+      "blocks": {
+        "stat_block_E4rHXW": {
+          "type": "stat_block",
+          "settings": {
+            "number": "3000+",
+            "text": "creators carving their space",
+            "subtext": ""
+          }
+        },
+        "stat_block_339Xem": {
+          "type": "stat_block",
+          "settings": {
+            "number": "2000+",
+            "text": "brand collabs",
+            "subtext": "(ft. K-beauty, skincare & makeup)"
+          }
+        },
+        "stat_block_6zecff": {
+          "type": "stat_block",
+          "settings": {
+            "number": "∞",
+            "text": "chances to level-up your vibe",
+            "subtext": ""
+          }
+        }
+      },
+      "block_order": [
+        "stat_block_E4rHXW",
+        "stat_block_339Xem",
+        "stat_block_6zecff"
+      ],
+      "name": "community creator brand",
+      "settings": {
+        "margin_top_desktop": 26,
+        "margin_bottom_desktop": 136,
+        "margin_top_mobile": 42,
+        "margin_bottom_mobile": 156
+      }
+    },
+    "choose_your_path_nYYjK3": {
+      "type": "choose-your-path",
+      "blocks": {
+        "path_block_drDWaz": {
+          "type": "path_block",
+          "settings": {
+            "background_color": "#e9ff47",
+            "tab_label": "Campus Ambassador",
+            "image": "shopify://shop_images/Frame_37760_7d372fcb-7637-4a08-a300-f100dbffdc9f.png",
+            "text-para": "You're the go-to glam guru in your college crew! From dorm-room GRWMs to campus beauty challenges, you're spreading the HOK love right where the buzz is — your campus.",
+            "text": "<p><strong>Why it slaps :</strong></p><ul><li>No campus needed — it’s all about your vibe & reach</li><li>Create cool content, join campaigns & stack your commissions</li><li>Get reposted by HOK, land paid collabs & unlock exclusive goodies</li><li>Ideal for creators, micro-influencers, and beauty lovers with range</li><li>Grow with us through tiers: from free PR to full-on paid deals</li></ul><p></p>",
+            "text_url": "Apply as  Brand Ambassador",
+            "url": ""
+          }
+        },
+        "path_block_EFaUXp": {
+          "type": "path_block",
+          "settings": {
+            "background_color": "#e9ff47",
+            "tab_label": "Campus Ambassador",
+            "image": "shopify://shop_images/Frame_9487_806e9b71-26cd-4090-947b-9c29dbfe9305.png",
+            "text-para": "You're a content queen (or king) ruling the feed! Whether you’re serving looks from your bedroom or sharing hot takes on trending makeup, you rep HOK to your growing online fam.",
+            "text": "<p><strong>Why it pops  :</strong></p><ul><li>No campus needed — it’s all about your vibe & reach</li><li>Create cool content, join campaigns & stack your commissions</li><li>Get reposted by HOK, land paid collabs & unlock exclusive goodies</li><li>Ideal for creators, micro-influencers, and beauty lovers with range</li><li>Grow with us through tiers: from free PR to full-on paid deals</li></ul>",
+            "text_url": "Apply as  Brand Ambassador",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "path_block_drDWaz",
+        "path_block_EFaUXp"
+      ],
+      "name": "Choose Your Path",
+      "settings": {
+        "title": "Choose Your Path",
+        "padding_top_desktop": 60,
+        "padding_bottom_desktop": 20,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "single_banner_cEyXbV": {
+      "type": "single_banner",
+      "custom_css": [
+        ".container-fluid {width: 70%;}",
+        ".top_heading_banner {color: #a8b52e; text-align: center; font-family: \"Mosvita\"; font-weight: 800; font-size: 40px; margin-bottom: 60px; line-height: 32px; text-transform: uppercase;}",
+        "@media (max-width: 768px) {.top_heading_banner {font-size: 24px; }}"
+      ],
+      "name": "Single Banner",
+      "settings": {
+        "margin_top_desktop": 180,
+        "margin_bottom_desktop": 36,
+        "padding_top_desktop": 82,
+        "padding_bottom_desktop": 62,
+        "background_color": "#fdffe6",
+        "margin_top_mobile": 86,
+        "margin_bottom_mobile": 88,
+        "padding_top_mobile": 60,
+        "padding_bottom_mobile": 60,
+        "heading_text": "what you’ll do?",
+        "shradhha_link": "",
+        "image": "shopify://shop_images/Frame_37768.png",
+        "image_mobile": "shopify://shop_images/Frame_37767.png"
+      }
+    },
+    "what_you_ll_get_BiUDYt": {
+      "type": "what-you-ll-get",
+      "blocks": {
+        "tier_QqGLfN": {
+          "type": "tier",
+          "settings": {
+            "level_title": "Level 1",
+            "level_name": "BEGINNER",
+            "note": "<p><em>For fresh faces ready to glow up!</em></p><ul><li>Get <strong>free products</strong> every month to start your creator journey</li><li>Earn <strong>10% commission</strong> on every sale through your link</li><li><strong>Exclusive access</strong> to monthly campaigns & creator toolkits<br/><br/><em>Be part of a growing community of beauty lovers</em><br/><br/><br/><br/><br/><br/></li></ul>"
+          }
+        },
+        "tier_ATefqN": {
+          "type": "tier",
+          "settings": {
+            "level_title": "Level 2",
+            "level_name": "ENGAGED",
+            "note": "<p><em>For who brings the vibes (& the conversions)!</em></p><ul><li>Extra <strong>PR</strong> drops curated just for you</li><li>Boosted <strong>commission: 15%</strong> per sale</li><li>Your best<strong> stories get reposted</strong> on our socials</li><li><strong>Early access</strong> to new launches & collab invite</li></ul><p><br/><em>More visibility = More growth</em><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></p>"
+          }
+        },
+        "tier_rFBEf9": {
+          "type": "tier",
+          "settings": {
+            "level_title": "Level 3",
+            "level_name": "STAR CREATOR",
+            "note": "<p><em>You're not just part of HokSquad—you lead it!</em></p><ul><li>Earn up to <strong>20% commission</strong> on affiliate sales</li><li>Land <strong>paid </strong>collaborations & brand sponsorships</li><li><strong>Get featured</strong> in our campaigns, newsletters & website</li><li><strong>Co-create</strong> with the HOK team on upcoming launches</li><li><strong>Priority access</strong> to product trials, events & spotlights<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "tier_QqGLfN",
+        "tier_ATefqN",
+        "tier_rFBEf9"
+      ],
+      "name": "What You'll Get Section",
+      "settings": {
+        "margin_top_desktop": 180,
+        "margin_bottom_desktop": 160,
+        "padding_top_desktop": 66,
+        "padding_bottom_desktop": 60,
+        "background_color": "#ffffff",
+        "margin_top_mobile": 64,
+        "margin_bottom_mobile": 70,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "heading": "WHAT YOU’LL GET?",
+        "subheading": "<p>Every new level brings a little more joy —<strong>Level up</strong> to unlock <strong>special perks, early access, and a few surprises</strong></p><p><em>It’s our way of saying thanks for being here.</em></p>"
+      }
+    },
+    "experience_highlights_GhMdti": {
+      "type": "experience-highlights",
+      "blocks": {
+        "experience_nYMpit": {
+          "type": "experience",
+          "settings": {
+            "image": "shopify://shop_images/Frame_37720.png"
+          }
+        },
+        "experience_dVfybY": {
+          "type": "experience",
+          "settings": {
+            "image": "shopify://shop_images/Frame_37720.png"
+          }
+        },
+        "experience_fkkzLY": {
+          "type": "experience",
+          "settings": {
+            "image": "shopify://shop_images/Frame_37720.png"
+          }
+        },
+        "experience_GeMPdP": {
+          "type": "experience",
+          "settings": {
+            "image": "shopify://shop_images/Frame_37720.png"
+          }
+        }
+      },
+      "block_order": [
+        "experience_nYMpit",
+        "experience_dVfybY",
+        "experience_fkkzLY",
+        "experience_GeMPdP"
+      ],
+      "name": "Experience Highlights",
+      "settings": {
+        "title": "WHAT YOU’LL EXPERIENCE?",
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 36,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20
+      }
+    },
+    "single_banner_pYUQiG": {
+      "type": "single_banner",
+      "custom_css": [
+        ".container-fluid {width: 70%;}",
+        ".top_heading_banner {color: #191919; text-align: center; font-family: \"Mosvita\"; font-weight: 800; margin-bottom: 60px; font-size: 40px; font-style: normal; line-height: 32px; text-transform: uppercase;}",
+        "@media (max-width: 768px) {.top_heading_banner {font-size: 24px; }}"
+      ],
+      "name": "Single Banner",
+      "settings": {
+        "margin_top_desktop": 150,
+        "margin_bottom_desktop": 180,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 0,
+        "background_color": "#ffffff",
+        "margin_top_mobile": 18,
+        "margin_bottom_mobile": 42,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 0,
+        "heading_text": "rewards",
+        "shradhha_link": "",
+        "image": "shopify://shop_images/Frame_37542.png",
+        "image_mobile": "shopify://shop_images/Frame_37697.png"
+      }
+    },
+    "how_it_work_K6fQtd": {
+      "type": "how-it-work",
+      "blocks": {
+        "step_iPMD9d": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "heading": "Join the Squad",
+            "description": "<p>Sign up and get your exclusive affiliate code + tracking link.</p><p><em>Quick, easy & free.</em></p>",
+            "button_label": "Apply Now",
+            "button_link": "#"
+          }
+        },
+        "step_wqB8wz": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "heading": "Share your Code",
+            "description": "<p>Create fun, authentic content <strong>– share your code </strong>with friends, followers, & beauty fam.</p><p><em>Spread the word, make it big</em></p>",
+            "button_label": "Apply Now",
+            "button_link": ""
+          }
+        },
+        "step_6wkjmf": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "heading": "Earn Commission",
+            "description": "<p>Every time someone shops using your link or code, you earn up to <strong>20% commission.</strong></p><p><em>Watch your earnings grow.</em></p>",
+            "button_label": "Apply Now",
+            "button_link": ""
+          }
+        },
+        "step_bk83Wz": {
+          "type": "step",
+          "settings": {
+            "step_number": "4",
+            "heading": "Level Up",
+            "description": "<p>Top creators get access to <strong>monthly bonuses, PR kits, paid collabs, & VIP features.</strong></p><p><em>Create more, Gain more!</em></p>",
+            "button_label": "Apply Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_iPMD9d",
+        "step_wqB8wz",
+        "step_6wkjmf",
+        "step_bk83Wz"
+      ],
+      "name": "How It Works",
+      "settings": {
+        "margin_top_desktop": 40,
+        "margin_bottom_desktop": 160,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 100,
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 60,
+        "title": "How it works?"
+      }
+    },
+    "skin_care_icons_iUjPXE": {
+      "type": "skincare-icons",
+      "blocks": {
+        "icon_item_etw9am": {
+          "type": "icon_item",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_37552.png",
+            "heading": "",
+            "text": "<p><strong>Where the squad lives —</strong>daily updates, memes, and all the juice drops here first.</p>"
+          }
+        },
+        "icon_item_xiLU9c": {
+          "type": "icon_item",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_37553.png",
+            "heading": "",
+            "text": "<p><strong>Your digital HQ</strong> for briefs, insights, and exclusive creator perks. Keep those notifications on!</p>"
+          }
+        },
+        "icon_item_TgBPQa": {
+          "type": "icon_item",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_37554.png",
+            "heading": "",
+            "text": "<p><strong>Virtual face-time for brainstorms,</strong> creator catch-ups, and all the big ideas you can’t text.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_item_etw9am",
+        "icon_item_xiLU9c",
+        "icon_item_TgBPQa"
+      ],
+      "custom_css": [
+        ".icon-card {max-width: 223px; text-align: center;}",
+        ".icon-img {width: 220px; height: 220px; margin-bottom: 24px;}",
+        ".icon-card p {font-weight: 400; font-size: clamp(12px, 2vw, 18px);}",
+        "@media (max-width: 768px) {.skincare-icons-grid {gap: 10px; width: 100%; flex-wrap: nowrap; } .icon-card p {text-align: center; } .icon-img {width: 100%; margin: 0px auto 16px; height: 100px; }}"
+      ],
+      "name": "Skincare Icons",
+      "settings": {
+        "heading": "How will we stay in touch?",
+        "margin_top_desktop": 36,
+        "margin_bottom_desktop": 36,
+        "padding_text_top_desktop": 20,
+        "padding_text_bottom_desktop": 20,
+        "margin_top_mobile": 24,
+        "margin_bottom_mobile": 24,
+        "padding_text_top_mobile": 24,
+        "padding_text_bottom_mobile": 24
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_community_PXfd43",
+    "rich_text_3mXMAh",
+    "community_creator_brand_DMYLqr",
+    "choose_your_path_nYYjK3",
+    "single_banner_cEyXbV",
+    "what_you_ll_get_BiUDYt",
+    "experience_highlights_GhMdti",
+    "single_banner_pYUQiG",
+    "how_it_work_K6fQtd",
+    "skin_care_icons_iUjPXE"
+  ]
+}

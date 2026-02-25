@@ -1,0 +1,221 @@
+<!-- section/exclusive-offer-deal-day.liquid -->
+{{ 'exclusive-offer-deal-day.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_mobile }}px;
+  margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  }
+{%- endstyle -%}
+<div class="exclusive-offer page-width section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <div class="animation-wrapper-top">
+    <div class="baneer-text-offer">
+      <div
+        class="offer-banner"
+        style="background-color: {{ section.settings.background_color }};"
+       
+      >
+        <div class="offer-text" style="color: {{ section.settings.text_color }};">
+          {{ section.settings.offer_text }}
+        </div>
+        <button
+          class="copy-code"
+          style="background: {{ section.settings.button_bg }}; color: {{ section.settings.button_text }};"
+        >
+          {{ 'Tap to apply code ' -}}
+          <br>
+          <a
+            href="https://hokmakeup.com/?fastrrCouponCode={{ section.settings.discount_code }}"
+            class="apply-coupon"
+            data-code="{{ section.settings.discount_code }}"
+          >
+            {{- section.settings.discount_code -}}
+          </a>
+        </button>
+        <div class="cutout-before"></div>
+        <div class="cutout-after"></div>
+        <div class="shimmer-effect"></div>
+      </div>
+
+      <div
+        class="exclusive-text-blocks"
+      >
+        {% for block in section.blocks %}
+          {% if block.settings.text_content %}
+            <p
+              class="text-block text-block-index-{{ forloop.index }}"
+              style="color: {{ block.settings.text_color }};"
+            >
+              {{ block.settings.text_content }}
+            </p>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+"name": "Exclusive Offer Banner",
+"settings": [
+{
+"type": "html",
+"id": "offer_text",
+"label": "Offer Text"
+
+},
+
+{
+"type": "text",
+"id": "discount_code",
+"label": "Discount Code",
+"default": "WELCOME2HOK"
+},
+{
+"type": "color",
+"id": "background_color",
+"label": "Background Color",
+"default": "#ff4da6"
+},
+{
+"type": "color",
+"id": "text_color",
+"label": "Text Color",
+"default": "#ffff00"
+},
+{
+"type": "color",
+"id": "button_bg",
+"label": "Button Background Color",
+"default": "#000000"
+},
+{
+"type": "color",
+"id": "button_text",
+"label": "Button Text Color",
+"default": "#ffffff"
+},
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_top_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_bottom_mobile",
+"min": 0,
+"max": 100,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Mobile)",
+"default": 20
+}
+
+],
+"blocks": [
+{
+"type": "text_block",
+"name": "Text Block",
+"settings": [
+{
+"type": "text",
+"id": "text_content",
+"label": "Text",
+"default": "STEP INTO"
+},
+{
+"type": "color",
+"id": "text_color",
+"label": "Text Color",
+"default": "#4b4cff"
+}
+
+]
+}
+],
+"presets": [
+{
+"name": "Exclusive Offer Banner"
+}
+]
+}
+{% endschema %}

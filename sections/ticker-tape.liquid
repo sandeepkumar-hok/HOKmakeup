@@ -1,0 +1,84 @@
+<div class="tabbY2">
+  <a href="{{ section.settings.url | default: '#' }}" alt="{{ section.settings.main_heading }}">
+    <div class="wrapper-9ioi">
+      <div class="tickertapexx">
+        {% for _ in (1..30) %}
+          <span>
+            {{ section.settings.main_heading }}
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+  </a>
+</div>
+<style>
+  /* Ticker Tape */
+ .wrapper-9ioi {
+    overflow:hidden;
+    position: relative;
+    text-align: center;
+    color: #7D7D7D;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    border-bottom: 0.5px solid #000;
+  }
+  .tickertapexx {
+    letter-spacing: 1px;
+    white-space: nowrap;
+    animation: ticker-kf 15s linear infinite;
+    position: absolute;
+    left: 0;
+    letter-spacing:normal;
+  }
+  .tickertapexx span{
+    color: #393939;
+    background: #fff;
+    font-size: 14px;
+    word-spacing: 2.5px;
+    letter-spacing: 0;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    /* text-transform: capitalize; */
+  }
+  .tickertapexx span[text="bold"]{
+    font-weight: 600;
+    margin: 0 5px 0px 10px;
+   }
+
+  @keyframes ticker-kf {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-750px, 0, 0);
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "ticker-tape",
+  "class": "ticker-sticky",
+  "settings": [
+    {
+    "type": "liquid",
+    "id": "main_heading",
+    "label": "HighLighted Text",
+    "default": "Don’t miss out!"
+    },
+     {
+    "type": "url",
+    "id": "url",
+    "label": "Add Your Link"
+    },
+    ],
+  "presets": [
+  {
+    "name": "ticker-tape"
+  }
+]
+}
+{% endschema %}

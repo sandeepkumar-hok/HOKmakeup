@@ -1,0 +1,285 @@
+{%- style -%}
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+     {% if section.settings.enable_bg %}
+        .section-{{ section.id }}-margin {
+          background-image: url({{ section.settings.bg | image_url }});
+          background-size: cover;
+          background-position: bottom;
+        };
+    {% endif %}
+  
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+    }
+  {%- endstyle -%}
+  <div class="section-{{ section.id }}-margin">
+    <div
+      class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in"
+    >
+      {% if section.settings['hero-banner'] != blank %}
+        <img
+          loading="lazy"
+          class="w-50 m-auto desktop_screen"
+          width="100%"
+          height="100%"
+          src="{{ section.settings['hero-banner'] |  image_url  }}"
+          alt="{{ section.settings['hero-banner'] | escape }}"
+        >
+      {% endif %}
+      {% if section.settings['hero-banner-mobile'] != blank %}
+        <img
+          loading="lazy"
+          class="w-100 m-auto mobile_screen"
+          width="100%"
+          height="100%"
+          src="{{ section.settings['hero-banner-mobile'] |  image_url  }}"
+          alt="{{ section.settings['hero-banner-mobile'] | escape }}"
+        >
+      {% endif %}
+      <div class="nav-wrapper{% if section.settings.snowflake_one %} snowflake_one{% endif %}{% if section.settings.snowflake_two %} snowflake_two{% endif %}{% if section.settings.snowflake_three %} snowflake_three{% endif %}">
+        <div
+          id="grid-container-{{ section.id }}"
+          class="{% if section.settings.showContainer == "container" %}spacing {% endif %}swiper"
+        >
+          <div class="row justify-content-center gap-3">
+            {% for block in section.blocks %}
+              <div class="col-5 col-sm-3 col-md-2 m-md-2 p-0">
+                <a href="{{ block.settings['banner-url'] }}">
+                  <img
+                    src="{{ block.settings.banner-image-desktop | image_url }}"
+                    class="{% if block.settings['banner-image-mobile'] != blank %}desktop_screen{% endif %}"
+                    height="100%"
+                    width="100%"
+                    loading="eager"
+                  >
+                  {% if block.settings['banner-image-mobile'] != blank %}
+                    <img
+                      src="{{ block.settings.banner-image-mobile | image_url }}"
+                      class="mobile_screen"
+                      height="100%"
+                      width="100%"
+                      loading="eager"
+                    >
+                  {% endif %}
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    {% if section.settings.snowflake_one %}
+         .section-{{ section.id }}-margin .nav-wrapper.snowflake_one:before {
+          content: "";
+          width: 350px;
+          height: 350px;
+          background-image: url(https://cdn.shopify.com/s/files/1/0896/2320/0023/files/2-min.png?v=1748331586);
+          position: absolute;
+          left: -14%;
+          top: -200px;
+          display: block;
+          background-size: cover;
+          background-position: center;
+          transform: rotate(340deg);
+        }
+        @media screen and (max-width: 768px) {
+          .section-{{ section.id }}-margin .nav-wrapper.snowflake_one:before {
+           width: 100px;
+            height: 100px;
+            left: -14%;
+            top: -80px;
+          }
+        }
+    {% endif %}
+        {% if section.settings.snowflake_two %}
+         .section-{{ section.id }}-margin .nav-wrapper.snowflake_two:after {
+          content: "";
+          width: 350px;
+          height: 350px;
+          background-image: url(https://cdn.shopify.com/s/files/1/0896/2320/0023/files/4-min.png?v=1748331586);
+          position: absolute;
+          right: -14%;
+          top: -230px;
+          transform: rotate(330deg);
+          display: block;
+          background-size: cover;
+          background-position: center;
+        }
+      @media screen and (max-width: 768px) {
+        .section-{{ section.id }}-margin .nav-wrapper.snowflake_two:after {
+           width: 100px;
+            height: 100px;
+            right: -18%;
+            top: -118px;
+          }
+         }
+    {% endif %}
+        {% if section.settings.snowflake_three %}
+         .section-{{ section.id }}-margin .nav-wrapper.snowflake_three:before {
+            content: "";
+            width: 350px;
+            height: 350px;
+            background-image: url(https://cdn.shopify.com/s/files/1/0896/2320/0023/files/shell-min.png?v=1748331587);
+            position: absolute;
+            left: -13%;
+            top: -230px;
+            display: block;
+            background-size: cover;
+            background-position: center;
+        }
+       @media screen and (max-width: 768px) {
+         .section-{{ section.id }}-margin .nav-wrapper.snowflake_three:before {
+              width: 100px;
+              height: 100px;
+              left: -18%;
+              top: -75px;
+          }
+         }
+    {% endif %}
+  </style>
+  {% schema %}
+  {
+    "name": "Grid Images",
+    "class": "image_grid",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "showContainer",
+        "label": "Choose Container Style",
+        "options": [
+          { "value": "full-width", "label": "Show Full Container" },
+          { "value": "spacesDesktop", "label": "Show Hok Container" },
+          { "value": "container", "label": "Show FrameWork Container" }
+        ],
+        "default": "full-width"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Mobile Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mobile",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin Bottom",
+        "default": 36
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-banner",
+        "label": "Hero Banner"
+      },
+      {
+        "type": "image_picker",
+        "id": "hero-banner-mobile",
+        "label": "Hero Banner Mobile"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_bg",
+        "label": "Enable background",
+        "default":false
+      },
+      {
+        "type": "image_picker",
+        "id": "bg",
+        "label": "Background Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "snowflake_one",
+        "label": "Enable First Snowflake",
+        "default":false
+      },
+      {
+        "type": "checkbox",
+        "id": "snowflake_two",
+        "label": "Enable Right-2 Snowflake",
+        "default":false
+      },
+      {
+        "type": "checkbox",
+        "id": "snowflake_three",
+        "label": "Enable Right-3 Snowflake",
+        "default":false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "banner-media",
+        "name": "Banner Media",
+        "settings": [
+          {
+            "type": "url",
+            "id": "banner-url",
+            "label": "Banner URL"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner-image-desktop",
+            "label": "Banner Image Desktop",
+            "info": "Default - aspect-ratio 1:1, 1080x1080 , Hero Banner- 1950x735px"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner-image-mobile",
+            "label": "Banner Image Mobile",
+            "info": "If Empty , desktop image will be seen on Mobile - aspect-ratio 1:1, 1080x1080 "
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Grid Images"
+      }
+    ]
+  }
+  {% endschema %}
+  

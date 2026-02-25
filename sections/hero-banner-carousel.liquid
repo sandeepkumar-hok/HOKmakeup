@@ -1,0 +1,810 @@
+{%- style -%}
+   .gradient_look:before{
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      width:50%;
+      height:100%;
+   }
+   .white-gradient:before{
+     background: linear-gradient(90deg, #FFF 19.02%, rgba(255, 255, 255, 0.00) 100%);
+   }
+   .black-gradient:before{
+     background: linear-gradient(90deg, #000 19.02%, rgba(0, 0, 0, 0.00) 100%);
+   }
+    .banner-info-content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translate(-10%, -50%);
+      width:100%;
+      max-width:500px;
+      display: flex;
+      justify-content: end;
+      flex-direction: column;
+      gap: clamp(24px, 4vw, 56px);
+    }
+    .banner-info-content-logo img {
+      width:auto;
+      height: clamp(24px, 4vw, 48px);
+    }
+    .banner-info-text{
+      flex-direction: column;
+    }
+    .banner-info-text h3 {
+      font-family: var(--header-family);
+      font-weight: 700;
+      font-size: clamp(24px, 5vw, 50px);
+      /* line-height: 1.05; */
+      margin: 0;
+    }
+    .banner-info-text-height{
+      height: clamp(4px, 1vw, 16px);
+    }
+    .banner-info-text p {
+      font-size: clamp(14px, 3vw, 26px);
+    }
+    .banner-info-content-button{
+      border-radius: 50px;
+      width:max-content;
+    }
+    .banner-info-content-button button{
+      font-size: clamp(16px, 2.5vw, 24px);
+      font-weight: 700;
+      padding: 1rem 7rem;
+      background: transparent;
+      border-radius: 50px;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+    }
+    .banner-info-content-button button.button-style-dark{
+      border: 1px solid #000;
+      color: #000;
+    }
+    .banner-info-content-button button.button-style-dark:hover{
+      background:#000;
+      color: #fff;
+    }
+    .banner-info-content-button button.button-style-white{
+      border: 1px solid #fff;
+      color: #fff;
+    }
+    .banner-info-content-button button.button-style-white:hover{
+      background:#fff;
+      color: #000;
+    }
+    .banner-info-top-tag {
+      position: absolute;
+      top: 4rem;
+      right: 6.5rem;
+      width: auto;
+      height: clamp(50px, 8vw, 110px);
+    }
+    .banner-info-bottom-tag {
+      position: absolute;
+      bottom: 5rem;
+      right: 6.5rem;
+      width: auto;
+      height: clamp(30px, 4vw, 50px);
+      opacity: 0.5;
+    }
+    .banner-info-top-tag svg {
+      width: 100%;
+      height: 100%;
+    }
+    #hero-pagination-wrapper-{{ section.id }} {
+      height: auto;
+      position: relative;
+      top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    #hero-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet {
+      height: 6px;
+      width: 6px;
+      color: transparent;
+      font-size: 0;
+      background-color: rgba(33, 33, 33, 0.8);
+    }
+
+    #hero-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet-active {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    /* text effect css */
+    .swiper-slide .banner-info-content .banner-info-content-logo img,
+    .swiper-slide .banner-info-content .banner-info-content-text h3,
+     .swiper-slide .banner-info-content .banner-info-content-text p,
+     .swiper-slide .banner-info-content .banner-info-content-button{
+      opacity: 0;
+    }
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-logo img,
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-text h3,
+     .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-text p,
+     .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-button{
+      animation-name: fadeInLeft;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-logo img {
+      animation-delay: .2s;
+    }
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-text h3,
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-text p{
+      animation-delay: .3s;
+    }
+    .swiper-slide.swiper-slide-active .banner-info-content .banner-info-content-button{
+      animation-delay: .4s;
+    }
+   /* text effect css */
+  @media screen and (min-width: 768px) {
+    .gradient_mobile::before {
+      background: transparent;
+    }
+    #hero-pagination-wrapper-{{ section.id }} {
+      display:none;
+    }
+    .slider_arrows{
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      left: 2rem;
+      width: calc(100% - 4rem);
+
+    }
+    .slider_arrows .carousel-btn svg {
+      width: 50px;
+      height: 50px;
+      transition: 0.3s ease;
+      opacity:0;
+    }
+    .hero-banner-carousel-layout:hover .carousel-btn svg {
+      opacity:1;
+    }
+  }
+  @media screen and (max-width:768px){
+      .gradient_look:before{
+        width: 100%;
+        height: 50%;
+      }
+     .white-gradient:before{
+        background: linear-gradient(0deg, #FFF 45%, rgba(255, 255, 255, 0.00) 100%);
+      }
+     .black-gradient:before{
+       background: linear-gradient(181deg, rgba(0, 0, 0, 0.00) 0.7%, #000 70.66%);
+     }
+    /* Show gradient only on desktop */
+    .gradient_desktop::before {
+      background: transparent;
+    }
+    .banner-info-top-tag {
+      top: 20px;
+      right: 24px;
+    }
+    .banner-info-text h3 {
+        line-height: 32px;
+        letter-spacing: -0.6px;
+    }
+    .banner-info-content {
+        bottom: 36px;
+        left: 24px;
+        transform: unset;
+        width: calc(100% - 48px);
+        gap: 16px;
+    }
+    .banner-info-content-button button {
+      padding: 1rem 3.5rem;
+    }
+   }
+  @keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate3d(-65px,0,0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-margin">
+  <div class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="carousel-nav-wrapper">
+      <div
+        id="hero-banner-layout-{{ section.id }}"
+        class="carousel-wrapper-outer overflow-hidden"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper">
+          {% for block in section.blocks %}
+            {% liquid 
+              assign desktop_image = block.settings.banner-image-desktop
+              if forloop.first
+                assign loading_attr = 'eager'
+                assign fetch_priority = 'high'
+              else
+                assign loading_attr = 'lazy'
+                assign fetch_priority = 'auto'
+              endif
+            %}
+            <div class="swiper-slide">
+              <a
+                href="{{ block.settings['banner-url'] }}"
+                class="square-banner-slide{% if block.settings.show_gradient != "none" %} gradient_look {{ block.settings.show_gradient }} {{ block.settings.gradient_condition }}{% endif %}"
+                {% if section.settings.seo_text %}
+                  data-location="{{ section.settings.seo_text | append:forloop.index }}"
+                {% endif %}
+              >
+                {% case block.type %}
+                  {% when 'image-media' %}
+                    <picture>
+                      {% if block.settings.banner-image-mobile != blank %}
+                        {% assign mobile_image = block.settings.banner-image-mobile %}
+                        <source
+                          media="(max-width: 767px)"
+                          srcset="
+                            {{ mobile_image | image_url: width: 320, format: 'webp' }} 320w,
+                            {{ mobile_image | image_url: width: 390, format: 'webp' }} 390w,
+                            {{ mobile_image | image_url: width: 480, format: 'webp' }} 480w,
+                            {{ mobile_image | image_url: width: 550, format: 'webp' }} 550w,
+                            {{ mobile_image | image_url: width: 750, format: 'webp' }} 750w
+                          "
+                          sizes="100vw"
+                        >
+                      {% endif %}
+
+                      <img
+                        src="{{ desktop_image | image_url: width: 1280, format: 'webp' }}"
+                        srcset="
+                          {{ desktop_image | image_url: width: 960, format: 'webp' }} 960w,
+                          {{ desktop_image | image_url: width: 1100, format: 'webp' }} 1100w,
+                          {{ desktop_image | image_url: width: 1280, format: 'webp' }} 1280w,
+                          {{ desktop_image | image_url: width: 1440, format: 'webp' }} 1440w
+                        "
+                        sizes="(min-width: 1400px) 1335px, (min-width: 768px) 92vw, 100vw"
+                        width="{{ desktop_image.width }}"
+                        height="{{ desktop_image.height }}"
+                        loading="{{ loading_attr }}"
+                        fetchpriority="{{ fetch_priority }}"
+                        decoding="async"
+                        class="w-100 square-banner-media"
+                        alt="{{ block.settings.cta_text | escape }}"
+                      >
+                    </picture>
+                    
+                    {% comment %} {% assign desktop_widths = '960, 1100, 1280, 1440' %}
+                    {% assign mobile_widths  = '320, 375, 390, 414, 480, 550, 750' %}
+                    {% if block.settings.banner-image-mobile != blank %}
+                      {{
+                        block.settings.banner-image-desktop
+                        | image_url: width: 2400, format: 'webp'
+                        | image_tag:
+                          widths: desktop_widths,
+                          width: '100%',
+                          height: 'auto',
+                          sizes: '(min-width: 1400px) 1335px, (min-width: 768px) 92vw, 100vw',
+                          loading: lazy_loading,
+                          fetchpriority: fetch_priority,
+                          class: 'w-100 desktop_screen'
+                      }}
+                      {{
+                        block.settings.banner-image-mobile
+                        | image_url: width: 750, format: 'webp'
+                        | image_tag:
+                          widths: mobile_widths,
+                          width: '100%',
+                          height: 'auto',
+                          sizes: '(max-width: 767px) 100vw, 0px',
+                          loading: lazy_loading,
+                          fetchpriority: fetch_priority,
+                          class: 'w-100 mobile_screen'
+                      }}
+                    {% else %}
+                      {{
+                        block.settings.banner-image-desktop
+                        | image_url: width: 2400, format: 'webp'
+                        | image_tag:
+                          widths: desktop_widths,
+                          width: '100%',
+                          height: 'auto',
+                          sizes: '100vw',
+                          loading: lazy_loading,
+                          fetchpriority: fetch_priority,
+                          class: 'w-100'
+                      }}
+                    {% endif %} {% endcomment %}
+                  {% when 'video-media' %}
+                    {% assign media_desktop = block.settings['banner-video-desktop'] %}
+                    {% if block.settings['banner-video-mobile'] != blank %}
+                      {% assign media_mobile = block.settings['banner-video-mobile'] %}
+                      {{
+                        media_desktop
+                        | video_tag: 
+                          image_size: '1280x',
+                          width: '100%',
+                          height: 'auto',
+                          class: 'desktop_screen square-banner-media',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false
+                      }}
+                      {{
+                        media_mobile
+                        | video_tag: 
+                          image_size: '500x',
+                          width: '100%',
+                          height: 'auto',
+                          class: 'mobile_screen square-banner-media',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false
+                      }}
+                    {% else %}
+                       {{
+                        media_desktop
+                        | video_tag: 
+                          image_size: '1280x',
+                          width: '100%',
+                          height: 'auto',
+                          class: 'desktop_screen square-banner-media',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          controls: false
+                      }}
+                    {% endif %}
+                {% endcase %}
+              </a>
+              <div class="banner-info-content {% if block.settings.content_visibility %}{{ block.settings.content_visibility }}{% endif %}">
+                {% if block.settings.logo %}
+                  <div class="banner-info-content-logo mb-0 mb-md-3">
+                    <img 
+                      src="{{ block.settings.logo | image_url: height: 48 , format: 'png' }}"
+                      alt="Hero Banner-{{ section.settings.seo_text | append:forloop.index }}"
+                      height="48"
+                      width="auto"
+                      fetchpriority="auto"
+                    >
+                  </div>
+                {% endif %}
+                <div class="banner-info-content-text">
+                  <div class="banner-info-text desktop_screen {{ block.settings.text_style }}">
+                    <h3>
+                      {{ block.settings.cta_text | default: 'This will be the headline text the' }}
+                    </h3>
+                    <div class="banner-info-text-height"><wbr></div>
+                    <p>{{ block.settings.cta_subtext | default: 'This will be the tagline for the banner' }}</p>
+                  </div>
+                  <div class="banner-info-text mobile_screen {{ block.settings.text_style }}">
+                    <h3>
+                      {{ block.settings.cta_text_mobile | default: 'This will be the headline text the' }}
+                    </h3>
+                    <div class="banner-info-text-height"><wbr></div>
+                    <p>{{ block.settings.cta_subtext_mobile | default: 'This will be the tagline for the banner' }}</p>
+                  </div>
+                </div>
+                {% if block.settings.button_style != 'none' %}
+                  <div class="banner-info-content-button">
+                    <a href="{{ block.settings['banner-url'] }}">
+                      <button
+                        class="d-center {{ block.settings.button_style }}"
+                        type="button"
+                      >
+                        Shop Now
+                      </button>
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+              {% if block.settings.banner_top_tag != 'none' %}
+                <div class="banner-info-top-tag">
+                  {% if block.settings.banner_top_tag == 'bestseller' %}
+                    {{ 'Bestseller_tag.svg' | inline_asset_content }}
+                  {% elsif block.settings.banner_top_tag == 'hok_exclusive' %}
+                    {{ 'Hok exclusive_tag.svg' | inline_asset_content }}
+                  {% elsif block.settings.banner_top_tag == 'limited_stock' %}
+                    {{ 'Limited stock_tag.svg' | inline_asset_content }}
+                  {% elsif block.settings.banner_top_tag == 'new_launch' %}
+                    {{ 'New launch_tag.svg' | inline_asset_content }}
+                  {% elsif block.settings.banner_top_tag == 'new_sale' %}
+                    {{ 'On sale_tag.svg' | inline_asset_content }}
+                  {% elsif block.settings.banner_top_tag == 'trending' %}
+                    {{ 'Trending_tag.svg' | inline_asset_content }}
+                  {% endif %}
+                </div>
+              {% endif %}
+              {% if block.settings.banner_bottom_logo %}
+                <div class="banner-info-bottom-tag desktop_screen">
+                  <img
+                    src="{{  block.settings.banner_bottom_logo | image_url: height: 30 , format: 'png'  }}"
+                    height="30"
+                    width="auto"
+                    loading="lazy"
+                    alt="{{ block.settings['banner-url'] }}"
+                  >
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if section.blocks.size > 1 %}
+        <div class="desktop_screen slider_arrows">
+          <div id="carousel-prev-{{ section.id }}" class="carousel-btn border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#2D2D2D" fill-opacity="0.16"/>
+              <path d="M23 14L17.1414 19.8586C17.0633 19.9367 17.0633 20.0633 17.1414 20.1414L23 26" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div id="carousel-next-{{ section.id }}" class="carousel-btn border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="20" fill="#2D2D2D" fill-opacity="0.16"></rect>
+              <path d="M17 14L22.8586 19.8586C22.9367 19.9367 22.9367 20.0633 22.8586 20.1414L17 26" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"></path>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+      <div id="hero-pagination-wrapper-{{ section.id }}" class="mobile_screen"><wbr></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  // document.addEventListener('DOMContentLoaded', function () {
+    {% assign section_unique_name = section.id | remove: '-' | remove: '_' %}
+    const swiperElement = document.querySelector('#hero-banner-layout-{{ section.id }}');
+    if (swiperElement) {
+      const bannerSlider{{ section_unique_name }} = new Swiper('#hero-banner-layout-{{ section.id }}', {
+        paginationClickable: true,
+        speed: {{ section.settings.slide_speed | remove: 'px' }},
+        slidesPerView: 1,
+        autoHeight: true,
+        loop: {{ section.settings.loop }},
+         touchStartForcePreventDefault:true,
+          navigation: {
+            prevEl: '#carousel-prev-{{ section.id }}',
+            nextEl: '#carousel-next-{{ section.id }}',
+            disabledClass: 'disabled_swiper_button'
+          },
+         pagination: {
+            el: "#hero-pagination-wrapper-{{ section.id }}",
+            clickable: true
+        }
+      });
+    }
+  // });
+</script>
+
+{% schema %}
+{
+  "name": "Hero Carousel Layout",
+  "class": "hero-banner-carousel-layout",
+  "max_blocks": 9,
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "page-width", "label": "Show FrameWork Container" }
+      ],
+      "default": "page-width"
+    },
+      {
+      "type": "text",
+      "id": "seo_text",
+      "label": "Seo Tag Trigger Team",
+      "info": "Used for GTM (Anil)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enableShuffle",
+      "label": "Auto Shuffle",
+      "info": "If enabled - all Bunners will be Randomly shuffled",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Infinite Loop",
+      "info": "If enabled ,Infinite container will enabled",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 100,
+      "max": 800,
+      "step": 100,
+      "unit": "px",
+      "label": "Slider Speed",
+      "default": 500
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image-media",
+      "name": "Image Media",
+      "settings": [
+        {
+          "type": "select",
+          "id": "banner_top_tag",
+          "label": "Banner Top Tag",
+          "options": [
+            { "value": "bestseller", "label": "Best Seller" },
+            { "value": "hok_exclusive", "label": "Hok Exclusive" },
+            { "value": "limited_stock", "label": "Limited Stock" },
+            { "value": "new_launch", "label": "New Launch" },
+            { "value": "new_sale", "label": "Ongoing Sale" },
+            { "value": "trending", "label": "Trending" },
+            { "value": "none", "label": "No Icon" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_bottom_logo",
+          "label": "Banner Bottom logo"
+        },
+        {
+          "type": "url",
+          "id": "banner-url",
+          "label": "Banner URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-desktop",
+          "label": "Banner Image Desktop",
+          "info": "Default - aspect-ratio 1:1, 1080x1080 , Hero Banner- 1950x735px"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-mobile",
+          "label": "Banner Image Mobile",
+          "info": "If Empty , desktop image will be seen on Mobile - aspect-ratio 1:1, 1080x1080 "
+        },
+        {
+          "type": "radio",
+          "id": "show_gradient",
+          "label": "Choose Gradient Style",
+          "options": [
+            { "value": "white-gradient", "label": "White Gradient" },
+            { "value": "black-gradient", "label": "Black Gradient" },
+            { "value": "none", "label": "No Gradient" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "radio",
+          "id": "gradient_condition",
+          "label": "Choose Gradient Visibility",
+          "options": [
+            { "value": "gradient_on_all", "label": "Show Gradient on Both Devices" },
+            { "value": "gradient_desktop", "label": "Show Gradient Only On Desktop" },
+            { "value": "gradient_mobile", "label": "Show Gradient Only On Mobile" }
+          ],
+          "default": "gradient_on_all"
+        },
+        {
+          "type": "radio",
+          "id": "text_style",
+          "label": "Choose Text Styling",
+          "options": [
+            { "value": "text-white", "label": "White Style Text" },
+            { "value": "text-dark", "label": "Black Style Text" }
+          ],
+          "default": "text-dark"
+        },
+        {
+          "type": "radio",
+          "id": "button_style",
+          "label": "Choose Button Styling",
+          "options": [
+            { "value": "button-style-white", "label": "White Button Style" },
+            { "value": "button-style-dark", "label": "Black Button Style" },
+            { "value": "none", "label": "No Button" }
+          ],
+          "default": "button-style-dark"
+        },
+        {
+          "type": "header",
+          "content": "Informative Part"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Banner Logo",
+          "info": "Update Brand Logo"
+        },
+         {
+          "type": "header",
+          "content": "Desktop Informative Part"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_text",
+          "label": "Main Header Desktop Text",
+          "info": "Reccomended words not more than 7-8 (2 liner content)"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_subtext",
+          "label": "Main Header Mobile Subtext",
+          "info": "Reccomended words not more than 7-8 (1 liner content)"
+        },
+         {
+          "type": "header",
+          "content": "Mobile Informative Part"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_text_mobile",
+          "label": "Main Header Desktop Text",
+          "info": "Reccomended words not more than 7-8 (2 liner content)"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_subtext_mobile",
+          "label": "Main Header Mobile Subtext",
+          "info": "Reccomended words not more than 7-8 (1 liner content)"
+        }
+      ]
+    },
+    {
+      "type": "video-media",
+      "name": "Video Media",
+      "settings": [
+         {
+          "type": "select",
+          "id": "banner_top_tag",
+          "label": "Banner Top Tag",
+          "options": [
+            { "value": "bestseller", "label": "Best Seller" },
+            { "value": "hok_exclusive", "label": "Hok Exclusive" },
+            { "value": "limited_stock", "label": "Limited Stock" },
+            { "value": "new_launch", "label": "New Launch" },
+            { "value": "new_sale", "label": "Ongoing Sale" },
+            { "value": "trending", "label": "Trending" },
+            { "value": "none", "label": "No Icon" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_bottom_logo",
+          "label": "Banner Bottom logo"
+        },
+        {
+          "type": "url",
+          "id": "banner-url",
+          "label": "Banner URL"
+        },
+        {
+          "type": "video",
+          "id": "banner-video-desktop",
+          "label": "Banner Video Desktop",
+          "info": "aspect-ratio 1:1, 900px:900px"
+        },
+        {
+          "type": "video",
+          "id": "banner-video-mobile",
+          "label": "Banner Video Mobile",
+          "info": "aspect-ratio 1:1, 900px:900px"
+        },
+        {
+          "type": "radio",
+          "id": "show_gradient",
+          "label": "Choose Gradient Style",
+          "options": [
+            { "value": "white-gradient", "label": "White Gradient" },
+            { "value": "black-gradient", "label": "Black Gradient" },
+            { "value": "none", "label": "No Gradient" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "radio",
+          "id": "gradient_condition",
+          "label": "Choose Gradient Visibility",
+          "options": [
+            { "value": "gradient_on_all", "label": "Show Gradient on Both Devices" },
+            { "value": "gradient_desktop", "label": "Show Gradient Only On Desktop" },
+            { "value": "gradient_mobile", "label": "Show Gradient Only On Mobile" }
+          ],
+          "default": "gradient_on_all"
+        },
+        {
+          "type": "radio",
+          "id": "text_style",
+          "label": "Choose Text Styling",
+          "options": [
+            { "value": "text-white", "label": "White Style Text" },
+            { "value": "text-dark", "label": "Black Style Text" }
+          ],
+          "default": "text-dark"
+        },
+        {
+          "type": "radio",
+          "id": "button_style",
+          "label": "Choose Button Styling",
+          "options": [
+            { "value": "button-style-white", "label": "White Button Style" },
+            { "value": "button-style-dark", "label": "Black Button Style" },
+            { "value": "none", "label": "No Button" }
+          ],
+          "default": "button-style-dark"
+        },
+        {
+          "type": "header",
+          "content": "Informative Part"
+        },
+         {
+          "type": "select",
+          "id": "content_visibility",
+          "label": "Content Visibility",
+          "options": [
+            { "value": "d-flex", "label": "Show Everywhere" },
+            { "value": "d-none d-md-flex", "label": "Show Only On Desktop" },
+            { "value": "d-flex d-md-none", "label": "Show Only On Mobile" },
+            { "value": "d-none", "label": "Hide from Everywhere" }
+          ],
+          "default": "d-flex"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Banner Logo",
+          "info": "Update Brand Logo"
+        },
+         {
+          "type": "header",
+          "content": "Desktop Informative Part"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_text",
+          "label": "Main Header Desktop Text",
+          "info": "Reccomended words not more than 7-8 (2 liner content)"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_subtext",
+          "label": "Main Header Mobile Subtext",
+          "info": "Reccomended words not more than 7-8 (1 liner content)"
+        },
+         {
+          "type": "header",
+          "content": "Mobile Informative Part"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_text_mobile",
+          "label": "Main Header Desktop Text",
+          "info": "Reccomended words not more than 7-8 (2 liner content)"
+        },
+        {
+          "type": "richtext",
+          "id": "cta_subtext_mobile",
+          "label": "Main Header Mobile Subtext",
+          "info": "Reccomended words not more than 7-8 (1 liner content)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Carousel Layout"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,389 @@
+{%- style -%}
+  .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+      background: {{ section.settings.background_color }};
+  }
+  .vendor-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .vendor-section h3 {
+      color: #000;
+    font-size: 32px;
+    font-family: var(--header-family);
+    font-weight:800;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  .vendor-section p {
+    color: #4d4d4d;
+    font-size: 20px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .multi-vendor-container {
+    display: grid;
+    grid-template-columns: 0.78fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    grid-template-areas: "box1 box2" "box1 box3";
+    gap: 0 48px;
+    align-items: center;
+  }
+
+  .multi-vendor-image{
+    grid-area: box1;
+  }
+  .multi-vendor-image img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .multi-vendor-products-scroll {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    grid-area: box2;
+    align-items: end;
+    height: 100%;
+  }
+  .multi-vendor-products-scroll::-webkit-scrollbar{
+    height: 2px;
+    background: #D9D9D9;
+    }
+    .multi-vendor-products-scroll::-webkit-scrollbar-thumb {
+    background: #181818;
+    }
+
+  .multi-vendor-product-card {
+    background: transparent;
+    min-width: 390px;
+    text-align: left;
+  }
+
+  .multi-vendor-product-card img {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(206, 204, 204, 0.60);
+    box-shadow: 0px 2px 7px 0px rgba(201, 202, 202, 0.25);
+  }
+
+  .multi-vendor-discount-tag {
+      position: absolute;
+      bottom: 20%;
+      left: 0;
+      width: 100%;
+      background: rgba(253, 245, 245, 0.73);
+      color: #000;
+      font-size: 18px;
+      text-align: center;
+      padding: 6px;
+  }
+
+  .multi-vendor-product-card .title {
+    margin: 8px 0 2px;
+    font-weight: 600;
+  }
+
+  .multi-vendor-product-card .subtitle {
+    font-size: 16px;
+    color: #000000;
+    height: 32px;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+  }
+
+  .multi-vendor-price {
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .multi-vendor-old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-weight: 300;
+    font-size: calc(100% - 1px);
+  }
+
+  .multi-vendor-shop-all-btn {
+    grid-area: box3;
+    display: flex;
+    align-items: start;
+    height: 85%;
+    position: relative;
+    top: 20px;
+    justify-content: center;
+  }
+
+  .multi-vendor-shop-all-btn a {
+      padding: 8px 12px;
+      width: 100%;
+      max-width: 360px;
+      font-size: 16px;
+      background: #ffffff;
+      border: 1px solid #000;
+      border-radius: 50px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  }
+
+  .multi-vendor-shop-all-btn button:hover {
+    background: #000;
+    color: #fff;
+  }
+
+@media screen and (max-width: 768px) {
+  .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+  .vendor-section h3 {
+    font-size: 22px;
+    text-align: left;
+    margin:0;
+  }
+  .multi-vendor-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "box1"
+        "box2"
+        "box3";
+    gap: 16px;
+    }
+  .multi-vendor-products-scroll {
+    /* grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); */
+    gap: 8px;
+  }
+  .multi-vendor-product-card {
+      min-width: 110px;
+  }
+  .multi-vendor-product-card img {
+      border: 1px solid rgba(206, 204, 204, 0.60);
+  }
+  .multi-vendor-discount-tag {
+      font-size: 9px;
+      padding: 3px;
+  }
+  .vendor-section p {
+  font-size: 12px;
+  }
+  .multi-vendor-product-card .subtitle {
+    -webkit-line-clamp: 2;
+    font-size: 9px;
+      letter-spacing: 0;
+      line-height: 1.6;
+  }
+  .multi-vendor-shop-all-btn {
+    top: 0;
+  }
+  .multi-vendor-shop-all-btn a {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+{%- endstyle -%}
+<div class="section-{{ section.id }}-margin">
+  <div
+    class="vendor-section{% if section.settings.showContainer %} {{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+  >
+    <div class="m-md-auto">
+      <h3>{{ section.settings.title }}</h3>
+      <p class="d-none d-md-flex">{{ section.settings.subTitle }}</p>
+    </div>
+    <div class="multi-vendor-container">
+      <div class="multi-vendor-image">
+        <img
+          src="{{ section.settings.image |  image_url  }}"
+          alt="{{ section.settings.image }} "
+          loading="lazy"
+          width="100%"
+          height="auto"
+          class="desktop_screen"
+        >
+        <img
+          src="{{ section.settings.mobile_image |  image_url  }}"
+          alt="{{ section.settings.mobile_image }} "
+          loading="lazy"
+          width="100%"
+          height="auto"
+          class="mobile_screen"
+        >
+      </div>
+      <div class="multi-vendor-products-scroll">
+        {% for product in section.settings.collection.products limit: 7 %}
+          {% assign first_variant = product.selected_or_first_available_variant %}
+          <div class="multi-vendor-product-card">
+            <a href="{{ first_variant.url }}" title="{{ product.title }}">
+              <div class="position-relative">
+                <img
+                  class="img-fluid"
+                  src="{{ product.featured_image | image_url }}"
+                  alt="{{ product.title }}"
+                  title="{{ product.title }}"
+                  width="100%"
+                  loading="lazy"
+                  height="auto"
+                >
+                {% if first_variant.price < first_variant.compare_at_price %}
+                  <span class="multi-vendor-discount-tag">
+                    {{-
+                      first_variant.compare_at_price
+                      | minus: first_variant.price
+                      | times: 100.0
+                      | divided_by: first_variant.compare_at_price
+                      | money_without_currency
+                      | times: 100
+                      | remove: '.0'
+                    -}}
+                    % Off</span
+                  >
+                {% endif %}
+              </div>
+
+              <p class="title">
+                {{-
+                  product.vendor
+                  | remove: 'BOGO'
+                  | remove: '929A'
+                  | remove: '929B'
+                  | remove: '929B'
+                  | remove: 'CLUB'
+                  | remove: 'bg-free'
+                  | remove: '3-for-2'
+                  | remove: '-pd-bundle'
+                -}}
+              </p>
+              <p class="subtitle">{{- product.title | remove: product.vendor -}}</p>
+              <p class="multi-vendor-price">
+                {{ first_variant.price | money_without_trailing_zeros }}
+                {% if first_variant.price < first_variant.compare_at_price %}
+                  <span class="multi-vendor-old-price">
+                    {{- first_variant.compare_at_price | money_without_trailing_zeros -}}
+                  </span>
+                {% endif %}
+              </p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="multi-vendor-shop-all-btn">
+        <a href="{{ section.settings.collection.url }}" title="{{ section.settings.collection.title }}"> SHOP ALL </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Banner Product Grid",
+  "class": "banner-product-grid",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "page-width", "label": "Show FrameWork Container" },
+        { "value": "container", "label": "Show Bootstrap Container" }
+      ],
+      "default": "container"
+    },
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color ",
+        "default": "#fff3f5"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Brand Title"
+    },
+    {
+        "type": "text",
+        "id": "subTitle",
+        "label": "Brand Sub Title"
+    },
+    {
+    "type": "image_picker",
+    "id": "image",
+    "label": "Collection Image"
+    },
+    {
+    "type": "image_picker",
+    "id": "mobile_image",
+    "label": "Collection Mobile Image"
+    },
+    {
+    "type": "collection",
+    "id": "collection",
+    "label": "Brand Collection"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Product Grid"
+    }
+  ]
+}
+{% endschema %}

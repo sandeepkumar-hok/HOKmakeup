@@ -1,0 +1,161 @@
+<div id="modalOverlay-form" class="modal-overlay-form" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-form text-center" tabindex="-1">
+      <button class="close-btn-form" id="closeModal-form" aria-label="Close modal">&times;</button>
+      <h2 id="modalTitle-form">Meet Dr. Paw Paw — <br> Coming Soon 🪄</h2>
+       {% form 'customer', class: 'newsletter-form' %}
+         {%- if form.posted_successfully? -%}
+            <p id="modalDesc-form">You're on the list!</p>
+        <div class="b-email_sign_up-field m-success" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>
+          <p class="b-email_sign_up-success_message text-center">Thanks for signing up.</p>
+        </div>
+      {% else %}
+            <p id="modalDesc-form">Be the first to know when it drops.</p>
+           <input type="hidden" name="contact[tags]" value="dr-paw-paw-notifier">
+      <div class="newsletter-form__field-wrapper">
+        <div class="f-field b-email_sign_up-email_input m-auto mw-100 d-flex gap-2
+        ">
+          <input
+            id="NewsletterForm--{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            class="f-input_email-field rounded"
+            value="{{ form.email }}"
+            aria-required="true"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            {% if form.errors %}
+              autofocus aria-invalid="true" aria-describedby="Newsletter-error--{{ section.id }}"
+            {% elsif form.posted_successfully? %}
+              aria-describedby="Newsletter-success--{{ section.id }}"
+            {% endif %}
+            placeholder="*Enter your email"
+            required
+          >
+          <button
+            type="submit"
+            class="action-btn b-email_sign_up-submit text-nowrap rounded"
+            name="commit"
+            id="Subscribe"
+            aria-label="{{ 'newsletter.button_label' | t }}"
+          >
+             ✨ Notify Me
+          </button>
+        </div>
+      </div>
+      {%- endif -%}
+      {%- if form.errors -%}
+          <div class="f-field-error" id="Newsletter-error--{{ section.id }}">
+            <span class="f-field-error_text">Please enter a valid email address</span>
+          </div>
+        {%- endif -%}
+    {% endform %}
+    </div>
+  </div>
+
+<style>
+.open-btn {
+  background: #00f2fe;
+  color: white;
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 242, 254, 0.3);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.open-btn:hover {
+  background: #4facfe;
+  transform: scale(1.04);
+}
+
+.modal-overlay-form {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 999;
+}
+
+.modal-overlay-form.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-form {
+  background: #fff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.modal-overlay-form.active .modal-form {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.close-btn-form {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: transparent;
+  font-size: 1.6rem;
+  color: #555;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn-form:hover {
+  color: #111;
+}
+
+.modal-form h2 {
+
+      margin-bottom: 12px;
+    font-size: 34px;
+    font-family: 'Anton';
+}
+
+.modal-form p {
+      color: #555;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.action-btn-form {
+  background: #ff5f6d;
+  color: white;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action-btn-form:hover {
+  background: #ffc371;
+  color: #111;
+}
+
+@media (max-width: 480px) {
+  .modal-form {
+    padding: 1.5rem;
+  }
+}
+
+</style>

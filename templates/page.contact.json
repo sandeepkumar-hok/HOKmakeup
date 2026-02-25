@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "custom_css": [
+        ".inline-richtext.h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: 1rem;}",
+        ".h3,h3 {font-family: \"Sweet Sans Pro Regular\"; margin-bottom: 1.5rem;}",
+        ".field {font-family: \"Sweet Sans Pro Regular\";}"
+      ],
+      "settings": {
+        "heading": "<strong>GET IN TOUCH</strong>",
+        "sub_heading": "<h3>Hey! we’ve got your back. We are at your service in case of any query or issues you may contact us from Monday to Friday, 10 am to 5 pm.</h3><h3>Connect with us : <strong>+91 9810245261</strong></h3><h3>Reach out at : <strong>support@hokmakeup.com</strong></h3><h3></h3><h3>Report an issue<strong> -</strong></h3>",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form"
+  ]
+}

@@ -1,0 +1,140 @@
+<section id="levelsBenefits">
+  <div class="container reward-section">
+    <div class="level-fun-container">
+      <p class="reward-section-title">Level Up The Fun</p>
+      <div id="customer-tier" class="level-fun-card-container overflow-hidden">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="level-fun-card-slide swiper-slide h-auto">
+              <div class="level-fun-card" data-bg="{{ block.settings.backgroundColor }}">
+                <div class="level-fun-card-img-container d-flex justify-content-center align-items-center">
+                  <img
+                    loading="eager"
+                    width="100%"
+                    height="100%"
+                    src="{{ block.settings.brandImage | image_url}}"
+                    alt="blish"
+                    class="level-fun-card-img img-fluid"
+                  >
+                </div>
+                <div class="level-fun-card-body-container">
+                  <div class="level-fun-card-brand-container d-flex align-items-center flex-column">
+                    <img
+                      loading="eager"
+                      width="auto"
+                      height="54"
+                      src="{{ block.settings.brandLogo | image_url}}"
+                      alt="brand"
+                      class="level-fun-card-brand"
+                    >
+                    <p class="level-fun-brand-text">{{ block.settings.brandLogoText }}</p>
+                  </div>
+                  <p class="level-fun-brand-offers-header">{{ block.settings.features }}</p>
+                  {{ block.settings.offers }}
+                  {% if block.settings['most-popular'] %}
+                    <p class="level-fun-brand-most-popular">~Most Popular~</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="customer-tier-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const customerTierSlides = new Swiper('#customer-tier', {
+        slidesPerView: 1, // Show 3 slides by default
+        spaceBetween:39, // Adjust as needed
+        navigation: false, // No navigation arrows
+         pagination: {
+            el: ".customer-tier-dots",
+          },
+         breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 1.5,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Hok Reward Guide",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Level Up The Fun",
+      "type": "text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "brandImage",
+          "label": "Add brand Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "brandLogo",
+          "label": "Add Brand Logo"
+        },
+        {
+          "type": "richtext",
+          "id": "brandLogoText",
+          "label": "Add Brand Logo Text",
+          "default":"<p>Spend ₹4000+ quarterly </p>"
+        },
+        {
+          "type": "select",
+          "id": "backgroundColor",
+          "label": "Choose Background Color",
+          "options": [
+            {
+              "label": "Light Pink",
+              "value": "pink"
+            },
+            {
+              "label": "Dark Purple",
+              "value": "purple"
+            },
+            {
+              "label": "Euphoria",
+              "value": "euphoria"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "features",
+          "label": "Tier Offer Title"
+        },
+        {
+          "type": "html",
+          "id": "offers",
+          "label": "Add offers in <ul> tag and <li> tag"
+        },
+        {
+          "type": "checkbox",
+          "id": "most-popular",
+          "label": "Most Popular Tier",
+          "default":false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hok Reward Guide"
+    }
+  ]
+}
+{% endschema %}

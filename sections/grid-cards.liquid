@@ -1,0 +1,242 @@
+{% style %} 
+    .budget-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .budget-grid::-webkit-scrollbar{
+      height: 2px;
+      background: #D9D9D9;
+    }
+    .budget-grid::-webkit-scrollbar-thumb {
+      background: #181818;
+    }
+
+    .product-card-grid {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    background: white;
+    transition: transform 0.3s ease;
+    }
+
+    .product-card-grid:hover {
+    transform: translateY(-4px);
+    }
+
+    .grid-card-image {
+    position: relative;
+    overflow: hidden;
+    }
+
+    .grid-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    .grid-container-card-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: var(--overlay-color, rgba(0, 0, 0, 0.5));
+      color: white;
+      padding: 10px 20px;
+      font-family: var(--header-family);
+      text-transform: capitalize;
+      font-size: 24px;
+    }
+
+    .grid-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    }
+
+    .grid-card-arrow {
+    border: 1px solid #747474;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    }
+    .grid-card-arrow svg{
+      width: 19px;
+    }
+ @media screen and (max-width: 768px) {
+    .budget-grid {
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        overflow-x: auto;
+        padding: 20px 0;
+        max-width: 1200px;
+        margin: auto 0 auto 16px;
+    }
+    .grid-card-bottom{
+      padding: 6px;
+      font-size: 12px;
+    }
+    .grid-card-arrow {
+      width: 17px;
+      height: 17px;
+    }
+    .grid-card-arrow svg{
+      width: 9px;
+    }
+    .grid-container-card-overlay {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+   
+}
+{% endstyle %}
+<div class="budget-grid">
+    {% for block in section.blocks %}
+    <div class="product-card-grid" style="--overlay-color: {{ block.settings.banner-overlay-color |  append: 'b2' }};">
+        <div class="grid-card-image">
+        <img
+            src="{{ block.settings.banner-image-desktop | image_url }}"
+            class="{% if block.settings['banner-image-mobile'] != blank %}desktop_screen{% endif %}"
+            height="100%"
+            width="100%"
+            loading="eager"
+            >
+            {% if block.settings['banner-image-mobile'] != blank %}
+            <img
+                src="{{ block.settings.banner-image-mobile | image_url }}"
+                class="mobile_screen"
+                height="100%"
+                width="100%"
+                loading="eager"
+            >
+            {% endif %}
+            <div class="grid-container-card-overlay">{{ block.settings.overlay-text }}</div>
+        </div>
+        <div class="grid-card-bottom">
+        <span>{{ block.settings.banner-text }}</span>
+        <span class="grid-card-arrow d-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="12" viewBox="0 0 21 12" fill="none">
+              <path d="M1 5.51367C0.585786 5.51367 0.25 5.84946 0.25 6.26367C0.25 6.67789 0.585786 7.01367 1 7.01367V5.51367ZM20.5303 6.794C20.8232 6.50111 20.8232 6.02624 20.5303 5.73334L15.7574 0.960371C15.4645 0.667478 14.9896 0.667478 14.6967 0.960371C14.4038 1.25326 14.4038 1.72814 14.6967 2.02103L18.9393 6.26367L14.6967 10.5063C14.4038 10.7992 14.4038 11.2741 14.6967 11.567C14.9896 11.8599 15.4645 11.8599 15.7574 11.567L20.5303 6.794ZM1 7.01367H20V5.51367H1V7.01367Z" fill="#747474"/>
+            </svg>
+        </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% schema %}
+    {
+      "name": "Grid Card",
+      "class": "image_grid",
+      "tag": "section",
+      "settings": [
+        {
+          "type": "radio",
+          "id": "showContainer",
+          "label": "Choose Container Style",
+          "options": [
+            { "value": "full-width", "label": "Show Full Container" },
+            { "value": "page-width", "label": "Show Hok Container" },
+            { "value": "container", "label": "Show FrameWork Container" }
+          ],
+          "default": "full-width"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        },
+        {
+          "type": "header",
+          "content": "Mobile Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        }
+      ],
+      "blocks": [
+        {
+          "type": "banner-media",
+          "name": "Banner Media",
+          "settings": [
+            {
+              "type": "url",
+              "id": "banner-url",
+              "label": "Banner URL"
+            },
+            {
+              "type": "color",
+              "id": "banner-overlay-color",
+              "label": "Banner Overlay Color"
+            },
+            {
+              "type": "image_picker",
+              "id": "banner-image-desktop",
+              "label": "Banner Image Desktop"
+            },
+            {
+              "type": "image_picker",
+              "id": "banner-image-mobile",
+              "label": "Banner Image Mobile"
+            },
+            {
+              "type": "text",
+              "id": "overlay-text",
+              "label": "Card overlay Text"
+            }, 
+            {
+              "type": "text",
+              "id": "banner-text",
+              "label": "Card Text"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Grid Card"
+        }
+      ]
+    }
+    {% endschema %}
+    

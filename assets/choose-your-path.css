@@ -1,0 +1,132 @@
+.choose-path-section-community {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+.choose-path-section-community .choose-path-title {
+  color: #191919;
+   font-family: 'Mosvita';
+   font-weight: 800;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.choose-path-section-community .choose-path-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 30px 22px 30px;
+}
+.choose-path-section-community .choose-path-tab {
+   font-family: 'NickySans';
+  padding: 10px 20px;
+  border: 1px solid #706D6D;
+  white-space: nowrap;
+  border-radius: 50px;
+  font-size: clamp(14px, 3vw, 20px);
+  cursor: pointer;
+  color: #7E8283;
+  text-transform: uppercase;
+  background-color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.choose-path-section-community .choose-path-tab.active {
+  background-color: #ff3399;
+  color: #fff;
+  border: none;
+}
+.choose-path-section-community .choose-path-content-wrapper {
+  margin: 0 auto;
+}
+.choose-path-section-community .path_image_text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.choose-path-section-community .choose-path-content {
+  position: relative;
+  padding: 8.3rem;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+.choose-path-section-community .choose-path-text {
+  text-align: left;
+  width: 75%;
+  margin: auto;
+}
+.choose-path-section-community .choose-path-text p:nth-child(2) {
+  padding: 24px 0px 16px 0px;
+}
+.choose-path-section-community .choose-path-image {
+  width: 180px;
+  object-fit: contain;
+  height: 100%;
+  position: absolute;
+  left: -7%;
+  top: 18%;
+  flex-shrink: 0;
+}
+.choose-path-section-community .choose-path-text h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.choose-path-section-community .choose-path-text a.text_url {
+  display: block;
+  text-decoration: underline;
+  color: #d32e81;
+  margin-top: 27px;
+}
+.choose-path-section-community .choose-path-text a.text_url:hover{color:#7c2350;}
+.choose-path-section-community .choose-path-text ul li,
+.choose-path-section-community .choose-path-text p,
+.choose-path-section-community .choose-path-text .text_url,
+.choose-path-section-community .choose-path-content .mobile_screen {
+  font-size: clamp(14px, 3vw, 20px);
+   font-family: 'NickySans';
+   font-weight: 400;
+}
+
+.choose-path-section-community .choose-path-content .mobile_screen {
+  text-align: justify;
+}
+@media only screen and (max-width: 768px) {
+  .choose-path-section-community .choose-path-text a.text_url{
+    padding: 9px;
+    border: 1px solid #000;
+    border-radius: 50px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .choose-path-section-community {
+    width: 90%;
+  }
+  .choose-path-section-community .choose-path-title {
+    font-size: 24px;
+  }
+  .choose-path-section-community .choose-path-tabs {
+    padding: 10px 11px;
+    gap: 6px;
+  }
+ .choose-path-section-community .choose-path-tab {
+    line-height: inherit;
+    padding: 5px 9px;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+  .choose-path-section-community .choose-path-content {
+    padding: 3rem;
+  }
+  .choose-path-section-community .choose-path-text {
+    width: 80%;
+    margin: unset;
+  }
+  .choose-path-section-community .choose-path-image {
+    width: 30%;
+    min-width: 130px;
+    left: -7%;
+    top: 26%;
+  }
+}

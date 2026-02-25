@@ -1,0 +1,224 @@
+<!-- sections/skin-care-best-sellers.liquid -->
+{{ 'skin-care-best-sellers.css' | asset_url | stylesheet_tag}}
+{% style %}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+
+  }
+  .best-seller-skincare{
+    padding-top: {{ section.settings.padding_text_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+  }
+  @media (min-width: 768px) {
+        .best-seller-skincare {
+            background: #FBFAF9;
+            background-image: url('{{ section.settings.bg_image_desktop | image_url }}');
+            background-repeat: repeat-x;
+            background-position: top;
+            background-size: auto 100%;
+        }
+    }
+  @media screen and (max-width: 768px) {
+      .best-seller-skincare {
+            background-image: url('{{ section.settings.bg_image_mobile | image_url }}');
+            background-repeat: repeat-x;
+            background-position: top;
+            background-size: cover;
+            background-color: #FBFAF9;
+        }
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_mobile }}px;
+  margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+  .best-seller-skincare{
+   padding-top: {{ section.settings.padding_text_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+  }}
+{% endstyle %}
+
+<div class="best-sellers-section-skincare container section-{{ section.id }}-margin">
+  <div class="best-sellers-header-skincare">
+    <h2>{{ section.settings.heading }}</h2>
+    <a href="{{ section.settings.button_url }}" class="view-all-btn desktop_screen">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+
+  <div class="swiper best-sellers-swiper">
+    <div class="swiper-wrapper">
+      {% assign collection = collections[section.settings.collection] %}
+      {% if collection.products.size > 0 %}
+        {% for product in collection.products limit: 10 %}
+          {% if product.available %}
+          <div class="swiper-slide product-card-skincare">
+            {% render 'new-pocket-skincare',
+              product: product,
+              fetch_priority: fetch_priority,
+              indexIs: indexing,
+              seo_text: section.settings.seo_text
+            %}
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <p>No products found in this collection.</p>
+      {% endif %}
+    </div>
+    <div class="swiper-scrollbar"></div>
+  </div>
+  <div class="view-all all-skin view-all-continer-btn">
+    <a href="{{ collection.url }}" class="view-all-button">view all</a>
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Best Sellers skin care",
+"class": "best-seller-skincare",
+"settings": [
+{
+"type": "header",
+"content": "Desktop Margin"
+},
+{
+"type": "image_picker",
+"id": "bg_image_desktop",
+"label": "Desktop Background Image"
+},
+{
+"type": "image_picker",
+"id": "bg_image_mobile",
+"label": "Mobile Background Image"
+},
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top Desktop",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom Desktop",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_text_top_desktop",
+"label": "Padding Top (Desktop)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_text_bottom_desktop",
+"label": "Padding Bottom (Desktop)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 20
+},
+{
+"type": "header",
+"content": "Mobile Margin"
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top Mobile",
+"default": 24
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 0,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom Mobile",
+"default": 24
+},{
+"type": "range",
+"id": "padding_text_top_mobile",
+"label": "Padding Top (Mobile)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 15
+},
+{
+"type": "range",
+"id": "padding_text_bottom_mobile",
+"label": "Padding Bottom (Mobile)",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 15
+},
+
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "Best Sellers"
+},
+{
+"type": "text",
+"id": "button_text",
+"label": "Button Text",
+"default": "View All"
+},
+{
+"type": "url",
+"id": "button_url",
+"label": "Button URL"
+
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "Product Collection"
+}
+],
+"presets": [
+{
+"name": "Best Sellers Slider skin care "
+}
+]
+}
+{% endschema %}
+
+<script>
+  new Swiper('.best-sellers-swiper', {
+      slidesPerView: 2,
+      spaceBetween: 16,
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+          1024: { slidesPerView: 4.7 }
+      },
+      scrollbar: {
+          el: '.swiper-scrollbar',
+          draggable: true,
+      },
+  });
+</script>

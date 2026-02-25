@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "bundle_builder": {
+      "type": "apps",
+      "blocks": {
+        "bundlegenie_byob_upsell_bundle_builder_block_mejbbe": {
+          "type": "shopify://apps/bundlegenie-byob-upsell/blocks/bundle-builder-block/ff4e5870-0754-487c-b956-ffa621f40fc3",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "bundlegenie_byob_upsell_bundle_builder_block_mejbbe"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    }
+  },
+  "order": [
+    "bundle_builder"
+  ]
+}

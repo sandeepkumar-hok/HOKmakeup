@@ -1,0 +1,298 @@
+<!-- section/combo-card-skincare.liquid -->
+{{ 'combo-card-skincare.css' | asset_url | stylesheet_tag }}
+{% style %}
+  .section-{{ section.id }}-margin {
+     margin-top: {{ section.settings.margin_top_desktop }}px;
+     margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    padding-top: {{ section.settings.padding_text_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+   }
+
+   @media screen and (max-width: 768px) {
+     .section-{{ section.id }}-margin {
+       margin-top: {{ section.settings.margin_top_mobile }}px;
+       margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+       padding-top: {{ section.settings.padding_text_top_mobile }}px;
+       padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+     }
+   }
+{% endstyle %}
+<section
+  class="combo-skin-care-main section-{{ section.id }}-margin"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="combo-section-skin-care container">
+    <div class="header-skincare">
+      <h2>{{ section.settings.heading }}</h2>
+      <a href="{{ section.settings.button_url }}" class="view-all-btn desktop_screen">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+
+    <div class="swiper combo-swiper-mobile ">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign product = all_products[block.settings.product] %}
+          {% if product %}
+            <div class="swiper-slide">
+              <a href="{{ product.url }}" class="combo-card">
+                <div class="combo-top">
+                  <div class="badge_svg">
+                    <img
+                      src="{{ block.settings.product_left-badge | image_url }}"
+                      alt="{{ product.vendor }}"
+                      title="{{ product.vendor }}"
+                      width="auto"
+                      height="48"
+                      loading="lazy"
+                      style="margin:auto;"
+                    >
+                    <p>
+                      earn <strong>{{ product.price | divided_by: 100.0 | times: 3 | round }}</strong> pts
+                    </p>
+                    {% comment %}{{ block.settings.ern_points }} {% endcomment %}
+                  </div>
+                </div>
+
+                <div class="slide-combo-card">
+                  <!-- Slide 1: Image -->
+                  <div class="slide slide1 combo-image">
+                    {% if block.settings.product_image %}
+                      <img
+                        src="{{ block.settings.product_image | image_url }}"
+                        alt="Extra Product Image"
+                        title="{{ product.title }}"
+                        width="382"
+                        class="skin-image"
+                        fetchpriority="{{ fetch_priority }}"
+                        height="462"
+                      >
+                    {% else %}
+                      <img
+                        src="{{ product.featured_image | image_url }}"
+                        alt="{{ product.title }}"
+                        title="{{ product.title }}"
+                        width="310"
+                        class="skin-image"
+                        fetchpriority="{{ fetch_priority }}"
+                        height="310"
+                      >
+                    {% endif %}
+                  </div>
+
+                  <!-- Slide 2: Details -->
+                  <div class="slide slide2 combo-hover-details">
+                    <div class="combo-price">
+                      <span class="current-price">{{ product.price | money_without_trailing_zeros }}</span>
+                      {% if product.compare_at_price > product.price %}
+                        <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                        <span class="discount">
+                          {{
+                            product.compare_at_price
+                            | minus: product.price
+                            | times: 100.0
+                            | divided_by: product.compare_at_price
+                            | round
+                          -}}
+                          % off
+                        </span>
+                      {% endif %}
+                    </div>
+                    <p class="combo-description">{{ product.title }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+
+    <div class="view-all all-skin">
+      <a href="{{ section.settings.button_url }}" class="view-all-button mobile_screen">
+        {{- section.settings.button_text -}}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+"name": "Combo Grid card skincare",
+"settings": [
+{
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5F5F5"
+   },
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "Best Sellers"
+},
+{
+"type": "text",
+"id": "button_text",
+"label": "Button Text",
+"default": "View All"
+},
+{
+"type": "url",
+"id": "button_url",
+"label": "Button URL"
+
+},
+  {
+ "type": "header",
+  "content": "Desktop Margin"
+},
+{
+  "type": "range",
+  "id": "margin_top_desktop",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Top Desktop",
+  "default": 36
+},
+{
+  "type": "range",
+  "id": "margin_bottom_desktop",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Bottom Desktop",
+  "default": 36
+},
+{
+      "type": "range",
+      "id": "padding_text_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+       "max": 200,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 20
+    },
+{
+  "type": "header",
+  "content": "Mobile Margin"
+},
+{
+  "type": "range",
+  "id": "margin_top_mobile",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Top Mobile",
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "margin_bottom_mobile",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Margin Bottom Mobile",
+  "default": 24
+},
+  {
+      "type": "range",
+      "id": "padding_text_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+       "max": 200,
+      "step": 2,
+     "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "default": 24
+    },
+
+],
+"blocks": [
+{
+"type": "product",
+"name": "Combo Product",
+"settings": [
+{
+"type": "product",
+"id": "product",
+"label": "Select Product"
+},
+{
+"type": "image_picker",
+"id": "product_left-badge",
+"label": "Select image badge"
+},
+{
+"type": "image_picker",
+"id": "product_image",
+"label": "Select image product"
+},
+{
+"type": "richtext",
+"id": "ern_points",
+"label": "points",
+"default": "<p>earn 208 pts </p>"
+},
+]
+}
+],
+"max_blocks": 12,
+"presets": [
+{
+"name": "Combo Grid"
+}
+]
+}
+{% endschema %}
+
+<script>
+      new Swiper('.combo-swiper-mobile', {
+    grabCursor: true,
+    spaceBetween: 16,
+    slidesOffsetAfter: 16,
+    scrollbar: {
+      el: '.combo-swiper-mobile .swiper-scrollbar',
+      hide: false,
+    },
+    breakpoints: {
+
+      0: {
+        slidesPerView: 1.2,
+      },
+
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 2.5,
+          },
+      1024: {
+        slidesPerView: 4,
+      }
+    }
+  });
+</script>

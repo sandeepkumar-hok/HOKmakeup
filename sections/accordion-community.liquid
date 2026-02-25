@@ -1,0 +1,197 @@
+<!-- section/accordion-community-->
+<style>
+.section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+}
+
+.faq-accordion-section {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+.faq-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.faq-item {
+  border-top: 1px solid #ddd;
+  padding: 16px 0;
+}
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+.faq-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+.faq-icon::before {
+  content: '+';
+}
+.faq-item.active .faq-icon::before {
+  content: '–';
+}
+
+/* Slide-down style */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 0;
+  padding-right: 32px;
+}
+.faq-item.active .faq-content {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .faq-accordion-section { max-width: 90%; }
+
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+}
+</style>
+
+<section class="faq-accordion-section section-{{ section.id }}-margin">
+  <h2 class="faq-title">{{ section.settings.heading }}</h2>
+  {% for block in section.blocks %}
+    <div class="faq-item">
+      <div class="faq-header">
+        <span>{{ forloop.index }}. {{ block.settings.question }}</span>
+        <span class="faq-icon"></span>
+      </div>
+      <div class="faq-content">
+        {{ block.settings.answer }}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const items = document.querySelectorAll('.faq-accordion-section .faq-item');
+
+    items.forEach(item => {
+      const header = item.querySelector('.faq-header');
+      const content = item.querySelector('.faq-content');
+
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+
+        // Collapse all
+        items.forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-content').style.maxHeight = null;
+        });
+
+        // Expand current
+        if (!isOpen) {
+          item.classList.add('active');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Accordion FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "FAQ Heading",
+      "default": "FAQ"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How will my personal information be used?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Please refer to our Privacy Policy for how we handle your personal data.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "category": "Text",
+      "blocks": [
+        { "type": "faq_item" },
+        { "type": "faq_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

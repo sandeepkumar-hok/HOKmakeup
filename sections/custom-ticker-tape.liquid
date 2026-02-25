@@ -1,0 +1,180 @@
+<!-- section/custom-ticker-tape.liquid -->
+<div class="ticker-paw-paw tabbY2 section-{{ section.id }}-margin" style="background: {{ section.settings.bg_color }};">
+  <div class="ticker-inner-wrapper">
+    <div class="wrapper-9ioi">
+      <div class="tickertapexx">
+        {% for _ in (1..30) %}
+          <div class="wrapper-content-marque">
+            {% for block in section.blocks %}
+              {% if block.settings.ticker_icon != blank %}
+                <img
+                  src="{{ block.settings.ticker_icon | image_url: width: 52 }}"
+                  alt=""
+                  width="26"
+                  height="22"
+                  loading="lazy"
+                  class="ticker-icon-img"
+                >
+              {% endif %}
+              {{ block.settings.custom_content }}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .wrapper-content-marque p {
+    color: #262626;
+    font-size: clamp(16px, 2vw, 16px);
+  }
+  .ticker-paw-paw.tabbY2 {
+    padding: 2px 0px 1px 0px;
+  }
+  .ticker-inner-wrapper {
+    width: 100%;
+    background: #FFF8E7;
+    border-radius: 50px;
+    border: 1px solid #000;
+  }
+  .ticker-paw-paw .wrapper-9ioi {
+    /* border-bottom: 10px; */
+    width: calc(100% - 40px);
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    color: #262626;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0px;
+    border-bottom: unset !important;
+  }
+  .ticker-paw-paw .tickertapexx {
+    display: flex;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    animation: ticker-kf 15s linear infinite;
+    position: absolute;
+    left: 0;
+    letter-spacing: normal;
+  }
+  .wrapper-content-marque {
+    display: flex;
+    gap: 16px;
+    margin-left: 20px;
+  }
+  @keyframes ticker-kf {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(-750px, 0, 0);
+    }
+  }
+  .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+ 
+  @media screen and (min-width: 750px) {
+    .ticker-paw-paw.tabbY2 {
+      padding: 2px 0px 2px 0px;
+    }
+     .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;} 
+  }
+</style>
+{% schema %}
+{
+  "name": "ticker-tape-custom",
+  "class": "ticker-sticky",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#000"
+    },
+    
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+        "type": "image_picker",
+        "id": "ticker_icon",
+        "label": "Ticker icon (SVG/PNG)"
+      },
+        {
+          "type": "richtext",
+          "id": "custom_content",
+          "label": " Content"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "ticker tape paw paw"
+    }
+  ]
+}
+{% endschema %}

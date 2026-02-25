@@ -1,0 +1,523 @@
+<!-- section/skincare-scroll-category -->
+<section class="scrollspy-wrapper section-{{ section.id }}-margin">
+  {% if section.settings.heading != blank %}
+    <h2 class="heading">{{ section.settings.heading }}</h2>
+  {% endif %}
+  <div class="scrollspy-tabs container">
+    <div class="scrollspy-tabs-inner">
+      {% for block in section.blocks %}
+        {% assign col = block.settings.collection %}
+        {% if col %}
+          <div class="tab-item {% if forloop.first %}is-link{% else %}is-button{% endif %}">
+            {% if forloop.first %}
+              <a
+                href="{{ col.url }}"
+                class="tab-link"
+                aria-label="Open {{ block.settings.tab_label | default: col.title }}"
+              >
+                {% if block.settings.tabs_image != blank %}
+                  <img
+                    src="{{ block.settings.tabs_image | image_url: width: 200 }}"
+                    srcset="
+                      {{ block.settings.tabs_image | image_url: width: 200 }} 200w,
+                      {{ block.settings.tabs_image | image_url: width: 280 }} 280w
+                    "
+                    sizes="(max-width: 767px) 64px, 105px"
+                    alt="{{ block.settings.tabs_image.alt | escape }}"
+                    width="200"
+                    height="200"
+                    loading="lazy"
+                    fetchpriority="auto"
+                    class="tab-image"
+                  >
+                {% endif %}
+                <span class="tab-text">{{ block.settings.tab_label }}</span>
+              </a>
+            {% else %}
+              <button
+                type="button"
+                class="scrollspy-tab"
+                data-target="collection-{{ col.handle }}"
+                {{ block.shopify_attributes }}
+                aria-label="Scroll to {{ block.settings.tab_label | default: col.title }}"
+              >
+                {% if block.settings.tabs_image != blank %}
+                  <img
+                    src="{{ block.settings.tabs_image | image_url: width: 200 }}"
+                    srcset="
+                      {{ block.settings.tabs_image | image_url: width: 200 }} 200w,
+                      {{ block.settings.tabs_image | image_url: width: 280 }} 280w
+                    "
+                    sizes="(max-width: 767px) 64px, 105px"
+                    alt="{{ block.settings.tabs_image.alt | escape }}"
+                    width="200"
+                    height="200"
+                    loading="lazy"
+                    fetchpriority="auto"
+                    class="tab-image"
+                  >
+                {% endif %}
+                <span class="tab-text">{{ block.settings.tab_label | default: col.title }}</span>
+              </button>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="scrollspy-sections container">
+    {% for block in section.blocks %}
+      {% assign col = block.settings.collection %}
+      {% if col %}
+        <section
+          id="collection-{{ col.handle }}"
+          class="collection-section"
+          {% if forloop.first %}
+            style="display:none;"
+          {% endif %}
+        >
+          <div class="collection-header">
+            <div>
+              <h2 class="collection-title">{{ block.settings.tab_label | default: col.title }}</h2>
+              <p>{{ block.settings.tab_para }}</p>
+            </div>
+            <a href="{{ col.url }}" class="view-all-btn" aria-label="View all {{ col.title }}">View All</a>
+          </div>
+
+          <ul
+            class="productListing product-list-show {% if layout == '1' %} productList{% else %} productGrid column-{{ '4' }}{% endif %} list-{{ '2' }} list-unstyled"
+            id="main-collection-product-grid"
+            data-id="{{ section.id }}"
+          >
+            {% assign limit_count = block.settings.products_limit | default: 12 %}
+            {% for product in col.products limit: limit_count %}
+              {% if product.available %}
+                <li class="product">
+                  {% render 'new-pocket-skincare',
+                    product: product,
+                    fetch_priority: fetch_priority,
+                    indexIs: indexing,
+                    seo_text: section.settings.seo_text
+                  %}
+                </li>
+              {% endif %}
+            {% else %}
+              <li class="no-products">Products are not available in this collection.</li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+      .section-{{ section.id }}-margin  {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+        padding-top: {{ section.settings.padding_text_top_desktop }}px;
+        padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+      }
+
+      .scrollspy-wrapper { width: 100%; }
+      .scrollspy-wrapper .heading{
+        color:#000; text-align:center;
+        font-size: clamp(22px, 2.2vw, 32px);
+        margin-bottom:24px; font-weight:900;
+      }
+
+      .scrollspy-tabs.container{
+        border-radius:12px;
+    }
+      .scrollspy-tabs{
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        background:#fff;
+        border-bottom:1px solid #E9E9E9;
+        box-shadow:0 4px 14px rgba(222,222,222,.64);
+      }
+
+      .scrollspy-tabs-inner{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:24px;
+        padding: 12px 0;
+        margin: 0;
+        border-radius:12px;
+      }
+
+      .tab-item{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:6px;
+        flex: 0 0 auto;
+        margin: 24px 0;
+      }
+
+      .tab-image{
+        width:105px; height:103px;
+        object-fit:contain;
+        border-radius:50%;
+      }
+
+      .scrollspy-tab, .tab-link{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:6px;
+        background:none;
+        border:none;
+        cursor:pointer;
+        text-decoration:none;
+        font-size:16px;
+        font-weight:600;
+        color:#7D7D7D;
+        border-bottom:2px solid transparent;
+        white-space:nowrap;
+      }
+
+      .scrollspy-tab.active, .tab-link.active{
+        color:#000;
+        border-bottom:2.5px solid #092551;
+      }
+      .scrollspy-tabs.is-sticky-full{
+        width: 100vw !important;
+        max-width: 100% !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding-left: 16px;
+        padding-right: 16px;
+        border-radius: 0 !important;
+      }
+      .scrollspy-sections{ width:100%; margin:24px auto 0; }
+
+     .scrollspy-sections .collection-section{
+        scroll-margin-top: 0px;
+        padding:30px;
+        border-radius:12px;
+        background:#fff;
+        margin-bottom:24px;
+        box-shadow:0 2px 10px rgba(110,110,110,.25);
+      }
+
+      .scrollspy-sections .collection-header{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:24px;
+      }
+
+     .scrollspy-sections .collection-title{
+        color:#000;
+        font-size: 24px;
+        font-weight:600;
+        margin:0;
+        line-height: normal;
+      }
+
+      .scrollspy-sections .collection-header p{
+        color:#727272;
+        font-size: clamp(14px, 2.2vw, 16px);
+      }
+
+     .scrollspy-sections  .view-all-btn{
+        font-size:14px;
+        font-weight:700;
+        color:#000;
+        text-transform:uppercase;
+        text-decoration:none;
+        border-radius:50px;
+        border:1px solid #3B3B3B;
+        padding:12px 52px;
+        white-space:nowrap;
+      }
+      .view-all-btn:hover{ opacity:.7; }
+
+      #main-collection-product-grid{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        gap:20px;
+      }
+    .scrollspy-tabs.is-sticky-full .scrollspy-tabs-inner{
+      justify-content: center;
+    }
+      @media (min-width: 889px) and (max-width: 1440px) {
+        {% comment %} .scrollspy-tabs-inner {
+            justify-content: center !important;}{% endcomment %}
+             .scrollspy-tabs-inner{width: 95%;
+                margin: auto;}
+          }
+      @media (max-width: 1489px){
+        .scrollspy-tabs {
+        top: 0;}
+        .scrollspy-tabs-inner{
+          justify-content:flex-start;
+          overflow-x:auto;
+          overflow-y:hidden;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type:x mandatory;
+          gap:12px;
+          padding: 0 12px;
+        }
+        .scrollspy-tabs-inner::-webkit-scrollbar{ display:none; }
+        .tab-item{ scroll-snap-align:start; }
+      }
+      @media (min-width: 1600px){
+      #main-collection-product-grid {
+          grid-template-columns: repeat(5, minmax(248px, 300px));
+  }
+    }
+      @media (max-width: 767px){
+    .scrollspy-sections .view-all-btn{ padding: 4px 23px; font-size: 12px; }
+
+    .section-{{ section.id }}-margin{
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding-top: {{ section.settings.padding_text_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+    }
+
+   #main-collection-product-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #main-collection-product-grid > *{ min-width: 0; }
+
+    .tab-image{ width:74px !important; height:74px !important; object-fit: cover; }
+
+    .scrollspy-tabs{ top: 0; }
+    .scrollspy-sections .collection-title{ font-size:14px; }
+    .view-all-btn{ font-size:12px; padding:4px 24px; }
+    .scrollspy-tab, .tab-link{ font-size:14px; padding: 6px 6px 0px 6px; }
+
+    .scrollspy-tabs.is-sticky-full .scrollspy-tabs-inner{
+      justify-content:flex-start;
+    }
+  }
+
+
+      .scrollspy-tabs-spacer{ height:0; }
+</style>
+
+{% schema %}
+{
+  "name": "ScrollSpy Collections",
+  "settings": [
+    { "type": "header", "content": "Desktop Margin" },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+
+    { "type": "header", "content": "Mobile Margin" },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop with Category" }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "range",
+          "id": "products_limit",
+          "label": "Products per collection",
+          "min": 8,
+          "max": 24,
+          "step": 2,
+          "default": 12
+        },
+        { "type": "collection", "id": "collection", "label": "Select collection" },
+        { "type": "text", "id": "tab_label", "label": "Tab name (optional)" },
+        { "type": "text", "id": "tab_para", "label": "text (optional)", "default": "Recharge your skin overnight" },
+        { "type": "image_picker", "id": "tabs_image", "label": "tab image" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "ScrollSpy Collections Tabs", "blocks": [{ "type": "collection_block" }] }]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stickyEl = document.querySelector('.scrollspy-tabs');
+    const tabsScroll = document.querySelector('.scrollspy-tabs-inner');
+    const tabs = Array.from(document.querySelectorAll('.scrollspy-tab'));
+    const sections = Array.from(document.querySelectorAll('.collection-section'));
+
+    if (!stickyEl || !tabsScroll || !sections.length) return;
+    const spacer = document.createElement('div');
+    spacer.className = 'scrollspy-tabs-spacer';
+    stickyEl.parentNode.insertBefore(spacer, stickyEl);
+    function getStickyTopPx() {
+      const topVal = getComputedStyle(stickyEl).top || '0px';
+      if (topVal.includes('%')) return Math.round(window.innerHeight * (parseFloat(topVal) / 100));
+      return parseFloat(topVal) || 0;
+    }
+
+    function getTotalOffset() {
+      return getStickyTopPx() + (stickyEl.offsetHeight || 0) + 16;
+    }
+    let stickyStart = stickyEl.getBoundingClientRect().top + window.pageYOffset - getStickyTopPx();
+
+    function handleSticky() {
+      const shouldStick = window.scrollY >= stickyStart;
+
+      stickyEl.classList.toggle('is-sticky-full', shouldStick);
+      if (shouldStick) stickyEl.classList.remove('container');
+      else stickyEl.classList.add('container');
+
+      spacer.style.height = shouldStick ? `${stickyEl.offsetHeight}px` : '0px';
+    }
+
+    function scrollTabIntoView(tabEl) {
+      if (!tabEl) return;
+      const wrapRect = tabsScroll.getBoundingClientRect();
+      const tabRect = tabEl.getBoundingClientRect();
+      const tabCenter = tabRect.left - wrapRect.left + tabRect.width / 2;
+      const wrapCenter = wrapRect.width / 2;
+      const targetLeft = tabsScroll.scrollLeft + (tabCenter - wrapCenter);
+      tabsScroll.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+    }
+
+    function setActiveTabBySectionId(id, shouldScroll = true) {
+      let active = null;
+      tabs.forEach((tab) => {
+        const on = tab.dataset.target === id;
+        tab.classList.toggle('active', on);
+        if (on) active = tab;
+      });
+      if (shouldScroll && active) scrollTabIntoView(active);
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = document.getElementById(tab.dataset.target);
+        if (!target) return;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - getTotalOffset();
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
+
+    function handleActiveOnScroll() {
+      const trigger = getTotalOffset();
+      let currentId = '';
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= trigger && rect.bottom >= trigger) {
+          currentId = section.id;
+          break;
+        }
+      }
+
+      if (!currentId) {
+        let best = null,
+          bestDist = Infinity;
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          const dist = Math.abs(rect.top - trigger);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = section;
+          }
+        }
+        if (best) currentId = best.id;
+      }
+
+      if (currentId) setActiveTabBySectionId(currentId, true);
+    }
+
+    // init
+    handleSticky();
+    handleActiveOnScroll();
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        handleSticky();
+        handleActiveOnScroll();
+      },
+      { passive: true }
+    );
+
+    window.addEventListener('resize', () => {
+      stickyStart = stickyEl.getBoundingClientRect().top + window.pageYOffset - getStickyTopPx();
+      handleSticky();
+      handleActiveOnScroll();
+    });
+  });
+</script>

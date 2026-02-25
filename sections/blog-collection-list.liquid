@@ -1,0 +1,353 @@
+<div class="l-blog snipcss-LiNMN">
+  <div class="blog-header-wrapper1">
+    <img
+      class="blog-header-1"
+      src="https://www.revolutionbeauty.com/on/demandware.static/-/Library-Sites-revbe-content-global/default/dw9aff4962/images/blog/theblog.png"
+      width="1380"
+      height="444">
+  </div>
+  <div class="l-blog-filters">
+    <ul
+      class="nav nav-pills nav-fill mb-3"
+      id="ex1"
+      role="tablist">
+      {% for block in section.blocks %}
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link l-blog-filter_link {% if forloop.index == 1 %}active {% endif %}"
+            id="ex2-tab-{{forloop.index}}"
+            data-mdb-toggle="pill"
+            href="#ex2-pills-{{forloop.index}}"
+            role="tab"
+            aria-controls="ex2-pills-{{forloop.index}}"
+            aria-selected="true">{{ block.settings.blog.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="tab-content" id="ex2-content">
+    {% for block in section.blocks %}
+      <div
+        class="tab-pane fade show {% if forloop.index == 1 %}active {% endif %}"
+        id="ex2-pills-{{forloop.index}}"
+        role="tabpanel"
+        aria-labelledby="ex2-tab-{{forloop.index}}">
+        <div class="l-blog-articles" data-component="blog/Blog">
+          <div class="row l-blog-articles_list grid-loader">
+            {%- for article in block.settings.blog.articles -%}
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="m-white">
+                  <a class="b-blog_tile-link" href="{{ article.url }}">
+                    <img loading="lazy"
+                      width="100%"
+                      height="100%"
+                      class="b-blog_tile-image"
+                      src="{{ article.image | image_url }}"
+                      alt="{{ article.image | escape }}"
+                      title="{{ article.image | escape }}">
+                  </a>
+                  <div class="b-blog_tile-info">
+                    <p class="b-blog_tile-date">
+                      {{ article.published_at | time_tag: format: 'date' }}
+                    </p>
+                    <h3 class="b-blog_tile-title">
+                      {{ article.title }}
+                    </h3>
+                    <p class="b-blog_tile-description">
+                      {{ article.content | strip_html | truncatewords: 10 }}
+                    </p>
+                    <a class="b-blog_tile-more" href="{{ article.url }}">
+                      <span class="b-blog_tile-more_copy">
+                        Read now
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<style > :root
+{
+  --content-width: 1200px;
+}
+
+@media screen and (min-width: 1440px){:root {
+  --content-width: 1440px;
+}
+}
+
+:root {
+--color-dark: #000;
+--color-lighter2: #808080;
+--color-lighter3: #a0a0a0;
+--color-lighter4: #d8d8d8;
+--color-light: #fff;
+}
+
+*,:before
+,:after {
+box-sizing: border-box;
+}
+
+:selection {
+background: var(--color-dark);
+color: var(--color-light);
+}
+
+.nav-link {
+color: #6e6e6e;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+color: #000;
+border-bottom: 3px solid black;
+border-radius: 0;
+font-weight: 800;
+background-color: #fff;
+}
+
+.blog-header-wrapper1 {
+min-height: 200px;
+background: #272522;
+display: flex;
+align-self: center;
+justify-content: center;
+align-items: center;
+}
+
+.l-blog-filters {
+font-size: 18px;
+color: var(--color-dark);
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
+padding-top: 40px;
+}
+
+.l-blog-articles {
+margin: 24px auto 0;
+max-width: var(--content-width);
+padding: 0 30px;
+}
+
+.l-blog-ugc {
+margin: 0 auto;
+max-width: var(--content-width);
+padding: 0 60px;
+}
+
+img {
+border: 0;
+font-size: 100%;
+font: inherit;
+margin: 0;
+padding: 0;
+vertical-align: bottom;
+max-width: 100%;
+}
+
+.blog-header-1 {
+align-self: center;
+padding: 20px;
+width: 40%;
+max-width: 500px;
+filter: invert(100);
+height: auto;
+}
+
+a {
+background: transparent;
+border: 0;
+font-size: 100%;
+font: inherit;
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+color: inherit;
+text-decoration: none;
+}
+
+.l-blog-filter_link {
+padding: 0 20px 16px;
+}
+
+.l-blog-filter_link:after {
+border-bottom: solid 2px currentColor;
+content: '';
+display: block;
+transform: scaleX(0);
+transition: transform 500ms ease-in-out;
+}
+
+a:active,
+a:hover {
+outline: 0;
+}
+
+.l-blog-filter_link:hover:after {
+transform: scaleX(1);
+transition: transform 500ms ease-in-out;
+}
+
+.l-blog-selected:after {
+border-bottom: solid 2px currentColor;
+content: '';
+display: block;
+transform: scaleX(1);
+}
+
+.l-blog-articles_list {
+margin-bottom: 40px;
+}
+
+button {
+color: inherit;
+font: inherit;
+margin: 0;
+overflow: visible;
+text-transform: none;
+-webkit-appearance: button;
+cursor: pointer;
+}
+
+.l-blog-load_more {
+
+font-weight: 500;
+font-size: 14px;
+line-height: 1.2;
+background-color: none;
+border: 1px solid var(--color-dark);
+cursor: pointer;
+display: block;
+outline: none;
+padding: 11px 20px;
+text-align: center;
+text-transform: uppercase;
+transition: background-color 0.2s, border-color 0.2s;
+width: auto;
+background-color: var(--color-light);
+border-color: var(--color-lighter4);
+margin: 0 auto 80px;
+}
+
+@media screen and (min-width: 1200px) {
+.l-blog-load_more:hover {
+  border-color: var(--color-lighter3);
+}
+}
+
+.b-blog_tile {
+display: grid;
+grid-template: '.' 1fr 'text' 1fr;
+grid-template-rows: 1fr auto;
+}
+
+.b-blog_tile-link {
+display: block;
+grid-column: 1/-1;
+}
+
+.b-blog_tile-info {
+display: flex;
+flex-direction: column;
+grid-area: text;
+padding: 20px 0;
+text-align: center;
+}
+
+.b-blog_tile-image {
+height: auto;
+width: 100%;
+}
+
+p {
+border: 0;
+font-size: 100%;
+font: inherit;
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+.b-blog_tile-date {
+
+font-weight: 500;
+font-size: 10px;
+color: var(--color-lighter2);
+margin-bottom: 12px;
+}
+
+h3 {
+border: 0;
+font-size: 100%;
+font: inherit;
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+.b-blog_tile-title {
+font-size: 22px;
+margin-bottom: 16px;
+}
+
+.b-blog_tile-description {
+
+font-weight: 500;
+font-size: 14px;
+margin-bottom: 20px;
+}
+
+span {
+border: 0;
+font-size: 100%;
+font: inherit;
+margin: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+.b-blog_tile-more_copy {
+
+font-weight: 500;
+font-size: 14px;
+border-bottom: 1px solid var(--color-dark);
+padding-bottom: 4px;
+text-transform: uppercase;
+}
+
+@media screen and (min-width: 1200px) {
+.b-blog_tile-more_copy:hover {
+  border-color: rgba(0, 0, 0, 0);
+}
+}
+</style>{% schema %}
+{
+  "name": "Blogs Collection",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "Blog",
+      "name": "Blogs",
+      "settings": [
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "t:sections.featured-blog.settings.blog.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blogs Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,359 @@
+<div class="container-fluid p-0">
+    {% if section.settings.show_slider_carousel %}
+    <div class="mobile_screen onlyOne">
+        <video class="w-100" src="https://cdn.shopify.com/videos/c/o/v/57c287aac6fe428fb8a97054bb90d95d.mp4" autoplay
+            loop muted playsinline="true"></video>
+    </div>
+    <div class="desktop_screen">
+        <div class="slider_grid">
+            <ul>
+                <li>
+                    <a href="#">
+                        <div>
+                            <h1>LONdon</h1>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <h1>itaLY</h1>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <h1>ScotlanD</h1>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <h1>India</h1>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div>
+                            <h1>USa</h1>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    <div class="w-100 p-0 bg-pink">
+        {% if section.settings.brand_is_image_desk != blank %}
+        <img loading="lazy" class="img-fluid desktop_screen" src="{{ section.settings.brand_is_image_desk | image_url }}"
+            alt="Brand Show" width="100%" height="100%">
+        <img loading="lazy" class="img-fluid mobile_screen" src="{{ section.settings.brand_is_image_mobile | image_url }}"
+            alt="Brand Show" width="100%" height="100%">
+        {% endif %}
+        {% if section.settings.intro_text_desk != blank %}
+        <p class="container brandTxt desktop_screen">{{ section.settings.intro_text_desk }}</p>
+        <p class="container brandTxt mobile_screen">{{ section.settings.intro_text_mob }}</p>
+        {% endif %}
+    </div>
+    <div class="container" id="marB">
+        <p class="brand_txt" style="color:{{ section.settings.text_color }}">{{ section.settings.brand_text_heading }}</p>
+        <div class="cards">
+            {% for block in section.blocks %}
+            <div class="card">
+                <a class="w-100" href="{{block.settings.slid_img}}">
+                    <img loading="lazy" class="img-fluid desktop_screen" src="{{ block.settings.clubImg | image_url }}"
+                        alt="Brand{{forloop.index}}" width="100%" height="100%">
+                    <img loading="lazy" class="img-fluid mobile_screen"
+                        src="{{ block.settings.clubImgmob | image_url }}" alt="Brand{{forloop.index}}" width="100%"
+                        height="100%">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<style>
+    .bg-pink {
+        background: linear-gradient(90deg, #fff1f8 0%, rgb(253 241 247 / .71) 23.96%, rgb(255 251 253 / .57) 52.55%, rgb(253 241 247 / .71) 79.69%, rgb(255 241 248 / .86) 100%)
+    }
+
+    .brandTxt {
+        color: #7c7c7c;
+        text-align: center;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        padding: 70px;
+        border-bottom: 1px solid #fff2f9
+    }
+
+    .brand_txt {
+        text-align: center;
+        font-size: 30px;
+        padding: 70px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px
+    }
+
+    .cards {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-gap: 1rem
+    }
+
+    .card {
+        height: auto;
+        border: none
+    }
+
+    @media (min-width:300px) {
+        .cards {
+            grid-template-columns: repeat(2, 1fr)
+        }
+    }
+
+    @media (min-width:900px) {
+        .cards {
+            grid-template-columns: repeat(3, 1fr)
+        }
+    }
+
+    .gapps {
+        padding: 8px !important
+    }
+
+    @media screen and (max-width:768px) {
+        .brandTxt {
+            font-size: 14px !important;
+            line-height: 15px !important;
+            padding: 28px 16px !important
+        }
+
+        .brand_txt {
+            font-size: 18px !important;
+            padding: 18px 0 !important;
+            font-weight: 600
+        }
+
+        img.img-fluid.mobile_screen {
+            display: block;
+            margin: -2px auto auto
+        }
+    }
+
+    .slider_grid ul {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0
+    }
+
+    .slider_grid ul li {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        min-height: 300px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        text-align: center;
+        color: #fff;
+        opacity: .6
+    }
+
+    .slider_grid ul li:nth-child(1) {
+        background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/LONDON.png?v=1688468583)
+    }
+
+    .slider_grid ul li:nth-child(2) {
+        background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/ITALY_1638dd77-172f-4df3-beb6-5af5ce472ebe.png?v=1688468583)
+    }
+
+    .slider_grid ul li:nth-child(3) {
+        background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/OW_426e05b1-4fda-42e8-a1db-6b54e46fac67.png?v=1688468583)
+    }
+
+    .slider_grid ul li:nth-child(4) {
+        background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/PP.png?v=1688468583)
+    }
+
+    .slider_grid ul li:nth-child(5) {
+        background-image: url(https://cdn.shopify.com/s/files/1/1743/7443/files/USA_e7d3c986-9282-40ca-b4b7-041f663b106b.png?v=1688468583)
+    }
+
+    .slider_grid ul li::before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgb(0 0 0 / .3);
+        content: ''
+    }
+
+    .slider_grid ul li div {
+        transform: translateY(0);
+        transition: transform 500ms
+    }
+
+    .slider_grid ul li a {
+        text-decoration: none;
+        color: #fff
+    }
+
+    .slider_grid ul li h1 {
+        font-family: 'Roboto Condensed', sans-serif;
+        text-overflow: clip;
+        text-transform: uppercase;
+        font-size: 70px;
+        font-weight: 600;
+        line-height: 3rem;
+        transform: rotate(-90deg);
+        white-space: nowrap;
+    }
+
+    .slider_grid ul li p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 300;
+        opacity: 1;
+        transition: opacity 200ms;
+        margin-left: 10vw;
+        margin-right: 10vw
+    }
+
+    .slider_grid {
+        overflow: hidden
+    }
+
+    .slider_grid ul {
+        height: 600px
+    }
+
+    .slider_grid ul li {
+        display: table-cell;
+        vertical-align: middle;
+        width: 33%;
+        height: 40vh;
+        min-height: 600px;
+        transition: all 500ms ease
+    }
+
+    .slider_grid ul:hover li {
+        width: 30%
+    }
+
+    .slider_grid ul:hover li:hover {
+        opacity: 1;
+        width: 75%
+    }
+
+    .slider_grid ul li::before {
+        background: linear-gradient(to bottom, #fff0 40%, rgb(0 0 0 / .6) 95%);
+        opacity: 0;
+        transition: opacity 1s, transform 1s
+    }
+
+    .slider_grid ul li:hover::before {
+        opacity: 1
+    }
+
+    .slider_grid ul:hover li:hover * {
+        opacity: 0
+    }
+
+    .slider_grid ul li div {
+        transition: transform 500ms;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .slider_grid ul li p {
+        width: 30vw;
+        height: 200px;
+        opacity: 0;
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+{% schema %}
+{
+"name": "Brand Grid Item",
+"settings": [
+    {
+"type": "checkbox",
+"id": "show_slider_carousel",
+"label": "Show Slider Carousel",
+"default": false
+},
+{
+"type": "text",
+"id": "intro_text_desk",
+"label": "Intro Text Desktop"
+},
+{
+"type": "text",
+"id": "intro_text_mob",
+"label": "Intro Text Mobile"
+},
+{
+"type": "text",
+"id": "brand_text_heading",
+"label": "Brand Text Heading"
+},
+{
+"type": "image_picker",
+"id": "brand_is_image_desk",
+"label": "Brand Show Image"
+},
+{
+"type": "image_picker",
+"id": "brand_is_image_mobile",
+"label": "Brand Show Image Mobile"
+},
+{
+"type": "color",
+"id": "text_color",
+"label": "Text Color",
+"default": "#D887AD"
+}
+],
+"blocks": [
+{
+"type": "image",
+"name": "Brand Image",
+"settings": [
+{
+"type": "image_picker",
+"id": "clubImg",
+"label": "Image"
+},
+{
+"type": "image_picker",
+"id": "clubImgmob",
+"label": "Image Mobile"
+},
+{
+"type": "url",
+"id": "slid_img",
+"label": "Logo Link"
+}
+]
+}
+],
+"presets": [
+{
+"name": "Brand Grid Item"
+}
+]
+}
+{% endschema %}

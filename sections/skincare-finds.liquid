@@ -1,0 +1,570 @@
+<!-- section/skincare-finds.loquid -->
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    padding-top: {{ section.settings.padding_text_top_desktop }}px;
+   padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+  }
+   .section-{{ section.id }} .skincare-finds-section{
+     background-color: {{ section.settings.background_color }};
+   }
+  .section-{{ section.id }} .b-skincare-vendor{
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 32px;
+    margin-top: 10px;
+  }
+ .section-{{ section.id }}  .b-skincare-subtitle{
+    font-size: 19px;
+    color: #7E7E7E;
+  }
+ .section-{{ section.id }}  .b-skincare-subtitle strong{
+    color: #1B1B1B;
+  }
+  .section-{{ section.id }} .skincare-finds-swiper-pagination-{{ section.id }}{
+    top: unset !important;
+    /* bottom: -12px; */
+    background: #F5F5F5;
+    z-index:1;
+  }
+  .section-{{ section.id }} .skincare-finds-swiper-pagination-{{ section.id }} .swiper-pagination-progressbar-fill{
+    background: #6E6E6E !important;
+  }
+ .section-{{ section.id }}  .view-all-continer-btn{
+    color: #000;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    background: #FFF;
+    text-align: center;
+    justify-content: center;
+  }
+  .section-{{ section.id }} .skincare-offer-card {
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 2px 10px 0px rgba(40, 84, 102, 0.25);
+    transition: 0.3s;
+  }
+  .section-{{ section.id }} .skincare-offer-card .content{
+    padding: 24px;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .skincare-brand-line {
+    margin-bottom: 8px;
+    gap: 16px;
+  }
+  .section-{{ section.id }} .skincare-brand-line img {
+    width: 120px;
+    height: 34px;
+    object-fit: contain;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .discount-text {
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .section-{{ section.id }} .skincare-offer-card .middle-line {
+    font-size: 16px;
+    color: #D2D2D2;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .tagline-phrase {
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  /* .discount-text.neqwIn_cls{
+    color: #FFF !important;
+    font-size: 13px !important;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 13px;
+    background:#000;
+    display: inline-block;
+     transform: skewX(-25deg);
+     padding: 3px 5px;
+  } */
+  @media screen and (max-width: 768px) {
+   .section-{{ section.id }}  .b-skincare-vendor {
+      font-size: 20px;
+      margin-top: 4px;
+    }
+    .section-{{ section.id }} .b-skincare-subtitle {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding-top: {{ section.settings.padding_text_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+    }
+   .section-{{ section.id }}  .b-skincare-vendor {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .section-{{ section.id }} .b-skincare-subtitle {
+      font-size: 11px;
+      text-overflow: ellipsis;
+      height: 30px;
+    }
+   .section-{{ section.id }}  .view-all-continer-btn{
+    font-size: 13px;
+    width: 100%;
+    }
+    .section-{{ section.id }} .skincare-brand-line img {
+      width: 90px;
+      height: 24px;
+  }
+  .section-{{ section.id }} .skincare-offer-card .content {
+      padding: 18px;
+  }
+  .section-{{ section.id }} .skincare-offer-card .discount-text ,
+  .section-{{ section.id }} .skincare-offer-card .middle-line {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+ .section-{{ section.id }} .skincare-offer-card .tagline-phrase {
+    font-size: 12px;
+    font-weight: 800;
+  }
+  }
+{%- endstyle -%}
+{% liquid
+  assign num_slides_sm = section.settings['num-slides-sm']
+  assign num_slides_md = section.settings['num-slides-md']
+  assign num_slides_lg = section.settings['num-slides-lg']
+  assign num_slides_xl = section.settings['num-slides-xl']
+  assign num_slides_2xl = section.settings['num-slides-2xl']
+  assign image_priority = section.settings.image_priority
+  if image_priority
+    assign fetch_priority = 'high'
+  else
+    assign fetch_priority = 'auto'
+  endif
+%}
+<div class="section-{{ section.id }}-margin section-{{ section.id }}">
+  <div class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in">
+    {% if section.settings['coll-title'] %}
+      <div class="carousel-section-title-wrapper d-flex justify-content-between align-items-end w-100">
+        <p class="carousel-sub-title">{{ section.settings['coll-title'] }}</p>
+        {% if section.settings['button-title'] and section.settings['button-url'] %}
+          <a href="{{ section.settings.button-url }}" class="view-all-continer-btn desktop_screen">
+            {{- section.settings['button-title'] }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="carousel-nav-wrapper">
+      <div
+        id="product-slider-{{ section.id }}"
+        class="carousel-wrapper-outer {% if section.settings.showContainer == "container" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper {% unless page.handle contains 'skin' %} p-2 p-md-3 {% endunless %}">
+          {% for block in section.blocks %}
+            {% assign section_block = block.settings %}
+            <div class="swiper-slide">
+              {% case block.type %}
+                {% when 'content' %}
+                  <a href="{{ section_block.url }}">
+                    <div class="content-item">
+                      <div class="b-product_promo_tile">
+                        <img
+                          class="img-fluid"
+                          src="{{ section_block.image | image_url }}"
+                          alt="{{ section_block.title }}"
+                          title="{{ section_block.title }}"
+                          width="100%"
+                          loading="lazy"
+                          height="100%"
+                        >
+                        <p class="b-skincare-vendor">
+                          {{- section_block.title -}}
+                        </p>
+                        <div class="b-skincare-subtitle">
+                          {{- section_block.subtitle -}}
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+
+                {% when 'cards' %}
+                  <a href="{{ section_block.url }}">
+                    <div class="skincare-offer-card ">
+                      <img
+                        class="img-fluid"
+                        src="{{ section_block.image | image_url }}"
+                        alt="{{ section_block.title }}"
+                        title="{{ section_block.title }}"
+                        width="100%"
+                        loading="lazy"
+                        height="100%"
+                      >
+                      <div class="content">
+                        <div class="skincare-brand-line d-center">
+                          <span class="brand">
+                            <img
+                              class="img-fluid"
+                              src="{{ section_block.logo | image_url }}"
+                              alt="{{ section_block.title }}"
+                              title="{{ section_block.title }}"
+                              width="100%"
+                              loading="lazy"
+                              height="34"
+                            >
+                          </span>
+                          {% unless template == 'page.skin-care' and forloop.index == 3 %}<span class="middle-line">|</span>{% endunless %}
+                          {% if template == 'page.skin-care' and forloop.first or forloop.index == 2 %}<svg xmlns="http://www.w3.org/2000/svg" width="72" height="14" viewBox="0 0 72 14" fill="none">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="72" height="14" viewBox="0 0 72 14" fill="none">
+                          <path d="M10 0H72L62 14H0L10 0Z" fill="#111111"/>
+                          <path d="M22.904 1.28L21.016 12H19.24L15.368 5.12L14.152 12H12.024L13.912 1.28H15.704L19.576 8.16L20.776 1.28H22.904ZM23.1993 8.64C23.1993 8 23.3113 7.408 23.5353 6.864C23.7593 6.32 24.0686 5.85067 24.4633 5.456C24.8686 5.05067 25.3379 4.736 25.8713 4.512C26.4153 4.27733 27.0019 4.16 27.6313 4.16C28.1646 4.16 28.6446 4.24533 29.0713 4.416C29.5086 4.576 29.8819 4.81067 30.1913 5.12C30.5006 5.41867 30.7406 5.78133 30.9113 6.208C31.0819 6.63467 31.1673 7.10933 31.1673 7.632C31.1673 8.048 31.1086 8.448 30.9913 8.832H25.2473C25.3006 9.344 25.4926 9.75467 25.8233 10.064C26.1646 10.3627 26.6019 10.512 27.1353 10.512C27.5299 10.512 27.9086 10.432 28.2713 10.272C28.6339 10.1013 28.9433 9.87733 29.1993 9.6L30.3993 10.688C29.9939 11.1573 29.4926 11.52 28.8953 11.776C28.2979 12.032 27.6579 12.16 26.9753 12.16C26.4099 12.16 25.8926 12.0747 25.4233 11.904C24.9646 11.7333 24.5699 11.4987 24.2393 11.2C23.9086 10.8907 23.6526 10.5173 23.4713 10.08C23.2899 9.64267 23.1993 9.16267 23.1993 8.64ZM29.2313 7.536C29.2099 7.01333 29.0446 6.59733 28.7353 6.288C28.4259 5.968 28.0206 5.808 27.5193 5.808C27.0073 5.808 26.5593 5.968 26.1753 6.288C25.7913 6.608 25.5246 7.024 25.3753 7.536H29.2313ZM38.9588 4.32L39.5508 9.2L41.8868 4.32H43.8868L40.0308 12H38.2548L37.5988 7.216L35.2628 12H33.4868L32.3188 4.32H34.3348L34.9427 9.2L37.2468 4.32H38.9588ZM51.5091 1.28L49.6211 12H47.4771L49.3651 1.28H51.5091ZM57.3926 4.16C58.278 4.16 58.9233 4.45333 59.3286 5.04C59.7446 5.62667 59.862 6.432 59.6806 7.456L58.8806 12H56.8486L57.6006 7.76C57.6966 7.20533 57.6326 6.77333 57.4086 6.464C57.1846 6.144 56.822 5.984 56.3206 5.984C55.8086 5.984 55.3713 6.14933 55.0086 6.48C54.6566 6.8 54.4273 7.24267 54.3206 7.808L53.5846 12H51.5686L52.9126 4.32H54.9446L54.7206 5.584C55.03 5.136 55.414 4.78933 55.8726 4.544C56.3313 4.288 56.838 4.16 57.3926 4.16Z" fill="white"/>
+                          </svg>
+                        {% else %}
+                            <span class="discount-text ">{{ section_block.title }}</span>
+                          {% endif %}
+                        
+                        </div>
+                        <div class="tagline-phrase">{{ section_block.subtitle }}</div>
+                      </div>
+                    </div>
+                  </a>
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="arrow_handler">
+        <div id="product-slider-prev-{{ section.id }}" class="carousel-btn">
+          {{ 'arrow-back.svg' | inline_asset_content }}
+        </div>
+        <div id="product-slider-next-{{ section.id }}" class="carousel-btn">
+          {{ 'arrow-next.svg' | inline_asset_content }}
+        </div>
+      </div>
+      <div class="swiper-pagination skincare-finds-swiper-pagination-{{ section.id }}"><br></div>
+    </div>
+    {% if section.settings['button-title'] and section.settings['button-url'] %}
+      <a
+        href="{{ section.settings.button-url }}"
+        class="view-all-continer-btn mobile_screen"
+        style="padding: 10px 51px;"
+      >
+        {{- section.settings['button-title'] }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+<script>
+  // document.addEventListener('DOMContentLoaded', function () {
+    {% assign section_unique_name = section.id |  remove: '-' |  remove: '_'  %}
+      let numSlidesSm{{ section_unique_name }} = parseFloat('{{ num_slides_sm }}'),numSlidesMd{{ section_unique_name }} = parseFloat('{{ num_slides_md }}'),numSlidesLg{{ section_unique_name }} = parseFloat('{{ num_slides_lg }}'),numSlidesXl{{ section_unique_name }} = parseFloat('{{ num_slides_xl }}'),numSlides2xl{{ section_unique_name }} = parseFloat('{{ num_slides_2xl }}');
+      const productSlider{{ section.id |  remove: '-' |  remove: '_'   }} = new Swiper('#product-slider-{{ section.id }}', {
+      spaceBetween: 20,
+      slidesPerGroup:1,
+      speed: {{ section.settings.slide_speed |  remove: 'px'  }} ,
+      slidesPerView: numSlidesSm{{ section_unique_name }},
+      centeredSlides: {{ section.settings.showCenter }},
+      freeMode: {{ section.settings.showFreeScroll }},
+      loop: {{ section.settings.loop }} ,
+      pagination: {
+        el: ".skincare-finds-swiper-pagination-{{ section.id }}",
+        type: "progressbar",
+      },
+      breakpoints: {
+        // when window width is >= 320px
+        768: {
+          slidesPerView: numSlidesMd{{ section_unique_name }},
+          slidesPerGroup:1
+        },
+        1024: {
+          slidesPerView: numSlidesLg{{ section_unique_name }},
+          spaceBetween: 20
+        },
+        1280: {
+          slidesPerView: numSlidesXl{{ section_unique_name }},
+          spaceBetween: 10
+        },
+        1536: {
+          slidesPerView: numSlides2xl{{ section_unique_name }},
+          spaceBetween: 10
+        },
+      },
+      navigation: {
+        prevEl: '#product-slider-prev-{{ section.id }}',
+        nextEl: '#product-slider-next-{{ section.id }}',
+      }
+    });
+    // });
+</script>
+{% schema %}
+{
+  "name": "Skincare Finds",
+  "class": "skincare-finds-section",
+  "settings": [
+    {
+    "type": "radio",
+    "id": "showContainer",
+    "label": "Choose Container Style",
+    "options": [
+      { "value": "full-width", "label": "Show Full Container" },
+      { "value": "container", "label": "Show FrameWork Container" }
+    ],
+    "default": "full-width"
+   },
+    {
+    "type": "color",
+    "id": "background_color",
+    "label": "Background color",
+    "default": "#fff"
+  },
+    {
+      "type": "text",
+      "id": "coll-title",
+      "label": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "button-title",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Button url"
+    },
+    {
+    "type": "range",
+    "id": "slide_speed",
+    "min": 100,
+    "max": 800,
+    "step": 100,
+    "unit": "px",
+    "label": "Slider Speed",
+    "default": 500
+  },
+  {
+  "type": "checkbox",
+  "id": "showCenter",
+  "label": "Show Center Container",
+  "info": "If enabled ,Container will show in center",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "showFreeScroll",
+  "label": "Free Scroll Container",
+  "info": "If enabled ,Free scroll will be enabled",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "loop",
+  "label": "Infinite Loop",
+  "info": "If enabled ,Infinite container will enabled",
+  "default": true
+  },
+  {
+    "type": "header",
+    "content": "Desktop Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_text_top_desktop",
+    "label": "Padding Top (Desktop)",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "default": 0
+  },
+  {
+    "type": "range",
+    "id": "padding_text_bottom_desktop",
+    "label": "Padding Bottom (Desktop)",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "default": 0
+  },
+  {
+    "type": "header",
+    "content": "Mobile Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_text_top_mobile",
+    "label": "Padding Top (Mobile)",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "default": 15
+  },
+  {
+    "type": "range",
+    "id": "padding_text_bottom_mobile",
+    "label": "Padding Bottom (Mobile)",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "default": 15
+  },
+    {
+    "type": "number",
+    "id": "slides-limit",
+    "label": "Total Num of Slides",
+    "default": 7
+  },
+  {
+    "type": "text",
+    "id": "num-slides-sm",
+    "label": "Num Slides on sm Devices",
+    "default": "1",
+    "info": "Rounded to one decimal point. Breakpoint none"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-md",
+    "label": "Num Slides on md Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 768px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-lg",
+    "label": "Num Slides on lg Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 1024px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-xl",
+    "label": "Num Slides on xl Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 1280px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-2xl",
+    "label": "Num Slides on 2xl Devices",
+    "default": "3.5",
+    "info": "Rounded to one decimal point. Breakpoint 1536px"
+  }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "content",
+      "settings": [
+
+          {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Brand Image"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Brand URL"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Brand Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Brand Sub Title"
+    }
+      ]
+    },
+    {
+      "type": "cards",
+      "name": "cards",
+      "settings": [
+        {
+      "type": "url",
+      "id": "url",
+      "label": "Brand URL"
+    },
+          {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Brand Image"
+    },
+          {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Brand Image"
+    },
+          {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Brand Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Brand Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Brand Sub Title"
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skincare Finds"
+    }
+  ]
+}
+{% endschema %}

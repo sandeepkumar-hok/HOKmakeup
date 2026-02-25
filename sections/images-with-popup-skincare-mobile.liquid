@@ -1,0 +1,194 @@
+<!-- section/images-with-popup-skincare-mobile.liquid-->
+{{ 'images-with-popup-skincare-mobile.css' | asset_url | stylesheet_tag }}
+
+<div class="image-popup-gallery-mobile image-popup-gallery">
+  <div class="wrapper-all">
+    <div class="content_wrapped">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="para_first">{{ section.settings.subheading }}</p>
+        <p class="para_second">Scroll & tap to view their story</p>
+      {% endif %}
+    </div>
+    {% assign review_blocks = section.blocks | where: 'type', 'review' %}
+    {% assign total_blocks = review_blocks.size %}
+
+    <div class="image-popup-gallery__grid-mobile">
+      {% for block in review_blocks %}
+        {% assign index = forloop.index0 %}
+
+        {% if index == 0 or index == 6 %}
+          <div class="image-row">
+        {% endif %}
+
+        <div class="image-popup-gallery__item-mobile item-{{ forloop.index }}" data-index="{{ index }}">
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | image_url }}"
+              width="auto"
+              height="auto"
+              alt="{{ block.settings.overlay_text }}"
+              class="images-gallary-{{ forloop.index }}"
+            >
+          {% endif %}
+        </div>
+
+        {% if index == 5 or index == 11 or forloop.last %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="content_wrapped-2">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="para_first">{{ section.settings.subheading }}</p>
+        <p class="para_second">Scroll & tap to view their story</p>
+      {% endif %}
+    </div>
+  </div>
+  {% for block in review_blocks %}
+    {% if block.settings.show_popup %}
+      <div class="image-popup-gallery__modal-mobile" id="modal-m-{{ forloop.index0 }}" style="display: none;">
+        <div class="image-popup-gallery__modal-content-mobile">
+          <div class="modal-info-text">
+            {{ block.settings.modal_name }}
+            {{ block.settings.ern_points }}
+          </div>
+          <div class="popupimagetext">
+            <img
+              src="{{ block.settings.image | image_url: width: 396 }}"
+              width="396"
+              height="577"
+              alt=""
+              loading="lazy"
+              class="popupimage"
+            >
+
+            <div class="popup-text-container-mobile">
+              {{ block.settings.modal_text }}
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+            {% if block.settings.product_choose %}
+              {% render 'pocket-deal-of-the-day',
+                product: block.settings.product_choose,
+                fetch_priority: fetch_priority,
+                indexIs: indexing,
+                seo_text: section.settings.seo_text
+              %}
+            {% endif %}
+          </div>
+        </div>
+        <div class="image-popup-gallery__modal-close" onclick="closePopup()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="28px" height="28px" viewBox="0 0 1024 1024">
+            <path d="M697.4 759.2l61.8-61.8L573.8 512l185.4-185.4-61.8-61.8L512 450.2 326.6 264.8l-61.8 61.8L450.2 512 264.8 697.4l61.8 61.8L512 573.8z"/>
+          </svg>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.image-popup-gallery__item-mobile');
+  items.forEach(item => {
+    const index = item.getAttribute('data-index');
+    const modal = document.querySelector(`#modal-m-${index}`);
+    if (modal) {
+      // Open on item click
+      item.addEventListener('click', () => {
+        modal.style.display = 'flex';
+      });
+
+      // Close on background (outside modal content) click
+      modal.addEventListener('click', function (e) {
+        const content = modal.querySelector('.image-popup-gallery__modal-content-mobile');
+        if (!content.contains(e.target)) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+  });
+});
+
+</script>
+
+{% schema %}
+{
+"name": "Image Gallery mabile",
+  "class": "image-gallery-mobile",
+"settings": [
+{
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "subheading",
+"label": "Subheading"
+},
+{
+"type": "image_picker",
+"id": "bg_image_mobile",
+"label": "Mobile Background Image"
+}
+],
+"blocks": [
+{
+"type": "review",
+"name": "Review Image",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+},
+{
+"type": "richtext",
+"id": "modal_name",
+"label": "modal name for mobile view",
+"default":"<p>Priya, 25 | Lucknow</p>"
+},
+{
+"type": "text",
+"id": "modal_title",
+"label": "Popup Title"
+},
+{
+"type": "richtext",
+"id": "modal_text",
+"label": "Popup Text"
+},
+{
+"type": "richtext",
+"id": "ern_points",
+"label": "Earn Points"
+},
+{
+"type": "product",
+"id": "product_choose",
+"label": "Product for Popup"
+},
+{
+"type": "checkbox",
+"id": "show_popup",
+"label": "Show Popup",
+"default": true
+}
+]
+}
+],
+"presets": [
+{
+"name": "Image Popup Gallery mobile",
+"category": "Custom"
+}
+]
+}
+{% endschema %}

@@ -1,0 +1,219 @@
+{% comment %}
+CREATE YOUR PERFECT SET
+- Cards are configurable via blocks.
+- Clean, responsive grid.
+- Styles scoped with a unique class using the section.id.
+{% endcomment %}
+
+<section class="cys cys-{{ section.id }}">
+  <div class="cys__inner">
+    <h2 class="cys__title">{{ section.settings.heading }}</h2>
+    {% if section.settings.subheading != blank %}
+      <p class="cys__sub">“{{ section.settings.subheading }}”</p>
+    {% endif %}
+    {% if section.settings.instructions != blank %}
+      <p class="cys__steps">{{ section.settings.instructions }}</p>
+    {% endif %}
+
+    <div class="cys__grid">
+      {% for block in section.blocks %}
+        {% assign b = block.settings %}
+        <article class="cys-card" {{ block.shopify_attributes }}>
+          <div class="cys-card__media">
+            {% if b.image != blank %}
+              <img
+                src="{{ b.image | image_url: width: 900 }}"
+                alt="{{ b.title | escape }}"
+                loading="lazy"
+                width="{{ b.image.width }}"
+                height="{{ b.image.height }}"
+              >
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'cys-card__ph' }}
+            {% endif %}
+          </div>
+
+          <div class="cys-card__body">
+            <div class="cys-card__save">{{ b.savings_text }}</div>
+            <p class="cys-card__copy">
+             {{ b.item_count_text }}
+            </p>
+
+            {% if b.button_link != blank %}
+              <a class="cys-card__btn" href="{{ b.button_link }}">
+                {{ b.button_text }}
+              </a>
+            {% else %}
+              <button class="cys-card__btn" type="button" disabled>
+                {{ b.button_text }}
+              </button>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    /* ========= Scoped Styles ========= */
+    .cys.cys-{{ section.id }} {
+      --cys-bg: {{ section.settings.bg | default: '#fff8ef' }};
+      --cys-text: #111111;
+      --cys-accent: {{ section.settings.ribbon_color | default: '#8a5a47' }};
+      --cys-save: #0C9D3A;              /* green */
+      --cys-btn-border: #111111;
+      --cys-btn-text: #111111;
+      --cys-btn-hover-bg: #111111;
+      --cys-btn-hover-text: #ffffff;
+      background: var(--cys-bg);
+      padding: 56px 16px;
+      color: var(--cys-text);
+      font-family: inherit;
+    }
+
+    .cys-{{ section.id }} .cys__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cys-{{ section.id }} .cys__title {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      margin: 0 0 8px;
+      line-height: 1.1;
+    }
+
+    .cys-{{ section.id }} .cys__sub {
+      font-size: clamp(14px, 2vw, 20px);
+      font-weight: 700;
+      color: {{ section.settings.sub_color | default: '#b4491f' }};
+      margin: 0 0 8px;
+    }
+
+    .cys-{{ section.id }} .cys__steps {
+      font-size: 14px;
+      color: #333333;
+      margin: 0 0 28px;
+    }
+
+    .cys-{{ section.id }} .cys__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    @media (min-width: 860px) {
+      .cys-{{ section.id }} .cys__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* ---- Card ---- */
+    .cys-{{ section.id }} .cys-card {
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .cys-{{ section.id }} .cys-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+    }
+
+    .cys-{{ section.id }} .cys-card__media {
+      position: relative;
+      overflow: hidden;
+      background: #f2e9e4;
+    }
+    .cys-{{ section.id }} .cys-card__media img,
+    .cys-{{ section.id }} .cys-card__ph {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Top ribbon over image (like your mock) */
+    .cys-{{ section.id }} .cys-card__body {
+      padding: 20px 22px 26px;
+      text-align: center;
+    }
+    .cys-{{ section.id }} .cys-card__save {
+      color: #433403;
+      font-weight: 700;
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .cys-{{ section.id }} .cys-card__save strong{
+      color: var(--cys-save);
+    }
+    .cys-{{ section.id }} .cys-card__copy {
+      color: #333333;
+      font-size: 14px;
+      margin: 0 0 18px;
+    }
+
+    .cys-{{ section.id }} .cys-card__btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 2px solid var(--cys-btn-border);
+      background: transparent;
+      color: var(--cys-btn-text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    }
+    .cys-{{ section.id }} .cys-card__btn:hover {
+      background: var(--cys-btn-hover-bg);
+      color: var(--cys-btn-hover-text);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+    .cys-{{ section.id }} .cys-card__btn[disabled] {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Create Your Perfect Set",
+  "class": "section-create-your-set",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "CREATE YOUR PERFECT SET" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "MIX, match, and save BIG!" },
+    { "type": "text", "id": "instructions", "label": "Steps/Instructions", "default": "1. Choose offer → 2. Pick items → 3. Add to cart." },
+    { "type": "color", "id": "bg", "label": "Background color", "default": "#fff8ef" },
+    { "type": "color", "id": "sub_color", "label": "Subheading color", "default": "#b4491f" },
+    { "type": "color", "id": "ribbon_color", "label": "Ribbon color", "default": "#8a5a47" }
+  ],
+  "blocks": [
+    {
+      "type": "offer_card",
+      "name": "Offer card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Card image" },
+        { "type": "richtext", "id": "savings_text", "label": "Savings line", "default": "<p>Up to 80% savings</p>" },
+        { "type": "richtext", "id": "item_count_text",  "label": "Number of items", "default": "<p>Grab [3] items for ₹999, then click Next</p>" },
+        { "type": "text", "id": "button_text", "label": "Button text", "default": "CREATE YOUR SET" },
+        { "type": "url", "id": "button_link", "label": "Button link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Create Your Perfect Set"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,181 @@
+<!-- section/single_banner.liquid -->
+{%- style -%}
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+       padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+      background-color: {{ section.settings.background_color }};
+    }
+
+    @media screen and (max-width: 768px) {
+      .section-{{ section.id }}-margin  {
+        margin-top: {{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+        padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      }
+    }
+  @keyframes rotateInfinitely {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+{%- endstyle -%}
+<div class="section-{{ section.id }}-margin {% if template == page.new-focallure-3d %}single-banner{% endif %}">
+  <div class="container-fluid p-0 scroll-trigger animate--fade-in">
+    {% if template == page.community or section.settings.heading_text != blank %}
+      <p class="top_heading_banner">{{ section.settings.heading_text }}</p>
+    {% endif %}
+    <a href="{% if section.settings.shradhha_link == '#' %}javascript:void(0){% else %}{{ section.settings.shradhha_link }}{% endif %}">
+      <img
+        class="desktop_screen"
+        src="{{ section.settings.image | image_url }}"
+        alt="{{ section.settings.image | escape }}"
+        width="100%"
+         height="auto"
+        loading="eager"
+      >
+      <img
+        class="mobile_screen"
+        src="{{ section.settings.image_mobile | image_url }}"
+        alt="{{ section.settings.image_mobile | escape }}"
+        width="100%"
+         height="auto"
+        loading="eager"
+      >
+    </a>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Single Banner",
+  "class": "single-banner",
+  "settings": [
+    {
+    "type": "header",
+    "content": "Desktop Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Top",
+    "default": 0
+  },
+
+  {
+    "type": "range",
+    "id": "padding_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Padding Bottom",
+    "default": 0
+  },
+  {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+  {
+    "type": "header",
+    "content": "Mobile Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "padding_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Top",
+    "default": 0
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "padding Bottom",
+    "default": 0
+  },
+    {
+    "type": "text",
+    "id": "heading_text",
+    "label": "Heading"
+  },
+  {
+    "type": "url",
+    "id": "shradhha_link",
+    "label": "banner Link"
+  },
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+    {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Mobile Image"
+      }
+  ],
+   "presets": [
+  {
+    "name": "Single Banner"
+  }
+]
+}
+{% endschema %}

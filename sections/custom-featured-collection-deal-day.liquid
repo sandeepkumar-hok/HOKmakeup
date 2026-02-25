@@ -1,0 +1,430 @@
+<!-- section/custom-featured-collection-deal-day.liquid -->
+{%- style -%}
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+   
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+<section class="top-section section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <div
+    class="featured-collection_day_deal"
+  >
+    <div
+      class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in"
+    >
+      <div
+        class="collection-title-text"
+      >
+        {% if section.settings['coll-title-sub'] %}
+          <p
+            class="carousel-sub-title"
+          >
+            {{ section.settings['coll-title-sub'] }}
+          </p>
+        {% endif %}
+        {% if section.settings['coll-title'] %}
+          <p
+            class="carousel-title"
+          >
+            {{ section.settings['coll-title'] }}
+          </p>
+        {% endif %}
+      </div>
+
+      <div class="container-top-image-product">
+        <div class="featured-custom-banner">
+          <a href="{% if section.settings.link == '#' %}javascript:void(0){% else %}{{ section.settings.link }}{% endif %}">
+            <img
+              class="desktop_screen"
+              src="{{ section.settings.image | image_url }}"
+              alt="{{ section.settings.image | escape }}"
+              width="100%"
+              height="auto"
+              loading="eager"
+            >
+            <img
+              class="mobile_screen"
+              src="{{ section.settings.image_mobile | image_url}}"
+              alt="{{ section.settings.image_mobile | escape }}"
+              width="100%"
+              height="auto"
+              loading="eager"
+            >
+          </a>
+        </div>
+        <div
+          id="product-slider-{{ section.id }}"
+          class="carousel-wrapper-outer {% if section.settings.showContainer == "container" %}spacing{% endif %}"
+        >
+          {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+            <div class="product__pocket_deal_day">
+              {% assign indexing = forloop.index0 %}
+              {% render 'new-product-card-double',
+                product: product,
+                fetch_priority: fetch_priority,
+                indexIs: indexing
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "collection-day-of-deal",
+  "class": "product-slider-section",
+  "settings": [
+    {
+    "type": "radio",
+    "id": "showContainer",
+    "label": "Choose Container Style",
+    "options": [
+      { "value": "full-width", "label": "Show Full Container" },
+      { "value": "container", "label": "Show FrameWork Container" }
+    ],
+    "default": "full-width"
+   },
+    {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+    {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Mobile Image"
+      },
+   {
+    "type": "checkbox",
+    "id": "image_priority",
+    "label": "Image Priority",
+    "info": "By setting fetchpriority to true for an image, you’re telling the browser to prioritize loading that image, which can help improve the LCP metric.",
+    "default": false
+    },
+    {
+      "type": "text",
+      "id": "coll-title-sub",
+      "label": "Collection Sub Title"
+    },
+    {
+      "type": "html",
+      "id": "coll-title",
+      "label": "Collection Title"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Collection URL"
+    },
+    {
+      "type": "text",
+      "id": "url-title",
+      "label": "Url Title",
+      "default": "View All"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Choose Collection"
+    }, {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 6,
+      "label": "Number of products to show"
+    }, {
+      "type": "checkbox",
+      "id": "swat_alig",
+      "label": "Align swatches",
+      "default": true
+    },
+
+  {
+  "type": "checkbox",
+  "id": "showCenter",
+  "label": "Show Center Container",
+  "info": "If enabled ,Container will show in center",
+  "default": false
+  },
+
+  {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "featured collection day of deal"
+    }
+  ]
+}
+{% endschema %}
+<style>
+  .container-top-image-product{
+       width:100%;
+       display:flex;
+       overflow: auto hidden;
+       padding: 0px;
+       position:relative;
+       transform: rotateX(180deg);
+       scroll-snap-type: y mandatory;
+  }
+    .container-top-image-product::-webkit-scrollbar{
+      height: 5px;
+    }
+   .featured-collection_day_deal .b-product_tile-picture_container img.img_url_1 {
+     mix-blend-mode: unset; 
+}
+    .container-top-image-product::-webkit-scrollbar-thumb{
+     background: #CAA4A6;
+    }
+   .container-top-image-product > * {
+       transform: rotateX(180deg);
+  }
+   .featured-custom-banner{
+       width:40%;
+  }
+   .featured-collection_day_deal .carousel-section-wrapper{
+      row-gap: 0px;
+  }
+   .featured-collection_day_deal .carousel-wrapper-outer{
+       width:60%;
+  }
+    .animated_product .b-product_promo_tile {
+      max-width: 500px;
+      width: 100%;
+      margin: auto;
+    }
+   .featured-collection_day_deal .product__pocket_deal_day .b-product_price-value{
+       font-size: 14px;
+  }
+   .featured-collection_day_deal .product__pocket_deal_day .b-product_promo_tile-name_link{
+      height: 35px;
+  }
+   .featured-collection_day_deal .product__pocket_deal_day .b-product_promo_vendor-name_link{
+      font-size: 14px;
+      white-space: nowrap;
+  }
+   .featured-collection_day_deal .product__pocket_deal_day .b-product_promo_tile-name_link{
+      font-size: 12px;
+  }
+   .featured-collection_day_deal .button-cta.atc{
+      font-size:11px;
+  }
+   .featured-collection_day_deal .product__pocket_deal_day{
+      padding: 10px 33px 0;
+      border-top: 1px solid #E5DCD5;
+       border-right: 1px solid #E5DCD5;
+  }
+   .featured-custom-banner img{
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+       max-height: 880px;
+  }
+   .featured-custom-banner a{
+       height: 100%;
+       width: 100%;
+       display: block;
+  }
+   .featured-collection_day_deal .carousel-wrapper-outer{
+       display: grid;
+       grid-template-columns: repeat(15, 1fr);
+       grid-template-rows: 2fr;
+       align-items: center;
+       padding-bottom:5rem;
+  }
+   .top-section{
+       overflow-x: hidden;
+  }
+   .collection-title-text {
+       background: #DEF31C;
+       width: 100%;
+       padding: 10px 15px;
+  }
+   .featured-collection_day_deal .img-fluid{
+       max-width: 270px;
+  }
+   .featured-collection_day_deal .carousel-wrapper-inner{
+       flex-wrap: wrap;
+       justify-content: center;
+       gap:20px;
+  }
+   .featured-collection_day_deal .carousel-title{
+       font-size:  24px;
+       font-style: normal;
+       margin-left:20px;
+       font-weight: 700;
+       line-height: normal;
+  }
+   .featured-collection_day_deal .carousel-sub-title{
+       text-transform: none;
+       font-size: clamp(12px, 2vw, 17px);
+       display:none
+  }
+   .featured-collection_day_deal .b-product_promo_tile-content{
+       height: 180px;
+  }
+   .featured-collection_day_deal .b-add_to_bag-button{
+       padding:7px;
+  }
+  .featured-collection_day_deal .b-product_tile-picture_container{
+    background: none;
+    }
+
+
+   @media screen and (max-width: 768px) {
+ .animated_product .b-product_tile-picture_container img{
+     min-width:300px;
+   }
+     .featured-collection_day_deal .carousel-title{
+       margin: 0 0 10px 0;
+         font-weight: 700;
+       font-size:  34px;
+    }
+     .featured-collection_day_deal .product__pocket_deal_day {
+         padding: unset;
+         border-top: unset;
+         border-right:unset;
+    }
+     .featured-collection_day_deal .b-product_promo_tile-content{
+         height: 130px;
+    }
+     .collection-title-text {
+         background: #fff;
+    }
+     .featured-custom-banner{
+         width:75%;
+    }
+     .container-top-image-product{
+        padding: 0px 15px;
+         transform: unset;
+         -webkit-overflow-scrolling: touch;
+    }
+     .custom-scroll::-webkit-scrollbar{
+        height: 3px;
+    }
+     .container-top-image-product > * {
+         transform: unset;
+    }
+     .featured-collection_day_deal .carousel-wrapper-outer{
+         width:25%;
+         gap: 2rem;
+         padding-inline: 2rem;
+         padding-bottom: 1rem;
+    }
+     .featured-collection_day_deal .img-fluid{
+         {% comment %} max-width:100%; {% endcomment %}
+          max-width: 163px;
+    }
+     .featured-collection_day_deal .b-product_promo_tile-name_link{
+        font-size: 12px;
+    }
+     .featured-collection_day_deal .b-product_tile-picture_container{
+         padding: 0px ;
+         display: block;
+         min-height: 166px;
+    }
+     .featured-custom-banner img {
+        border-radius: 10px;
+    }
+     .featured-collection_day_deal .carousel-sub-title{
+        display:block;
+    }
+  }
+</style>

@@ -1,0 +1,17 @@
+.beauty-boss-banner .desktop_screen{width:100%;}
+.beauty-boss-banner{width:100%;background:#d8fc1f;padding:0;}
+.beauty-boss-banner .beauty-boss-container{display:flex;flex-wrap:wrap;}
+.beauty-boss-banner .left-content{flex:1.5;background:#DCED3E;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.beauty-boss-banner .boss-image{width:100%;height:auto;object-fit:cover;}
+.beauty-boss-banner .right-content-community{flex:1.1;display:flex;align-items:center;justify-content:center;background:#DCED3E;}
+.beauty-boss-banner .text-area p{ font-family: 'NickySans';font-weight: 400;font-size:clamp(14px,2vw,20px);color:#2B2929;}
+@media screen and (max-width:768px){
+.beauty-boss-banner .beauty-boss-container{flex-direction:column;}
+.beauty-boss-banner .left-content,
+.beauty-boss-banner .right-content-community{width:100%;}
+.beauty-boss-banner .boss-image{width:100%;height:auto;}
+.beauty-boss-banner .right-content-community{text-align:left;}
+.beauty-boss-banner .text-area{max-width:100%;}
+}
+@media only screen and (min-device-width:1280px) and (max-device-width:1728px) and (-webkit-min-device-pixel-ratio:2){}
+

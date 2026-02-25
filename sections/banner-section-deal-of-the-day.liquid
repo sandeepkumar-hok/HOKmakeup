@@ -1,0 +1,148 @@
+<!-- section/banner-section-deal-of-the-day.liquid -->
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+{{ 'topbanner.css' | asset_url | stylesheet_tag }}
+<div class="section-{{ section.id }}-margin">
+  <div class="container-fluid p-0 scroll-trigger animate--fade-in banner-deal-of-the-day">
+    <a href="{% if section.settings.link == '#' %}javascript:void(0){% else %}{{ section.settings.link }}{% endif %}">
+      {% if section.settings.video != blank %}
+        {{
+          section.settings.video
+          | video_tag:
+            width: '100%',
+            height: '100%',
+            class: 'desktop_screen',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false
+        }}
+      {% endif %}
+      {% if section.settings.video_mobile != blank %}
+        {{
+          section.settings.video_mobile
+          | video_tag:
+            width: '100%',
+            height: '100%',
+            class: 'mobile_screen',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false
+        }}
+      {% endif %}
+    </a>
+    <div class="swipe-button">
+      <div class="arrow-container-banner">
+        <svg
+          class="swipe-arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#fff"
+          height="30px"
+          width="40px"
+          viewBox="0 0 330 330"
+        >
+          <path d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
+        </svg>
+        <svg
+          class="swipe-arrow"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#fff"
+          height="30px"
+          width="40px"
+          viewBox="0 0 330 330"
+        >
+          <path d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
+        </svg>
+      </div>
+      <p>{{ 'Swipe to See' }}</p>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Banner deal of the day",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Banner Link"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Desktop Video"
+    },
+
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Mobile Video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner deal of the day"
+    }
+  ]
+}
+{% endschema %}

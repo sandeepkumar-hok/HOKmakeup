@@ -1,0 +1,178 @@
+<!-- section/end-deal-of-the-day.liquid -->
+{{ 'end-deal-of-the-day.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_desktop }}px;
+  margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  
+  }
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+  .section-{{ section.id }}-margin {
+  margin-top: {{ section.settings.margin_top_mobile }}px;
+  margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top_mobile }}px;
+  padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+  }
+{%- endstyle -%}
+{% schema %}
+{
+"name": "Best Deals End Message",
+"tag": "section",
+"class": "section-best-deals-end",
+"settings": [
+{
+"type": "range",
+"id": "margin_top_desktop",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_bottom_desktop",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_top_desktop",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom_desktop",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Desktop)",
+"default": 36
+},
+{
+"type": "range",
+"id": "margin_top_mobile",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "margin_bottom_mobile",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Margin Bottom (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_top_mobile",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Top (Mobile)",
+"default": 20
+},
+{
+"type": "range",
+"id": "padding_bottom_mobile",
+"min": 20,
+"max": 200,
+"step": 2,
+"unit": "px",
+"label": "Padding Bottom (Mobile)",
+"default": 20
+},
+{
+"type": "color",
+"id": "background_color",
+"label": "Background Color",
+"default": "#ecf406"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "That’s all for today’s best deals"
+},
+{
+"type": "richtext",
+"id": "subtext",
+"label": "Subtext",
+"default": "<p >Hope you found something special!</p>"
+},
+{
+"type": "text",
+"id": "link_text",
+"label": "Fresh Drops Link Text",
+"default": "Check back every 2 days for fresh drops"
+},
+{
+"type": "url",
+"id": "link_url",
+"label": "Fresh Drops Link URL"
+},
+{
+"type": "url",
+"id": "back_to_top_url",
+"label": "Back to Top Deals URL"
+},
+{
+"type": "url",
+"id": "continue_url",
+"label": "Continue Shopping URL",
+"default": "/"
+}
+],
+"presets": [
+{
+"name": "Best Deals End Section",
+"category": "Custom"
+}
+]
+}
+{% endschema %}
+
+<div class="best-deal-wrapper section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <div
+    class="best-deal-content"
+    style="background-color: {{ section.settings.background_color }};"
+    
+  >
+    <h2 class="best-deal-heading">{{ section.settings.heading }}</h2>
+    <div class="content_wrapper">
+      <div class="first_content">{{ section.settings.subtext }}</div>
+      <p class="best-deal-highlight">
+        {{ section.settings.link_text }}
+      </p>
+    </div>
+    <a href="#" class="best-back-link">{{ 'Back to top deals' }}</a>
+  </div>
+
+  <a href="{{ section.settings.continue_url}}" class="best-deal-button">{{ 'Continue Shopping' | upcase }}</a>
+</div>

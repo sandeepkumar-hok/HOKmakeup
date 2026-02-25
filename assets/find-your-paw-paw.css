@@ -1,0 +1,195 @@
+.shopify-section.find-paw-paw {
+  background: #000;
+  padding: 0px 2px 4px 2px;
+}
+
+.find-your-pawpaw .addtobag_plus_icon .b-add_to_bag-button {
+  padding: unset;
+  width: 35px;
+  width: 57px;
+  height: 57px;
+  background: transparent;
+  font-weight: 300;
+  font-size: 35px;
+  margin: -23px 0px 0px 0px;
+  font-weight: 100;
+  line-height: 0;
+  padding-bottom: 8px;
+  background: transparent;
+}
+
+.pawpaw-section {
+  background: #FBE403;
+  border-radius: 30px; 
+}
+
+.find-your-pawpaw .pawpaw-info {
+
+  width: 95%;
+  margin: 23px auto;
+  display: flex;
+  gap: 1px;
+  /* justify-content: space-between; */
+}
+.pawpaw-info .addtobag_plus_icon .b-add_to_bag-button.button-cta.atc.pocket{
+  padding:unset;
+} 
+.find-your-pawpaw .pawpaw-container {
+  width: 95%;
+  margin: auto;
+}
+
+.find-your-pawpaw .swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 14px;
+}
+
+.find-your-pawpaw .pawpaw-heading {
+  color: #10100F;
+  font-family: var(--header-family);
+  font-size: 40px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.find-your-pawpaw .pawpaw-swiper {
+  position: relative;
+}
+
+.find-your-pawpaw .pawpaw-scrollbar .swiper-scrollbar-drag {
+  display: block;
+}
+
+.find-your-pawpaw .pawpaw-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.find-your-pawpaw .pawpaw-card {
+  margin-bottom: 40px;
+  padding-bottom: 0.5rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 100%;
+  /* max-width: 250px; */
+}
+
+.pawpaw-image-wrapper {
+  background: #78c3dd;
+  border-radius: 30px;
+}
+
+.find-your-pawpaw .pawpaw-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  min-height: 320px;
+  aspect-ratio: 4 / 5;
+  object-fit: none;
+}
+
+.find-your-pawpaw .pawpaw-title {
+  color: #000;
+  text-align: left;
+  font-weight: 500;
+  font-size: clamp(16px, 2vw, 18px);
+  font-style: normal;
+  line-height: normal;
+}
+
+.find-your-pawpaw .pawpaw-price {
+  margin-top: 5px;
+  display: flex;
+  gap: 13px;
+  justify-items: center;
+}
+
+.pawpaw-info-inner {
+  margin-top: 24px;
+  width: 75%;
+}
+
+.find-your-pawpaw .pawpaw-current {
+  color: #000;
+  font-size: clamp(18px, 2vw, 20px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.find-your-pawpaw .addtobag_plus_icon {
+  width: 25%;
+  margin: 32px 0px auto;
+}
+
+.find-your-pawpaw .pawpaw-compare {
+  text-decoration: line-through;
+  color: #5D491F;
+  font-size: clamp(18px, 2vw, 20px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: line-through;
+}
+
+.find-your-pawpaw .b-add_to_bag-button.button-cta.atc.pocket.pawpaw-plus {
+  margin-top: 35px;
+  background: none;
+  border: 1px solid black;
+  border-radius: 50%;
+  font-size: 20px;
+  /* width: 32px; */
+  height: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.find-your-pawpaw .pawpaw-scrollbar {
+  height: 10px;
+  background: #fff7dc;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.find-your-pawpaw .pawpaw-scrollbar .swiper-scrollbar-drag {
+  background: #0e0e0e;
+  /* black */
+  border-radius: 20px;
+  height: 14px;
+}
+
+.pawpaw-swiper .swiper-horizontal>.swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  height: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .shopify-section.find-paw-paw {
+    padding: 0px 2px 0px 2px;
+  }
+
+  .find-your-pawpaw .pawpaw-heading {
+    font-size: 32px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .find-your-pawpaw .pawpaw-container {
+    width: 90%;
+
+  }
+
+  .find-your-pawpaw .addtobag_plus_icon .b-add_to_bag-button {
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    padding-bottom: 0px;
+    font-weight: 500;
+    margin: 0px;
+  }
+
+  .find-your-pawpaw .pawpaw-plus {
+    margin-top: 29px;
+    width: 33px;
+    height: 33px;
+  }
+}

@@ -1,0 +1,67 @@
+<section>
+  <div class="container reward-section">
+    <div class="use-point-container">
+      {% if section.settings.howToUsePointsImage %}
+        <div class="use-point-img-container d-center">
+          <img
+            src="{{ section.settings.howToUsePointsImage | image_url }}"
+            alt="banner"
+            class="img-fluid use-point-img"
+            loading="lazy"
+            width="100%"
+            height="100%"
+          >
+        </div>
+      {% endif %}
+      <div class="use-point-rule-container">
+        <div class="use-point-rule-details">
+          <p class="use-point-title reward-section-title">How To Use Points</p>
+          <p class="use-point-text">
+            Redeeming Your Points is Easy! Simply apply your points for discount at checkout.
+          </p>
+          <p class="use-point-rule">100 Points = ₹1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container information-buttons">
+  <a href="/pages/member-faq">
+    FAQs
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="33" height="14" viewBox="0 0 33 14" fill="none">
+        <path d="M32.6187 7.61872C32.9604 7.27701 32.9604 6.72299 32.6187 6.38128L27.0503 0.812816C26.7085 0.471107 26.1545 0.471107 25.8128 0.812816C25.4711 1.15452 25.4711 1.70854 25.8128 2.05025L30.7626 7L25.8128 11.9497C25.4711 12.2915 25.4711 12.8455 25.8128 13.1872C26.1545 13.5289 26.7085 13.5289 27.0503 13.1872L32.6187 7.61872ZM0 7.875H32V6.125H0V7.875Z" fill="#7E0B56"/>
+      </svg>
+    </span>
+  </a>
+  <a href="/pages/terms-condition">
+    Terms & Conditions
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="33" height="14" viewBox="0 0 33 14" fill="none">
+        <path d="M32.6187 7.61872C32.9604 7.27701 32.9604 6.72299 32.6187 6.38128L27.0503 0.812816C26.7085 0.471107 26.1545 0.471107 25.8128 0.812816C25.4711 1.15452 25.4711 1.70854 25.8128 2.05025L30.7626 7L25.8128 11.9497C25.4711 12.2915 25.4711 12.8455 25.8128 13.1872C26.1545 13.5289 26.7085 13.5289 27.0503 13.1872L32.6187 7.61872ZM0 7.875H32V6.125H0V7.875Z" fill="#7E0B56"/>
+      </svg>
+    </span>
+  </a>
+</div>
+
+{% schema %}
+{
+"name": "Hok Reward Usage",
+"settings": [
+{
+"type": "image_picker",
+"id": "howToUsePointsImage",
+"label": "Add Image For How To Use Points Area"
+}
+],
+
+"presets": [
+{
+"name": "Hok Reward Usage"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}

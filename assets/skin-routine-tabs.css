@@ -1,0 +1,397 @@
+.skincare-routine-section .routine-tabs-section.full-width {
+  width: 90%;
+  margin: auto;
+}
+
+.routine-tabs-section .tabs {
+  width: 90%;
+  justify-content: center;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
+  width: 100%;
+  gap: 16px;
+  padding-bottom: 10px;
+  margin: 10px auto;
+  scrollbar-width: none;
+}
+
+.skincare-routine-section {
+  background: #FBFAF9;
+}
+
+.product-description-text.text1 {
+  transform: translatey(-53px);
+}
+
+.choose-routine-text {
+  text-align: center;
+  padding: 3.9rem 0rem;
+}
+
+.routine-heading {
+  color: #000;
+  font-family: var(--family-regular);
+  font-weight: 800;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.routine-swiper {
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.tab-content-skincare-routines .swiper-wrapper {
+  display: flex;
+  height: auto;
+  padding: 25px 0px 20px 9px;
+}
+
+.swiper-slide {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.routine-subheading {
+  color: #939795;
+  text-align: center;
+  font-size: clamp(18px, 2vw, 22px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.routine-tabs-section .tab-button-skincare-routine {
+  border-radius: 50px;
+  border: 1px solid #CFCDCD;
+  padding: 8px 20px;
+  background: transparent;
+  color: #CFCDCD;
+  text-align: center;
+  font-weight: 500;
+  font-size: clamp(14px, 2vw, 18px);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.product-description-text.text4 {
+  padding: 0px 0px 0px 10px !important;
+}
+
+.routine-tabs-section .tab-button-skincare-routine.active {
+  background: #FFF4F4;
+  color: #000;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0px 2px 10px 0px rgba(100, 100, 100, 0.25);
+
+}
+
+.routine-tabs-section .tab-content-skincare-routine {
+  display: none;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-height: 550px;
+}
+
+.product-description-image .product_url {
+  width: 35%;
+}
+
+.product-description-text.text4 {
+  transform: translateY(-32px);
+}
+
+.tab-content-skincare-routine.active {
+  display: flex;
+}
+
+.routine-tabs-section .product-description-image img.routine-product-image-4-Acne,
+.routine-tabs-section .product-description-image img.routine-product-image-8-Dry,
+.routine-tabs-section .product-description-image img.routine-product-image-13-Oily,
+.routine-tabs-section .product-description-image img.routine-product-image-19-Sensitive {
+  object-fit: contain;
+}
+
+img.routine-product-image-5-Acne,
+img.routine-product-image-10-Dry,
+img.routine-product-image-14-Oily {
+  transform: rotate(-12deg) translate(-15px);
+}
+
+img.routine-product-image-18-Sensitive,
+
+img.routine-product-image-15-Sensitive {
+  transform: rotate(12deg) translateX(-30px);
+}
+
+img.routine-product-image-2-Acne {
+  transform: rotate(-12deg) translate(-35px);
+}
+
+img.routine-product-image-7-Dry {
+  transform: rotate(12deg) translate(-16px);
+  max-height: 230px;
+  min-height: 230px;
+}
+
+img.routine-product-image-19-Sensitive {
+  object-fit: contain;
+}
+
+img.routine-product-image-3-Acne,
+img.routine-product-image-9-Dry {
+  transform: rotate(12deg) translateX(-15px);
+}
+
+img.routine-product-image-12-Oily,
+img.routine-product-image-16-Sensitive {
+  transform: rotate(11deg);
+}
+
+img.routine-product-image-4-Acne,
+img.routine-product-image-8-Dry,
+.routine-product-image-13-Oily {
+  transform: rotate(-12deg);
+}
+
+img.routine-product-image-1-Acne {
+  transform: rotate(12deg) translate(-34px);
+}
+
+.routine-tabs-section .product-description-image img.routine-product-image-6-Dry {
+  max-height: 215px;
+  transform: rotate(-12deg) translate(-30px, 20px);
+  min-height: unset;
+}
+
+.product-description-text.text6 p {
+  padding: 10px 0 0 10px;
+}
+
+img.routine-product-image-17-Sensitive {
+  transform: rotate(-18deg) translateX(-18px);
+}
+
+img.routine-product-image-11-Oily {
+  transform: rotate(-12deg) translateX(-16px);
+}
+
+.routine-tabs-section .routine-card {
+  /* width: 18%; */
+  min-width: 250px;
+  flex-shrink: 0;
+  height: inherit;
+  text-align: center;
+  border-radius: 20px;
+  background: #FBFAF9;
+  box-shadow: 0px 2px 10px 0px rgba(90, 88, 88, 0.25);
+  padding: 0px 12px;
+  align-items: center;
+}
+
+.routine-tabs-section .step-label {
+  border-radius: 30px;
+  background: #ECAFAF;
+  padding: 4px 12.5px;
+  color: #000;
+  margin-top: 10px;
+  display: inline-block;
+  font-weight: 500;
+  font-size: clamp(15px, 2vw, 18px);
+  font-style: normal;
+  text-align: center;
+}
+
+.routine-tabs-section .routine-card h3 {
+  color: #000;
+  font-size: clamp(18px, 2vw, 18px);
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+.routine-tabs-section .product-description-image p {
+  color: #171717;
+  font-size: clamp(12px, 2vw, 14px);
+  font-style: normal;
+  font-weight: 400;
+  /* line-height: normal; */
+  width: 60%;
+  text-align: left;
+  padding: 22px 0px 0px 10px;
+}
+
+.routine-tabs-section .product-description-image img {
+  /* flex: 1; */
+  margin: 0px;
+  min-height: 273px;
+  object-fit: cover;
+}
+
+.routine-tabs-section .product-description-image p.text3 {
+  padding-top: 40px;
+}
+
+.routine-tabs-section .product-description-image {
+  display: flex;
+  align-items: center;
+  /* margin-top: 40px; */
+  justify-content: center;
+  justify-items: center;
+  gap: 5px;
+  min-height: 350px;
+}
+
+.product-description-image.primary-class {
+  flex-direction: row;
+}
+
+.product-description-image.secondary-class {
+  flex-direction: column;
+  justify-content: center;
+  max-height: 350px;
+}
+
+.product-description-image.secondary-class .product_url {
+  width: 55%;
+}
+
+.product-description-image.secondary-class p {
+  width: 85%;
+  order: 2;
+  margin: auto;
+  padding: 0px 0px 0px 0px;
+}
+
+.product-description-image.secondary-class img {
+  width: 100%;
+  margin: auto;
+
+}
+
+.product-description-image.secondary-class p {
+  transform: translateY(-65px);
+}
+
+.product-description-image p em {
+  color: #7e7e7e;
+}
+
+.routine-tabs-section .view-all-link {
+  display: inline-block;
+  margin: -20px auto 15px auto;
+  padding: 10px 38px;
+  text-align: center;
+  border-radius: 21px;
+  border: 1px solid #000;
+  background: #FBFAF9;
+  box-shadow: 0px 2px 10px 0px rgba(112, 112, 112, 0.25);
+}
+
+.product-description-image.primary-class.image-text1 p {
+  transform: translatey(-50px);
+}
+
+.product-description-text.text19 p {
+  width: 95%;
+}
+
+@media (max-width: 768px) {
+  .routine-subheading {
+    margin: 18px auto auto;
+    width: 50%;
+  }
+
+  img.routine-product-image-5-Acne {
+    transform: rotate(-12deg) translate(-15px);
+  }
+
+  .routine-tabs-section .tab-button-skincare-routine.active {
+    color: #754747
+  }
+
+  .routine-tabs-section .product-description-image p.text3 {
+    padding-top: 100px;
+  }
+
+  .routine-tabs-section .tabs {
+    justify-content: unset;
+    gap: 6px;
+    width: 95%;
+    padding: 5px 0px 8px 8px;
+    margin: 0px auto;
+  }
+
+  .tab-content-skincare-routines .swiper-wrapper {
+    padding: 8px 0px 20px 0px;
+  }
+
+  .routine-heading {
+    font-size: 26px;
+    letter-spacing: 0;
+  }
+
+  .tab-content-skincare-routine {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 8px;
+  }
+
+  .routine-tabs-section .tab-button-skincare-routine {
+    padding: 8px 10px;
+  }
+
+  .routine-tabs-section .routine-card {
+    background: #FFF4F4;
+  }
+
+  .product-description-image.primary-class .product-description-text.text1 {
+    padding: 90px 0px 0px 12px;
+  }
+
+  .product-description-image.primary-class p {
+    padding: 45px 0px 0px 2px;
+  }
+
+  .product-description-image.tertiary-class .product-description-text p {
+    padding: 52px 0px 0px 0px;
+  }
+
+  .product-description-image.secondary-class p {
+    padding: 0px 0px 0px 10px;
+  }
+
+  .routine-tabs-section .view-all-link {
+    background: #ECAFAF;
+    border: none;
+  }
+
+  .skincare-routine-section .routine-tabs-section.full-width {
+    width: 96%;
+    margin: auto;
+  }
+}
+
+@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
+  .product-description-image.tertiary-class .product-description-text p {
+    padding: 50px 0px 0px 0px;
+  }
+
+  img.routine-product-image-1-Acne {
+    transform: rotate(12deg) translate(-47px);
+  }
+
+  img.routine-product-image-5-Acne,
+  img.routine-product-image-10-Dry,
+  img.routine-product-image-14-Oily {
+    transform: rotate(-12deg) translate(-27px);
+  }
+}

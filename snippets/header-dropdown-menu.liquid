@@ -1,0 +1,119 @@
+{% comment %}
+  Renders a standard dropdown style menu for the header.
+  Usage:
+  {% render 'header-dropdown-menu' %}
+ {% capture new_launch  %} 
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 14 14" fill="none" class="position-relative new-icon" style="top:-8px;">
+  <rect width="14" height="14" rx="7" fill="#E06E27"/>
+  <path d="M8.544 3.623H9.327V9.5H8.616L4.881 4.991H4.872V9.5H4.089V3.623H4.8L8.535 8.132H8.544V3.623Z" fill="white"/>
+</svg>
+{% endcapture %} {% endcomment %}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}} 
+                  {% comment %} {% if link.handle == 'makeup' or link.handle == 'skin' %} {{ new_launch }} {% endif %} {% endcomment %}
+                </span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <ul
+                id="HeaderMenu-MenuList-{{ forloop.index }}"
+                class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                role="list"
+                tabindex="-1"
+              >
+                {%- for childlink in link.links -%}
+                  <li>
+                    {%- if childlink.links == blank -%}
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                      {% comment %} {% if childlink.title != 'Explore All' %}
+                        {{ childlink.title | escape }} {{ new_launch }}
+                      {% else %}
+                      {% endif %} {% endcomment %}
+                        {{ childlink.title | escape }}
+                      </a>
+                    {%- else -%}
+                      <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
+                        <summary
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          class="header__menu-item link link--text list-menu__item focus-inset caption-large"
+                        >
+                          <span>{{ childlink.title | escape }}</span>
+                          {{- 'icon-caret.svg' | inline_asset_content -}}
+                        </summary>
+                        <ul
+                          id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                          class="header__submenu list-menu motion-reduce"
+                        >
+                          {%- for grandchildlink in childlink.links -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset{% if link.handle == "winter-offer" %} winter-gradient{% endif %}"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {% if link.handle == "winter-offer" %}
+                <span  style="position:relative;top:-4px;left:3px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="23" viewBox="0 0 20 23" fill="none">
+                    <path d="M7.24029 9.97525L7.30285 10.1008L7.18244 10.172C7.15036 10.1908 7.106 10.2417 7.06251 10.3458C7.02077 10.4457 6.98709 10.5752 6.96394 10.7203C6.91767 11.0105 6.91521 11.3401 6.94414 11.5735L6.95504 11.6622L6.88204 11.7147L1.39763 15.6477L7.43981 12.8258L7.56348 12.7682L7.63271 12.8867C7.65182 12.9189 7.70337 12.9631 7.80751 13.0076C7.90768 13.0503 8.03682 13.0853 8.18118 13.112C8.46968 13.1654 8.79713 13.183 9.02485 13.1809L9.10298 13.18L9.14846 13.2444L14.537 20.8306L10.3199 12.7194L10.2718 12.6267L10.3423 12.5489C10.3462 12.5444 10.3577 12.5279 10.3751 12.4924C10.3918 12.4583 10.4105 12.4137 10.4296 12.3602C10.4678 12.2533 10.5067 12.1169 10.5395 11.9688C10.6058 11.6687 10.6436 11.3406 10.616 11.1181L10.6041 11.0295L10.6781 10.977L17.5674 6.10415L10.1502 9.80656L10.0623 9.85065L9.98662 9.78797C9.78736 9.62049 9.6184 9.46574 9.38073 9.3657C9.14874 9.26807 8.83978 9.21877 8.36909 9.29886L8.27472 9.31478L8.22007 9.235L3.23599 1.89708L7.24029 9.97525Z" fill="#797DFF" stroke="#797DFF" stroke-width="0.3"/>
+                  </svg>
+                </span>
+              {% endif %}
+                {{ link.title | escape }}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

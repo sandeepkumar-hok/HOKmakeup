@@ -1,0 +1,313 @@
+<!--section/shop-by-concern-grid.liquid -->
+<section class="sbc sbc-{{ section.id }} container">
+  <div class="sbc__container container">
+    {% if section.settings.heading != blank %}
+      <h2 class="sbc__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="sbc__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'item' %}
+          <a
+            class="sbc__item"
+            href="{{ block.settings.link | default: '#' }}"
+            aria-label="{{ block.settings.label | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="sbc__imgwrap">
+              {% if block.settings.image != blank %}
+                <img
+                  class="sbc__img"
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  srcset="
+                    {{ block.settings.image | image_url: width: 320 }} 320w,
+                    {{ block.settings.image | image_url: width: 480 }} 480w,
+                    {{ block.settings.image | image_url: width: 640 }} 640w,
+                    {{ block.settings.image | image_url: width: 800 }} 800w
+                  "
+                  sizes="(max-width: 768px) 30vw, 16vw"
+                  alt="{{ block.settings.image.alt | escape }}"
+                  width="800"
+                  height="800"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="sbc__placeholder" aria-hidden="true"></div>
+              {% endif %}
+            </div>
+
+            {% if block.settings.label != blank %}
+              <div class="sbc__label">{{ block.settings.label }}</div>
+            {% endif %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sbc-{{ section.id }}{
+    background: {{ section.settings.bg_color }};
+  }
+
+  .sbc-{{ section.id }} .sbc__container{
+    padding: {{ section.settings.py_desktop }}px {{ section.settings.px_desktop }}px;
+  }
+
+  .sbc-{{ section.id }} .sbc__heading{
+    margin: 0 0 24px 0;
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: .2px;
+    color: #111;
+  }
+
+  /* Grid */
+  .sbc-{{ section.id }} .sbc__grid{
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.cols_desktop }}, 1fr);
+    gap: {{ section.settings.gap_desktop }}px;
+    align-items: start;
+  }
+
+  .sbc-{{ section.id }} .sbc__item{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .sbc-{{ section.id }} .sbc__imgwrap{
+    width: 100%;
+    aspect-ratio: {{ section.settings.card_ratio_desktop }};
+    border-radius: {{ section.settings.radius }}px;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  .sbc-{{ section.id }} .sbc__img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: translateZ(0);
+  }
+
+  .sbc-{{ section.id }} .sbc__placeholder{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f2f2f2, #fafafa, #f2f2f2);
+  }
+
+  .sbc-{{ section.id }} .sbc__label{
+    color: #231F20;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    text-align:Left;
+  }
+
+  @media (max-width: 768px){
+    .sbc-{{ section.id }} .sbc__container{
+      padding: {{ section.settings.py_mobile }}px {{ section.settings.px_mobile }}px;
+    }
+
+    .sbc-{{ section.id }} .sbc__heading{
+      font-size: 22px;
+      font-weight: 900;
+      text-transform: none; 
+      margin-bottom: 24px;
+    }
+
+    .sbc-{{ section.id }} .sbc__grid{
+      grid-template-columns: repeat({{ section.settings.cols_mobile }}, 1fr);
+      gap: {{ section.settings.gap_mobile }}px;
+    }
+
+    .sbc-{{ section.id }} .sbc__imgwrap{
+      aspect-ratio: {{ section.settings.card_ratio_mobile }};
+      border-radius: {{ section.settings.radius_mobile }}px;
+    }
+
+    .sbc-{{ section.id }} .sbc__label{
+      font-size: 12px;
+      font-weight: 400;
+      text-align:center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Shop by Concern Grid",
+  "tag": "section",
+  "class": "shop-by-concern-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "SHOP BY CONCERN"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "cols_desktop",
+      "label": "Columns (desktop)",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap (desktop)",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "card_ratio_desktop",
+      "label": "Card aspect ratio (desktop)",
+      "info": "Example: 1 / 1, 4 / 3, 16 / 9",
+      "default": "4 / 3"
+    },
+    {
+      "type": "range",
+      "id": "radius",
+      "label": "Image radius (desktop)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "px_desktop",
+      "label": "Padding X (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "py_desktop",
+      "label": "Padding Y (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "range",
+      "id": "cols_mobile",
+      "label": "Columns (mobile)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap (mobile)",
+      "min": 6,
+      "max": 24,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "card_ratio_mobile",
+      "label": "Card aspect ratio (mobile)",
+      "default": "4 / 3"
+    },
+    {
+      "type": "range",
+      "id": "radius_mobile",
+      "label": "Image radius (mobile)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "px_mobile",
+      "label": "Padding X (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "py_mobile",
+      "label": "Padding Y (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 18
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Concern Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Acne"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Shop by Concern Grid",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

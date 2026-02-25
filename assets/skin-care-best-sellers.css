@@ -1,0 +1,105 @@
+ .best-sellers-section-skincare .best-sellers-header-skincare {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .best-sellers-section-skincare .best-sellers-header-skincare h2 {
+        color: #000;
+        font-family: var(--header-family);
+        font-weight: 800;
+        font-size: 40px;
+        font-style: normal;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .best-sellers-section-skincare .b-product_promo_vendor-name {
+        text-align: left;
+    }
+
+    .best-sellers-section-skincare .swiper-horizontal>.swiper-scrollbar,
+    .swiper-scrollbar.swiper-scrollbar-horizontal {
+        position: unset;
+        height: 2px;
+        background: #F5F5F5;
+        width: 100%;
+    }
+
+    .best-sellers-section-skincare .b-product_promo_tile-name_link {
+        height: 42px;
+    }
+  .best-sellers-section-skincare  .b-product_promo_tile{
+    width: 100%;
+  }
+    .best-sellers-section-skincare .swiper-scrollbar {
+        margin-top: 16px;
+    }
+
+    .best-sellers-section-skincare .view-all-btn {
+        border: 1px solid black;
+        border-radius: 50px;
+        padding: 12px 51px;
+        text-transform: uppercase;
+        color: #000;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .best-sellers-section-skincare .swiper.best-sellers-swiper {
+        overflow: hidden;
+    }
+
+    .best-sellers-section-skincare .product-card-skincare {
+        background: #fff;
+
+        /* padding: 1rem; */
+
+        text-align: center;
+    }
+
+    .view-all.all-skin {
+        display: none;
+    }
+
+    .best-sellers-section-skincare .swiper-scrollbar.swiper-scrollbar-horizontal .swiper-scrollbar-drag {
+        display: block;
+        background: #6E6E6E;
+    }
+
+    @media (max-width: 768px) {
+      
+
+        .view-all.all-skin {
+            width: 100%;
+            display: block;
+            color: #000;
+            font-weight: 800;
+            font-size: 13px;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid #000;
+            background: #fff;
+            text-align: center;
+        }
+
+        .best-sellers-section-skincare .best-sellers-header-skincare h2 {
+            font-size: 22px;
+        }
+
+        .view-all.all-skin a {
+            font-weight: 800;
+            font-size: 13px;
+            font-style: normal;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+
+        .best-sellers-section-skincare .swiper-scrollbar {
+            margin: 16px 0px 24px 0px;
+        }
+    }

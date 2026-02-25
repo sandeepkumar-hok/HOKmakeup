@@ -1,0 +1,184 @@
+<!-- section/community-creator-brand.liquid -->
+<div class="custom-stats-banner container section-{{ section.id }}-margin">
+  <div class="stats-inner">
+    {% for block in section.blocks %}
+      <div class="stat-block stat-block-{{ forloop.index }}">
+        {% if block.settings.number != blank %}
+          <h2>{{ block.settings.number }}</h2>
+        {% endif %}
+        <p>
+          {% if block.settings.text != blank %}
+            {{ block.settings.text }}
+          {% endif %}
+          {% if block.settings.subtext != blank %}
+            <br>
+            <small class="stat-subtext">{{ block.settings.subtext }}</small>
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+   .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .stat-block {
+    color: #fff;
+    padding: 28px 16px;
+    text-align: center;
+    flex: 1;
+    border-right: 3px solid #D32E81;
+  }
+  .stat-block:last-child {
+    border-bottom: none;
+    border-right: none;
+  }
+  .stat-block h2 {
+     font-family: 'Mosvita';
+     font-weight: 900;
+    font-size: clamp(40px, 5vw, 44px);
+  }
+  .stat-block p {
+    font-size: clamp(16px, 3vw, 24px);
+  }
+  .stat-block.stat-block-3 h2{
+    font-size: 73px;
+    line-height: 0.7; 
+  }   
+  .stat-subtext {
+    font-size: clamp(14px, 2vw, 16px);
+  }
+  .stats-inner {
+    display: flex;
+    padding: 20px 66px;
+    flex-direction: row;
+    width: 100%;
+    background-color: #FF52A9;
+    border-radius: 20px;
+    margin: auto;
+  }
+  @media (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .stats-inner {
+      flex-direction: column;
+      width: 75%;
+      padding: 74px 16px;
+    }
+    .stat-block {
+      border-right: none;
+      padding: 45px 10px;
+      border-bottom: 1px solid #D32E81;
+    }
+    .stat-block:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "community creator brand",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_block",
+      "name": "Stat Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Stat Number",
+          "default": "3000+"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Stat Text",
+          "default": "creators carving their space"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext (optional)",
+          "default": "(ft. K-beauty, skincare & makeup)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "community creator brand",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "stat_block"
+        },
+        {
+          "type": "stat_block"
+        },
+        {
+          "type": "stat_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

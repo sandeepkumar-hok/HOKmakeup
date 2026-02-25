@@ -1,0 +1,472 @@
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .b-coming-soon-products{
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 36px;
+  }
+  .b-header-vendor-label{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px;
+    height: clamp(24px,3vw,32px);
+    overflow:hidden;
+  }
+  .b-coming-subtitle{
+    color: #000;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    height: 64px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+  }
+  .coming-soon-button{
+    margin-top: 32px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #000;
+    transition: all .2s ease-in;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    color: #000;
+    z-index: 1;
+  }
+  .coming-soon-swiper-pagination-{{ section.id }}{
+    top: unset !important;
+    bottom: -26px;
+    background: #F5F5F5;
+    z-index: 0;
+  }
+  .coming-soon-swiper-pagination-{{ section.id }} .swiper-pagination-progressbar-fill{
+    background: #6E6E6E;
+  }
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .b-coming-soon-products{
+      font-size: 13px;
+      line-height: normal;
+      margin: 12px 0 8px;
+    }
+    .b-header-vendor-label {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .b-coming-subtitle {
+      font-size: 12px;
+      text-overflow: ellipsis;
+      line-height: normal;
+      height: 70px;
+    }
+    .coming-soon-button{
+      font-size: 11px;
+    }
+    .coming-soon-swiper-pagination-{{ section.id }}{
+      bottom: -16px;
+    }
+  }
+{%- endstyle -%}
+{% liquid
+  assign num_slides_sm = section.settings['num-slides-sm']
+  assign num_slides_md = section.settings['num-slides-md']
+  assign num_slides_lg = section.settings['num-slides-lg']
+  assign num_slides_xl = section.settings['num-slides-xl']
+  assign num_slides_2xl = section.settings['num-slides-2xl']
+  assign image_priority = section.settings.image_priority
+  if image_priority
+    assign fetch_priority = 'high'
+  else
+    assign fetch_priority = 'auto'
+  endif
+%}
+<div class="section-{{ section.id }}-margin">
+  <div class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in">
+    {% if section.settings['coll-title'] %}
+      <div class="carousel-section-title-wrapper d-flex justify-content-between align-items-end w-100">
+        <p class="carousel-sub-title">{{ section.settings['coll-title'] }}</p>
+        <span class="new-slider-url">
+          {{- section.settings['url-title'] | link_to: section.settings.url }}
+          {% comment %}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="8"
+              height="12"
+              viewBox="0 0 8 12"
+              fill="none"
+              style="width:6px;height:10px;margin-left:10px"
+            >
+              <path d="M1.5 11L6.5 6L1.5 1" stroke="#393939" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+          {% endcomment %}
+        </span>
+      </div>
+    {% endif %}
+    <div class="carousel-nav-wrapper">
+      <div
+        id="product-slider-{{ section.id }}"
+        class="carousel-wrapper-outer {% if section.settings.showContainer == "container" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper">
+          {% for block in section.blocks %}
+            {% assign section_block = block.settings %}
+            {% if block.type == 'product' %}
+              {% assign product = all_products[section_block.product] %}
+              <div class="swiper-slide">
+                <a
+                  href="{% if template == 'index' %}{{ product.url }}{% else %}javascript:void(0){% endif %}"
+                  {% if section.settings.seo_text %}
+                    data-location="{{ section.settings.seo_text | append:forloop.index }}"
+                  {% endif %}
+                >
+                  <div class="content-item">
+                    <div class="b-product_promo_tile">
+                      <div class="lazyload-media">
+                        <img
+                          srcset="
+                            {{ section_block.image | image_url: width: 388, height: 388 }} 388w,
+                            {{ section_block.image | image_url: width: 746, height: 746 }} 746w
+                          "
+                          sizes="(max-width: 568px) 388px, 746px"
+                          src="{{ section_block.image | image_url: width: 388, height: 388 }}"
+                          alt="{{ section_block.image | escape }}"
+                          width="100%"
+                          height="auto"
+                          loading="lazy"
+                        >
+                      </div>
+                      <p class="b-coming-soon-products">{{ section_block.launch_text }}</p>
+                      <p class="b-header-vendor-label">
+                        {{- product.vendor -}}
+                      </p>
+                      <p class="b-coming-subtitle">
+                        {{- section_block.subtitle -}}
+                      </p>
+                      {% if template == 'index' %}
+                        <button class="coming-soon-button" type="button">Shop Now</button>
+                      {% endif %}
+                      <!-- <button class="coming-soon-button d-none" type="button">Notify Me</button> -->
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% else %}
+              <div class="swiper-slide">
+                <a
+                  href="{{ section_block.collection.url }}"
+                  {% if section.settings.seo_text %}
+                    data-location="{{ section.settings.seo_text | append:forloop.index }}"
+                  {% endif %}
+                >
+                  <div class="content-item">
+                    <div class="b-product_promo_tile">
+                      <div class="lazyload-media">
+                        <img
+                          class="img-fluid"
+                          src="{{ section_block.image | image_url }}"
+                          alt="{{ section_block.collection.title }}"
+                          title="{{ section_block.collection.title }}"
+                          width="100%"
+                          loading="lazy"
+                           height="auto"
+                        >
+                      </div>
+                      <p class="b-coming-soon-products">{{ section_block.launch_text }}</p>
+                      <p class="b-header-vendor-label">
+                        {{- section_block.collection.title -}}
+                      </p>
+                      <p class="b-coming-subtitle">
+                        {{- section_block.subtitle -}}
+                      </p>
+                      <button class="coming-soon-button" type="button">Shop Now</button>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="arrow_handler">
+        <div id="product-slider-prev-{{ section.id }}" class="carousel-btn">
+          {{ 'arrow-back.svg' | inline_asset_content }}
+        </div>
+        <div id="product-slider-next-{{ section.id }}" class="carousel-btn">
+          {{ 'arrow-next.svg' | inline_asset_content }}
+        </div>
+      </div>
+      <div class="swiper-pagination coming-soon-swiper-pagination-{{ section.id }}"><br></div>
+    </div>
+  </div>
+</div>
+<script>
+  // document.addEventListener('DOMContentLoaded', function () {
+    {% assign section_unique_name = section.id |  remove: '-' |  remove: '_'  %}
+      let numSlidesSm{{ section_unique_name }} = parseFloat('{{ num_slides_sm }}'),numSlidesMd{{ section_unique_name }} = parseFloat('{{ num_slides_md }}'),numSlidesLg{{ section_unique_name }} = parseFloat('{{ num_slides_lg }}'),numSlidesXl{{ section_unique_name }} = parseFloat('{{ num_slides_xl }}'),numSlides2xl{{ section_unique_name }} = parseFloat('{{ num_slides_2xl }}');
+      const productSlider{{ section.id |  remove: '-' |  remove: '_'   }} = new Swiper('#product-slider-{{ section.id }}', {
+      spaceBetween: 12,
+      slidesPerGroup:1,
+      speed: {{ section.settings.slide_speed |  remove: 'px'  }} ,
+      slidesPerView: numSlidesSm{{ section_unique_name }},
+      centeredSlides: {{ section.settings.showCenter }},
+      freeMode: {{ section.settings.showFreeScroll }},
+      loop: {{ section.settings.loop }} ,
+      pagination: {
+        el: ".coming-soon-swiper-pagination-{{ section.id }}",
+        type: "progressbar",
+      },
+      breakpoints: {
+        // when window width is >= 320px
+        768: {
+          slidesPerView: numSlidesMd{{ section_unique_name }},
+          slidesPerGroup:1
+        },
+        1024: {
+          slidesPerView: numSlidesLg{{ section_unique_name }},
+          spaceBetween: 20
+        },
+        1280: {
+          slidesPerView: numSlidesXl{{ section_unique_name }},
+          spaceBetween: 20
+        },
+        1536: {
+          slidesPerView: numSlides2xl{{ section_unique_name }},
+          spaceBetween: 20
+        },
+      },
+      navigation: {
+        prevEl: '#product-slider-prev-{{ section.id }}',
+        nextEl: '#product-slider-next-{{ section.id }}',
+      }
+    });
+    // });
+</script>
+{% schema %}
+{
+  "name": "Coming Soon Grid",
+  "class": "coming-soon-section",
+  "settings": [
+      {
+        "type": "radio",
+        "id": "showContainer",
+        "label": "Choose Container Style",
+        "options": [
+          { "value": "full-width", "label": "Show Full Container" },
+          { "value": "container", "label": "Show FrameWork Container" }
+        ],
+        "default": "full-width"
+     },
+      {
+      "type": "text",
+      "id": "seo_text",
+      "label": "Seo Tag Trigger Team",
+      "default":"New-at-Hok-",
+      "info": "Used for GTM (Anil)"
+      },
+    {
+      "type": "text",
+      "id": "coll-title",
+      "label": "Main Title"
+    },
+    {
+    "type": "range",
+    "id": "slide_speed",
+    "min": 100,
+    "max": 800,
+    "step": 100,
+    "unit": "px",
+    "label": "Slider Speed",
+    "default": 500
+  },
+  {
+  "type": "checkbox",
+  "id": "showCenter",
+  "label": "Show Center Container",
+  "info": "If enabled ,Container will show in center",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "showFreeScroll",
+  "label": "Free Scroll Container",
+  "info": "If enabled ,Free scroll will be enabled",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "loop",
+  "label": "Infinite Loop",
+  "info": "If enabled ,Infinite container will enabled",
+  "default": true
+  },
+  {
+    "type": "header",
+    "content": "Desktop Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_desktop",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+  {
+    "type": "header",
+    "content": "Mobile Margin"
+  },
+  {
+    "type": "range",
+    "id": "margin_top_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom_mobile",
+    "min": 0,
+    "max": 200,
+    "step": 2,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  },
+    {
+    "type": "number",
+    "id": "slides-limit",
+    "label": "Total Num of Slides",
+    "default": 7
+  },
+  {
+    "type": "text",
+    "id": "num-slides-sm",
+    "label": "Num Slides on sm Devices",
+    "default": "1",
+    "info": "Rounded to one decimal point. Breakpoint none"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-md",
+    "label": "Num Slides on md Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 768px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-lg",
+    "label": "Num Slides on lg Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 1024px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-xl",
+    "label": "Num Slides on xl Devices",
+    "default": "3",
+    "info": "Rounded to one decimal point. Breakpoint 1280px"
+  },
+  {
+    "type": "text",
+    "id": "num-slides-2xl",
+    "label": "Num Slides on 2xl Devices",
+    "default": "3.5",
+    "info": "Rounded to one decimal point. Breakpoint 1536px"
+  }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+          {
+      "type": "product",
+      "id": "product",
+      "label": "Product URL"
+    },
+         {
+          "type": "text",
+          "id": "launch_text",
+          "label": "Card Text",
+          "default": "Coming Soon"
+        },
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product Custom Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Product Sub Title"
+    },
+
+      ]
+    },
+       {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+          {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection URL"
+    },
+         {
+          "type": "text",
+          "id": "launch_text",
+          "label": "Card Text",
+          "default": "Just Launched"
+        },
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Collection Custom Image"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Collection Sub Title"
+    },
+
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coming Soon Grid"
+    }
+  ]
+}
+{% endschema %}

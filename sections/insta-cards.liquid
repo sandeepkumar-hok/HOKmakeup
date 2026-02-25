@@ -1,0 +1,460 @@
+{%- style -%}
+   #shopify-section-{{ section.id }}{
+     background-color:{{ section.settings.bg_color }};
+   }
+   .section-{{ section.id }}-margin {
+     margin-top: {{ section.settings.margin_top_desktop }}px;
+     margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+   }
+   .carousel-section-title-wrapper .genz-title{
+     font-weight: 700; 
+     font-size: 28px;
+   }
+   a.square-banner-slide:hover{
+     color:inherit;
+   }
+    .slide_cards .sub_slide_cards,.slide_cards .sub_slide_cards_links{
+     border: 1px solid #000;
+     background: #FFFDFA;
+    text-transform: capitalize;
+   }
+   .sub_slide_cards_header_text{
+     display:flex;
+     flex-direction:column;
+     gap: clamp(4px, 0.5vh, 8px);
+   }
+   .slide_cards img{
+     border-top: 1px solid #000;
+   }
+   .sub_slide_cards{
+     border-radius: 30px 30px 0px 0px;
+   }
+   .card_text_details{
+      gap: clamp(6px, 2vw, 16px);
+     padding: 13px;
+   }
+  .slide_cards p{
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-line-clamp: 1;
+     line-clamp: 1;
+     -webkit-box-orient: vertical;
+  }
+   .slide_cards p:not(.small){
+    font-weight: 700;
+     font-size: clamp(15px, 4vw, 20px);
+      height: clamp(15px, 4vw, 20px);
+   }
+   .slide_cards p.small{
+     font-size: clamp(12px, 3vw, 15px);
+     text-transform:capitalize;
+      height: clamp(12px, 3vw, 15px);
+   }
+   .sub_slide_cards_links{
+     border-radius: 0 0 30px 30px;
+     padding: clamp(14px, 4vw, 28px);
+   }
+     #carousel-pagination-wrapper-{{ section.id }} {
+     height: auto;
+     position: relative;
+     z-index: 1;
+   }
+  .swiper-button-disabled path{
+    stroke: #b4b1b1
+  }
+
+  #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet {
+    height: 7px;
+    width: 7px;
+    font-size: 0;
+    background-color: #212121cc;
+  }
+
+   #carousel-pagination-wrapper-{{ section.id }} .swiper-pagination-bullet-active {
+     background-color: #1E1E1E;
+   }
+  .swiper-scrollbar-drag {
+    background: #1E1E1E;
+  }
+   @media screen and (max-width: 768px) {
+     .section-{{ section.id }}-margin {
+       margin-top: {{ section.settings.margin_top_mobile }}px;
+       margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+     }
+     .section-{{ section.id }}-margin .carousel-wrapper-outer {
+         padding: 0 42px;
+     }
+     .sub_slide_cards_svg svg{
+      width: 42px;
+      height: 42px;
+     }
+     .slide_cards img, .slide_cards video{
+       border-radius: 0px 0px 10px 10px;
+     }
+     .sub_slide_cards , .sub_slide_cards_links{
+       border-radius: 10px;
+       background: #FAF7F3;
+     }
+     .sub_slide_cards_links{
+       margin-top:4px;
+     }
+     .sub_slide_cards_links svg{
+       height:14px;
+     }
+   }
+   @media screen and (min-width: 769px) {
+     .sub_slide_cards_links{
+       border-top:0 !important;
+     }
+   }
+{%- endstyle -%}
+{% assign numSlidesSm = section.settings['num-slides-sm'] %}
+{% assign numSlidesMd = section.settings['num-slides-md'] %}
+{% assign numSlidesLg = section.settings['num-slides-lg'] %}
+{% assign numSlidesXl = section.settings['num-slides-xl'] %}
+{% assign numSlides2xl = section.settings['num-slides-2xl'] %}
+<div class="section-{{ section.id }}-margin">
+  <div
+    class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in"
+    style="background-color:{{ section.settings.bg_color }}"
+  >
+    {% if section.settings['carousel-title'] != blank %}
+      <div class="carousel-section-title-wrapper desktop_screen">
+        <div class="genz-title">
+          {{- section.settings['carousel-title'] -}}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="carousel-nav-wrapper">
+      <div
+        id="square-banner-carousel-{{ section.id }}"
+        class="carousel-wrapper-outer {% if section.settings.showContainer == "container" %}spacing{% endif %} swiper"
+      >
+        <div class="carousel-wrapper-inner swiper-wrapper mb-5">
+          {% for block in section.blocks %}
+            <div class="square-banner-slide-wrapper swiper-slide">
+              <a href="{{ block.settings['banner-url'] }}" class="square-banner-slide">
+                <div class="slide_cards">
+                  <div class="sub_slide_cards">
+                    <div class="card_text_details d-center justify-content-start">
+                      <div class="sub_slide_cards_svg">
+                        {{ block.settings.svg }}
+                      </div>
+                      <div>
+                        <div class="sub_slide_cards_header_text">
+                          <p>{{ block.settings['slide-text_header'] | escape }}</p>
+                          <p class="small">{{ block.settings['slide-text_header_sub_text'] | escape }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {% if block.settings['banner-image-desktop'] %}
+                      <img
+                        src="{{ block.settings.banner-image-desktop | image_url }}"
+                        class="d-block"
+                        height="100%"
+                        width="100%"
+                        loading="eager"
+                      >
+                    {% else %}
+                      {{
+                        block.settings['banner-video']
+                        | video_tag:
+                          width: '100%',
+                          height: '100%',
+                          class: 'd-block square-banner-media',
+                          autoplay: true,
+                          loop: true,
+                          muted: true,
+                          playsinline: true
+                      }}
+                    {% endif %}
+                  </div>
+                  <div class="sub_slide_cards_links d-center">
+                    <p>
+                      {{ block.settings['slide-text_footer'] | escape }}
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="20"
+                          viewBox="0 0 40 24"
+                          fill="none"
+                        >
+                          <path d="M39.0607 13.0607C39.6464 12.4749 39.6464 11.5251 39.0607 10.9393L29.5147 1.3934C28.9289 0.807611 27.9792 0.807611 27.3934 1.3934C26.8076 1.97919 26.8076 2.92893 27.3934 3.51472L35.8787 12L27.3934 20.4853C26.8076 21.0711 26.8076 22.0208 27.3934 22.6066C27.9792 23.1924 28.9289 23.1924 29.5147 22.6066L39.0607 13.0607ZM0 13.5H38V10.5H0V13.5Z" fill="#FF8639"/>
+                        </svg>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-scrollbar desktop_screen"></div>
+      </div>
+      <div class="arrow_handler mobile_screen">
+        <div id="carousel-prev-{{ section.id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="none">
+            <path d="M8.5 1L2 7.5L8.5 14" stroke="#101010" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div id="carousel-next-{{ section.id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="none">
+            <path d="M1 1L8 7.5L1 14" stroke="#101010" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div id="carousel-pagination-wrapper-{{ section.id }}" class="mobile_screen d-center"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+  var numSlidesSm = parseFloat('{{ numSlidesSm }}'),numSlidesMd = parseFloat('{{ numSlidesMd }}'),numSlidesLg = parseFloat('{{ numSlidesLg }}'),numSlidesXl = parseFloat('{{ numSlidesXl }}'),numSlides2xl = parseFloat('{{ numSlides2xl }}');
+  const bannerSlider{{ section.id |  remove: '-' |  remove: '_'   }} = new Swiper('#square-banner-carousel-{{ section.id }}', {
+    spaceBetween: 42,
+    paginationClickable: true,
+    speed: {{ section.settings.slide_speed |  remove: 'px'  }} ,
+    slidesPerView: numSlidesSm,
+    centeredSlides: {{ section.settings.showCenter }},
+    freeMode: {{ section.settings.showFreeScroll }},
+    loop: {{ section.settings.loop }} ,
+    scrollbar: {
+        el: ".swiper-scrollbar"
+      },
+    navigation: {
+      prevEl: '#carousel-prev-{{ section.id }}',
+      nextEl: '#carousel-next-{{ section.id }}',
+    },
+     pagination: {
+        el: "#carousel-pagination-wrapper-{{ section.id }}"
+    },
+    touchStartForcePreventDefault:true,
+    breakpoints: {
+      768: {
+        slidesPerView: numSlidesMd
+      },
+      1024: {
+        slidesPerView: numSlidesLg,
+        spaceBetween:16
+      },
+      1280: {
+        slidesPerView: numSlidesXl,
+        spaceBetween:16
+      },
+      1536: {
+        slidesPerView: numSlides2xl,
+        spaceBetween:16
+      },
+    }
+    // pagination: '.swiper-pagination',
+    // parallax: true,
+    // roundLengths: true,
+  });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Insta Cards",
+  "class": "square-banner-carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "spacesDesktop", "label": "Show Hok Container" },
+        { "value": "container", "label": "Show FrameWork Container" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "checkbox",
+      "id": "addInnerPadding",
+      "label": "Add Inner Padding ?",
+      "info": "If enabled ,Desktop: 56px 0 & mobile:32px 0",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Add Background Color",
+      "default": "#fff"
+    },
+    {
+      "type": "checkbox",
+      "id": "showCenter",
+      "label": "Show Center Container",
+      "info": "If enabled ,Container will show in center",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "showFreeScroll",
+      "label": "Free Scroll Container",
+      "info": "If enabled ,Free scroll will be enabled",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Infinite Loop",
+      "info": "If enabled ,Infinite container will enabled",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 100,
+      "max": 800,
+      "step": 100,
+      "unit": "px",
+      "label": "Slider Speed",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "text",
+      "id": "carousel-title",
+      "label": "Carousel Title"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-sm",
+      "label": "Num Slides on sm Devices",
+      "default": "1",
+      "info": "Rounded to one decimal point. Breakpoint none"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-md",
+      "label": "Num Slides on md Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 768px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-lg",
+      "label": "Num Slides on lg Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1024px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-xl",
+      "label": "Num Slides on xl Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1280px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-2xl",
+      "label": "Num Slides on 2xl Devices",
+      "default": "3.5",
+      "info": "Rounded to one decimal point. Breakpoint 1536px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner-media",
+      "name": "Banner Media",
+      "settings": [
+        {
+          "type": "url",
+          "id": "banner-url",
+          "label": "Banner URL"
+        },
+        {
+          "type": "html",
+          "id": "svg",
+          "label": "Card Header SVG",
+          "info": "Add SVG code"
+        },
+        {
+          "type": "text",
+          "id": "slide-text_header",
+          "label": "Card Header Text"
+        },
+        {
+          "type": "text",
+          "id": "slide-text_header_sub_text",
+          "label": "Card Header Sub Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner-image-desktop",
+          "label": "Banner Image",
+          "info": "Default - aspect-ratio 1:1, 1080x1080"
+        },
+        {
+          "type": "video",
+          "id": "banner-video",
+          "label": "Banner Video",
+          "info": "Default - aspect-ratio 1:1, 1080x1080"
+        },
+        {
+          "type": "text",
+          "id": "slide-text_footer",
+          "label": "Card Footer Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Insta Cards"
+    }
+  ]
+}
+{% endschema %}

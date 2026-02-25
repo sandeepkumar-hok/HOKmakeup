@@ -1,0 +1,23 @@
+{% comment %} toastify_notication/ Snackbar {% endcomment %}
+<div id="toastifies" class="toastify_notication d-center" style="display:none" >
+    <div class="hok-toast d-center gap-3">
+        <div class="hok-toast__icon" aria-hidden="true">
+          <!-- Check icon -->
+          <img src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/tick_click_tick.png" width="20" height="20" alt="Product Added"/>
+        </div>
+
+        <div class="flex-grow-1">
+          <p class="hok-toast__title">Product Added!</p>
+          <p class="hok-toast__sub">Review before checkout</p>
+        </div>
+
+        {% comment %} <button class="hok-toast__btn btn" type="button">
+          View Bag
+        </button> {% endcomment %}
+      </div>
+  </div>
+  {% comment %} Loading Screen Animation  {% endcomment %}
+<div class="bg-loader d-none" id="bg-loader">
+    <img class="mobile_screen" src="https://cdn.shopify.com/s/files/1/1743/7443/files/Comp_1_1.gif?v=1686723543" width="100%" height="100%" alt="background Loading Animation"/>
+    <img class="desktop_screen" src="https://cdn.shopify.com/s/files/1/1743/7443/files/desktop_size.gif?v=1686723901" width="100%" height="100%" alt="background Loading Animation"/>
+</div>

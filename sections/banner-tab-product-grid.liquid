@@ -1,0 +1,653 @@
+
+{%- style -%}
+    .section-{{ section.id }}-margin {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+        background: {{ section.settings.background_color }};
+    }
+    .banner-tabs-grid-section {
+ 
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.banner-tabs-grid-section h3 {
+    color: #000;
+    font-size: 40px;
+    margin-bottom: 24px;
+    font-family: var(--header-family);
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+.banner-tabs-grid-section p {
+  color: #1A1919;
+  font-size: 20px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.banner-tabs-grid-buttons{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+.banner-tabs-grid-buttons::-webkit-scrollbar{
+  display:none;
+}
+
+.grid-tab-collection-container {
+    display: none;
+    grid-template-columns: 0.78fr 1fr;
+    grid-template-rows: 1fr auto 1fr;
+    grid-template-areas:
+        "box1 box4"
+        "box1 box2"
+        "box1 box3";
+    gap: 21px 48px;
+    align-items: center;
+}
+.grid-tab-collection-container.active {
+    display: grid;
+}
+
+.grid-tab-collection-image{
+  grid-area: box1;
+}
+.grid-tab-collection-image img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.grid-tab-collection-products-scroll {
+  display: none;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    grid-area: box2;
+    align-items: end;
+    height: 100%;
+}
+.grid-tab-collection-products-scroll.active {
+  display: flex;
+}
+.grid-tab-collection-products-scroll::-webkit-scrollbar{
+  height: 2px;
+  background: #D9D9D9;
+  }
+  .grid-tab-collection-products-scroll::-webkit-scrollbar-thumb {
+  background: #181818;
+  }
+  
+  .tabular-btn {
+    background: transparent;
+    color: #505050;
+    border-radius: 50px;
+    border: 1px solid #595959;
+    box-shadow: 0px 1px 6px 0px rgba(148, 147, 147, 0.25);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+.banner-tabs-grid-section .tabular-category-tab-btn{
+  background: transparent;
+  font-weight: 500;
+  color: #505050;
+  white-space: nowrap;
+  box-shadow: 0px 1px 6px 0px rgba(148, 147, 147, 0.25);
+  border: 1px solid #595959;
+  padding: 6px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: capitalize;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.banner-tabs-grid-section .tabular-category-tab-btn.active{
+  background: #ECAFAF;
+  color: #000;
+  border: none;
+  font-weight: 800;
+}
+.tabular-btn.active{
+  background: #FFF;
+  color:#000;
+  box-shadow: 0px 1px 8px 0px rgba(63, 62, 58, 0.25);
+  border: none;
+  font-weight: 800;
+}
+.banner-tabs-grid-section .shop-the-look-product-card {
+  background: transparent;
+  min-width: 390px;
+  text-align: left;
+}
+
+.shop-the-look-product-card img {
+    position: relative;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0px 2px 7px 0px rgba(201, 202, 202, 0.25);
+}
+
+.shop-the-look-discount-tag {
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    width: 100%;
+    background: rgba(253, 245, 245, 0.73);
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    padding: 6px;
+}
+
+.shop-the-look-product-card .title {
+  margin: 8px 0 2px;
+  font-weight: 500;
+}
+
+.shop-the-look-product-card .subtitle {
+  font-size: 16px;
+  color: #000000;
+  height: 32px;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+.shop-the-look-price {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.shop-the-look-old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-weight: 300;
+  font-size: calc(100% - 2px);
+}
+.sub_collection_buttons{
+  grid-area: box4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.sub_collection_buttons::-webkit-scrollbar{
+  display: none;
+}
+
+.sub-collections-shop-all-btn {
+  grid-area: box3;
+  display: flex;
+  align-items: start;
+  height: 85%;
+  position: relative;
+  justify-content: center;
+}
+
+.sub-collections-shop-all-btn button {
+  font-weight: 800;
+  padding: 8px 12px;
+  width: 100%;
+  max-width: 360px;
+  font-size: 16px;
+  background: #ffffff;
+  border: 1px solid #C3A8AE;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sub-collections-shop-all-btn button:hover {
+  background: #000;
+  color: #fff;
+}
+
+    @media screen and (max-width: 1200px) {
+        .section-{{ section.id }}-margin {
+            margin-top: {{ section.settings.margin_top_mobile }}px;
+            margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        }
+        .banner-tabs-grid-section h3 {
+          font-size: 22px;
+          text-align: left;
+          margin:0;
+      } 
+      .sm-width{
+        width: 100%;
+      }
+      .grid-tab-collection-container {
+        grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            grid-template-areas:
+                "box1"
+                "box4"
+                "box2"
+                "box3";
+            gap: 16px;
+        }
+      .grid-tab-collection-products-scroll {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+      .banner-tabs-grid-section .tabular-category-tab-btn{
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      .banner-tabs-grid-section.carousel-section-wrapper {
+      row-gap: 16px;
+      }
+      .banner-tabs-grid-buttons{
+        justify-content: start;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 10px 0px;
+        margin:0;
+      }
+      .sub_collection_buttons{
+        padding: 2px;
+        overflow-x: auto; 
+        justify-content: start;
+        gap: 8px;
+      }
+      .tabular-btn {
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid #CFCDCD;
+        color: #CFCDCD;
+        box-shadow: 0px 1px 6px 0px rgba(148, 147, 147, 0.25);
+      }
+      .tabular-btn.active {
+        box-shadow: 0px 1px 8px 0px rgba(63, 62, 58, 0.25);
+      }
+    .banner-tabs-grid-section .shop-the-look-product-card{
+      min-width: 110px;
+    }
+    .shop-the-look-product-card img {
+        border: 1px solid rgba(206, 204, 204, 0.60);
+    }
+    .shop-the-look-discount-tag {
+        font-size: 9px;
+        padding: 3px;
+    }
+    .banner-tabs-grid-section p {
+    font-size: 11px;
+    }
+    .shop-the-look-product-card .subtitle {
+      -webkit-line-clamp: 2;
+      font-size: 9px;
+    }
+    .sub-collections-shop-all-btn {
+      top: 0;
+    }
+    .sub-collections-shop-all-btn button {
+    padding: 12px;
+    font-size: 13px;
+}
+    }
+  {%- endstyle -%}
+<div class="section-{{ section.id }}-margin">
+  <div
+    class="banner-tabs-grid-section{% if section.settings.showContainer %} {{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="sm-width m-md-auto">
+      <h3>{{ section.settings.title }}</h3>
+      <div class="banner-tabs-grid-buttons">
+        {%- assign button_text = section.settings.buttonText | split:',' -%}
+        {% for button in button_text -%}
+        <button class="tabular-category-tab-btn{% if forloop.first %} active{% endif %}"
+          onclick="filterTabs(event, '{{ button }}')">{{ button | capitalize }}</button>
+        {%- endfor %}
+      </div>
+      <p class="text-start text-md-center">{{ section.settings.subTitle }}</p>
+    </div>
+    {% for blocks in section.blocks %}
+    <div class="grid-tab-collection-container{% if forloop.first %} active{% endif %}"
+      data-category="{{ button_text[forloop.index0] }}">
+      <div class="grid-tab-collection-image">
+        <img src="{{ blocks.settings.image |  image_url  }}" alt="{{ blocks.settings.image }} " loading="eager"
+          width="100%"  height="auto">
+      </div>
+      {%- assign sub_button_text = blocks.settings.sub_buttonText | split:',' -%}
+      <div class="sub_collection_buttons">
+        {% for buttons in sub_button_text -%}
+        <button class="tabular-btn{% if forloop.first %} active{% endif %}"
+          onclick="filtersubTabs(event, '{{ buttons }}')">{{ buttons | capitalize }}</button>
+        {% endfor %}
+      </div>
+      <div class="grid-tab-collection-products-scroll active" data-category="{{ sub_button_text[0] }}">
+        {% assign collection = blocks.settings.collection %}
+        {% assign collection_handle = collection.handle %}
+        {% assign collection = collections[collection_handle] %}
+        {% assign collection_products = collection.products | size %}
+        {% if collection_products == 0 %}
+        <p class="no-products">No products found in this collection.</p>
+        {% endif %}
+        {% for product in collection.products limit: 7 %}
+        {% assign first_variant = product.selected_or_first_available_variant %}
+        <div class="shop-the-look-product-card">
+          <a href="{{ product.url }}">
+            <div class="position-relative">
+              <img class="img-fluid" src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                title="{{ product.title }}" width="100%" loading="lazy"  height="auto">
+               {% if first_variant.price < first_variant.compare_at_price %}
+                     <span class="shop-the-look-discount-tag">{{
+                        first_variant.compare_at_price
+                        | minus: first_variant.price
+                        | times: 100.0
+                        | divided_by: first_variant.compare_at_price
+                        | money_without_currency
+                        | times: 100
+                        | remove: '.0'
+                      -}}
+                      % Off</span>
+                   {% endif %}
+            </div>
+            <p class="title"> {{- product.vendor -}}</p>
+            <p class="subtitle"> {{- product.title | remove: product.vendor -}}</p>
+            <p class="shop-the-look-price">{{ first_variant.price | money_without_trailing_zeros }}
+              {% if first_variant.price < first_variant.compare_at_price %} <span class="shop-the-look-old-price">{{
+                first_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                {% endif %}
+            </p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="grid-tab-collection-products-scroll" data-category="{{ sub_button_text[1] }}">
+        {% assign collection = blocks.settings.collection2 %}
+        {% assign collection_handle = collection.handle %}
+        {% assign collection = collections[collection_handle] %}
+        {% assign collection_products = collection.products | size %}
+        {% if collection_products == 0 %}
+        <p class="no-products">No products found in this collection.</p>
+        {% endif %}
+        {% for product in collection.products limit: 7 %}
+        {% assign first_variant = product.selected_or_first_available_variant %}
+        <div class="shop-the-look-product-card">
+          <a href="{{ product.url }}">
+            <div class="position-relative">
+              <img class="img-fluid" src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                title="{{ product.title }}" width="100%" loading="lazy"  height="auto">
+             {% if first_variant.price < first_variant.compare_at_price %}
+                     <span class="shop-the-look-discount-tag">{{
+                        first_variant.compare_at_price
+                        | minus: first_variant.price
+                        | times: 100.0
+                        | divided_by: first_variant.compare_at_price
+                        | money_without_currency
+                        | times: 100
+                        | remove: '.0'
+                      -}}
+                      % Off</span>
+                   {% endif %}
+            </div>
+            <p class="title"> {{- product.vendor -}}</p>
+            <p class="subtitle"> {{- product.title | remove: product.vendor -}}</p>
+            <p class="shop-the-look-price">{{ first_variant.price | money_without_trailing_zeros }}
+              {% if first_variant.price < first_variant.compare_at_price %} <span class="shop-the-look-old-price">{{
+                first_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                {% endif %}
+            </p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="grid-tab-collection-products-scroll" data-category="{{ sub_button_text[2] }}">
+        {% assign collection = blocks.settings.collection3 %}
+        {% assign collection_handle = collection.handle %}
+        {% assign collection = collections[collection_handle] %}
+        {% assign collection_products = collection.products | size %}
+        {% if collection_products == 0 %}
+        <p class="no-products">No products found in this collection.</p>
+        {% endif %}
+        {% for product in collection.products limit: 7 %}
+        {% assign first_variant = product.selected_or_first_available_variant %}
+        <div class="shop-the-look-product-card">
+          <a href="{{ product.url }}">
+            <div class="position-relative">
+              <img class="img-fluid" src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                title="{{ product.title }}" width="100%" loading="lazy"  height="auto">
+                  {% if first_variant.price < first_variant.compare_at_price %}
+                     <span class="shop-the-look-discount-tag">{{
+                        first_variant.compare_at_price
+                        | minus: first_variant.price
+                        | times: 100.0
+                        | divided_by: first_variant.compare_at_price
+                        | money_without_currency
+                        | times: 100
+                        | remove: '.0'
+                      -}}
+                      % Off</span>
+                   {% endif %}
+            </div>
+            <p class="title"> {{- product.vendor -}}</p>
+            <p class="subtitle"> {{- product.title | remove: product.vendor -}}</p>
+            <p class="shop-the-look-price">{{ first_variant.price | money_without_trailing_zeros }}
+              {% if first_variant.price < first_variant.compare_at_price %} <span class="shop-the-look-old-price">{{
+                first_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                {% endif %}
+            </p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="grid-tab-collection-products-scroll" data-category="{{ sub_button_text[3] }}">
+        {% assign collection = blocks.settings.collection4 %}
+        {% assign collection_handle = collection.handle %}
+        {% assign collection = collections[collection_handle] %}
+        {% assign collection_products = collection.products | size %}
+        {% if collection_products == 0 %}
+        <p class="no-products">No products found in this collection.</p>
+        {% endif %}
+        {% for product in collection.products limit: 7 %}
+        {% assign first_variant = product.selected_or_first_available_variant %}
+        <div class="shop-the-look-product-card">
+          <a href="{{ product.url }}">
+            <div class="position-relative">
+              <img class="img-fluid" src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                title="{{ product.title }}" width="100%" loading="lazy"  height="auto">
+                {% if first_variant.price < first_variant.compare_at_price %}
+                     <span class="shop-the-look-discount-tag">{{
+                        first_variant.compare_at_price
+                        | minus: first_variant.price
+                        | times: 100.0
+                        | divided_by: first_variant.compare_at_price
+                        | money_without_currency
+                        | times: 100
+                        | remove: '.0'
+                      -}}
+                      % Off</span>
+                   {% endif %}
+            </div>
+            <p class="title"> {{- product.vendor -}}</p>
+            <p class="subtitle"> {{- product.title | remove: product.vendor -}}</p>
+            <p class="shop-the-look-price">{{ first_variant.price | money_without_trailing_zeros }}
+              {% if first_variant.price < first_variant.compare_at_price %} <span class="shop-the-look-old-price">{{
+                first_variant.compare_at_price | money_without_trailing_zeros }}</span>
+                {% endif %}
+            </p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="sub-collections-shop-all-btn">
+        <button>SHOP ALL</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+function filterTabs(event, category) {
+  // Toggle active class on buttons
+  document.querySelectorAll('.tabular-category-tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Show/hide product grids
+  document.querySelectorAll('.grid-tab-collection-container').forEach(grid => {
+    if (grid.dataset.category === category) {
+      grid.classList.add('active');
+      grid.querySelectorAll('.sub_collection_buttons .tabular-btn')[0].classList.add('active');
+      grid.querySelector('.grid-tab-collection-products-scroll').classList.add('active');
+    } else {
+      grid.classList.remove('active');
+    }
+  });
+}
+function filtersubTabs(event, category) {
+  // Toggle active class on buttons
+  document.querySelectorAll('.tabular-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+  // Show/hide product grids
+  document.querySelectorAll('.grid-tab-collection-products-scroll').forEach(grid => {
+    if (grid.dataset.category === category) {
+      grid.classList.add('active');
+    } else {
+      grid.classList.remove('active');
+    }
+  });
+}
+</script>
+{% schema %}
+    {
+      "name": "Banner Product Tab Grid",
+      "class": "banner-product-tab-grid",
+      "max_blocks": 4,
+      "settings": [
+        {
+          "type": "radio",
+          "id": "showContainer",
+          "label": "Choose Container Style",
+          "options": [
+            { "value": "full-width", "label": "Show Full Container" },
+            { "value": "page-width", "label": "Show FrameWork Container" },
+            { "value": "container", "label": "Show Bootstrap Container" }
+          ],
+          "default": "container"
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background Color ",
+            "default": "#fff3f5"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Brand Title"
+        },
+        {
+            "type": "text",
+            "id": "subTitle",
+            "label": "Brand Sub Title"
+        },
+         {
+            "type": "text",
+            "id": "buttonText",
+            "label": "Navigation Button Text",
+            "info": "This text will be used for the navigation button (Use , to seperate the buttons) (Max 4 words)"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_desktop",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        },
+        {
+          "type": "header",
+          "content": "Mobile Margin"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "min": 0,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 36
+        }
+      ],
+      "blocks": [
+        {
+    "name": "Collection tabs",
+    "type": "tabs",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Collection Image"
+        },
+        {
+            "type": "text",
+            "id": "sub_buttonText",
+            "label": "Navigation Button Text",
+            "info": "This text will be used for the navigation button (Use , to seperate the buttons) (Max 4 words)"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose Collection 1"
+          },
+          {
+          "type": "collection",
+          "id": "collection2",
+          "label": "Choose Collection 2"
+          },
+          {
+          "type": "collection",
+          "id": "collection3",
+          "label": "Choose Collection 3"
+          },
+          {
+          "type": "collection",
+          "id": "collection4",
+          "label": "Choose Collection 4"
+          }
+    ]
+    }
+      ],
+      "presets": [
+        {
+          "name": "Banner Product Tab Grid"
+        }
+      ]
+    }
+    {% endschema %}

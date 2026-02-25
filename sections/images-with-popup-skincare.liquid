@@ -1,0 +1,290 @@
+{{ 'images-with-popup-skincare.css' | asset_url | stylesheet_tag }}
+
+<div class="image-popup-gallery responsive-bg desktop_screen"
+     style="background-image: url('{{ section.settings.bg_image_desktop | image_url }}');
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: cover;
+            padding-top: 55px;
+            margin-top:100px;
+            padding-bottom: 120px;
+            background-color: #fff;
+             margin-bottom:32px;
+            ">
+
+  <div class="content-wrapper-imagepopup">
+    <div class="image-popup-gallery-content">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div id="marquee" class="swiper">
+  <div class="swiper-wrapper">
+
+    {% comment %} First slide: show first 5 blocks {% endcomment %}
+    <div class="swiper-slide">
+      <div class="image-popup-gallery__grid">
+        {% for block in section.blocks limit: 8 %}
+          <div class="image-popup-gallery__item popupcard-{{ block.id }} image-container-first-{{ forloop.index }}" data-block-id="{{ block.id }}">
+            {% if block.settings.image %}
+             <img
+              src="{{ block.settings.image | image_url: width: 300 }}"
+              alt="{{ block.settings.overlay_text | escape | default: 'Gallery Image' }}"
+              class="gallery-img gallery-img-first-{{ forloop.index }}"
+              loading="lazy"
+               width="150"
+               height="100"
+            />
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% comment %} Second slide: show next 5 blocks {% endcomment %}
+    <div class="swiper-slide">
+      <div class="image-popup-gallery__grid">
+        {% for block in section.blocks offset: 8 limit:8 %}
+          <div class="image-popup-gallery__item popupcard-{{ block.id }} image-container-second-{{ forloop.index }}" data-block-id="{{ block.id }}">
+            {% if block.settings.image %}
+              <img
+                src="{{ block.settings.image |  image_url: width: 300 }}"
+                alt="{{ block.settings.overlay_text | escape | default: 'Gallery Image' }}"
+                width="150"
+                height="100"
+                class="gallery-img gallery-img-second-{{ forloop.index }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+ <div class="swiper-slide">
+      <div class="image-popup-gallery__grid">
+        {% for block in section.blocks offset: 16  %}
+          <div class="image-popup-gallery__item popupcard-{{ block.id }} image-container-third-{{ forloop.index }}" data-block-id="{{ block.id }}">
+            {% if block.settings.image %}
+             <img
+              src="{{ block.settings.image | image_url: width: 300 }}"
+              alt="{{ block.settings.overlay_text | escape | default: 'Gallery Image' }}"
+              class="gallery-img gallery-img-third-{{ forloop.index }}"
+              loading="lazy"
+               width="150"
+               height="100"
+            />
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Popup Modals -->
+  {% for block in section.blocks %}
+    {% if block.settings.show_popup %}
+      <div class="image-popup-gallery__modal" id="modal-{{ block.id }}">
+        <div class="image-popup-gallery__modal-content">
+          <div class="modal-info-text">
+            {{ block.settings.modal_name }}
+            {{ block.settings.ern_points }}
+          </div>
+          <div class="popupimagetext">
+            <img
+              src="{{ block.settings.image | image_url: width: 396 }}"
+              width="396"
+              height="577"
+              alt=""
+              loading="lazy"
+              class="popupimage"
+            >
+            <div class="popup-text-container">
+              <h3>{{ block.settings.modal_title }}</h3>
+              {{ block.settings.ern_points }}
+              {{ block.settings.modal_text }}
+              <div class="insta-icon-with-text">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/instagram-2_2.png?v=1749021093"
+                  alt="Instagram"
+                  width="16"
+                  height="16"
+                  style="width: 19px; height: 19px; margin:auto;">
+                <span>{{ block.settings['modal_name-insta'] }}</span>
+              </div>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            {% if block.settings.product_choose %}
+              {% render 'pocket-deal-of-the-day',
+                product: block.settings.product_choose,
+                fetch_priority: fetch_priority,
+                indexIs: indexing,
+                seo_text: section.settings.seo_text %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="image-popup-gallery__modal-close" onclick="closePopup()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="38px" height="38px" viewBox="0 0 1024 1024">
+            <path d="M697.4 759.2l61.8-61.8L573.8 512l185.4-185.4-61.8-61.8L512 450.2 326.6 264.8l-61.8 61.8L450.2 512 264.8 697.4l61.8 61.8L512 573.8z"/>
+          </svg>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+</div>          
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const items = document.querySelectorAll('.image-popup-gallery__item');
+  let swiperInstance;
+
+  function initSwiper() {
+    swiperInstance = new Swiper('#marquee', {
+      slidesPerView: 1,
+      spaceBetween: 1,
+      speed: 15000,
+      loop: true,
+      loopedSlides: 2,
+      allowTouchMove: true,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      freeMode: true,
+      freeModeMomentum: false,
+    });
+  }
+
+  initSwiper();
+
+  items.forEach(item => {
+    const blockId = item.getAttribute('data-block-id');
+    const modal = document.getElementById(`modal-${blockId}`);
+
+    item.addEventListener('click', () => {
+      if (modal) {
+        modal.style.display = 'flex';
+        if (swiperInstance?.autoplay) swiperInstance.autoplay.stop();
+      }
+    });
+
+    // ✅ CLOSE MODAL ON BACKGROUND CLICK
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        const content = modal.querySelector('.image-popup-gallery__modal-content');
+        if (!content.contains(e.target)) {
+          modal.style.display = 'none';
+
+          // restart swiper
+          if (swiperInstance) {
+            swiperInstance.destroy(true, true);
+            setTimeout(() => initSwiper(), 10);
+          }
+        }
+      });
+    }
+  });
+
+  document.querySelectorAll('.image-popup-gallery__modal-close').forEach(closeBtn => {
+    closeBtn.addEventListener('click', function () {
+      document.querySelectorAll('.image-popup-gallery__modal').forEach(modal => {
+        modal.style.display = 'none';
+      });
+
+      if (swiperInstance) {
+        swiperInstance.destroy(true, true);
+      }
+
+      setTimeout(() => {
+        initSwiper();
+      }, 10);
+    });
+  });
+});
+
+</script>
+
+{% schema %}
+{
+  "name": "Image Popup Gallery",
+  "class": "image-with-gallery-popup",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image_desktop",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Image Popup Gallery"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Click an image to see more"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Grid Image"
+        },
+        {
+          "type": "text",
+          "id": "modal_title",
+          "label": "Popup Title"
+        },
+        {
+          "type": "text",
+          "id": "modal_name-insta",
+          "label": "Popup modal insta",
+          "default": "angel_priya04"
+        },
+        {
+          "type": "richtext",
+          "id": "modal_text",
+          "label": "Popup Text"
+        },
+        {
+          "type": "richtext",
+          "id": "ern_points",
+          "label": "Points",
+          "default": "<p>Earn 208 pts</p>"
+        },
+        {
+          "type": "product",
+          "id": "product_choose",
+          "label": "Product for Popup"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_popup",
+          "label": "Show popup",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Popup Gallery",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

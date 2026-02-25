@@ -1,0 +1,397 @@
+<!-- section/combo-card-offer.liquid -->
+{{ 'combo-card-offer.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+{% assign text_blocks = section.blocks | where: 'type', 'text' %}
+{% assign html_blocks = section.blocks | where: 'type', 'html' %}
+{% assign text_index = 0 %}
+<!-- Dynamic upper text display area -->
+<div class="wrapper-content section-{{ section.id }}-margin section-{{ section.id }}-padding">
+  <div
+    class="dynamic-upper-text"
+    data-aos="fade-up"
+    data-aos-easing="linear"
+    data-aos-duration="300"
+  >
+    <div class="combo-offer-text mobile-only" id="combo-offer-active-text">
+      {% assign default_text_block = section.blocks | where: 'type', 'text' | first %}
+      {{ default_text_block.settings.text }}
+    </div>
+  </div>
+  <!-- Swiper for collection cards only -->
+  <div class="combo-offer-card-wrapper">
+    <div class="swiper combo-offer-card-swiper">
+      <div class="swiper-wrapper">
+        {% assign text_blocks = section.blocks | where: 'type', 'text' %}
+        {% assign html_blocks = section.blocks | where: 'type', 'html' %}
+        {% assign text_index = 0 %}
+
+        {% for block in section.blocks %}
+          {% if block.type == 'collection_card' %}
+            <div
+              class="swiper-slide"
+              data-text="{{ text_blocks[text_index].settings.text | escape }}"
+              data-text-bottom="{{ html_blocks[text_index].settings['text-bottom'] | escape }}"
+            >
+              <div class=" upper desktop-only">{{ block.settings['text-image'] }}</div>
+              <div class="combo-offer-card zoom-wrapper" data-modal="combo-offer-modal-{{ forloop.index }}">
+                <img
+                  src="{{ block.settings.image | image_url }}"
+                  class="zoomed-image desktop_screen"
+                  alt="Zoomed Image"
+                  width="100%"
+                  height="auto"
+                >
+                <img
+                  src="{{ block.settings.mobile_image | image_url }}"
+                  class="zoomed-image mobile_screen"
+                  alt="Zoomed Image"
+                  width="100%"
+                  height="auto"
+                >
+              </div>
+              <div class="lower desktop-only">
+                {{ block.settings['text-bottom-image'] }}
+                {% if block.settings.cta_link %}
+                  <a href="{{ block.settings.cta_link }}" class="btn button-cta">{{ block.settings.cta_text }}</a>
+                {% endif %}
+              </div>
+            </div>
+            {% assign text_index = text_index | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Dynamic bootom  text display area -->
+    <div class="dynamic-bootom-text-wrapper">
+      <div class="combo-offer-text-bottom mobile-only" id="combo-offer-active-text-bottom">
+        {% assign default_html_block = section.blocks | where: 'type', 'html' | first %}
+        {{ default_html_block.settings['text-bottom'] }}
+      </div>
+    </div>
+  </div>
+  <!-- Modals for collection cards -->
+  {% for block in section.blocks %}
+    {% if block.type == 'collection_card' %}
+      <div
+        id="combo-offer-modal-{{ forloop.index }}"
+        class="combo-offer-modal"
+        style="background-image: url('{{ block.settings.mobile_image | image_url }}');"
+      >
+        <span class="combo-offer-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="8" viewBox="0 0 23 8" fill="none">
+            <path
+              d="M0.646446 3.64645C0.451183 3.84171 0.451183 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.73079 7.34027 4.73079 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.73079 0.976311 4.73079 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646446 3.64645ZM23 3.5L1 3.5V4.5L23 4.5V3.5Z"
+              fill="white" />
+          </svg>
+        </span>
+        <div class="combo-offer-popup">
+          <div class="combo-offer-grid">
+            {% for product in collections[block.settings.collection].products limit: 10 %}
+              <div class="combo-offer-product">
+                {% render 'new-product-card-double',
+                  product: product,
+                  fetch_priority: fetch_priority,
+                  indexIs: indexing
+                %}
+              </div>
+            {% endfor %}
+          </div>
+          {% if collections[block.settings.collection].products.size > 10 %}
+            <div class="combo-offer-grid">
+              {% for product in collections[block.settings.collection].products offset: 10 limit: 10 %}
+                <div class="combo-offer-product">
+                  {% render 'new-product-card-double',
+                    product: product,
+                    fetch_priority: fetch_priority,
+                    indexIs: indexing
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% if block.settings.url_collecion_link %}
+          <a href="{{ block.settings.url_collecion_link }}" class="btn button-veiw-all">{{ 'View all' | upcase }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+"name": "Combo Card Offer",
+"settings": [
+  {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 30,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    }
+],
+"blocks": [
+{
+"type": "collection_card",
+"name": "Collection Card",
+"settings": [
+{
+"type": "collection",
+"id": "collection",
+"label": "Choose Collection"
+},
+{
+"id": "url_collecion_link",
+"type": "url",
+"label": "CTA Link"
+
+},
+{
+"type": "html",
+"id": "text-image",
+"label": "Card upper text desktop"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Card Image"
+},
+{
+"type": "image_picker",
+"id": "mobile_image",
+"label": "Card Mobile Image"
+},
+{
+"type": "html",
+"id": "text-bottom-image",
+"label": "Card upper text desktop"
+},
+{
+"id": "cta_text",
+"type": "text",
+"label": "CTA text",
+"default":"EXPLORE"
+},
+{
+"id": "cta_link",
+"type": "url",
+"label": "CTA Link"
+
+}
+]
+},
+{
+"type": "text",
+"name": "Text",
+"settings": [
+{
+"type": "html",
+"id": "text",
+"label": "Card upper text"
+}
+]
+},
+{
+"type": "html",
+"name": "image bottom text",
+"settings": [
+{
+"type": "html",
+"id": "text-bottom",
+"label": "Card upper text"
+}
+]
+}
+],
+
+"presets": [
+{
+"name": "Combo Card Offer",
+"category": "Custom"
+}
+]
+}
+{% endschema %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.innerWidth <= 768) {
+        const swiper = new Swiper('.combo-offer-card-swiper', {
+          slidesPerView: 1.1,
+          spaceBetween: 5,
+          loop: false,
+          loopedSlides: 3,
+
+          breakpoints: {
+             425: { slidesPerView: 1.2,
+              centeredSlides: true
+            },
+            768: {
+              slidesPerView: 1.2,
+              centeredSlides: true
+            },
+            1024: {
+              slidesPerView: 3.5,
+
+            }
+          },
+          on: {
+            slideChange: function () {
+              setTimeout(()=>{
+               const activeSlide = document.querySelector('.combo-offer-card-swiper .swiper-slide-active');
+                const activeText = activeSlide?.getAttribute('data-text');
+                const activeBottomText = activeSlide?.getAttribute('data-text-bottom');
+                //console.log(activeBottomText, 'activeBottomText');
+                if (activeText) {
+                  document.getElementById('combo-offer-active-text').innerHTML = activeText;
+                }
+                if (activeBottomText) {
+                  document.getElementById('combo-offer-active-text-bottom').innerHTML = activeBottomText;
+                }
+            },100)
+            }
+          }
+        });
+        const firstSlide = document.querySelector('.combo-offer-card-swiper .swiper-slide-active');
+          if (firstSlide) {
+            const firstText = firstSlide.getAttribute('data-text');
+            const firstBottomText = firstSlide.getAttribute('data-text-bottom');
+
+            document.getElementById('combo-offer-active-text').innerHTML = firstText || '';
+            document.getElementById('combo-offer-active-text-bottom').innerHTML = firstBottomText || '';
+          }
+      }
+      document.querySelectorAll('.combo-offer-card').forEach(card => {
+        card.addEventListener('click', function () {
+          const target = this.getAttribute('data-modal');
+          const popup = document.getElementById(target);
+          popup.style.display = 'block';
+          popup.classList.remove('show');
+          void popup.offsetWidth; // force reflow
+          popup.classList.add('show');
+        });
+      });
+  document.querySelectorAll('.combo-offer-close').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const modal = this.closest('.combo-offer-modal');
+      modal.classList.remove('show');
+      modal.classList.add('hide');
+      modal.addEventListener('animationend', function handler() {
+        modal.style.display = 'none';
+        modal.classList.remove('hide');
+        modal.removeEventListener('animationend', handler);
+      });
+    });
+  });
+
+  // Click outside modal to close
+  window.addEventListener('click', function (e) {
+    if (e.target.classList.contains('combo-offer-modal')) {
+      const modal = e.target;
+      modal.classList.remove('show');
+      modal.classList.add('hide');
+      modal.addEventListener('animationend', function handler() {
+        modal.style.display = 'none';
+        modal.classList.remove('hide');
+        modal.removeEventListener('animationend', handler);
+      });
+    }
+  });
+
+    });
+</script>

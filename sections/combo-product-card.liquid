@@ -1,0 +1,215 @@
+<!-- section/combo-product-card.liquid -->
+{{ 'combo-product-card.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="combo-product-card section-{{ section.id }}-margin section-{{ section.id }}-padding ">
+  {% if section.settings.heading %}
+    <div
+      class="combo-card-top-content"
+      data-aos="fade-up"
+      data-aos-easing="linear"
+      data-aos-duration="300"
+    >
+      <p>
+        {{ section.settings['heading-sub'] }}
+      </p>
+      <h2
+        class="section-heading"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    </div>
+  {% endif %}
+  <div class="swiper combo-product-swiper container">
+    <div class="swiper-wrapper">
+      {% for product in section.settings.collection.products %}
+        <div class="swiper-slide">
+          <div class="product__combo" data-product-slider="true">
+            {% assign indexing = forloop.index0 %}
+            {% render 'pocket-deal-of-the-day', product: product, fetch_priority: fetch_priority, indexIs: indexing %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination & Navigation -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+"name": "Combo Product Card",
+"settings": [
+{
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 36,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 36,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    },
+{
+
+"type": "text",
+"id": "heading-sub",
+"label": "sub heading",
+"default": "Explore Combos"
+},
+{
+"type": "html",
+"id": "heading",
+"label": "Section Heading",
+"default": "Your Perfect Pairings"
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "Select Collection"
+}
+],
+"presets": [
+{
+"name": "Combo Product Card"
+}
+]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".combo-product-swiper", {
+      slidesPerView: 5,
+      spaceBetween: 16,
+       centeredSlides: false,
+      loop: false,
+
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+          touchStart: function () {
+            if (!swiper.params.centeredSlides) {
+
+              swiper.params.centeredSlides = true;
+              swiper.update();
+            }
+          },
+        },
+      breakpoints: {
+        349: {
+          slidesPerView: 1.5,
+          centeredSlides: true,
+        },
+        768: {
+          slidesPerView: 1.5,
+          centeredSlides: true,
+        },
+        1024: {
+          slidesPerView: 3
+        }
+      }
+    });
+    let buttonscombo = document.querySelectorAll(".combo-product-swiper .veiw-button-best-seller");
+  if (buttonscombo.length > 0) {
+    buttonscombo.forEach(button => {
+      button.innerText = "EXPLORE THE KIT";
+    });
+  }
+  });
+</script>

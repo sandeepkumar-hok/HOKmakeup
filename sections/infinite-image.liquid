@@ -1,0 +1,146 @@
+<div class="main-spaces py-0" style="background-image:url('{{section.settings.hasjkdhka | image_url }}')">
+  <div id="slideshow" class="club-slide">
+    <div class="repetition clubs">
+        <div class="repetition__group">
+          {% for block in section.blocks %}
+            <h4>
+                <div style="position: relative;" class="lazyload-wrapper">
+                    <img class="brand-logos desktop_screen" src="{{ block.settings.aloefruinc | image_url }}"
+                        data-sizes="auto" alt="promo-images-{{ forloop.index }}">
+                    <img class="brand-logos mobile_screen" src="{{ block.settings.sdfgfsd | image_url }}"
+                        data-sizes="auto" alt="promo-images-{{ forloop.index }}">
+                </div>
+            </h4>
+            {% endfor %}
+        </div>
+        <div aria-hidden="true" class="repetition__group">
+          {% for block in section.blocks %}
+            <h4>
+                <div style="position: relative;" class="lazyload-wrapper">
+                    <img class="brand-logos desktop_screen" src="{{ block.settings.aloefruinc | image_url }}"
+                        data-sizes="auto" alt="promo-images-{{ forloop.index }}">
+                    <img class="brand-logos mobile_screen" src="{{ block.settings.sdfgfsd | image_url }}"
+                        data-sizes="auto" alt="promo-images-{{ forloop.index }}">
+                </div>
+            </h4>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+<style>
+  #slideshow {
+    --space: 72px;
+    display: grid;
+    align-content: center;
+    overflow: hidden;
+    gap: 0;
+    width: 100%;
+    padding: 0 50px;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+    .repetition {
+    --duration: 10s;
+    --gap: 10px;
+  
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 0;
+  }
+  
+  .repetition__group {
+    flex-shrink: 0;
+    display: flex;
+    margin: 2rem 0;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0;
+    padding: 30px 0;
+    min-width: 100%;
+    animation: scroll 90s linear infinite;
+  }
+  img.brand-logos {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+ }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .repetition__group {
+      animation-play-state: paused;
+    }
+  }
+  
+  .repetition__group h4 {
+    object-fit: cover;
+    margin:0;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(calc(-100% - 72px));
+    }
+  }
+  @media screen and (max-width:768px){
+     #slideshow {
+       padding: 0 !important;
+     }
+  }
+</style>
+{% schema %}
+{
+  "name": "infinite-image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "qsirguwfh",
+      "label": "Add Your Heading Here"
+    },
+    {
+      "type": "image_picker",
+      "id": "hasjkdhka",
+      "label": "Add background Color"
+    },
+    {
+      "type": "text",
+      "id": "asdasd",
+      "label": "Add main Heading"
+    }
+  ],
+  "blocks": [
+    {
+    "name": "Image With Text",
+    "type": "Image",
+    "settings": [
+    {
+    "type": "image_picker",
+    "id": "aloefruinc",
+    "label": "Add Your Image Here"
+    },
+    {
+    "type": "image_picker",
+    "id": "sdfgfsd",
+    "label": "Add Your Image Here Mobile"
+    },
+    {
+    "type": "url",
+    "id": "sdfasdf",
+    "label": "Add Your link"
+    }
+    ]
+    }
+    ],
+
+  "presets": [
+    {
+      "name": "infinite-image"
+    }
+  ]
+}
+{% endschema %}

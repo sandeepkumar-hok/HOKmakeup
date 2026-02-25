@@ -1,0 +1,726 @@
+{% assign first_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+{% liquid
+  assign offer_name = 'offerHidden'
+  for collection in product.collections
+    assign offer_name = 'without-clearence'
+  endfor
+%}
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'view_item',
+    ecommerce: {
+      items: [{
+        item_name: '{{ product.title | replace: "'","##@@singleinvertedcomma @@##" }}'.replace("##@@singleinvertedcomma @@##", "'"),
+  item_id: "{% if product.sku %}{{ product.sku }}{% else %}{{ product.id}}{% endif %}",
+        price: "{{ product.price | money_without_currency | remove:',' }}",
+        item_brand: "{{ product.vendor | remove: "'" | remove: '"' }}",
+      {% for collection in product.collections %}
+  item_category{% unless forloop.index == 1 %}{{ forloop.index }}{% endunless %}: "{{ collection.title }}",
+    {% endfor %}
+    item_variant: "{{ product.selected_or_first_available_variant.title | remove: "'" | remove: '"' }}",
+    quantity: '1'
+  }]
+  }
+  });
+</script>
+<section class="container pt-1 pt-md-4">
+  <div id="breadcrumbs" class="mobile_screen">
+    {% render 'breadcrumbs' %}
+  </div>
+  <div class="row gap-0 gap-md-3 gap-lg-4 gap-xl-5 gap-mt-5 m-auto">
+    <div class="col-12 col-md-6">
+      <div class="row">
+        <div class="col-2 desktop_screen_hidden p-0 product-list-carousel ">
+          <div class="product-button-prev carousel-btn">
+            {{ 'arrow-back.svg' | inline_asset_content }}
+          </div>
+          <div class="swiper productSlider">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                {% if media.media_type == 'image' or media.media_type == 'model' %}
+                  <div class="swiper-slide">
+                    <img
+                      src="{{ media | image_url: width: 100, height: 100 , crop: 'center' , format: 'webp' }}"
+                      alt="{{ product.title }}"
+                      title="{{ product.title }}"
+                      width="100"
+                      height="auto"
+                      loading="lazy"
+                    >
+                  </div>
+                  {% comment %} data-filter="{{ media.alt | remove: 'Group-' | replace: " ", "-" | escape }}" {% endcomment %}
+                {% else %}
+                  <div class="swiper-slide">
+                    <img
+                      src="{{ media.preview_image.src | image_url: width: 100, height: 100 , crop: 'center' , format: 'webp' }}"
+                      alt="{{ media.alt | escape }}"
+                      width="100"
+                      height="auto"
+                      loading="eager"
+                    >
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="product-button-next carousel-btn">
+            {{ 'arrow-next.svg' | inline_asset_content }}
+          </div>
+        </div>
+        <div class="col-12 col-md-10 position-relative my-auto p-0 pl-md-4">
+          {% if  product.price > 100 %}<div class="product-page-container wishlist-engine" data-product_id="{{  product.id }}" data-variant_id="{{ product.selected_or_first_available_variant.id }}" data-full_button="false" data-css="true"></div>{% endif %}
+          <div style="--swiper-navigation-color: #000; --swiper-pagination-color: #fff" class="swiper productSlider2">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                {% if media.media_type == 'image' %}
+                  <div class="swiper-slide">
+                    <div class="image-container">
+                      <img
+                        src="{{ media | image_url: width: 700, height: 700 , format: 'webp' }}"
+                        alt="{{ product.title }}"
+                        title="{{ product.title }}"
+                        loading="lazy"
+                        width="100%"
+                        height="auto"
+                        onload="this.parentElement.classList.add('loaded')"
+                      >
+                    </div>
+                  </div>
+                {% elsif media.media_type == 'video' %}
+                  <div class="swiper-slide">
+                    {% assign media_poster = media.preview_image.src | image_url %}
+                    {{
+                      media
+                      | video_tag:
+                        controls: true,
+                        autoplay: true,
+                        muted: true,
+                        width: '100%',
+                        height: '100%',
+                        playsinline: true,
+                        class: 'w-100',
+                        poster: media_poster
+                    }}
+                  </div>
+                {% elsif media.media_type == 'model' %}
+                  <div class="swiper-slide h-auto">
+                    <model-viewer
+                      id="model-viewer-{{ forloop.index }}"
+                      class="w-100 h-100"
+                      src="{{ media.sources.first.url }}"
+                      ar
+                      ar-modes="scene-viewer quick-look"
+                      camera-controls
+                      touch-action="pan-y"
+                      alt="A 3D model of an makeup product"
+                      tone-mapping="neutral"
+                      shadow-intensity="1"
+                      auto-rotate
+                      disable-pan
+                      max-camera-orbit="auto 90deg auto"
+                      poster="{{ media.preview_image.src |  image_url  }}"
+                    >
+                      <div id="error" class="d-none">AR is not supported on this device</div>
+                    </model-viewer>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="arrow_handler">
+              <div class="product-button-prev-main carousel-btn desktop_screen">
+                {{ 'arrow-back.svg' | inline_asset_content }}
+              </div>
+              <div class="product-button-next-main carousel-btn desktop_screen">
+                {{ 'arrow-next.svg' | inline_asset_content }}
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-0 col-md-5 p-0">
+      <div class="l-pdp-product_info_wrapper">
+        <div class="l-pdp-product_info">
+          <div class="l-pdp-product_info_inner">
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when '@app' %}
+                  {% render block %}
+                {% when 'title' %}
+                  <div>
+                    {% assign product_qty = 0 %}
+                    {% for variant in product.variants %}
+                      {% if variant.inventory_quantity > 0 %}
+                        {% assign product_qty = product_qty | plus: variant.inventory_quantity %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if product_qty == 0 %}
+                      <div class="b-product_card-stock">
+                        <div class="b-availability m-out_of_stock">
+                          <div class="b-availability-inner">
+                            <span class="b-availability-label"> Out of Stock </span>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if product_qty >= 1 and product_qty < 10 %} {% render 'limited-stock' %} {% endif %}
+                    <h1
+                      class="b-product_name position-relative"
+                    >
+                      {{ product.title | escape }}
+                      <div id="shareProduct">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="17" viewBox="0 0 14 17" fill="none">
+                          <path
+                            d="M11.6349 16C11.1173 16 10.6765 15.8079 10.3127 15.4237C9.94882 15.0405 9.76689 14.5747 9.76689 14.0263C9.76689 13.9211 9.77535 13.8124 9.79228 13.7003C9.8097 13.5876 9.83558 13.4816 9.86992 13.3821L4.0897 9.78132C3.90703 9.99921 3.69449 10.1689 3.4521 10.2905C3.2097 10.4121 2.95038 10.4732 2.67413 10.4737C2.15549 10.4737 1.71499 10.2821 1.35264 9.89895C0.989291 9.51526 0.807617 9.04947 0.807617 8.50158C0.807617 7.95368 0.989291 7.48763 1.35264 7.10342C1.71599 6.71921 2.15649 6.52684 2.67413 6.52632C2.95087 6.52632 3.2102 6.58737 3.4521 6.70947C3.694 6.83158 3.90653 7.00132 4.0897 7.21868L9.87067 3.61711C9.83583 3.51816 9.80995 3.41237 9.79302 3.29974C9.7756 3.18763 9.76689 3.07895 9.76689 2.97368C9.76689 2.42526 9.94832 1.95947 10.3112 1.57632C10.6735 1.19211 11.1138 1 11.6319 1C12.1501 1 12.5908 1.19184 12.9542 1.57553C13.3175 1.95921 13.4994 2.42474 13.4999 2.97211C13.5004 3.51947 13.3187 3.98553 12.9549 4.37026C12.593 4.755 12.1525 4.94737 11.6334 4.94737C11.3567 4.94737 11.0973 4.88632 10.8554 4.76421C10.6135 4.64211 10.401 4.47237 10.2178 4.255L4.43762 7.85658C4.47196 7.95553 4.49759 8.06079 4.51452 8.17237C4.53194 8.28447 4.54065 8.39263 4.54065 8.49684C4.54065 8.60105 4.53194 8.71026 4.51452 8.82447C4.4971 8.93868 4.47121 9.04526 4.43687 9.14421L10.2178 12.745C10.4005 12.5276 10.613 12.3579 10.8554 12.2358C11.0978 12.1137 11.3572 12.0526 11.6334 12.0526C12.1521 12.0526 12.5925 12.2445 12.9549 12.6282C13.3182 13.0113 13.4999 13.4768 13.4999 14.0247C13.4999 14.5726 13.3187 15.0387 12.9564 15.4229C12.594 15.8071 12.1535 15.9995 11.6349 16ZM11.6334 4.15789C11.9405 4.15789 12.2041 4.04184 12.4241 3.80974C12.6436 3.57711 12.7533 3.29842 12.7533 2.97368C12.7533 2.64895 12.6436 2.37026 12.4241 2.13763C12.2041 1.90553 11.9405 1.78947 11.6334 1.78947C11.3263 1.78947 11.0628 1.90553 10.8428 2.13763C10.6232 2.37026 10.5135 2.64895 10.5135 2.97368C10.5135 3.29842 10.6232 3.57711 10.8428 3.80974C11.0628 4.04184 11.3263 4.15789 11.6334 4.15789ZM2.67413 9.68421C2.98124 9.68421 3.24479 9.56816 3.46479 9.33605C3.68429 9.10342 3.79404 8.82474 3.79404 8.5C3.79404 8.17526 3.68429 7.89658 3.46479 7.66395C3.24529 7.43132 2.98173 7.31526 2.67413 7.31579C2.36653 7.31632 2.10298 7.43237 1.88348 7.66395C1.66397 7.89658 1.55422 8.17526 1.55422 8.5C1.55422 8.82474 1.66397 9.10342 1.88348 9.33605C2.10298 9.56868 2.36653 9.68474 2.67413 9.68421ZM11.6334 15.2105C11.9405 15.2105 12.2041 15.0945 12.4241 14.8624C12.6436 14.6297 12.7533 14.3511 12.7533 14.0263C12.7533 13.7016 12.6436 13.4229 12.4241 13.1903C12.2041 12.9582 11.9405 12.8421 11.6334 12.8421C11.3263 12.8421 11.0628 12.9582 10.8428 13.1903C10.6232 13.4229 10.5135 13.7016 10.5135 14.0263C10.5135 14.3511 10.6232 14.6297 10.8428 14.8624C11.0628 15.0945 11.3263 15.2105 11.6334 15.2105Z"
+                            fill="#212529" stroke="#212529" stroke-width="0.6" />
+                        </svg>
+                      </div>
+                    </h1>
+                    {% if product.handle == "diy-bundle" %}
+                      <div class="bogo-offer top-2">
+                        <p class="bogo-text-wrapper">
+                          Build your glow bundle: 2 blushes, 1 highlighter, 1 contour
+                        </p>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                {% when 'price' %}
+                  <div class="l-pdp-price_section d-flex">
+                    <div class="product-prices d-flex gap-2 align-items-center">
+                      <span class="b-product_price-value">
+                        {{ first_variant.price | money_without_trailing_zeros }}
+                      </span>
+                      <span
+                        class="b-product_price-value rack-rate"
+                        {% if first_variant.price == first_variant.compare_at_price %}
+                          style="display:none;"
+                        {% endif %}
+                      >
+                        {{ first_variant.compare_at_price | money_without_trailing_zeros }}
+                      </span>
+                      <span
+                        class="discount_svg_container position-relative"
+                        {% if first_variant.price == first_variant.compare_at_price %}
+                          style="display:none;"
+                        {% endif %}
+                        {% comment %}
+                          {% if first_variant.inventory_quantity==0 %} style="display:none" {% endif %}
+                        {% endcomment %}
+                      >
+                        <span class="discount_label">
+                          {{
+                            first_variant.compare_at_price
+                            | minus: first_variant.price
+                            | times: 100.0
+                            | divided_by: first_variant.compare_at_price
+                            | money_without_currency
+                            | times: 100
+                            | remove: '.0'
+                          -}}
+                          % OFF
+                        </span>
+                      </span>
+                    </div>
+                    <div class="inclusive">Inclusive Of All Taxes</div>
+                  </div>
+
+                {% when 'image-veg' %}
+                  {% if template contains 'candies' %}
+                    <div>
+                      {% if product.metafields.custom.isnonveg.value %}
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/unnamed.png?v=1743678709"
+                          alt="non veg"
+                          width="20"
+                          height="20"
+                        >
+                      {% else %}
+                        <img
+                          src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/unnamed_1.png?v=1743678690"
+                          alt="veg"
+                          width="20"
+                          height="20"
+                        >
+                      {% endif %}
+                    </div>
+                  {% endif %}
+              {% endcase %}
+            {% endfor %}
+            {% if product.available and product.variants.size > 1 %}
+              <div class="product_actions-variations">
+                <div class="product-swatches-container">
+                  <span class="product_swatch_colors_name">
+                    {% unless template contains 'candies' or template contains 'bar-soap' or product.handle == 'dr-pawpaw-original-balm' -%}
+                      Shade: 
+                    {% else -%}
+                      Size:
+                    {% endunless -%}
+                  </span>
+                  <span class="product_swatch_colors_value text-capitalize" data-js-color-value="">
+                    {{ product.selected_or_first_available_variant.option1 }}
+                  </span>
+                </div>
+              </div>
+              {% assign random_number = 'now' | date: '%s' | modulo: 100 | plus: 1 %}
+              <div class="main_product_swatches">
+                {% render 'product_page_swatches' with 'Color' as swatch, random_number: random_number %}
+              </div>
+            {% endif %}
+            {% liquid
+              assign offer_name = 'default'
+              for collection in product.collections
+                if collection.handle == 'buy-any-3-at-949'
+                  assign offer_name = 'pd-bundle'
+                elsif collection.handle contains 'buy-any-4-at-999'
+                  assign offer_name = 'buy4@999'
+                elsif collection.handle contains 'la-girl-buy-any-4-at-1499'
+                  assign offer_name = 'Lagirl@1499'
+                elsif collection.handle contains 'buy-any-3-get-3-free'
+                  assign offer_name = 'buy3_get3'
+                elsif collection.handle contains 'organic-works-bar-soaps'
+                  assign offer_name = 'bar_soaps'
+                elsif collection.handle contains 'flat-50-on-orders-799'
+                  assign offer_name = '799_50OFF'
+                elsif collection.handle contains 'buy-any-3-at-799'
+                  assign offer_name = 'buy3_799'
+                elsif collection.handle contains 'hok-makeup-x-sweetons'
+                  assign offer_name = 'candy'
+                elsif collection.handle contains 'buy-any-4-at-1299' or collection.handle contains 'mix-buy-any-4-at-1299' or collection.handle contains 'eveline-buy-any-4-at-1299'
+                  assign offer_name = 'buy4_1299'
+                elsif collection.handle contains 'eveline-festive-sale'
+                  assign offer_name = 'eveline-sale'
+                elsif collection.handle == 'buy-2-get-2-free'
+                  assign offer_name = 'b2g2'
+                 elsif collection.handle contains 'buy-any-5-1099'
+                  assign offer_name = 'C--CAT'
+                 elsif collection.handle contains 'lamel-any-4-at-1099'
+                  assign offer_name = 'lamelbuy4_1299'
+                elsif collection.handle == 'combos'
+                  assign offer_name = 'combos'
+                elsif collection.handle == 'bogo-sale-limited-time-only'
+                  assign offer_name = 'bogo'
+                elsif collection.handle == '9-to-9-sale' or collection.handle == '9-to-9-sale-b' or collection.handle == 'hand-wash-new' or collection.handle == 'customized-combo' or collection.handle == 'lot-by' or collection.handle == 'the-add-to-heart-sale-up-to-60-off' or product.title contains '1 Kg' or product.title contains '1.8 Kg'
+                  assign offer_name = 'offerHidden'
+                elsif collection.handle == 'foundation-sale' or collection.handle == 'slay-the-base'
+                  assign offer_name = 'foundation-sale'
+                elsif collection.handle contains 'giverny'
+                  assign offer_name = 'giverny'
+                elsif collection.handle contains 'flat-70-off-orders-above-599'
+                  assign offer_name = 'flat-70-off-orders-above-599'
+                  
+                endif
+              endfor
+            %}
+            {% if product.handle == "diy-bundle" %}
+             <div class="bogo-offer">
+              <p class="bogo-text-wrapper color-mustard">
+                <b>*Note:</b> You cannot edit the bundle once you add it to your cart
+              </p>
+            </div>
+            {% endif %}
+            {% unless offer_name == 'offerHidden' or product.handle == "diy-bundle"  %}
+              <div class="b-accordion m-full">
+                <div class="b-accordion-item m-accordion-expanded topborder" id="searchAcc">
+                  <span class="b-accordion-control m-accordion-expanded ">
+                    Available offers
+                    <span class="accordion-glimpse">
+                      <p class="bogo-text-wrapper">
+                        {% if template contains 'candies' %}
+                          <b>Buy Any 2 and get </b> ...
+                        {% elsif offer_name == 'foundation-sale' %}
+                          <b>Get Extra ₹100 OFF + </b> ...
+                        {% elsif offer_name == 'b2g2' %}
+                           Buy <strong>2</strong> get <strong>2</strong>...
+                        {% elsif offer_name == 'pd-bundle' %}
+                          <b>Buy Any 3 at ₹94</b> ...
+                        {% elsif offer_name == 'buy4@999' %}
+                          <b>Buy Any 3 at ₹99</b> ...
+                        {% elsif offer_name == 'Lagirl@1499' %}
+                          <b>Buy Any 4 at ₹1499</b> ...
+                        {% elsif offer_name == 'candy' %}
+                          <b>Buy Any 2 and get</b> ...
+                        {% elsif offer_name == 'buy3_get3' %}
+                          <b>Buy Any 3 at ₹14</b> ...
+                        {% elsif offer_name == 'bar_soaps' %}
+                          <b>Get a Lip Balm worth </b> ...
+                        {% elsif offer_name == '799_50OFF' %}
+                          <b>Flat 50% on or</b> ...
+                        {% elsif offer_name == 'buy3_799' %}
+                          <b>Buy Any 3 at ₹79</b> ...
+                        {% elsif offer_name == 'buy4_1299' %}
+                          <b>Buy Any 4 at ₹129</b> ...
+                        {% elsif offer_name == 'eveline-sale' %}
+                          <b>Buy Any 3 at ₹109</b> ...
+                        {% elsif offer_name == 'C--CAT' %}
+                          <b>Buy Any 5 at ₹109</b> ...
+                        {% elsif offer_name == 'lamelbuy4_1299' %}
+                          <b>Buy Any 4 at ₹109</b> ...
+                        {% elsif offer_name == 'combos' %}
+                           Get a Surprise Gift on ..
+                        {% elsif offer_name == 'giverny' %}
+                          <b>Buy Any 3 at 125</b> ...
+                        {% elsif offer_name == 'bogo' %}
+                          <b>Buy One Get </b> ...
+                        {% elsif offer_name == 'default' %}
+                          <b>Extra 15% OFF Orders </b> ...
+                        {% elsif offer_name == 'lamel' %}
+                          <b>Buy Two Get One Free</b> ...
+                        {% endif %}
+                      </p>
+                    </span>
+                  </span>
+                  <div class="b-accordion-container m-accordion-expanded b-pdp_accordion-column m-wide">
+                    <div class="b-pdp_accordion-columns">
+                      <div class="b-pdp_accordion-column m-wide">
+                        <div class="offer-container">
+                          <div class="bogo-wrapper">
+                            <div class="bogo-offer-wrapper">
+                              {% if template contains 'candies' %}
+                                {% unless product.title contains '1 Kg' or product.title contains '1.8 Kg' %}
+                                  <div class="bogo-offer">
+                                    <p class="bogo-text-wrapper">Buy <b> 2</b> and get <b>15% Off</b></p>
+                                    <p class="bogo-text-wrapper">Buy <b> 3</b> and get <b>25% Off</b></p>
+                                  </div>
+                                {% endunless %}
+                              {% elsif offer_name == 'combos' %}
+                                 <div class="bogo-offer">
+                                    <p class="bogo-text-wrapper">Get a <b>Surprise Gift</b> on orders above <b>₹999</b></p>
+                                  </div>
+                              {% elsif offer_name == 'pd-bundle' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any <b>3 at ₹949 </b> - Limited Time Offer!</p>
+                                </div>
+                              {% elsif offer_name == 'buy4@999' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any <b>3 at ₹999 </b> - Limited Time Offer!</p>
+                                  <p class="bogo-text-wrapper">Buy Any <b>6 at ₹1499 </b> - Limited Time Offer!</p>
+                                </div>
+                              {% elsif offer_name == 'candy' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any <b>2</b> & Get Extra <b>15% OFF</b></p>
+                                  <p class="bogo-text-wrapper">Buy Any <b>3</b> & Get Extra <b>20% OFF</b></p>
+                                </div>
+                              {% elsif offer_name == 'buy4@999' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy any <strong>3</strong> at <strong>₹1499</strong> + Get <b>3 Free</b> Gifts</p>
+                                </div>
+                              {% elsif offer_name == 'Lagirl@1499' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy any <strong>4</strong> at <strong>₹1499</strong></p>
+                                </div>
+                              {% elsif offer_name == 'bar_soaps' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Get a <b>₹250</b> lip balm absolutely free </p>
+                                </div>
+                              {% elsif offer_name == 'buy4_1299' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any <b>4 at ₹1299 </b> - Limited Time Offer!</p>
+                                </div>
+                              {% elsif offer_name == 'buy3_799' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any <b>3 at ₹799 </b> - Limited Time Offer!</p>
+                                </div>
+                              {% elsif offer_name == '799_50OFF' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Flat <strong>50%</strong> on orders above <strong>799</strong></p>
+                                </div>
+                                {% elsif offer_name == 'C--CAT' %}
+                                <div class="bogo-offer">
+                                    <p class="bogo-text-wrapper">
+                                      Buy Any <strong>5 at ₹1099</strong> + Extra ₹100 OFF instantly (Prepaid only)
+                                    </p>
+                                     <p class="bogo-text-wrapper">
+                                      Buy Any <strong> 3 for ₹699 </strong> (Prepaid only)
+                                    </p>
+                                  </div>
+                                {% elsif offer_name == 'lamelbuy4_1299' %}
+                                <div class="bogo-offer">
+                                    <p class="bogo-text-wrapper">
+                                      Buy Any <strong>4 at ₹1099</strong>
+                                    </p>
+                                  </div>
+                              {% elsif offer_name == 'eveline-sale' %}
+                                <div class="bogo-offer">
+                                    <p class="bogo-text-wrapper">
+                                      Buy Any <strong>3 at ₹1099</strong>
+                                    </p>
+                                    <p class="bogo-text-wrapper">
+                                      Buy Any <strong>5 at ₹1699</strong>
+                                    </p>
+                                  </div>
+                              {% elsif offer_name == 'giverny' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">Buy Any 3 at 1250 + Surprise Gift</p>
+                                </div>
+                              {% elsif offer_name == 'bogo' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper"><b>Buy One Get One Free</b></p>
+                                </div>
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper"><b>Buy Two Get Two Free</b></p>
+                                </div>
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">
+                                    <b>
+                                      Offers on Selected
+                                      <a
+                                        href="https://www.hokmakeup.com/collections/bogo-sale-limited-time-only"
+                                        class="text-decoration-underline"
+                                        >Collection</a
+                                      ></b
+                                    >
+                                  </p>
+                                </div>
+                              {% elsif offer_name == 'b2g2' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">
+                                    Buy <strong>2</strong> get <strong>2</strong> free + Surprise Gift
+                                  </p>
+                                </div>
+                              {% elsif offer_name == 'foundation-sale' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">
+                                    Get Extra <strong>₹100 OFF</strong> + <strong>FREE ₹425 </strong> Foundation Brush
+                                    on every order!
+                                  </p>
+                                </div>
+
+                                {% elsif offer_name == 'flat-70-off-orders-above-599' %}
+                                <div class="bogo-offer">
+                                  <p class="bogo-text-wrapper">
+                                    Flat <strong>70%</strong> OFF on Orders <strong>599+</strong>
+                                  </p>
+                                </div>
+                              {% elsif offer_name == 'default' %}
+                                  <div class="bogo-offer">
+                                      <p class="bogo-text-wrapper">- Extra <b>15% OFF</b> on orders below ₹1250 + Surprise Gift</p>
+                                      <p class="bogo-text-wrapper">- Eligible forExtra <b>25% OFF</b> on orders above <b>₹1250 + Surprise Gift</b></p>
+                                       <span class="bogo-text-wrapper" style="text-align: center; background-color:#D7FFCB; color:#035718; max-width:60%;padding:2px 8px;font-size: 12px; center; border-radius: 50px;white-space: nowrap;">25% offer valid on selected products only.</span> 
+                                      <p class="bogo-text-wrapper"><b>- On Prepaid Orders: Extra 5% OFF</b></p>
+                                  </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endunless %}
+            <div class="bogo-offer">
+              <p class="bogo-text-wrapper" style="color:#7D7D7D">
+                <strong style="color:#196400">Delivered in 2–5 working days* &nbsp;&nbsp; |&nbsp;&nbsp; </strong>Delivery timelines may vary by location
+              </p>
+            </div>
+            {% unless product.template_suffix == 'freebie-product-template' %}
+            <div class="atc_buttons mt-space ">
+              {% render 'product_add_to_Cart', first_variant: first_variant %}
+            </div>
+            {% endunless %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Image Gallery carousel
+    let swiperList, swiperMain;
+
+    // To prevents rapid consecutive function executions by introducing a delay
+    const debounce = (func, delay) => {
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+      };
+    };
+    // Initialize the vertical sliders
+    const initializeSwiperList = () => new Swiper(".productSlider", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      speed: 300,
+      direction: "vertical",
+      navigation: {
+        nextEl: ".product-button-next",
+        prevEl: ".product-button-prev",
+      }
+    });
+    // Initialize the main sliders
+    const initializeSwiperMain = () => new Swiper(".productSlider2", {
+      slidesPerView: "auto",
+      spaceBetween: 10,
+      speed: 300,
+      cssMode: true,
+      navigation: {
+        nextEl: ".product-button-next-main",
+        prevEl: ".product-button-prev-main"
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true
+      },
+      thumbs: {
+        swiper: swiperList,
+      },
+      on: {
+        slideChange: debounce(() => { }, 500)
+      }
+    });
+
+    const initializeSlider = () => {
+      if (window.innerWidth >= 768) swiperList = initializeSwiperList(); // Initialize the slider on window resize
+      swiperMain = initializeSwiperMain();
+    };
+    {% if product.variants.size > 1 %}
+    // Updating the slider position
+    const updateSliderPosition = (mediaPosition) => {
+      swiperMain.slideTo(mediaPosition);
+    };
+    // Getting Product Info
+    const updateProductInfo = ({ $target, optionId, optionValue, variantPrice, variantRackRate, variantPriceNumber, variantAvailability, variantRackRateNumber, discountedPercentage, variantSku, mediaPosition }) => {
+
+      const container = $target.closest(".l-pdp-product_info_inner");
+      container.find(".b-product_price-value").text(variantPrice);
+      container.find("#main-product-handle-btn").attr("product_variantid", optionValue).removeAttr("disabled").text("Add to bag");
+      container.find(".product_swatch_colors_value").text(optionId);
+
+      updateSliderPosition(mediaPosition - 1);
+      $('.productSlider2').addClass('fade-slider');
+      setTimeout(() => $('.productSlider2').removeClass('fade-slider'), 300);
+
+      if (variantRackRateNumber > variantPriceNumber) {
+        // container.find(".b-product_price-value.rack-rate").text(variantRackRate);
+        // if (container.find(".discount_label").length >= 1) container.find(".discount_label").text(`${discountedPercentage}% OFF`);
+        // container.find(".b-product_price-value.rack-rate").show();
+        // container.find(".discount_svg_container").show();
+        container.find(".b-product_price-value.rack-rate").text(variantRackRate).show();
+        container.find(".discount_svg_container").show();
+        container.find(".discount_label").text(`${discountedPercentage}% OFF`);
+      } else {
+        // container.find(".b-product_price-value.rack-rate").hide();
+        // container.find(".discount_svg_container").hide();
+        container.find(".b-product_price-value.rack-rate, .discount_svg_container").hide();
+      }
+      $('.b-pdp_accordion-product_code').text(variantSku);
+
+      if (variantAvailability == "true") {
+        container.find("#main-product-handle-btn").text('Add to bag');
+        container.find("#main-product-handle-btn").removeAttr('disabled');
+      } else {
+        container.find("#main-product-handle-btn").text('Out Of Stock');
+        container.find("#main-product-handle-btn").attr('disabled', 'disabled');
+      }
+      window.history.replaceState(null, null, `{{ shop.url | append: product.url }}?variant=${optionValue}`);
+    }
+
+    const handleSwatchChange = (event) => {
+      const $target = $(event.target);
+      updateProductInfo({
+        $target,
+        optionId: $target.attr('variantid'),
+        optionValue: $target.val(),
+        variantPrice: $target.attr('variantPrice'),
+        variantRackRate: $target.attr('variantRackRate'),
+        variantPriceNumber: parseInt($target.attr('variantPrice').replace(/[₹,]/g, '').trim()),
+        variantAvailability: $target.attr("is_variant_available"),
+        variantRackRateNumber: parseInt($target.attr('variantRackRate').replace(/[₹,]/g, '').trim()),
+        discountedPercentage: Math.round(((parseInt($target.attr('variantRackRate').replace(/[₹,]/g, '').trim()) - parseInt($target.attr('variantPrice').replace(/[₹,]/g, '').trim())) / parseInt($target.attr('variantRackRate').replace(/[₹,]/g, '').trim())) * 100),
+        variantSku: $target.attr('variant-sku'),
+        mediaPosition: Number($target.attr('mediaPosition'))
+      });
+    }
+    function handleProductSwatchChange(event) {
+      handleSwatchChange(event);
+    }
+    {% endif %}
+    // Get Variant Id
+    const getVariantId = (url) => {
+      const match = url.match(/[?&]variant=(\d+)/);
+      return match ? `?variant=${match[1]}` : "";
+    };
+    // Initialize the sliders
+    setTimeout(() => {
+      initializeSlider();
+        {% if product.variants.size > 1 %}
+        updateSliderPosition({{ first_variant.featured_media.position | minus: 1 }});
+        //Product Swatch Change
+        const debouncedHandleProductSwatchChange = debounce(handleProductSwatchChange, 300);
+
+        $('body').on('change', '#main_product_page.product.swatch :radio', debouncedHandleProductSwatchChange);
+        {% endif %}
+        // Share product Variant
+        $('#shareProduct').on('click', () => {
+          const productUrl = `{{ shop.url | append: product.url }}${getVariantId(window.location.href)}`;
+          if (navigator.share) {
+            navigator.share({ url: productUrl }).catch(err => console.log("Sharing failed:", err));
+          } else {
+            navigator.clipboard.writeText(productUrl)
+              .then(() => alert("Link copied to clipboard!"))
+              .catch(() => alert("Failed to copy link."));
+          }
+        });
+  }, 100);
+});
+</script>
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+{% schema %}
+{
+"name": "Product Meta",
+"settings": [
+],
+"blocks": [
+{
+"type": "text",
+"name": "Vendor Image",
+"settings": [
+{
+"type": "text",
+"id": "brand_name",
+"label": "Brand Name"
+}, {
+"type": "image_picker",
+"id": "brand_logo",
+"label": "Brand Logo"
+}
+]
+},
+
+
+  {
+"type": "@app"
+},
+
+{
+"type": "title",
+"name": "Title",
+"limit": 1
+},
+  {
+"type": "image-veg",
+"name": "image-veg",
+"limit": 1
+},
+{
+"type": "price",
+"name": "Price",
+"limit": 1
+}
+],
+"presets": [
+{
+"name": "Product Meta"
+}
+]
+}
+{% endschema %}

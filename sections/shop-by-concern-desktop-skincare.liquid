@@ -1,0 +1,388 @@
+<!--section/shop-by-concern-desktop-skincare.liquid -->
+{% schema %}
+{
+  "name": "Shop by Concern",
+  "class": "shop-by-concern desktop_screen",
+  "settings": [
+    {
+          "id": "text-heading",
+          "type": "text",
+          "label": "Heading",
+          "default":"shop by concern"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "concern",
+      "name": "Concern Tab",
+      "settings": [
+        {
+          "id": "concern_key",
+          "type": "text",
+          "label": "Concern Key (e.g. dry, oily)"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Left Side Image"
+        },
+        {
+          "id": "image-text",
+          "type": "text",
+          "label": "Left Side Image text"
+        },
+        {
+          "type": "url",
+          "id": "button_link-image",
+          "label": "Button link on image"
+        },
+         {
+          "id": "button-url-text",
+          "type": "text",
+          "label": "button text"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Tab Title"
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Product Collection"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Shop by Concern desktop" }]
+}
+{% endschema %}
+
+<div class="shop-by-concern concern-{{ section.id }} container">
+  <div id="shop-by-concern-{{ section.id }}">
+    <div class="button-with-text">
+      <h2>{{ section.settings['text-heading'] }}</h2>
+      {% for block in section.blocks %}
+        <a
+          href="{{ block.settings.button_link }}"
+          class="view-all-link-{{ section.id }} {% if forloop.first %}active{% endif %}"
+          data-concern="{{ block.settings.concern_key }}"
+        >
+          view all
+        </a>
+      {% endfor %}
+    </div>
+    <div class="image-product-container-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="left-imag  {% if forloop.first %}active{% endif %}" data-concern="{{ block.settings.concern_key }}">
+          {% if block.settings.image %}
+            <a href="{{ block.settings.button_link-image }}" class="">
+            <img
+              src="{{ block.settings.image | image_url: width: 509, height: 697, crop: 'center' }}"
+              alt="{{ block.settings.title | escape }}"
+              width="509"
+              height="697"
+              loading="lazy"
+            >
+            </a>
+          {% endif %}
+          <p class="left-image-text">{{ block.settings['image-text'] }}</p>
+          <a href="{{ block.settings.button_link-image }}" class="view-all-button-image">
+            {{- block.settings['button-url-text'] -}}
+          </a>
+        </div>
+      {% endfor %}
+      <div class="product-tanbs-container">
+        <!-- Tabs Outside Content Loop -->
+        <div class="concern-tabs-{{ section.id }}">
+          {% for block in section.blocks %}
+            <button
+              class=" concern-tab-button-{{ section.id }} {% if forloop.first %}active{% endif %}"
+              data-concern="{{ block.settings.concern_key }}"
+            >
+              {{ block.settings.title }}
+            </button>
+          {% endfor %}
+        </div>
+
+        <!-- Content Blocks -->
+        {% for block in section.blocks %}
+          {% assign collection_handle = block.settings.collection %}
+          {% assign collection = collections[collection_handle] %}
+          <div
+            class="concern-content-{{ section.id }} {% if forloop.first %}active{% endif %}"
+            data-concern="{{ block.settings.concern_key }}"
+          >
+            <div class="swiper concern-swiper-{{ section.id }}">
+              <div class="swiper-wrapper">
+                {% for product in collection.products limit: 10 %}
+                  <div class="swiper-slide product-card">
+                    {% render 'new-pocket-skincare',
+                      product: product,
+                      fetch_priority: fetch_priority,
+                      indexIs: indexing,
+                      seo_text: section.settings.seo_text
+                    %}
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="swiper-scrollbar"></div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .shop-by-concern {
+    background: #fff;
+    text-align: center;
+     padding: 32px 0px; 
+  }
+
+  .image-product-container-{{ section.id }} {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 56px;
+  }
+
+  .product-tanbs-container {
+    width: 60%;
+  }
+
+
+  .concern-content-wrapper-{{ section.id }} {
+    position: relative;
+  }
+
+  .concern-content-{{ section.id }} {
+    display: none;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .concern-content-{{ section.id }}.active {
+    display: flex;
+  }
+
+
+  .concern-swiper-{{ section.id }} {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+
+  .concern-swiper-{{ section.id }} .swiper-slide {
+    width: auto;
+    min-width: 220px;
+  }
+
+  .product-tanbs-container .concern-swiper-{{ section.id }} .swiper-scrollbar {
+    height: 2px;
+    background: #D9D9D9;
+    border-radius: 4px;
+    margin-top: 32px;
+  }
+
+  .concern-swiper-{{ section.id }} .swiper-scrollbar-drag {
+    background: #181818;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+
+  .concern-swiper-{{ section.id }} .swiper-scrollbar-drag:active {
+    background: #000;
+  }
+
+  .shop-by-concern div.swiper-scrollbar-drag:empty {
+    display: block;
+  }
+
+
+  .concern-tabs-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: left;
+    margin-bottom: 30px;
+  }
+
+  .concern-tab-button-{{ section.id }} {
+    color: #CFCDCD;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    font-style: normal;
+    border: 2px solid #CFCDCD;
+    padding: 6px 20px;
+    border-radius: 50px;
+  background: transparent;
+
+  }
+
+  .concern-tab-button-{{ section.id }}.active {
+    background: #FFF;
+    color: #000000;
+    border:none;
+    font-weight: 700;
+    box-shadow: 0px 1px 8px 0px rgba(63, 62, 58, 0.25);
+  }
+
+
+  .product-tanbs-container .product-card {
+    text-align: center;
+  }
+
+  .product-tanbs-container .b-product_promo_vendor-name {
+    text-align: left;
+  }
+
+
+  .left-imag {
+    display: none;
+    /* width: 45%; */
+    flex:0 0 30%;
+    position: relative;
+  }
+
+  .left-imag.active {
+    display: block;
+  }
+
+  .left-image {
+    position: relative;
+  }
+
+  .left-image img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .left-image-text {
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    color: #FBFAF9;
+    text-align: center;
+    font-weight: 700;
+    font-size: 36px;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: 3.6px;
+  }
+
+
+  .button-with-text {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto 40px;
+  }
+
+  .button-with-text h2 {
+    color: #000;
+   font-family: var(--family-regular);
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .button-with-text a {
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 12px 51px;
+    text-transform: uppercase;
+    color: #000;
+    text-align: center;
+    font-weight: 800;
+    font-size: 13px;
+    font-style: normal;
+    height: fit-content;
+  }
+
+  .view-all-button-image {
+    position: absolute;
+    top: 80%;
+    left: 26%;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    background: #fff;
+    padding: 12px 57px;
+    border-radius: 50px;
+  }
+
+  .view-all-button.active {
+    display: block;
+  }
+
+  .view-all-link-{{ section.id }} {
+    display: none;
+  }
+
+  .view-all-link-{{ section.id }}.active {
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.getElementById("shop-by-concern-{{ section.id }}");
+    const tabButtons = wrapper.querySelectorAll(".concern-tab-button-{{ section.id }}");
+    const contents = wrapper.querySelectorAll(".concern-content-{{ section.id }}");
+    const viewAllLinks = wrapper.querySelectorAll(".view-all-link-{{ section.id }}");
+    const leftImages = wrapper.querySelectorAll(".left-imag");
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.concern;
+
+        // Reset all
+        tabButtons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+        viewAllLinks.forEach(l => l.classList.remove("active"));
+        leftImages.forEach(img => img.classList.remove("active"));
+
+        button.classList.add("active");
+        contents.forEach(c => {
+          if (c.dataset.concern === target) c.classList.add("active");
+        });
+        viewAllLinks.forEach(l => {
+          if (l.dataset.concern === target) l.classList.add("active");
+        });
+        leftImages.forEach(img => {
+          if (img.dataset.concern === target) img.classList.add("active");
+        });
+      });
+    });
+
+    wrapper.querySelectorAll(".concern-swiper-{{ section.id }}").forEach(swiperContainer => {
+      new Swiper(swiperContainer, {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        loop: false,
+        scrollbar: {
+          el: swiperContainer.querySelector('.swiper-scrollbar'),
+          draggable: true,
+          hide: false
+        },
+        breakpoints: {
+          768: { slidesPerView: 1.5 },
+          1024: { slidesPerView: 3.4 }
+        }
+      });
+    });
+  });
+</script>

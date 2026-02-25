@@ -1,0 +1,737 @@
+.btn-type-fill,
+.btn-type-transparent {
+  border-radius: 50px;
+  padding: 10px 1rem;
+  color: #404184;
+  font-size: 15px;
+  line-height: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.btn-type-fill,
+.btn-type-transparent,
+.ph-title {
+  text-transform: uppercase;
+}
+.btn-type-fill,
+.btn-type-transparent,
+.how-it-works-title,
+.ph-points,
+.ph-total-points,
+.reward-banner-points,
+.reward-banner-title,
+.reward-section-title,
+.use-point-rule,
+.ways-to-earn-points-list-item-points,
+.your-points-value,
+.your-status-position-name {
+  font-weight: 500;
+}
+.btn-type-fill {
+  outline: 0;
+  border: 2px solid #e1e2fc;
+  background: #e1e2fc;
+}
+.btn-type-transparent {
+  background: #7e0b56;
+  color: #fff;
+  border-radius: 8px 8px 0px 0px;
+}
+.btn-shine-left {
+  background: linear-gradient(
+    309deg,
+    #7e0b56 13.24%,
+    #c3a763 150.68%
+  ) !important;
+  text-transform: capitalize;
+}
+.btn-shine-right {
+  background: linear-gradient(82deg, #7e0b56 6.11%, #c3a763 130.14%) !important;
+  text-transform: capitalize;
+}
+.max-w-470 {
+  max-width: 470px;
+  margin: auto;
+}
+.btn-type-transparent:hover {
+  color: #fff;
+}
+.dumyNavReward {
+  height: 50px;
+  background: #e1e2fc;
+}
+.reward-banner {
+  padding: 0;
+  height: 610px;
+}
+.reward-banner-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.reward-banner-content {
+  padding: 88px !important;
+  gap: 16px;
+  background: #fff5f3;
+}
+.reward-banner-title {
+  margin-bottom: 18px;
+  color: #333;
+  font-size: 43px;
+  line-height: normal;
+  font-family: var(--header-family);
+  font-weight: 700;
+  color: #7e0b56;
+  background: -webkit-linear-gradient(70deg, #7e0b56 51.05%, #c2a661);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  width: max-content;
+}
+.reward-banner-title-svg {
+  position: relative;
+  top: -24px;
+  left: -16px;
+}
+.reward-banner-sub-title {
+  color: #968181;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 32px;
+  margin-bottom: 0;
+}
+.reward-banner-button-container,
+.ways-to-earn-points-list-item {
+  gap: 16px;
+}
+.reward-banner-button-container > a,
+.reward-banner-button-container > button {
+  max-width: 240px;
+  text-align: center;
+}
+.point-history-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  z-index: 5;
+  display: none;
+}
+.point-history-overlay-open {
+  display: block;
+}
+.point-history-slide-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 500px;
+  background-color: #fff;
+  transform: translate(100%, 0);
+  transition: 0.3s ease-in-out;
+}
+.point-history-slide-container-open {
+  z-index: 5;
+  transform: translate(0, 0);
+}
+.ph-container {
+  height: 100%;
+  position: relative;
+}
+.ph-topbar {
+  position: relative;
+  padding: 20px;
+  background: #fcfcfc;
+}
+.ph-title {
+  color: #191919;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+.your-points-title,
+.your-status-points-benifits-title {
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.ph-slide-close-btn {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 18px;
+}
+.ph-main-container {
+  padding: 32px;
+  height: 100%;
+}
+.ph-details-container {
+  padding: 24px 0 120px;
+  gap: 8px;
+  height: 100%;
+  overflow-y: auto;
+}
+.ph-details {
+  color: #393939;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  gap: 10px;
+}
+.ph-date {
+  color: #585858;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+.ph-total-points-container,
+.your-points-title,
+.your-status-position-name {
+  color: #393939;
+  font-size: 16px;
+  line-height: 24px;
+}
+.ph-bottom {
+  padding: 0 24px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+}
+.ph-total-text {
+  font-weight: 400;
+}
+.ph-redeem-btn-container {
+  padding: 24px;
+}
+.your-status-banner-container {
+  padding: 55px 80px;
+  gap: 8px;
+  background: #fdfbfe;
+  position: relative;
+  overflow: hidden;
+}
+.your-status-banner-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100px;
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-image: url(https://cdn.shopify.com/s/files/1/0673/6396/3172/files/sunflower.png?v=1696506549);
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: 20s linear infinite rotate-sunflower;
+}
+@keyframes rotate-sunflower {
+  0% {
+    transform: rotate(0) scale(1.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.5);
+  }
+}
+.your-points-value {
+  margin-left: 10px;
+}
+.your-status-progress-container {
+  margin-top: 50px;
+}
+.your-status-progress-bar-container {
+  display: flex;
+  align-items: center;
+  height: 12px;
+  background-color: #f6f6f6;
+  border-radius: 50px;
+  position: relative;
+}
+.your-status-progress-bar-container::after {
+  content: "";
+  border-radius: 50px;
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    270deg,
+    #a7dfdc 1.69%,
+    #fff69e 43.38%,
+    #fff69e 60.28%,
+    #ff85b6 77.46%,
+    #ffc1d9 100%
+  );
+}
+.your-status-progress-stop {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.your-status-progress-bar {
+  flex: 1;
+}
+.your-status-progress-stop[data-step="1"] {
+  background-color: #ff96c0;
+}
+.your-status-progress-stop[data-step="2"] {
+  background-color: #e7d83d;
+}
+.your-status-progress-stop[data-step="3"] {
+  background-color: #a7dfdc;
+}
+.level-fun-brand-text,
+.your-status-position-container {
+  margin-top: 8px;
+}
+.your-status-position-condition {
+  color: #585858;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+.your-status-points-benifits-container {
+  list-style: disc;
+  padding-left: 20px;
+  gap: 4px;
+}
+.your-status-points-benifits-title {
+  color: #393939;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 11px;
+}
+.your-status-points-benifits {
+  color: #393939;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+.your-status-points-benifits-heighlight {
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 8px;
+}
+.reward-section {
+  margin: 80px auto !important;
+}
+.reward-section-title {
+  color: #7e0b56;
+  text-align: center;
+  font-size: 28px;
+  line-height: 32px;
+  margin-bottom: 40px;
+}
+.how-it-works-card-slide.slick-slide {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.how-it-works-card {
+  max-width: 366px;
+}
+.how-it-works-img {
+  margin-bottom: 16px;
+}
+.how-it-works-title {
+  color: #7e0b56;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+.how-it-works-text {
+  color: #968181;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+.how-it-works-btn {
+  min-width: 160px;
+}
+.customer-tier-dots,
+.how-it-works-slider-dots {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding: 10px 0;
+}
+:is(.how-it-works-slider-dots, .customer-tier-dots) .swiper-pagination-bullet {
+  background-color: #bababa;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.how-it-works-slider-dots li button {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+}
+.ways-to-earn-points-container {
+  overflow: hidden;
+  margin-top: 20px;
+}
+.way-to-earn-points-gif-container {
+  flex: 3;
+  position: relative;
+}
+.way-to-earn-points-gif-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 60px;
+  z-index: -1;
+  background-color: #fafafa;
+}
+.way-to-earn-points-gif {
+  margin-left: -15px;
+  height: 100%;
+  object-fit: contain;
+}
+.way-to-earn-points-details-container {
+  flex: 4;
+  padding-top: 60px;
+}
+.way-to-earn-points-details {
+  background-color: #fafafa;
+  padding: 24px 85px;
+  height: 100%;
+}
+.ways-to-earn-points-list {
+  padding: 0;
+  gap: 16px;
+}
+.ways-to-earn-points-list-item-icon {
+  height: 24px;
+}
+.ways-to-earn-points-list-item-text {
+  color: #393939;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  flex: 1;
+}
+.ways-to-earn-points-list-item-points {
+  color: #b48aab;
+  text-align: right;
+  font-size: 15px;
+  line-height: 24px;
+}
+.level-fun-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+  color: #7e0b56;
+}
+.level-fun-card[data-bg="purple"],
+.level-fun-card[data-bg="purple"] .level-fun-brand-offers {
+  color: #f9f9f9;
+}
+.level-fun-card[data-bg="euphoria"] {
+    background: #FFF5F3;
+}
+.level-fun-card::before {
+  content: "";
+  border-radius: 8px;
+  top: 130px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.level-fun-card[data-bg="pink"]::before {
+  background-color: #ffe9f1;
+}
+.level-fun-card[data-bg="purple"]::before {
+  background-color: #8d346e;
+}
+.level-fun-card-img {
+  object-fit: cover;
+  width: 100%;
+  object-position: 0 10px;
+}
+.level-fun-card-body-container {
+  padding: 28px;
+}
+.level-fun-brand-offers-header {
+  margin: 24px 0;
+}
+.level-fun-brand-offers-container {
+  list-style: none;
+  padding: 0;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.level-fun-brand-offers {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #7e0b56;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  border-bottom: 0.5px solid #d7c8cc;
+  padding-bottom: 8px;
+}
+.level-fun-card[data-bg="purple"] .level-fun-brand-offers::before {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDE2IDEyIiBmaWxsPSJub25lIj4KICA8cGF0aCBkPSJNMS4xNzIgOC4wMDEyOEwzLjc3NDYzIDEwLjcyMjgiIHN0cm9rZT0iI0Y5RjlGOSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik00LjIzOTIgMTAuMjE4OEwxMy4xOTUgMC44MjAzMzciIHN0cm9rZT0iI0Y5RjlGOSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=");
+}
+.level-fun-brand-offers::before {
+  content: " ";
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDE2IDEyIiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTEuMTcyIDguMDAxMjhMMy43NzQ2NCAxMC43MjI4IiBzdHJva2U9IiM3RTBCNTYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQuMjM5MTggMTAuMjE4OEwxMy4xOTUgMC44MjAzMzciIHN0cm9rZT0iIzdFMEI1NiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+p.level-fun-brand-most-popular {
+  color: #c2a661;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 24px 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+.use-point-container {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+.use-point-img-container {
+  height: 310px;
+  flex: 1;
+  overflow: hidden;
+}
+.use-point-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.use-point-rule-container {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.use-point-rule-details {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 475px;
+}
+.use-point-text {
+  margin-bottom: 16px;
+  color: #585858;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.use-point-rule {
+  width: 100%;
+  padding: 16px;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  color: #7e0b56;
+  font-size: 24px;
+  line-height: 32px;
+}
+.how-it-works-section {
+  margin-top: 80px !important;
+}
+.information-buttons {
+  margin: 80px auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+.information-buttons a {
+  width: 100%;
+  border: 0;
+  border-radius: 4px 4px 0px 0px;
+  background: linear-gradient(
+    89deg,
+    #c2a661 -21.67%,
+    rgba(239, 211, 140, 0.5) 73.31%
+  );
+  color: #7e0b56;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  padding: 20px 0;
+  line-height: 20px;
+}
+@media only screen and (min-width: 1680px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .how-it-works-section,
+  .reward-section {
+    margin: 56px auto !important;
+  }
+  .reward-section-title {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 16px;
+  }
+  .reward-banner-content {
+    padding: 60px;
+  }
+  .way-to-earn-points-details-container {
+    padding: 0;
+  }
+  .way-to-earn-points-details {
+    padding: 24px 15px;
+  }
+  .way-to-earn-points-gif-container::after {
+    top: 0;
+  }
+  .way-to-earn-points-gif {
+    margin-left: 0;
+  }
+  .way-to-earn-points-gif-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .reward-banner-content {
+    padding: 40px;
+  }
+  .use-point-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin-bottom: 40px;
+  }
+  .use-point-rule-container {
+    padding-bottom: 0;
+  }
+  .use-point-rule {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  .use-point-text {
+    font-size: 13px;
+  }
+  .information-buttons {
+    margin: 40px 0 !important;
+    gap: 12px;
+    flex-direction: column;
+  }
+  .information-buttons a {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+}
+@media (min-width: 577px) and (max-width: 768px) {
+  .use-point-img-container {
+    height: 350px;
+    flex: none;
+    width: 100%;
+    overflow: hidden;
+  }
+  .use-point-img {
+    object-fit: cover;
+    object-position: 0px -20px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .btn-type-fill,
+  .btn-type-transparent,
+  .your-points-title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .reward-banner-title,
+  .reward-section-title {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .reward-section-title {
+    margin-bottom: 16px;
+  }
+  .reward-banner {
+    height: 420px;
+  }
+  .reward-banner-content {
+    padding: 20px !important;
+  }
+  .reward-banner-sub-title {
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .reward-section {
+    margin: 40px auto;
+  }
+  .your-status-banner-container {
+    padding: 30px 14px;
+    gap: 8px;
+    background: #fdfbfe;
+    position: relative;
+  }
+  .how-it-works-section,
+  .your-status-progress-container {
+    margin-top: 16px;
+  }
+  .your-status-progress-stop {
+    height: 12px;
+    width: 12px;
+  }
+  .your-status-progress-bar-container {
+    height: 8px;
+  }
+  .your-status-position-name {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .your-status-position-condition {
+    font-size: 11px;
+    line-height: 14px;
+  }
+  .your-status-banner-container::after {
+    right: -70px;
+  }
+  .ways-to-earn-points-container {
+    margin-top: 0;
+  }
+  .ways-to-earn-points-list-item-text {
+    font-size: 12px;
+  }
+  .how-it-works-text,
+  .ways-to-earn-points-list-item-points {
+    font-size: 13px;
+  }
+  .ways-to-earn-points-list {
+    gap: 14px;
+  }
+  .your-points-value {
+    margin-left: 4px;
+  }
+  .how-it-works-img {
+    margin-bottom: 10px;
+  }
+  .how-it-works-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .use-point-container {
+    margin-bottom: 40px;
+  }
+}

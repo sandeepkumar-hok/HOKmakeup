@@ -1,0 +1,119 @@
+ @media screen and (max-width: 768px) {
+   .product-tab-header-wrapper {
+     overflow-x: auto;
+     scroll-snap-type: x mandatory;
+     scroll-snap-align: start;
+     width: 100%;
+     display: flex;
+     scrollbar-width: none;
+     white-space: nowrap;
+     gap: 8px;
+     margin: 22px 0px 10px 0px;
+     padding: 6px;
+   }
+
+   .product-tab-button {
+     white-space: nowrap;
+     flex-shrink: 0;
+   }
+
+   .product-tab-button {
+     background: transparent;
+     text-transform: capitalize;
+     border: 1px solid #CFCDCD;
+     color: #CFCDCD;
+
+     font-size: 14px;
+     border-radius: 50px;
+     padding: 8px 16px;
+     cursor: pointer;
+     transition: color 0.3s;
+     white-space: nowrap;
+     flex-shrink: 0;
+   }
+
+   .product-tab-button.active {
+     color: #000;
+     font-weight: 700;
+     background: #fff;
+     border: none;
+     box-shadow: 0px 1px 8px rgba(63, 62, 58, 0.25);
+   }
+
+   .product-tab-grid-container {
+     display: flex;
+     display: flex;
+     overflow-x: visible;
+     width: 100%;
+   }
+
+   .skin-care-tabs-link img {
+     object-fit: cover;
+   }
+
+   .product-tab-block-section {
+     flex: 0 0 auto;
+     white-space: nowrap;
+     width: 227px !important;
+   }
+
+   .product-tab-container .swiper-scrollbar-drag {
+     display: block;
+   }
+
+   .skin-care-tabs-link {
+     position: relative;
+     display: block;
+     text-align: center;
+   }
+
+   .skin-care-tabs-link p.banner-heading {
+     position: absolute;
+     top: 12%;
+     line-height: 1.2;
+     left: 50%;
+     transform: translateX(-50%);
+     font-size: 20px;
+
+     color: #fff;
+     z-index: 2;
+     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+   }
+
+   .skin-care-tabs-link .banner-button {
+     position: absolute;
+     bottom: 12%;
+     left: 50%;
+     transform: translateX(-50%);
+     padding: 11px 58px;
+     font-size: 12px;
+     border-radius: 50px;
+     border: none;
+     background: #fff;
+     font-weight: 700;
+     z-index: 2;
+     white-space: nowrap;
+   }
+
+   .product-tabs-section-mobile {
+     background: #FBFAF9;
+     padding-bottom: 60px;
+   }
+
+   h2.category-slider-section-heading.mobile_screen {
+     color: #000;
+     font-family: var(--header-family);
+      font-weight: 800;
+     font-size: 22px;
+     text-transform: uppercase;
+   }
+
+   .product-tab-container {
+     display: none;
+     width: 100%;
+   }
+
+   .product-tab-container.active {
+     display: block;
+   }
+ }

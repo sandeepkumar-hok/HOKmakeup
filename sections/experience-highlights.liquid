@@ -1,0 +1,235 @@
+<!--section/experience-highlights.liquid-->
+<div class="experience-section">
+  <h2 class="section-title">{{ section.settings.title }}</h2>
+  <div class="experience-slider swiper container">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          {% if block.settings.image %}
+            {{
+              block.settings.image
+              | image_url: width: 3200
+              | image_tag:
+                widths: '50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000, 3200',
+                sizes: sizes,
+                class: 'multicolumn-card__image'
+            }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.section-{{ section.id }}-margin {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_desktop }}px;
+      padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+.experience-section {
+  background-color: #FFEAF5;
+  padding: 40px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+.experience-section h2 {
+  color: #E0006E;
+  font-family: 'Mosvita';
+  font-weight: 800;
+  font-size: 40px;
+}
+.experience-slider.swiper {
+  overflow: visible;
+  margin-top: 60px;
+}
+.experience-slider .swiper-slide {
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.experience-slider .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.experience-section img {
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 768px) {
+ .section-{{ section.id }}-margin {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+  .experience-section {
+    padding: 60px 0px;
+  }
+  .experience-section img {
+    max-width: 95%;
+  }
+  .experience-section h2{ font-size: 24px;}
+  .experience-slider .swiper-slide {
+    transition: transform 0.3s ease;
+  }
+  .experience-slider .swiper-slide-active {
+    transform: scale(1.1);
+    z-index: 2;
+    position: relative;
+  }
+  .experience-slider .swiper-wrapper {
+    justify-content: flex-start;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const swiper = new Swiper(".experience-slider", {
+    slidesPerView: 4,
+    spaceBetween: 22,
+    loop: false,
+    breakpoints: {
+      0: {
+        slidesPerView: 1.2,
+        centeredSlides: true,
+        loop: false,
+        spaceBetween: 12
+      },
+      768: {
+        slidesPerView: 4,
+        centeredSlides: false,
+        loop: false
+      }
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Experience Highlights",
+  "tag": "section",
+  "class": "experience-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "WHAT YOU’LL EXPERIENCE?"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 36,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 36,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "experience",
+      "name": "Experience Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Experience Highlights",
+      "category": "Custom",
+      "blocks": [
+        { "type": "experience" },
+        { "type": "experience" },
+        { "type": "experience" },
+        { "type": "experience" }
+      ]
+    }
+  ]
+}
+{% endschema %}

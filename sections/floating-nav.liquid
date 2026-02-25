@@ -1,0 +1,266 @@
+{{ 'floating-nav.css' | asset_url | stylesheet_tag }}
+<div id="floating-nav" class="mobile_screen">
+  <div class="bottom-nav">
+    <a
+      href="{% if template == "index" %}javascript:void(0){% else %}/{% endif %}" aria-label="Homepage"
+      class="nav-item{% if template == "index" %} active{% endif %}"
+      {{ template }}
+    >
+      <span class="icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-logo"
+          width="13"
+          height="20"
+          viewBox="0 0 13 20"
+          fill="none"
+        >
+          <path d="M4.5 0.00195312H0.5V20.002H4.5V12.423H8.5V20.002H12.5V0.00195312H8.5V7.89669H4.5V0.00195312Z" stroke="#0B0A0A" fill="#0B0A0A"/>
+        </svg>
+      </span>
+      <span class="label">home</span>
+    </a>
+    <a
+      href="{% if template.suffix == "offers-page" %}javascript:void(0){% else %}/pages/hok-offers{% endif %}" aria-label="All Offers"
+      class="nav-item{% if template.suffix == "offers-page" %} active{% endif %}"
+    >
+      <span class="icon">
+        <img
+          src="{% if template.suffix == "offers-page" %}https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Offer_2.svg?v=1749463348{% else %}https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Offer_1.svg?v=1749462823{% endif %}"
+          width="25"
+          height="22"
+          alt="offers"
+          loading="eager"
+        >
+      </span>
+      <span class="label">offer</span>
+    </a>
+    <a
+      href="{% if template.suffix == "brand" %}javascript:void(0){% else %}/pages/brands{% endif %}" aria-label="All brands"
+      class="nav-item{% if template.suffix == "brand" %} active{% endif %}"
+    >
+      <span class="icon">
+        <img
+          src="{% if template.suffix == "brand" %}https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Brands_2.svg?v=1749463013{% else %}https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Brands_1.svg?v=1749463012{% endif %}"
+          width="21"
+          height="22"
+          alt="brands"
+          loading="eager"
+        >
+      </span>
+      <span class="label">brands</span>
+    </a>
+    <a href="/apps/wishlist" class="header__icon h-wishlist-icon wishlist-page-widget" aria-label="Wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 22" fill="none" class="icon"><path d="M12.4869 22C12.2364 21.9968 11.9918 21.9232 11.7804 21.7875C8.18822 19.57 5.48518 17.3766 3.2783 14.8705C2.01853 13.5287 1.04215 11.942 0.408559 10.207C-0.730606 6.84675 0.5832 2.9211 3.46882 1.07256C4.78425 0.221399 6.35422 -0.134962 7.90363 0.0659208C9.45304 0.266804 10.8831 1.01212 11.9431 2.17126C12.1376 2.37977 12.3162 2.60031 12.4869 2.81685C12.7194 2.51694 12.97 2.2317 13.2371 1.96275C13.8816 1.32075 14.6473 0.816306 15.4888 0.479444C16.3303 0.142583 17.2302 -0.0198119 18.1351 0.00192686C19.0214 0.0266866 19.8936 0.23235 20.6992 0.606539C21.5048 0.980728 22.2271 1.51571 22.8227 2.17928C25.0693 4.63732 25.6012 7.62065 24.3072 10.8045C23.6255 12.404 22.6611 13.8647 21.4613 15.1151C19.3548 17.3836 16.9713 19.3724 14.3683 21.0336C14.019 21.2662 13.6578 21.4907 13.3006 21.7113L13.1934 21.7795C12.9825 21.9174 12.738 21.9937 12.4869 22Z" stroke="#000000" fill="#ffffff"></path></svg>
+        <span class="wishlist-h-count wishlist-total-count" data-total="0" style="top: 2px ;">0</span>
+      </a>
+    {% comment %} <a
+      href="{% if template.suffix == "hok-rewards" %}javascript:void(0){% else %}/pages/hok-rewards{% endif %}"
+      class="nav-item{% if template.suffix == "hok-rewards" %} active{% endif %}"
+    >
+      <span class="icon nav-hok-reward">
+        {% if template.suffix == 'hok-rewards' %}
+          <img
+            src="https://cdn.shopify.com/s/files/1/0896/2320/0023/files/Hok-rewards.png"
+            width="40"
+            height="auto"
+            alt="hok-rewards"
+            loading="eager"
+          >
+        {% else %}
+          {{ 'icon-reward.svg' | inline_asset_content }}
+        {% endif %}
+      </span>
+    </a> {% endcomment %}
+
+   <a
+      id="kp-account334"
+      href="/account"
+      class="nav-item custom-account-icon"
+      aria-label="login"
+    >
+      <span class="icon d-center icon-account ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="12" viewBox="0 0 13 12" fill="none">
+          <circle cx="6.50282" cy="2.57338" r="2.57143" fill="#FDFDFD"/>
+          <path d="M11.0743 12.002C11.6265 12.002 12.0823 11.5516 11.997 11.0059C11.806 9.78409 11.2667 8.64696 10.4424 7.75931C9.39757 6.63409 7.98046 6.00195 6.50283 6.00195C5.02519 6.00195 3.60808 6.63409 2.56323 7.75931C1.73899 8.64696 1.19967 9.78409 1.00868 11.0059C0.923383 11.5516 1.37911 12.002 1.9314 12.002L6.50283 12.002H11.0743Z" fill="#FDFDFD"/>
+        </svg>
+      </span>
+      <span class="label">account</span>
+    </a> 
+     
+          {% comment %} <a id="kp-account334" class=" custom-account-icon" href="#" >
+          <span class="icon d-center icon-account " style="height:40px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="22" viewBox="0 0 15 14" fill="none">
+          <path d="M13.12 13.1193C13.12 10.1 10.1828 7.65234 6.56 7.65234C2.93724 7.65234 0 10.1 0 13.1193H13.12Z" fill="currentColor"></path>
+          <path d="M6.54562 6.56C8.35712 6.56 9.82562 5.09149 9.82562 3.28C9.82562 1.46851 8.35712 0 6.54562 0C4.73413 0 3.26562 1.46851 3.26562 3.28C3.26562 5.09149 4.73413 6.56 6.54562 6.56Z" fill="currentColor"></path>
+          <path d="M11.9339 6.93928C12.1313 7.09937 12.1313 7.40062 11.9339 7.56071L8.65191 10.2215C8.39043 10.4335 8 10.2474 8 9.91077V4.58923C8 4.25262 8.39043 4.06653 8.6519 4.27852L11.9339 6.93928Z" fill="url(#paint0_linear_7227_3265)" stroke="url(#paint1_linear_7227_3265)" stroke-opacity="0.6725" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M14.6135 6.93928C14.811 7.09937 14.811 7.40062 14.6135 7.56071L11.3316 10.2215C11.0701 10.4335 10.6797 10.2474 10.6797 9.91077V4.58923C10.6797 4.25262 11.0701 4.06653 11.3316 4.27852L14.6135 6.93928Z" fill="url(#paint2_linear_7227_3265)" stroke="url(#paint3_linear_7227_3265)" stroke-opacity="0.6725" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <defs>
+            <linearGradient id="paint0_linear_7227_3265" x1="10.2062" y1="6.3744" x2="10.0865" y2="10.748" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFE6A5
+        "></stop>
+            <stop offset="1" stop-color="white"></stop>
+            </linearGradient>
+            <linearGradient id="paint1_linear_7227_3265" x1="10.1586" y1="3.75" x2="10.1586" y2="10.75" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DBB015
+        "></stop>
+            <stop offset="0.517213" stop-color="#FFDC5B
+        "></stop>
+            </linearGradient>
+            <linearGradient id="paint2_linear_7227_3265" x1="12.8858" y1="6.3744" x2="12.7662" y2="10.748" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFE6A5
+        "></stop>
+            <stop offset="1" stop-color="white"></stop>
+            </linearGradient>
+            <linearGradient id="paint3_linear_7227_3265" x1="12.8382" y1="3.75" x2="12.8382" y2="10.75" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#DBB015
+        "></stop>
+            <stop offset="0.517213" stop-color="#FFDC5B
+        "></stop>
+            </linearGradient>
+          </defs>
+          </svg>
+          </span>
+        </a> {% endcomment %}
+
+
+
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const accountLink = document.getElementById('kp-account334');
+  if (!accountLink) return;
+
+  if (typeof isCustomerLoggedIn === 'function' && isCustomerLoggedIn()) {
+    // Customer logged in → go to account page
+    accountLink.setAttribute('href', '/account');
+  } else {
+    // Customer not logged in
+    accountLink.setAttribute('href', '/account/login');
+
+    accountLink.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (typeof shipRocketMarketingLogin === 'function') {
+        shipRocketMarketingLogin();
+      } else {
+        window.location.href = '/account/login';
+      }
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Floating Bar",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Desktop Menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color_background",
+          "id": "bg_color_gd",
+          "label": "Background Color Gradient"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Background Image"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Announcement Heading",
+          "default": "<p>Welcome to our store</p>"
+        },
+        {
+          "type": "color",
+          "id": "head_col",
+          "label": "Main Heading Color",
+          "default": "#fff"
+        },
+        {
+          "type": "range",
+          "id": "desk-main-heading-size",
+          "label": "Desktop Main Heading Text Size",
+          "default": 22,
+          "step": 1,
+          "min": 2,
+          "max": 60,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "mob-main-heading-size",
+          "label": "Mobile Main Heading Text Size",
+          "default": 14,
+          "step": 1,
+          "min": 2,
+          "max": 60,
+          "unit": "px"
+        },
+
+        {
+          "type": "richtext",
+          "id": "sub_txt",
+          "label": "Sub Heading",
+          "default": "<p>*automatically applied at checkout, excludes sale items, Miracle Cream and Haircare Electricals. Cannot be used in conjunction with any other offer.</p>"
+        },
+        {
+          "type": "color",
+          "id": "sub_head_col",
+          "label": "Sub Heading Color",
+          "default": "#fff"
+        },
+        {
+          "type": "range",
+          "id": "desk-sub-heading-size",
+          "label": "Desktop Sub Heading Text Size",
+          "default": 10,
+          "step": 1,
+          "min": 2,
+          "max": 60,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "mob-sub-heading-size",
+          "label": "Mobile Sub Heading Text Size",
+          "default": 8,
+          "step": 1,
+          "min": 2,
+          "max": 60,
+          "unit": "px"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Announcement Bar Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Floating Bar"
+    }
+  ]
+}
+{% endschema %}

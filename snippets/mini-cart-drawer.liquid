@@ -1,0 +1,675 @@
+<div class="b-mini_cart-popover">
+  <div class="transparent-overlay is-gift-criteria-opened"></div>
+  <span class="b-mini_cart-close" onclick="cartSlide()"></span>
+  <div class="b-mini_cart-title">YOUR BAG</div>
+  <!-- Cart Upselling -->
+  <div id="cart-offer-timer" class="position-relative">
+    <div class="timer_section">
+      <p>Bag It Now, Thank Us Later!</p>
+      <div><strong>Offer ends in:</strong><span id="cart_countdown">00:00:00</span></div>
+    </div>
+  </div>
+  <div id="cart_reccommended_slider" class="position-relative overflow-hidden d-none">
+    <div class="swiper-wrapper">
+      {% for product in collections['recommended-products'].products limit: 3 %}
+        <div class="b-mini_cart-product p-0 swiper-slide" style="border:none !important">
+          <div class="b-miniproduct">
+            <div class="b-miniproduct-image">
+              <a
+                href="{{ product.url }}"
+                title="{{ product.title | escape }}"
+              >
+                <img
+                  loading="eager"
+                  width="100%"
+                  height="100%"
+                  class="b-miniproduct-product_image"
+                  src="{{ product.featured_image | image_url }}"
+                  alt="{{ product.title }}"
+                  title="{{ product.title }}"
+                >
+              </a>
+            </div>
+            <div class="b-miniproduct-info">
+              <div class="b-miniproduct-title">
+                <div class="b-miniproduct-name">
+                  <a
+                    href="{{ product.url }}"
+                    title="{{ product.title }}"
+                  >
+                    <span>{{ product.title }}</span>
+                  </a>
+                </div>
+                <div
+                  class="cart_add_icon"
+                  data-add="cart_recommend"
+                  onclick="reUseCart(event,'/cart/add.js', {{ product.variants.first.id }} ,1)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    data-icon="add"
+                  >
+                    <path d="M13 24.9998L13 0.999988" stroke="#F4154D" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M24.9998 13L0.999988 13" stroke="#F4154D" stroke-width="2" stroke-linecap="round"></path>
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    data-icon="loader"
+                    style="display:none;"
+                  >
+                    <path fill="#f53262" d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"><animateTransform attributeName="transform" dur="0.563s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="b-miniproduct-subtotal">
+              <div class="b-miniproduct-total_price">
+                <div class="b-miniproduct-price_value">
+                  <div class="b-product_price">
+                    {% assign first_variant = product.selected_or_first_available_variant %}
+                    <span class="b-product_price-sales ">
+                      <span class="b-product_price-value">
+                        {{ first_variant.price | money_without_trailing_zeros }}
+                      </span>
+                    </span>
+                    {% if first_variant.compare_at_price > first_variant.price %}
+                      <span class="b-product_price-sales m-discount">
+                        <span class="b-product_price-value total-price1 text-decoration-line-through">
+                          {{ first_variant.compare_at_price | money_without_trailing_zeros }}
+                        </span>
+                        <small class="gift-discount">
+                          {{
+                            first_variant.compare_at_price
+                            | minus: first_variant.price
+                            | times: 100.0
+                            | divided_by: first_variant.compare_at_price
+                            | money_without_currency
+                            | times: 100
+                            | remove: '.0'
+                          -}}
+                          % OFF
+                        </small>
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="text-center how-it-works-slider-dots mt-1"></div>
+  </div>
+  <!-- Cart Upselling ends -->
+  <div class="b-mini_cart-container" id="miniCartContainer">
+    <div class="b-mini_cart-info">
+      <div class="b-mini_cart-items">
+        <span>
+          {{ cart.item_count }}
+        </span>
+        item(s)
+      </div>
+      <div class="b-mini_cart-sub_total">
+        Sub Total:
+        <strong class="b-mini_cart-sub_total_number">
+          {{ cart.total_price | money_with_currency }}
+        </strong>
+      </div>
+    </div>
+    {% comment %}
+      <div style='display:none;' data-tbnadfield='PROMOTION_LIST' data-tbnadhide='NO_QUESTS' ></div>
+      <h1>{{ cart.total_discounts | money_without_trailing_zeros }} bbbbbbb</h1>
+    {% endcomment %}
+    {% assign totalSavings = 0 %}
+    {% for item in cart.items %}
+    {% if  item.final_price > 100 %}
+      <div
+        class="b-mini_cart-products_list cart-items"
+        id="CartItem-{{ item.index | plus: 1 }}"
+        data-key="{{ item.id }}"
+      >
+        <div
+          class="b-mini_cart-product"
+          {% if forloop.last %}
+            style="border:none !important;"
+          {% endif %}
+        >
+          <div class="b-miniproduct">
+            <div class="b-miniproduct-image">
+              <a href="{{ item.product.url }}" title="{{ item.product.title | escape }}">
+                <img
+                  class="b-miniproduct-product_image"
+                  src="{{ item.image | img_url: 'master' }}"
+                  alt="{{ item.product.title | escape }}"
+                  title="{{ item.product.title | escape }}"
+                >
+              </a>
+            </div>
+            <div class="b-miniproduct-info">
+              {% comment %} limited stock badge {% endcomment %}
+              {% assign product_qty = product_qty | plus: item.inventory_quantity %}
+              {% if item.variant.inventory_quantity < 10 %}
+                {% render 'limited-stock' %}
+              {% endif %}
+
+              <div class="b-miniproduct-title">
+                <div class="b-miniproduct-name">
+                  <a href="{{ item.product.url }}" title="{{ item.product.title | escape }}">
+                    <span>
+                      {{ item.product.title | escape }}
+                    </span>
+                  </a>
+                </div>
+                <div class="b-miniproduct-remove_item">
+                  <cart-remove-button
+                    class="b-miniproduct-remove_item_control"
+                    onclick="removeItem( event , {{item.id }})"
+                    id="Remove-{{ item.index | plus: 1 }}"
+                    style="cursor: pointer;"
+                  ></cart-remove-button>
+                </div>
+              </div>
+              {% if item.product.title =='bundle' or item.product.title =='DIY Palette' %}
+              <p style="font-family: 'Montserrat';font-size: 12px;font-weight: 600;position: relative;top: -24px;"> {{ item.properties.Items }}</p>
+              {% endif %} 
+              {% comment %} variant details comes here {% endcomment %}
+              {% if item.variant.title != 'Default Title' %}
+                <ul class="b-miniproduct-attribute_list list-unstyled p-0">
+                  <li class="b-miniproduct-attribute_item">
+                    <span class="b-miniproduct-attribute_key {{ item.vendor }}"> {% unless item.vendor == "Sweetons" or item.vendor == "Fini" or item.title contains 'Multipurpose Lip Balm' %}Colour:{% else %}Size:{% endunless %}</span>
+                    &nbsp;
+                    <strong class="b-miniproduct-attribute_value">
+                      {{ item.variant.title | capitalize }}
+                    </strong>
+                  </li>
+                </ul>
+              {% endif %}
+            </div>
+            <div class="b-miniproduct-subtotal">
+              <div class="b-product_card-qty">
+                <!-- shivam rathi 13-02-2024 -->
+                {% if item.final_line_price == 0 %}
+                  {% for discount_allocation in item.discount_allocations %}
+                    {% assign discount_application = discount_allocation.discount_application %}
+                    {% unless discount_application.title contains 'Festive' %}
+                      <div class="line-item-discount-container">
+                        <div class="discount-title">
+                          <div class="line-item-discount-svg">
+                            <svg
+                              width="14"
+                              height="14"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 14 14"
+                              focusable="false"
+                              aria-hidden="true"
+                              class="a8x1wuo _1fragemgc _1fragemig _1frageme8 _1frageme4"
+                            >
+                              <path stroke-linecap="round" d="M7.284 1.402h4.964a.35.35 0 0 1 .35.35v4.964a.7.7 0 0 1-.205.495L7.49 12.115a.7.7 0 0 1-.99 0L1.885 7.5a.7.7 0 0 1 0-.99L6.79 1.607a.7.7 0 0 1 .495-.205Z"></path>
+                              <circle
+                                cx="9.1"
+                                cy="4.9"
+                                r="0.7"></circle>
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M9.102 4.897h-.005v.005h.005z"></path>
+                            </svg>
+                          </div>
+                          <p class="line-item-discount-text">
+                            {{ discount_application.title | truncatewords: 2, '...' }}
+                            <span class="line-item-discount-price text-success">
+                              <!-- (-{{ discount_allocation.amount | money_with_currency }}) -->
+                            </span>
+                          </p>
+                        </div>
+                        {% comment %}
+                          <div  class="discount-detail text-success">
+                            <p class="line-item-discount-price">
+                              (-{{ discount_allocation.amount | money_with_currency }})
+                            </p>
+                             <p class="line-item-discount-price">Qty. {{ item.quantity }}</p>
+                          </div>
+                        {% endcomment %}
+                      </div>
+                    {% endunless %}
+                  {% endfor %}
+                {% endif %}
+
+                {% unless item.final_line_price == 0 %}
+                  <div class="b-qty_selector">
+                    <span
+                      class="b-qty_selector-container"
+                      data_key="{{ item.key }}"
+                      data_quantity="{{ item.quantity }}"
+                    >
+                      <button
+                        class="b-qty_selector-control m-minus minusBtn"
+                        data-index-sub="{{ item.index }}"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="45" viewBox="0 0 32 45" fill="none">
+                          <rect width="32" height="45" fill="white"/>
+                          <path d="M11.5 22.5H20.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                      <label class="b-qty_selector-label">
+                        <span
+                          class="spinner-border spinner-border-sm"
+                          style="display:none;"
+                          role="status"
+                        ></span>
+                        <input
+                          class="b-qty_selector-value text-center h-100"
+                          type="number"
+                          name="updates[]"
+                          id="Quantity-{{ item.index }}"
+                          data-index="{{ item.index }}"
+                          value="{{ item.quantity }}"
+                          readonly
+                        >
+                      </label>
+                      <button
+                        class="b-qty_selector-control m-plus plusBtn"
+                        data-index-adding="{{ item.index }}"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="45" viewBox="0 0 32 45" fill="none">
+                          <rect width="32" height="45" fill="white"/>
+                          <path d="M16 18V27M11.5 22.5H20.5" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </button>
+                    </span>
+                  </div>
+                {% endunless %}
+              </div>
+              {% comment %}
+                <div class="b-miniproduct-qty">
+                <span class="b-miniproduct-qty_label">Quantity:</span>
+                <strong class="b-miniproduct-qty_value">{{ item.quantity }}</strong>
+                </div>
+              {% endcomment %}
+              <div class="b-miniproduct-total_price">
+                <div class="b-miniproduct-price_value">
+                  {% if item.total_discount > 0 %}
+                    <span class="extra_discount_applied"> Discount Applied! </span>
+                  {% endif %}
+                  <div class="b-product_price">
+                    <span class="b-product_price-sales ">
+                      <span class="b-product_price-value">
+                        {% if item.final_line_price > 0 %}
+                          {{ item.final_line_price | money_without_trailing_zeros }}
+                        {% else %}
+                          Free
+                        {% endif %}
+                      </span>
+                    </span>
+                    {% if item.variant.compare_at_price > item.variant.price %}
+                      <span class="b-product_price-sales m-discount">
+                        <span class="b-product_price-value total-price1 text-decoration-line-through">
+                          {{ item.variant.compare_at_price | times: item.quantity | money_without_trailing_zeros }}
+                        </span>
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+      {% endif %}
+      {% assign regularPrice = item.product.price %}
+      {% assign compareAtPrice = item.product.compare_at_price %}
+      {% assign savings = regularPrice | minus: compareAtPrice %}
+      {% assign itemSavings = savings | times: item.quantity %}
+      {% assign totalSavings = totalSavings | plus: itemSavings %}
+    {% endfor %}
+    {%- assign plus_savings = totalSavings | abs -%}
+    {% if cart.item_count > 0 %}
+      <div class="pricing_table pt-3">
+        <div class="b-cart_totals-title h6">PRICE DETAILS</div>
+        <div id="lists">
+          <div class="b-cart_totals-row b-cart_totals-estimated_total">
+            <div class="b-cart_totals-estimated_total_title">
+              <strong>Sub Total</strong>
+            </div>
+            <div class="b-cart_totals-estimated_total_value">
+              <div class="totals__subtotal-value">
+                {{ cart.original_total_price | money }}
+              </div>
+            </div>
+          </div>
+          <!--
+            <div class="b-cart_totals-row b-cart_totals-estimated_total ">
+              <div class="b-cart_totals-estimated_total_title">
+                Discount
+                {% for discount_application in cart.cart_level_discount_applications %}
+                  {% comment %}<span style="color:#ee50c3">({{ discount_application.title }})</span> {% endcomment %}
+                  <span style="color:#ee50c3">(Festive Discount)</span>
+                {% endfor %}
+              </div>
+              <div class="b-cart_totals-estimated_total_value">
+                <div class="totals__subtotal-value" style="color:#ee50c3">
+                  {{ cart.total_discount | money }}
+                </div>
+              </div>
+            </div>
+          -->
+          {% comment %}
+            <div class="b-cart_totals-row m-shipping_cost ">
+            <div class="b-cart_totals-title">
+            Shipping</div>
+            <div class="b-cart_totals-value text-success" id="freeShipMsg">
+            <span> {%- if cart.total_price <= 79900 -%} will be
+            calculated at checkout {% else %} Free {% endif %} </span>
+            </div>
+            </div> <div class="b-cart_totals-row b-cart_totals-estimated_total">
+            <div class="b-cart_totals-estimated_total_title">
+            <strong>Subtotal</strong>
+            </div>
+            <div class="b-cart_totals-estimated_total_value">
+            <span class="totals__subtotal-value">{{ cart.total_price | money }}</span>
+            </div>
+            </div>
+          {% endcomment %}
+        </div>
+        <div class="b-cart_totals-row b-cart_totals-estimated_total pt-3 text_change">
+          {{ ' Please note: Checkout to see your final total with discounts and offers applied.' }}
+        </div>
+        <!--
+          <div id="payment_img">
+            <div id="payment_image_info_1">
+              <p class="mb-0">% &nbsp; Save extra 5% off on all prepaid orders</p>
+            </div>
+
+              <div id="payment_image_info_2">
+                <div class="d-none">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="11"
+                    height="13"
+                    viewBox="0 0 11 13"
+                    fill="none"
+                  >
+                    <path
+                      d="M5.5 12C5.5 12 10 9.8 10 6.5V2.65L5.5 1L1 2.65V6.5C1 9.8 5.5 12 5.5 12Z"
+                      fill="#A5CC9D"
+                      stroke="#388E3C"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <p class="mb-0">*Offers will be applied at checkout</p>
+              </div>
+
+          </div>
+        -->
+      </div>
+    {% else %}
+      <div class="section-container banner">
+        <div class="header-text text-line-clamp h2">Oops!</div>
+        <div class="text text-line-clamp h5">Your bag is empty</div>
+        {% comment %} <button class="b-button_1 rounded-3" onclick="closeSlider()">Shop Now</button> {% endcomment %}
+         <a href="/" class="b-button_1 rounded-3" onclick="closeSlider()">
+          Shop Now
+        </a>
+      </div>
+      <style>
+        .section-container.banner {
+          margin: 100px 0;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+      </style>
+    {% endif %}
+    {% comment %}
+      <div id="free-gift-criteria" class="is-gift-criteria-opened d-none">
+        <p class="d-center">
+          <img loading="lazy" src="{{ 'gift_icon.webp' | asset_url }}" width="23" height="23" alt="gift-icon">
+          <span>See Free Gifts by Brand </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7" fill="none">
+            <path d="M1 5.5L4.80952 1.5L9 5.5" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+          </svg>
+        </p>
+      </div>
+    {% endcomment %}
+  </div>
+  {% comment %}
+    <div id="available-gift-offers" class="d-none">
+      <span class="b-mini_cart-gift-close is-gift-criteria-opened"></span>
+      <div class="offer-zone d-flex flex-column h-100">
+        <div>
+          <p class="d-center gift-header">
+            <!-- <img loading="lazy" src="{{ 'gift_icon.webp' | asset_url }}" width="23" height="23" alt="gift-icon"> -->
+            <span class="px-2">See Free Gifts by Brand </span>
+          </p>
+          <p class="gift-subtext text-center">Gifts will be automatically added to your bag.</p>
+        </div>
+        <div id="gift-offer-list" class="overflow-auto">
+          <div class="b-mini_cart-product py-4">
+            <div class="b-miniproduct">
+              <div class="b-miniproduct-image">
+                <a href="{{ shop.url }}" title="Surprise Gift">
+                  <img
+                    loading="lazy"
+                    width="100%"
+                    height="100%"
+                    class="b-miniproduct-product_image bg-blur"
+                    src="https://cdn.shopify.com/s/files/1/1743/7443/files/Koric-jar-icon.jpg?v=1731754803"
+                    alt="Surprise Gift"
+                    title="Surprise Gift"
+                  >
+                </a>
+              </div>
+              <div class="b-miniproduct-info">
+                <div class="b-miniproduct-title m-0">
+                  <div class="b-miniproduct-name free-gift-desc">
+                    <p>Secret treat!</p>
+                    <p>
+                      Visit <a href="{{ shop.url }}" class="text-decoration-underline">Hokmakeup</a> to pick a surprise
+                      gift – because who doesn’t love surprises?
+                    </p>
+                    <p><span class="pink">Eligibility:</span> On order above <strong>₹799</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="t_n_c_gifts" class="mt-auto">
+          <p>
+            <strong>Terms of Use :</strong> You may choose between a free gift or a coupon, only one can be applied to
+            your order.
+          </p>
+          <button class="is-gift-criteria-opened">Go Back</button>
+        </div>
+      </div>
+    </div>
+  {% endcomment %}
+  <div id="fixed_checkeout">
+    <div class="text-center">
+      <p>Shipping and Discount will be applied at checkout</p>
+    </div>
+    <div class="b-mini_cart-bag_btn">
+      <form
+        action="/cart"
+        method="post"
+        novalidate
+      >
+        <script>
+          if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') {
+            document.write('<div class="shiprocket-headless" data-type="mini-cart"></div>');
+          } else {
+            if (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata') {
+              document.write('<div class="shiprocket-headless" data-type="mini-cart"></div>');
+            } else {
+              document.write(
+                '<button class="b-button_1"  type="submit" name="checkout" id="checkout" > checkout </button>'
+              );
+            }
+          }
+        </script>
+
+        {% comment %}
+          <button
+            class="b-button_1"
+            id="check-Out_Btn"
+            type="submit"
+            name="checkout">
+            Checkout
+          </button>
+        {% endcomment %}
+      </form>
+      {% comment %} <a class="b-button_1" href="{{ routes.cart_url }}" title="View your bag"> View your bag </a> {% endcomment %}
+    </div>
+  </div>
+</div>
+<style>
+    .b-qty_selector-control{border:none;background:#fff;padding:0}.b-product_card-qty{margin:0;padding:0}.b-product_card-qty .b-qty_selector-value{text-align:center}.b-miniproduct-total_price{display:grid;height:100%;place-content:center}.b-cart_totals-title.h6{font-family:var(--family-regular);font-weight:500;padding-bottom:16px;margin:0}div#product_collection{padding:30px 0 16px}.b-product_price-sales.m-discount .b-product_price-value{color:#bababa}.b-product_price-sales .gift-discount{font-weight:700;color:#f44e70;font-size:13px;margin-left:6px}#collection_prod{display:flex;flex-wrap:nowrap;gap:10px;padding:16px 0;overflow-x:scroll;scroll-snap-type:x mandatory}#collection_prod::-webkit-scrollbar-track{border:1px solid #000;background-color:#f5f5f5}#collection_prod::-webkit-scrollbar{height:8px;background-color:#f5f5f5}#collection_prod::-webkit-scrollbar-thumb{background-color:#6b6b6b}#product_collection #recText{font-size:18px;text-align:center;font-weight:600;color:#212529}#collection_prod .card{min-width:200px;width:100%;scroll-snap-align:center}.card .product_desc{font-size:14px;text-transform:capitalize;line-height:20px;margin:0}.card .pricing{padding:12px 0}.card .pricing .b-product_price-value{font-size:12px!important}.card .pricing .b-product_price-value .fw-bold{font-weight:600!important}.card .butn{border-radius:4px;padding:8px;font-size:12px}.b-cart_totals-estimated_total_title,.b-cart_totals-estimated_total_value{font-size:14px}.b-miniproduct-price_value{line-height:16px;text-align:right}.extra_discount_applied{color:#ee50c3;font-size:11px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:800;text-transform:capitalize}.b-miniproduct-price_value .b-product_price-value{font-size:16px}.MainTabarnappRewardPicker.svelte-xfs34o{min-width:360px!important}.tbnad-field-hidden{display:block!important}.tbn_tabl_deal_ui .ttitle{font-size:16px!important}
+</style>
+<script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+                  setInterval(function updateTimer() {
+                     const now = new Date();
+                     // Set target time to 12:00 PM on the same or next day
+                     const targetTime = new Date();
+                     targetTime.setHours(12, 00, 0, 0); // Set to 12:00 PM today
+                     if (now >= targetTime) {
+                         targetTime.setDate(targetTime.getDate() + 1); // If past 12:00 PM, move to the next day
+                     }
+
+                     // Calculate the time difference in seconds
+                     const remainingTime = targetTime - now;
+
+                     const hours = Math.floor((remainingTime / (1000 * 60 * 60)) % 24);
+                     const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+                     const seconds = Math.floor((remainingTime / 1000) % 60);
+
+                     // Format time as HH:MM:SS
+                     const formattedTime = [
+                         hours < 10 ? "0" + hours : hours,
+                         minutes < 10 ? "0" + minutes : minutes,
+                         seconds < 10 ? "0" + seconds : seconds
+                     ].join(":");
+
+                     // Update the countdown element
+                     document.getElementById("cart_countdown").textContent = formattedTime;
+                 }, 1000);
+
+
+                 const cart_reccommended_slider = new Swiper('#cart_reccommended_slider', {
+                     slidesPerView: 1, // Show 1 slides by default
+                     spaceBetween: 20, // Adjust as needed
+                     loop: false,
+                     autoHeight: true,
+                     pagination: {
+                         el: "#cart_reccommended_slider .how-it-works-slider-dots",
+                     }
+
+                 });
+                 // let itemQuantity = document.querySelectorAll('.b-qty_selector-value');
+                 // let plusBtn = document.querySelectorAll('.plusBtn');
+                 // let minusBtn = document.querySelectorAll('.minusBtn');
+                 // let totalItemPrice = document.querySelectorAll('#total-price');
+                 // let subTotalItemPrice = document.querySelector('.totals__subtotal-value');
+                 // Async function to update cart based on changes
+                 async function changeFunction(key, quantity, index) {
+                     try {
+                         const formData = JSON.stringify({
+                             id: `${key}`,
+                             quantity,
+                             sections: "main-cart-drawer"
+                         });
+
+                         // Perform the update request
+                         const response = await axios.post('/cart/change.js', formData, {
+                             headers: {
+                                 'Content-Type': 'application/json'
+                             }
+                         });
+
+                         // Fetch updated cart data
+                         const cartResponse = await axios.get('/cart.js');
+
+                         // Update the cart icon quantity with new item count
+                         $(".cartIconQty").text(cartResponse.data.item_count);
+
+                         // Process the updated cart if necessary
+                         fetchCart(response.data);
+                     } catch (error) {
+                         console.error('Error in changeFunction:', error);
+                     } finally {
+                         // Hide the loader after completing the process
+                         $('.bg-loader').addClass('d-none');
+                     }
+                 }
+
+                 // Function to convert amount into formatted currency
+                 function changeToCurrency(amount) {
+                     let currencyAmt = (amount / 100).toLocaleString(undefined, {
+                         minimumFractionDigits: 2
+                     });
+                     return currencyAmt;
+                 }
+
+                 // Function to increment item quantity
+                 const addQty = (index, event) => {
+                     event.preventDefault();
+                     let parentElement = $(event.target).closest('.b-qty_selector-container'); // Ensure we're targeting the correct parent
+                     let key = parentElement.attr('data_key');
+                     let quantity = parseInt(parentElement.attr('data_quantity'), 10);
+
+                     let show_spinner = $(event.target).closest('.b-qty_selector-container');
+                     show_spinner.find('.spinner-border').show();
+                     show_spinner.find('.b-qty_selector-value').hide();
+
+                     quantity++;
+                     changeFunction(key, quantity, index);
+                 };
+
+                 // Function to decrement item quantity
+                 const subQty = (index, event) => {
+                     event.preventDefault();
+                     let parentElement = $(event.target).closest('.b-qty_selector-container');
+                     let key = parentElement.attr('data_key');
+                     let quantity = parseInt(parentElement.attr('data_quantity'), 10);
+
+                     let show_spinner = $(event.target).closest('.b-qty_selector-container');
+                     show_spinner.find('.spinner-border').show();
+                     show_spinner.find('.b-qty_selector-value').hide();
+
+                     // Only decrement if quantity is greater than 1
+                     if (quantity > 1) {
+                         quantity--;
+                         changeFunction(key, quantity, index);
+                     } else {
+                         console.warn('Quantity cannot be less than 1');
+                         show_spinner.find('.spinner-border').hide();
+                         show_spinner.find('.b-qty_selector-value').show();
+                     }
+                 };
+
+                 // Event listener for increment button click
+                 $(document).on('click', '.b-qty_selector-control.plusBtn', function(event) {
+                     const index = $(this).data('index-adding'); // Ensure data-index-adding is correctly set in HTML
+                     addQty(index, event);
+                 });
+
+                 // Event listener for decrement button click
+                 $(document).on('click', '.b-qty_selector-control.minusBtn', function(event) {
+                     const index = $(this).data('index-sub'); // Ensure data-index-sub is correctly set in HTML
+                     subQty(index, event);
+                 });
+                 });
+</script>

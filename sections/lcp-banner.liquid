@@ -1,0 +1,110 @@
+{% schema %}
+    {
+      "name": "LCP Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image_mobile",
+          "label": "Mobile Banner Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "lazyload",
+          "label": "Enable Lazy Loading",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "margin_top_desktop",
+          "label": "Top Margin (Desktop)",
+          "min": 0,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_desktop",
+          "label": "Bottom Margin (Desktop)",
+          "min": 0,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "label": "Top Margin (Mobile)",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "label": "Bottom Margin (Mobile)",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 20
+        }
+      ],
+      "presets": [
+        {
+          "name": "LCP Banner"
+        }
+      ]
+    }
+    {% endschema %}
+    
+    {% assign lazy_setting = section.settings.lazyload %}
+    
+    <style>
+      .banner-wrapper {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+      }
+    
+      @media screen and (max-width: 749px) {
+        .banner-wrapper {
+          margin-top: {{ section.settings.margin_top_mobile }}px;
+          margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+        }
+      }
+    </style>
+    
+    {% if section.settings.banner_image %}
+        <div class="banner-wrapper">
+          <picture>
+            {% if section.settings.banner_image_mobile %}
+              <source media="(max-width: 749px)" srcset="{{ section.settings.banner_image_mobile | image_url: width: 390 , format: 'webp' }}" type="image/webp">
+              <source media="(max-width: 749px)" srcset="{{ section.settings.banner_image_mobile | image_url: width: 390 }}">
+            {% endif %}
+      
+            {% if section.settings.banner_image %}
+              <source media="(min-width: 750px)" srcset="{{ section.settings.banner_image | image_url: width: 1920, format: 'webp' }}" type="image/webp">
+              <source media="(min-width: 750px)" srcset="{{ section.settings.banner_image | image_url: width: 1920 }}">
+            {% endif %}
+      
+            <img
+              src="{{ section.settings.banner_image | image_url }}"
+              alt="{{ section.settings.banner_image | escape }}"
+              loading="{% if lazy_setting == true %}lazy{% else %}eager{% endif %}"
+              width="{{ section.settings.banner_image.width }}"
+              height="{{ section.settings.banner_image.height }}"
+              style="width: 100%; height: auto;"
+            >
+          </picture>
+        </div>
+      {% endif %}
+    
