@@ -304,7 +304,7 @@
                   assign offer_name = 'combos'
                 elsif collection.handle == 'bogo-sale-limited-time-only'
                   assign offer_name = 'bogo'
-                elsif collection.handle == '9-to-9-sale' or collection.handle == '9-to-9-sale-b' or collection.handle == 'hand-wash-new' or collection.handle == 'customized-combo' or collection.handle == 'lot-by' or collection.handle == 'the-add-to-heart-sale-up-to-60-off' or product.title contains '1 Kg' or product.title contains '1.8 Kg'
+                elsif collection.handle == '9-to-9-sale' or collection.handle == '9-to-9-sale-b' or collection.handle == 'customized-combo' or collection.handle == 'lot-by' or collection.handle == 'the-add-to-heart-sale-up-to-60-off' or product.title contains '1 Kg' or product.title contains '1.8 Kg'
                   assign offer_name = 'offerHidden'
                 elsif collection.handle == 'foundation-sale' or collection.handle == 'slay-the-base'
                   assign offer_name = 'foundation-sale'
@@ -323,7 +323,7 @@
               </p>
             </div>
             {% endif %}
-            {% unless offer_name == 'offerHidden' or product.handle == "diy-bundle"  %}
+            {% unless offer_name == 'offerHidden' or product.handle == "diy-bundle" %}
               <div class="b-accordion m-full">
                 <div class="b-accordion-item m-accordion-expanded topborder" id="searchAcc">
                   <span class="b-accordion-control m-accordion-expanded ">
@@ -498,10 +498,9 @@
                                 </div>
                               {% elsif offer_name == 'default' %}
                                   <div class="bogo-offer">
-                                      <p class="bogo-text-wrapper">- Extra <b>15% OFF</b> on orders below ₹1250 + Surprise Gift</p>
-                                      <p class="bogo-text-wrapper">- Eligible forExtra <b>25% OFF</b> on orders above <b>₹1250 + Surprise Gift</b></p>
-                                       <span class="bogo-text-wrapper" style="text-align: center; background-color:#D7FFCB; color:#035718; max-width:60%;padding:2px 8px;font-size: 12px; center; border-radius: 50px;white-space: nowrap;">25% offer valid on selected products only.</span> 
-                                      <p class="bogo-text-wrapper"><b>- On Prepaid Orders: Extra 5% OFF</b></p>
+                                      <p class="bogo-text-wrapper">Extra <b>15% OFF</b> on orders below ₹1250 + Surprise Gift</p>
+                                      <p class="bogo-text-wrapper">Extra <b>25% OFF</b> on orders above ₹1250 + Surprise Gift</p>
+                                      <p class="bogo-text-wrapper"><b>On Prepaid Orders: Extra 5% OFF</b></p>
                                   </div>
                               {% endif %}
                             </div>

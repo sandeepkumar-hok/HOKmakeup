@@ -1016,9 +1016,6 @@ table:not([class]) th {
   .small-hide {
     display: none !important;
   }
-  ._noticeBar_1b0ts_1{
-    bottom:17% !important;
-  }
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) {

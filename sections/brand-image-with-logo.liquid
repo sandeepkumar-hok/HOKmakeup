@@ -1,0 +1,555 @@
+<!-- section/brand-image-with-logo.liquid -->
+
+{%- style -%}
+  .section-{{ section.id }}-margin  {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    padding-top: {{ section.settings.padding_text_top_desktop }}px;
+    padding-bottom: {{ section.settings.padding_text_bottom_desktop }}px;
+  }
+
+  .section-{{ section.id }} .b-skincare-vendor{
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 32px;
+    margin-top: 10px;
+  }
+  .section-{{ section.id }}  .b-skincare-subtitle{
+    font-size: 19px;
+    color: #7E7E7E;
+  }
+  .section-{{ section.id }}  .b-skincare-subtitle strong{
+    color: #1B1B1B;
+  }
+
+  .section-{{ section.id }} .skincare-finds-swiper-pagination-{{ section.id }}{
+    top: unset !important;
+    background: #F5F5F5;
+    z-index: 1;
+  }
+  .section-{{ section.id }} .skincare-finds-swiper-pagination-{{ section.id }} .swiper-pagination-progressbar-fill{
+    background: #6E6E6E !important;
+  }
+
+  .section-{{ section.id }}  .view-all-continer-btn{
+    color: #000;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    background: #FFF;
+    text-align: center;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card {
+    border-radius: 4px;
+    background: #FFF;
+    box-shadow: 0px 2px 10px 0px rgba(40, 84, 102, 0.25);
+    transition: 0.3s;
+    overflow: hidden;
+  }
+  .section-{{ section.id }} .skincare-offer-card .content{
+    padding: 24px;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .skincare-brand-line {
+    margin-bottom: 8px;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+  }
+  .section-{{ section.id }} .skincare-brand-line img {
+    width: 120px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .discount-text {
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .section-{{ section.id }} .skincare-offer-card .tagline-phrase {
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .img-fluid.image_card_brand{ padding: 10px; }
+
+  /* ==============================
+     FULL WIDTH CAROUSEL + LEFT PADDING (container aligned)
+     ============================== */
+  .section-{{ section.id }} .carousel-fullbleed-{{ section.id }}{
+    width: 100%;
+  }
+  .section-{{ section.id }} #product-slider-{{ section.id }}{
+    width: 100%;
+    overflow: visible;
+    /* default fallback */
+    --carousel-left-pad: 16px;
+    --carousel-right-pad: 16px;
+  }
+  .section-{{ section.id }} #product-slider-{{ section.id }} .swiper-wrapper{
+    box-sizing: border-box;
+  }
+  .section-{{ section.id }} #product-slider-{{ section.id }}{
+    padding-left: var(--carousel-left-pad);
+    padding-right: var(--carousel-right-pad);
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}  .b-skincare-vendor {
+      font-size: 16px;
+      line-height: 20px;
+      margin-top: 4px;
+    }
+    .section-{{ section.id }} .b-skincare-subtitle {
+      font-size: 11px;
+      text-overflow: ellipsis;
+      height: 30px;
+      overflow: hidden;
+    }
+    .section-{{ section.id }}  .view-all-continer-btn{
+      font-size: 13px;
+      width: 100%;
+    }
+    .section-{{ section.id }} .skincare-brand-line img {
+      width: 90px;
+      height: 24px;
+    }
+    .section-{{ section.id }} .skincare-offer-card .content {
+      padding: 18px;
+    }
+    .section-{{ section.id }} .skincare-offer-card .discount-text {
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    .section-{{ section.id }} .skincare-offer-card .tagline-phrase {
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* Mobile padding a bit tighter */
+    .section-{{ section.id }} #product-slider-{{ section.id }}{
+      --carousel-left-pad: 16px;
+      --carousel-right-pad: 16px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .section-{{ section.id }}-margin  {
+      margin-top: {{ section.settings.margin_top_mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding-top: {{ section.settings.padding_text_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_text_bottom_mobile }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% liquid
+  assign num_slides_sm = section.settings['num-slides-sm']
+  assign num_slides_md = section.settings['num-slides-md']
+  assign num_slides_lg = section.settings['num-slides-lg']
+  assign num_slides_xl = section.settings['num-slides-xl']
+  assign num_slides_2xl = section.settings['num-slides-2xl']
+%}
+
+<div class="section-{{ section.id }}-margin section-{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
+  
+  {%- comment -%} TITLE AREA (container only) {%- endcomment -%}
+  <div class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %} carousel-section-wrapper{% if section.settings.addInnerPadding %} spacing_handler{% endif %} scroll-trigger animate--fade-in">
+    {% if section.settings['coll-title'] %}
+      <div class="carousel-section-title-wrapper d-flex justify-content-between align-items-end w-100">
+        <p class="carousel-sub-title">{{ section.settings['coll-title'] }}</p>
+
+        {% if section.settings['button-title'] and section.settings['button-url'] %}
+          <a href="{{ section.settings.button-url }}" class="view-all-continer-btn desktop_screen">
+            {{- section.settings['button-title'] -}}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  {%- comment -%} CAROUSEL AREA (FULL WIDTH OUTSIDE CONTAINER) {%- endcomment -%}
+  <div class="carousel-nav-wrapper carousel-fullbleed-{{ section.id }}">
+    <div id="product-slider-{{ section.id }}" class="carousel-wrapper-outer swiper">
+      <div class="carousel-wrapper-inner swiper-wrapper">
+        {% for block in section.blocks %}
+          {% assign section_block = block.settings %}
+          <div class="swiper-slide">
+            {% case block.type %}
+              {% when 'content' %}
+                <a href="{{ section_block.url }}">
+                  <div class="content-item">
+                    <div class="b-product_promo_tile">
+                      <img
+                        class="img-fluid"
+                        src="{{ section_block.image | image_url }}"
+                        alt="{{ section_block.title }}"
+                        title="{{ section_block.title }}"
+                        width="100%"
+                        loading="lazy"
+                        height="100%"
+                      >
+                      <p class="b-skincare-vendor">{{- section_block.title -}}</p>
+                      <div class="b-skincare-subtitle">{{- section_block.subtitle -}}</div>
+                    </div>
+                  </div>
+                </a>
+
+              {% when 'cards' %}
+                <a href="{{ section_block.url }}">
+                  <div class="skincare-offer-card">
+                    <img
+                      class="img-fluid image_card_brand"
+                      src="{{ section_block.image | image_url }}"
+                      alt="{{ section_block.title }}"
+                      title="{{ section_block.title }}"
+                      width="100%"
+                      loading="lazy"
+                      height="100%"
+                    >
+
+                    <div class="content">
+                      <div class="skincare-brand-line">
+                        <span class="brand">
+                          <img
+                            class="img-fluid"
+                            src="{{ section_block.logo | image_url }}"
+                            alt="{{ section_block.title }}"
+                            title="{{ section_block.title }}"
+                            width="100%"
+                            loading="lazy"
+                            height="34"
+                          >
+                        </span>
+
+                        
+                       
+                          <span class="discount-text">{{ section_block.title }}</span>
+                      
+                      </div>
+
+                      <div class="tagline-phrase">{{ section_block.subtitle }}</div>
+                    </div>
+                  </div>
+                </a>
+            {% endcase %}
+          </div>
+        {% endfor %}
+      </div>
+       <div class="swiper-pagination skincare-finds-swiper-pagination-{{ section.id }}"><br></div>
+    </div>
+
+   
+  </div>
+
+  {%- comment -%} MOBILE BUTTON (container) {%- endcomment -%}
+  {% if section.settings['button-title'] and section.settings['button-url'] %}
+    <div class="{% if section.settings.showContainer %}{{ section.settings.showContainer }}{% endif %}">
+      <a
+        href="{{ section.settings.button-url }}"
+        class="view-all-continer-btn mobile_screen"
+        style="padding: 10px 51px;"
+      >
+        {{- section.settings['button-title'] -}}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  {% assign section_unique_name = section.id | remove: '-' | remove: '_' %}
+
+  var sliderSelector{{ section_unique_name }} = '#product-slider-{{ section.id }}';
+  var sliderEl{{ section_unique_name }} = document.querySelector(sliderSelector{{ section_unique_name }});
+  if (!sliderEl{{ section_unique_name }}) return;
+
+  // Slides per view
+  var numSlidesSm{{ section_unique_name }}  = parseFloat('{{ num_slides_sm }}')  || 1;
+  var numSlidesMd{{ section_unique_name }}  = parseFloat('{{ num_slides_md }}')  || 3;
+  var numSlidesLg{{ section_unique_name }}  = parseFloat('{{ num_slides_lg }}')  || 3;
+  var numSlidesXl{{ section_unique_name }}  = parseFloat('{{ num_slides_xl }}')  || 3;
+  var numSlides2xl{{ section_unique_name }} = parseFloat('{{ num_slides_2xl }}') || 3.5;
+
+  // Set left + right padding to align with .container gutters
+  function setCarouselPadding{{ section_unique_name }}() {
+    var sectionRoot = sliderEl{{ section_unique_name }}.closest('.section-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    var containerEl = sectionRoot.querySelector('.container');
+    var leftPad = 16;
+    var rightPad = 16;
+
+    if (containerEl) {
+      var rect = containerEl.getBoundingClientRect();
+      leftPad = Math.max(16, Math.round(rect.left));
+      rightPad = Math.max(16, Math.round(window.innerWidth - rect.right));
+    }
+
+    sliderEl{{ section_unique_name }}.style.setProperty('--carousel-left-pad', leftPad + 'px');
+    sliderEl{{ section_unique_name }}.style.setProperty('--carousel-right-pad', rightPad + 'px');
+  }
+
+  setCarouselPadding{{ section_unique_name }}();
+  window.addEventListener('resize', setCarouselPadding{{ section_unique_name }});
+
+  // Swiper Init
+  var swiper{{ section_unique_name }} = new Swiper(sliderSelector{{ section_unique_name }}, {
+    spaceBetween: 20,
+    slidesPerGroup: 1,
+    speed: parseInt('{{ section.settings.slide_speed | remove: "px" }}', 10) || 500,
+    slidesPerView: numSlidesSm{{ section_unique_name }},
+    centeredSlides: {{ section.settings.showCenter | default: false }},
+    freeMode: {{ section.settings.showFreeScroll | default: false }},
+    loop: {{ section.settings.loop | default: true }},
+    pagination: {
+      el: ".skincare-finds-swiper-pagination-{{ section.id }}",
+      type: "progressbar",
+    },
+    breakpoints: {
+      768:  { slidesPerView: numSlidesMd{{ section_unique_name }},  slidesPerGroup: 1 },
+      1024: { slidesPerView: numSlidesLg{{ section_unique_name }},  spaceBetween: 20 },
+      1280: { slidesPerView: numSlidesXl{{ section_unique_name }},  spaceBetween: 10 },
+      1536: { slidesPerView: numSlides2xl{{ section_unique_name }}, spaceBetween: 10 }
+    }
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Skincare Finds",
+  "class": "brand image with logo",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "showContainer",
+      "label": "Choose Container Style",
+      "options": [
+        { "value": "full-width", "label": "Show Full Container" },
+        { "value": "container", "label": "Show FrameWork Container" }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "coll-title",
+      "label": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "button-title",
+      "label": "Button Title"
+    },
+    {
+      "type": "url",
+      "id": "button-url",
+      "label": "Button url"
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "min": 100,
+      "max": 800,
+      "step": 100,
+      "unit": "px",
+      "label": "Slider Speed",
+      "default": 500
+    },
+    {
+      "type": "checkbox",
+      "id": "showCenter",
+      "label": "Show Center Container",
+      "info": "If enabled, Container will show in center",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "showFreeScroll",
+      "label": "Free Scroll Container",
+      "info": "If enabled, Free scroll will be enabled",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Infinite Loop",
+      "info": "If enabled, Infinite container will enabled",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_text_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_text_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "number",
+      "id": "slides-limit",
+      "label": "Total Num of Slides",
+      "default": 7
+    },
+    {
+      "type": "text",
+      "id": "num-slides-sm",
+      "label": "Num Slides on sm Devices",
+      "default": "1",
+      "info": "Rounded to one decimal point. Breakpoint none"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-md",
+      "label": "Num Slides on md Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 768px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-lg",
+      "label": "Num Slides on lg Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1024px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-xl",
+      "label": "Num Slides on xl Devices",
+      "default": "3",
+      "info": "Rounded to one decimal point. Breakpoint 1280px"
+    },
+    {
+      "type": "text",
+      "id": "num-slides-2xl",
+      "label": "Num Slides on 2xl Devices",
+      "default": "3.5",
+      "info": "Rounded to one decimal point. Breakpoint 1536px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "content",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Brand Image" },
+        { "type": "url", "id": "url", "label": "Brand URL" },
+        { "type": "text", "id": "title", "label": "Brand Title" },
+        { "type": "richtext", "id": "subtitle", "label": "Brand Sub Title" }
+      ]
+    },
+    {
+      "type": "cards",
+      "name": "cards",
+      "settings": [
+        { "type": "url", "id": "url", "label": "Brand URL" },
+        { "type": "image_picker", "id": "image", "label": "Brand Image" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Brand Image" },
+        { "type": "image_picker", "id": "logo", "label": "Brand Image" },
+        { "type": "text", "id": "title", "label": "Brand Title" },
+        { "type": "text", "id": "subtitle", "label": "Brand Sub Title" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "brand image with logo" }
+  ]
+}
+{% endschema %}
