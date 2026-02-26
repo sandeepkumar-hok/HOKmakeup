@@ -99,15 +99,30 @@
       {% unless showCross %}
         {% unless pdptag %}
         <div class="custom_label_badge">
+          {% assign has_new = false %}
+
           {% for tags in product.tags %}
-            {% comment %} This should be remove on 28 feb @Pooja_Yadav {% endcomment %}
             {% if tags contains '_label_New' %}
-              <div class="custom_badges" style="background-color: #FF52A9">NEW IN</div>
+              {% assign has_new = true %}
             {% endif %}
+          {% endfor %}
+
+          {% if has_new %}
+            <div class="custom_badges" style="background-color: #FF52A9">
+              NEW IN
+            </div>
+          {% endif %}
+
+          {% for tags in product.tags %}
+            {% if tags contains 'ani_' %}
+              <div class="custom_badges animate" style="background-color: {{ tags |  split: "#" |  last }}">
+                {{ tags | remove: 'ani_' | upcase | replace: "_", " " |  split: "@" |  first  }}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          {% for tags in product.tags %}
             {% if tags contains 'label' %}
-              {% comment %} This unless condition should be remove on 28 feb
-              New arrivals Tags are working on Automation 
-              {% endcomment %}
               {% unless tags contains '_label_New' %}
                 <p
                   class="custom_badges"
@@ -273,3 +288,36 @@
    
  
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".custom_label_badge").forEach(function(wrapper) {
+    const allBadges = wrapper.querySelectorAll(".custom_badges");
+    const staticBadge = wrapper.querySelector(".custom_badges:not(.animate)");
+
+    if (allBadges.length <= 1) return;
+    let current = 0;
+
+    allBadges.forEach(el => el.classList.remove("is-visible"));
+    if (staticBadge) staticBadge.classList.remove("has-animation");
+
+    allBadges[current].classList.add("is-visible");
+    if (allBadges[current].classList.contains("animate") && staticBadge) {
+      staticBadge.classList.add("has-animation");
+    }
+
+    setInterval(function() {
+      if (allBadges[current].classList.contains("animate") && staticBadge) {
+        staticBadge.classList.remove("has-animation");
+      }
+      allBadges[current].classList.remove("is-visible");
+      current = (current + 1) % allBadges.length;
+      allBadges[current].classList.add("is-visible");
+      if (allBadges[current].classList.contains("animate") && staticBadge) {
+        staticBadge.classList.add("has-animation");
+      }
+    }, 2000);
+  });
+});
+</script>
