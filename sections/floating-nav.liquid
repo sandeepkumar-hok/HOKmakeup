@@ -142,11 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
     accountLink.addEventListener('click', function (e) {
       e.preventDefault();
 
-      if (typeof shipRocketMarketingLogin === 'function') {
-        shipRocketMarketingLogin();
-      } else {
+     
         window.location.href = '/account/login';
-      }
+      
     });
   }
 });
