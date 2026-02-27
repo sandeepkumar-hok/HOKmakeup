@@ -1,5 +1,5 @@
 {% comment %} toastify_notication/ Snackbar {% endcomment %}
-<div id="toastifies" class="toastify_notication d-center" style="display:none" >
+<div id="toastifies" class="toastify_notication d-center" style="display:none" onclick="openDrawer()">
     <div class="hok-toast d-center gap-3">
         <div class="hok-toast__icon" aria-hidden="true">
           <!-- Check icon -->
@@ -11,9 +11,9 @@
           <p class="hok-toast__sub">Review before checkout</p>
         </div>
 
-        {% comment %} <button class="hok-toast__btn btn" type="button">
+         <p class="hok-toast__btn">
           View Bag
-        </button> {% endcomment %}
+        </p>
       </div>
   </div>
   {% comment %} Loading Screen Animation  {% endcomment %}
@@ -21,3 +21,9 @@
     <img class="mobile_screen" src="https://cdn.shopify.com/s/files/1/1743/7443/files/Comp_1_1.gif?v=1686723543" width="100%" height="100%" alt="background Loading Animation"/>
     <img class="desktop_screen" src="https://cdn.shopify.com/s/files/1/1743/7443/files/desktop_size.gif?v=1686723901" width="100%" height="100%" alt="background Loading Animation"/>
 </div>
+
+<script>
+  function openDrawer() {
+    document.querySelector(".b-mini_cart-link")?.click();
+  }
+</script>
