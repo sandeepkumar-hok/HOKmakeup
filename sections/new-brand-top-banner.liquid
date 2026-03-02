@@ -1,0 +1,221 @@
+<style>
+.beauty-section {
+  padding-top: {{ section.settings.padding_top_desktop }}px;
+  padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+  background: #fff;
+}
+
+.beauty-wrapper {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.beauty-text {
+  position: absolute;
+  left: 50%;
+  top: 130px;
+  transform: translate(-50%);
+}
+/* TEXT */
+.beauty-label {
+  display: inline-block;
+  background: #f8c9d6;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.beauty-heading {
+  color: #0A0A0A;
+  text-align: center;
+  font-family: "Vinila Condensed Test";
+  font-size: 6vw;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.beauty-subtext {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 20px auto 40px;
+  color: #555;
+}
+
+/* IMAGE */
+.beauty-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Show Desktop Image by default */
+.mobile-image {
+  display: none;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+  .beauty-text {
+    top: 50px;
+    left: unset;
+    margin: 0 40px;
+    transform: unset;
+  }
+
+  .beauty-section {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .beauty-heading {
+    font-size: 32px;
+  }
+
+  .beauty-subtext {
+    font-size: 15px;
+  }
+
+  .desktop-image {
+    display: none;
+  }
+
+  .mobile-image {
+    display: block;
+  }
+}
+</style>
+
+<section class="beauty-section">
+  <div class="beauty-wrapper">
+
+    <!-- TEXT CONTENT -->
+    <div class="beauty-text">
+      {% if section.settings.small_text != blank %}
+        <span class="beauty-label">
+          {{ section.settings.small_text }}
+        </span>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="beauty-heading">
+          <span class="beauty-heading-top-text">{{ section.settings.heading }}</span>
+          <br>
+          <span class="beauty-heading-bottom-text">{{ section.settings.highlitedHeading }}</span>
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subtext != blank %}
+        <p class="beauty-subtext">
+          {{ section.settings.subtext }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- IMAGE -->
+    <div class="beauty-image">
+      {% if section.settings.desktop_image != blank %}
+        <img 
+          class="desktop-image"
+          src="{{ section.settings.desktop_image | image_url: width: 2000 }}"
+          alt=""
+          loading="lazy"
+        >
+      {% endif %}
+
+      {% if section.settings.mobile_image != blank %}
+        <img 
+          class="mobile-image"
+          src="{{ section.settings.mobile_image | image_url: width: 1000 }}"
+          alt=""
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Top Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "small_text",
+      "label": "Top Label",
+      "default": "SINCE 2012"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Beauty is a "
+    },
+    {
+      "type": "text",
+      "id": "highlitedHeading",
+      "label": "Highlited Heading",
+      "default": "conversation"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Sub Text",
+      "default": "Between you and the brands that understand your story. Each one crafted by dreamers, believers, and artists."
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Top Banner"
+    }
+  ]
+}
+{% endschema %}

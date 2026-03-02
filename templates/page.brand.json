@@ -1,1 +1,375 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"custom_css":["p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}","h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"],"settings":{"padding_top":28,"padding_bottom":28}},"brand_grid_MBzAit":{"type":"brand-grid","blocks":{"52589991-d8c3-4398-b07f-b196a544dbc8":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38736_3.jpg","clubImgmob":"shopify:\/\/shop_images\/Frame_38742.jpg","slid_img":"https:\/\/hokmakeup.com\/collections\/carbon-theory"}},"image_hgLKfP":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38734.jpg","clubImgmob":"shopify:\/\/shop_images\/aakkk.jpg","slid_img":"https:\/\/hokmakeup.com\/collections\/focallure-beauty"}},"image_CkVdmm":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38735_1.jpg","clubImgmob":"shopify:\/\/shop_images\/unnamed.webp","slid_img":"https:\/\/hokmakeup.com\/collections\/pink-flash"}},"image_wCLK3B":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38737_2.jpg","clubImgmob":"shopify:\/\/shop_images\/Frame_38741_5.jpg","slid_img":"shopify:\/\/collections\/dr-paw-paw"}},"image_NcxkzW":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/lamel.svg","clubImgmob":"shopify:\/\/shop_images\/lamel-1.svg","slid_img":"shopify:\/\/collections\/lamel"}},"d0b4b038-3382-4741-ad43-fd8a556e82d0":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/1_38ac6ad4-7453-4137-bde2-d693784a8672.svg","clubImgmob":"shopify:\/\/shop_images\/1.svg","slid_img":"shopify:\/\/collections\/makeup-revolution"}},"6a6ca289-0822-4d01-8239-1e73ceaa9ea6":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/2_d6b9edd4-b260-4d7b-85a4-5169139fd489.svg","clubImgmob":"shopify:\/\/shop_images\/2.svg","slid_img":"shopify:\/\/collections\/milani"}},"511ae696-507d-413b-bac5-693edb597be8":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/3_e2ee4d62-f128-4ba7-883c-a388a24a5646.svg","clubImgmob":"shopify:\/\/shop_images\/3.svg","slid_img":"shopify:\/\/collections\/la-girl"}},"fb001243-a34b-4ecd-8f3a-4676cb8c9f04":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/4_988cb5d4-3c97-45c8-8b5e-0fac1450b8e0.svg","clubImgmob":"shopify:\/\/shop_images\/4.svg","slid_img":"shopify:\/\/collections\/bh-cosmetics"}},"945a58af-ec6e-44c7-9673-10ecc3d9879b":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/5_fd517b16-4cef-46b7-96ff-8dafcbe6c0ed.svg","clubImgmob":"shopify:\/\/shop_images\/5.svg","slid_img":"shopify:\/\/collections\/wet-n-wild"}},"2e214bca-c06b-43b5-bf98-90af42130e47":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/6_f6fb96de-14d4-4611-ab08-242ff6de192a.svg","clubImgmob":"shopify:\/\/shop_images\/6.svg","slid_img":"shopify:\/\/collections\/pigment-play"}},"74c64800-0614-4283-b3ec-8687701eb7be":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/7_e74fc05d-c2ed-4462-8e1f-14b85c31af3e.svg","clubImgmob":"shopify:\/\/shop_images\/7.svg","slid_img":"shopify:\/\/collections\/lord-and-berry"}},"44d3b282-a02a-4f07-8b99-abfbf055416e":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/8_7a9bd7f7-4539-4983-97db-b380e0758677.svg","clubImgmob":"shopify:\/\/shop_images\/8.svg","slid_img":"shopify:\/\/collections\/revolution-relove"}},"a911b3f8-9ed8-490f-8537-0c4cad892dc9":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/9_501fee0e-45c2-4e98-929e-b9df259ee958.svg","clubImgmob":"shopify:\/\/shop_images\/9.svg","slid_img":"shopify:\/\/collections\/la-colors"}},"3117addb-770f-4ef5-bf57-aa8166e06851":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/10_7d3ffc17-fa08-4986-a227-f26af33c7ec0.svg","clubImgmob":"shopify:\/\/shop_images\/10.svg","slid_img":"shopify:\/\/collections\/lip-smacker"}},"aa61c5fa-3e78-47ee-acf9-aa200fedafc9":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/11_0b9c6fc0-e866-4f86-bb66-101f782a8fde.svg","clubImgmob":"shopify:\/\/shop_images\/11.svg","slid_img":"shopify:\/\/collections\/physician-formula"}},"36be1dd6-7a4a-40f4-8653-41bffeeda22b":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/12_b7a76849-1e9e-4f32-9950-3689e6af6085.svg","clubImgmob":"shopify:\/\/shop_images\/12.svg","slid_img":"shopify:\/\/collections\/nicka-k"}},"a47d0a47-1f8e-49ed-8620-d10d3c546274":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/13_4bde913e-8a8c-425e-bc1d-34431aa42053.svg","clubImgmob":"shopify:\/\/shop_images\/13.svg","slid_img":"shopify:\/\/collections\/xx-revolution"}},"b14a895e-74e9-4d0c-a83f-b26a7bb11f63":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/14_625246bc-0353-43c8-9539-effd1f0e6a10.svg","clubImgmob":"shopify:\/\/shop_images\/14.svg","slid_img":"shopify:\/\/collections\/makeup-obsession"}},"614f561f-04e3-4500-b6fc-bc0bae9fe457":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/15_44bfe8eb-c01e-4887-82c0-b1324a52a7ef.svg","clubImgmob":"shopify:\/\/shop_images\/15.svg","slid_img":"shopify:\/\/collections\/revolution-pro"}},"83e72947-81cc-4e9d-acb2-4d0ed972aa2c":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/16_e106591e-4225-4af5-bfbc-569e201af366.svg","clubImgmob":"shopify:\/\/shop_images\/16.svg","slid_img":"shopify:\/\/collections\/i-heart-revolution"}}},"block_order":["52589991-d8c3-4398-b07f-b196a544dbc8","image_hgLKfP","image_CkVdmm","image_wCLK3B","image_NcxkzW","d0b4b038-3382-4741-ad43-fd8a556e82d0","6a6ca289-0822-4d01-8239-1e73ceaa9ea6","511ae696-507d-413b-bac5-693edb597be8","fb001243-a34b-4ecd-8f3a-4676cb8c9f04","945a58af-ec6e-44c7-9673-10ecc3d9879b","2e214bca-c06b-43b5-bf98-90af42130e47","74c64800-0614-4283-b3ec-8687701eb7be","44d3b282-a02a-4f07-8b99-abfbf055416e","a911b3f8-9ed8-490f-8537-0c4cad892dc9","3117addb-770f-4ef5-bf57-aa8166e06851","aa61c5fa-3e78-47ee-acf9-aa200fedafc9","36be1dd6-7a4a-40f4-8653-41bffeeda22b","a47d0a47-1f8e-49ed-8620-d10d3c546274","b14a895e-74e9-4d0c-a83f-b26a7bb11f63","614f561f-04e3-4500-b6fc-bc0bae9fe457","83e72947-81cc-4e9d-acb2-4d0ed972aa2c"],"settings":{"show_slider_carousel":true,"intro_text_desk":"Your one-stop destination for the most luxurious and high-quality beauty brands from all over the world. We believe that beauty should be accessible to everyone, and we strive to bring you the latest and most innovative products from around the globe. Our brand portfolio comprises some of the most renowned global brands and a range of carefully curated in-house brands in the beauty industry.","intro_text_mob":"Your one-stop destination for the most luxurious and high-quality beauty brands from all over the world. We believe that beauty should be accessible to everyone, and we strive to bring you the latest and most innovative products from around the globe.","brand_text_heading":"MAKEUP BRANDS","brand_is_image_desk":"shopify:\/\/shop_images\/everything_Desktop.svg","brand_is_image_mobile":"shopify:\/\/shop_images\/everything_mobile.svg","text_color":"#d887ad"}},"brand_grid_g98dCV":{"type":"brand-grid","blocks":{"3a7a3258-7b43-4e6a-b643-4a0dab1195d0":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38736_7.jpg","clubImgmob":"shopify:\/\/shop_images\/Frame_38742_1_75bd5a08-9b49-4c20-8fc3-e0a27410b14a.jpg","slid_img":"https:\/\/hokmakeup.com\/collections\/carbon-theory"}},"image_gCibGj":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/Frame_38737_1.jpg","clubImgmob":"shopify:\/\/shop_images\/Frame_38741_6.jpg","slid_img":"shopify:\/\/collections\/dr-paw-paw"}},"image_LcwbKp":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/dektop.svg","clubImgmob":"shopify:\/\/shop_images\/mobile.svg","slid_img":"shopify:\/\/collections\/eveline-cosmetics"}},"45f69e83-c543-4bec-83eb-b162c914b9fd":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/1-1.svg","clubImgmob":"shopify:\/\/shop_images\/a.svg","slid_img":"shopify:\/\/collections\/revolution-skincare"}},"b97c7eb9-2b88-4f25-9d4b-d2ba1b58966b":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/2-1.svg","clubImgmob":"shopify:\/\/shop_images\/b.svg","slid_img":"shopify:\/\/collections\/organic-works"}},"0ef2473c-ac6b-4bf3-8a91-328dd366a7c8":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/3-1.svg","clubImgmob":"shopify:\/\/shop_images\/c.svg","slid_img":"shopify:\/\/collections\/koric"}},"134eb4b5-4a8f-4245-9c63-502cee97d2f5":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/4-1.svg","clubImgmob":"shopify:\/\/shop_images\/d.svg","slid_img":"shopify:\/\/collections\/derma-e"}},"93ecfe61-462f-40e7-af98-740f17dae6ae":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/5-1.svg","clubImgmob":"shopify:\/\/shop_images\/e.svg","slid_img":"shopify:\/\/collections\/revolution-hair-care"}},"f4a42faa-db24-4e65-945b-e40770345424":{"type":"image","settings":{"clubImg":"shopify:\/\/shop_images\/6-1.svg","clubImgmob":"shopify:\/\/shop_images\/f.svg","slid_img":"shopify:\/\/collections\/revolution-man"}},"b1768ff4-71c3-4f67-986c-8d35bb206c1b":{"type":"image","disabled":true,"settings":{"clubImg":"shopify:\/\/shop_images\/7-1.svg","clubImgmob":"shopify:\/\/shop_images\/g.svg","slid_img":"shopify:\/\/collections\/superdrug"}}},"block_order":["3a7a3258-7b43-4e6a-b643-4a0dab1195d0","image_gCibGj","image_LcwbKp","45f69e83-c543-4bec-83eb-b162c914b9fd","b97c7eb9-2b88-4f25-9d4b-d2ba1b58966b","0ef2473c-ac6b-4bf3-8a91-328dd366a7c8","134eb4b5-4a8f-4245-9c63-502cee97d2f5","93ecfe61-462f-40e7-af98-740f17dae6ae","f4a42faa-db24-4e65-945b-e40770345424","b1768ff4-71c3-4f67-986c-8d35bb206c1b"],"custom_css":["#marB {margin-bottom: 2rem;}"],"settings":{"show_slider_carousel":false,"intro_text_desk":"","intro_text_mob":"","brand_text_heading":"EVERYDAY ESSENTIALS","text_color":"#7b7b7b"}},"floating_nav_qQHLND":{"type":"floating-nav","name":"Floating Bar","settings":{"menu":"main-menu"}}},"order":["main","brand_grid_MBzAit","brand_grid_g98dCV","floating_nav_qQHLND"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "p,div,.h2,.h3,.h4,.h5,.h6,h2,h3,h4,h5,h6 {font-size: 1.5rem !important;}",
+        "h1 {font-family: var(--header-family); font-size: clamp(3rem, 2vw, 4rem); color: #000; letter-spacing: 2px; margin-bottom: clamp(2rem, 2vw, 4rem);}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "new_brand_top_banner_t8tRgU": {
+      "type": "new-brand-top-banner",
+      "name": "Brand Top Banner",
+      "settings": {
+        "small_text": "SINCE 2012",
+        "heading": "Beauty is a",
+        "highlitedHeading": "conversation",
+        "subtext": "Between you and the brands that understand your story. Each one crafted by dreamers, believers, and artists.",
+        "desktop_image": "shopify://shop_images/header_banne_r.jpg",
+        "mobile_image": "shopify://shop_images/mobile_banner_a3f5447d-0f42-4756-8f7e-9c7ebb4be43f.jpg",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 50,
+        "padding_bottom_mobile": 50
+      }
+    },
+    "brand_grid_MBzAit": {
+      "type": "brand-grid",
+      "blocks": {
+        "52589991-d8c3-4398-b07f-b196a544dbc8": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38736_3.jpg",
+            "clubImgmob": "shopify://shop_images/Frame_38742.jpg",
+            "slid_img": "https://hokmakeup.com/collections/carbon-theory"
+          }
+        },
+        "image_hgLKfP": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38734.jpg",
+            "clubImgmob": "shopify://shop_images/aakkk.jpg",
+            "slid_img": "https://hokmakeup.com/collections/focallure-beauty"
+          }
+        },
+        "image_CkVdmm": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38735_1.jpg",
+            "clubImgmob": "shopify://shop_images/unnamed.webp",
+            "slid_img": "https://hokmakeup.com/collections/pink-flash"
+          }
+        },
+        "image_wCLK3B": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38737_2.jpg",
+            "clubImgmob": "shopify://shop_images/Frame_38741_5.jpg",
+            "slid_img": "shopify://collections/dr-paw-paw"
+          }
+        },
+        "image_NcxkzW": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/lamel.svg",
+            "clubImgmob": "shopify://shop_images/lamel-1.svg",
+            "slid_img": "shopify://collections/lamel"
+          }
+        },
+        "d0b4b038-3382-4741-ad43-fd8a556e82d0": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/1_38ac6ad4-7453-4137-bde2-d693784a8672.svg",
+            "clubImgmob": "shopify://shop_images/1.svg",
+            "slid_img": "shopify://collections/makeup-revolution"
+          }
+        },
+        "6a6ca289-0822-4d01-8239-1e73ceaa9ea6": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/2_d6b9edd4-b260-4d7b-85a4-5169139fd489.svg",
+            "clubImgmob": "shopify://shop_images/2.svg",
+            "slid_img": "shopify://collections/milani"
+          }
+        },
+        "511ae696-507d-413b-bac5-693edb597be8": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/3_e2ee4d62-f128-4ba7-883c-a388a24a5646.svg",
+            "clubImgmob": "shopify://shop_images/3.svg",
+            "slid_img": "shopify://collections/la-girl"
+          }
+        },
+        "fb001243-a34b-4ecd-8f3a-4676cb8c9f04": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/4_988cb5d4-3c97-45c8-8b5e-0fac1450b8e0.svg",
+            "clubImgmob": "shopify://shop_images/4.svg",
+            "slid_img": "shopify://collections/bh-cosmetics"
+          }
+        },
+        "945a58af-ec6e-44c7-9673-10ecc3d9879b": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/5_fd517b16-4cef-46b7-96ff-8dafcbe6c0ed.svg",
+            "clubImgmob": "shopify://shop_images/5.svg",
+            "slid_img": "shopify://collections/wet-n-wild"
+          }
+        },
+        "2e214bca-c06b-43b5-bf98-90af42130e47": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/6_f6fb96de-14d4-4611-ab08-242ff6de192a.svg",
+            "clubImgmob": "shopify://shop_images/6.svg",
+            "slid_img": "shopify://collections/pigment-play"
+          }
+        },
+        "74c64800-0614-4283-b3ec-8687701eb7be": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/7_e74fc05d-c2ed-4462-8e1f-14b85c31af3e.svg",
+            "clubImgmob": "shopify://shop_images/7.svg",
+            "slid_img": "shopify://collections/lord-and-berry"
+          }
+        },
+        "44d3b282-a02a-4f07-8b99-abfbf055416e": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/8_7a9bd7f7-4539-4983-97db-b380e0758677.svg",
+            "clubImgmob": "shopify://shop_images/8.svg",
+            "slid_img": "shopify://collections/revolution-relove"
+          }
+        },
+        "a911b3f8-9ed8-490f-8537-0c4cad892dc9": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/9_501fee0e-45c2-4e98-929e-b9df259ee958.svg",
+            "clubImgmob": "shopify://shop_images/9.svg",
+            "slid_img": "shopify://collections/la-colors"
+          }
+        },
+        "3117addb-770f-4ef5-bf57-aa8166e06851": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/10_7d3ffc17-fa08-4986-a227-f26af33c7ec0.svg",
+            "clubImgmob": "shopify://shop_images/10.svg",
+            "slid_img": "shopify://collections/lip-smacker"
+          }
+        },
+        "aa61c5fa-3e78-47ee-acf9-aa200fedafc9": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/11_0b9c6fc0-e866-4f86-bb66-101f782a8fde.svg",
+            "clubImgmob": "shopify://shop_images/11.svg",
+            "slid_img": "shopify://collections/physician-formula"
+          }
+        },
+        "36be1dd6-7a4a-40f4-8653-41bffeeda22b": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/12_b7a76849-1e9e-4f32-9950-3689e6af6085.svg",
+            "clubImgmob": "shopify://shop_images/12.svg",
+            "slid_img": "shopify://collections/nicka-k"
+          }
+        },
+        "a47d0a47-1f8e-49ed-8620-d10d3c546274": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/13_4bde913e-8a8c-425e-bc1d-34431aa42053.svg",
+            "clubImgmob": "shopify://shop_images/13.svg",
+            "slid_img": "shopify://collections/xx-revolution"
+          }
+        },
+        "b14a895e-74e9-4d0c-a83f-b26a7bb11f63": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/14_625246bc-0353-43c8-9539-effd1f0e6a10.svg",
+            "clubImgmob": "shopify://shop_images/14.svg",
+            "slid_img": "shopify://collections/makeup-obsession"
+          }
+        },
+        "614f561f-04e3-4500-b6fc-bc0bae9fe457": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/15_44bfe8eb-c01e-4887-82c0-b1324a52a7ef.svg",
+            "clubImgmob": "shopify://shop_images/15.svg",
+            "slid_img": "shopify://collections/revolution-pro"
+          }
+        },
+        "83e72947-81cc-4e9d-acb2-4d0ed972aa2c": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/16_e106591e-4225-4af5-bfbc-569e201af366.svg",
+            "clubImgmob": "shopify://shop_images/16.svg",
+            "slid_img": "shopify://collections/i-heart-revolution"
+          }
+        }
+      },
+      "block_order": [
+        "52589991-d8c3-4398-b07f-b196a544dbc8",
+        "image_hgLKfP",
+        "image_CkVdmm",
+        "image_wCLK3B",
+        "image_NcxkzW",
+        "d0b4b038-3382-4741-ad43-fd8a556e82d0",
+        "6a6ca289-0822-4d01-8239-1e73ceaa9ea6",
+        "511ae696-507d-413b-bac5-693edb597be8",
+        "fb001243-a34b-4ecd-8f3a-4676cb8c9f04",
+        "945a58af-ec6e-44c7-9673-10ecc3d9879b",
+        "2e214bca-c06b-43b5-bf98-90af42130e47",
+        "74c64800-0614-4283-b3ec-8687701eb7be",
+        "44d3b282-a02a-4f07-8b99-abfbf055416e",
+        "a911b3f8-9ed8-490f-8537-0c4cad892dc9",
+        "3117addb-770f-4ef5-bf57-aa8166e06851",
+        "aa61c5fa-3e78-47ee-acf9-aa200fedafc9",
+        "36be1dd6-7a4a-40f4-8653-41bffeeda22b",
+        "a47d0a47-1f8e-49ed-8620-d10d3c546274",
+        "b14a895e-74e9-4d0c-a83f-b26a7bb11f63",
+        "614f561f-04e3-4500-b6fc-bc0bae9fe457",
+        "83e72947-81cc-4e9d-acb2-4d0ed972aa2c"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_slider_carousel": true,
+        "intro_text_desk": "Your one-stop destination for the most luxurious and high-quality beauty brands from all over the world. We believe that beauty should be accessible to everyone, and we strive to bring you the latest and most innovative products from around the globe. Our brand portfolio comprises some of the most renowned global brands and a range of carefully curated in-house brands in the beauty industry.",
+        "intro_text_mob": "Your one-stop destination for the most luxurious and high-quality beauty brands from all over the world. We believe that beauty should be accessible to everyone, and we strive to bring you the latest and most innovative products from around the globe.",
+        "brand_text_heading": "MAKEUP BRANDS",
+        "brand_is_image_desk": "shopify://shop_images/everything_Desktop.svg",
+        "brand_is_image_mobile": "shopify://shop_images/everything_mobile.svg",
+        "text_color": "#d887ad"
+      }
+    },
+    "brand_grid_g98dCV": {
+      "type": "brand-grid",
+      "blocks": {
+        "3a7a3258-7b43-4e6a-b643-4a0dab1195d0": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38736_7.jpg",
+            "clubImgmob": "shopify://shop_images/Frame_38742_1_75bd5a08-9b49-4c20-8fc3-e0a27410b14a.jpg",
+            "slid_img": "https://hokmakeup.com/collections/carbon-theory"
+          }
+        },
+        "image_gCibGj": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/Frame_38737_1.jpg",
+            "clubImgmob": "shopify://shop_images/Frame_38741_6.jpg",
+            "slid_img": "shopify://collections/dr-paw-paw"
+          }
+        },
+        "image_LcwbKp": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/dektop.svg",
+            "clubImgmob": "shopify://shop_images/mobile.svg",
+            "slid_img": "shopify://collections/eveline-cosmetics"
+          }
+        },
+        "45f69e83-c543-4bec-83eb-b162c914b9fd": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/1-1.svg",
+            "clubImgmob": "shopify://shop_images/a.svg",
+            "slid_img": "shopify://collections/revolution-skincare"
+          }
+        },
+        "b97c7eb9-2b88-4f25-9d4b-d2ba1b58966b": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/2-1.svg",
+            "clubImgmob": "shopify://shop_images/b.svg",
+            "slid_img": "shopify://collections/organic-works"
+          }
+        },
+        "0ef2473c-ac6b-4bf3-8a91-328dd366a7c8": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/3-1.svg",
+            "clubImgmob": "shopify://shop_images/c.svg",
+            "slid_img": "shopify://collections/koric"
+          }
+        },
+        "134eb4b5-4a8f-4245-9c63-502cee97d2f5": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/4-1.svg",
+            "clubImgmob": "shopify://shop_images/d.svg",
+            "slid_img": "shopify://collections/derma-e"
+          }
+        },
+        "93ecfe61-462f-40e7-af98-740f17dae6ae": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/5-1.svg",
+            "clubImgmob": "shopify://shop_images/e.svg",
+            "slid_img": "shopify://collections/revolution-hair-care"
+          }
+        },
+        "f4a42faa-db24-4e65-945b-e40770345424": {
+          "type": "image",
+          "settings": {
+            "clubImg": "shopify://shop_images/6-1.svg",
+            "clubImgmob": "shopify://shop_images/f.svg",
+            "slid_img": "shopify://collections/revolution-man"
+          }
+        },
+        "b1768ff4-71c3-4f67-986c-8d35bb206c1b": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "clubImg": "shopify://shop_images/7-1.svg",
+            "clubImgmob": "shopify://shop_images/g.svg",
+            "slid_img": "shopify://collections/superdrug"
+          }
+        }
+      },
+      "block_order": [
+        "3a7a3258-7b43-4e6a-b643-4a0dab1195d0",
+        "image_gCibGj",
+        "image_LcwbKp",
+        "45f69e83-c543-4bec-83eb-b162c914b9fd",
+        "b97c7eb9-2b88-4f25-9d4b-d2ba1b58966b",
+        "0ef2473c-ac6b-4bf3-8a91-328dd366a7c8",
+        "134eb4b5-4a8f-4245-9c63-502cee97d2f5",
+        "93ecfe61-462f-40e7-af98-740f17dae6ae",
+        "f4a42faa-db24-4e65-945b-e40770345424",
+        "b1768ff4-71c3-4f67-986c-8d35bb206c1b"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "#marB {margin-bottom: 2rem;}"
+      ],
+      "settings": {
+        "show_slider_carousel": false,
+        "intro_text_desk": "",
+        "intro_text_mob": "",
+        "brand_text_heading": "EVERYDAY ESSENTIALS",
+        "text_color": "#7b7b7b"
+      }
+    },
+    "floating_nav_qQHLND": {
+      "type": "floating-nav",
+      "name": "Floating Bar",
+      "settings": {
+        "menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "new_brand_top_banner_t8tRgU",
+    "brand_grid_MBzAit",
+    "brand_grid_g98dCV",
+    "floating_nav_qQHLND"
+  ]
+}
