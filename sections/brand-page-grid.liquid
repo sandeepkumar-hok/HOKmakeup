@@ -1,0 +1,382 @@
+<style>
+.brands-section-{{ section.id }} {
+  padding: 80px 0;
+}
+
+.brands-heading {
+  color: #0A0A0A;
+  text-align: center;
+  font-family: "Vinila Condensed";
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 40PX;
+  line-height: 96px; /* 171.429% */
+  letter-spacing: -2.4px;
+}
+
+.brands-tabs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 20px;
+  background-color: #F9FAFB;
+}
+
+.brands-tabs-right {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+  font-family: "Elza Trial";
+}
+
+.tab-btn.active {
+  background: #8E74EC;
+  color: #fff;
+}
+
+.brand-search {
+  padding: 8px 14px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    gap: 10px;
+}
+.brand-search input{
+  border: none;
+  color: #717182;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 100%;
+  letter-spacing: -0.15px;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.brand-card {
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 4px;
+  text-align: center;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+.brand-card.hidden {
+  display: none;
+}
+
+.brand-image img {
+  width: 100%;
+  height: auto;
+}
+
+.brand-logo img {
+  max-width: 150px;
+  margin: 15px auto;
+  height: auto;
+}
+
+.brand-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.brand-btn {
+  padding: 10px 18px;
+  border-radius: 25px;
+  background: #8E74EC;
+  text-decoration: none;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.15px;
+}
+
+.brands-tabs-left {
+  gap: 12px;
+  display: flex;
+}
+
+.brand-description-top {
+  color: #B6B6B6;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media(max-width:1024px){
+  .brands-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  
+}
+
+@media(max-width:768px){
+  .brands-section-{{ section.id }} {
+    padding: 56px 0;
+  }
+  .brands-heading { font-size: 32px; line-height: 32px;margin-bottom: 8PX;}
+  .brands-tabs-right {
+    position: relative;
+    right: unset;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .brands-tabs-left::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .brands-tabs-left {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .brands-tabs {
+    flex-wrap: unset;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .tab-btn {
+    white-space: nowrap;
+  }
+  .brands-tabs-left {
+    width: 100%;
+    overflow: scroll;
+  }
+  .brand-card {
+    padding: 16px;
+  }
+  .brands-grid {
+    gap: 16px;
+  }
+}
+</style>
+
+<section class="brands-section-{{ section.id }}">
+  <div class="">
+
+    <h2 class="brands-heading">
+      {{ section.settings.section_title }}
+    </h2>
+
+    <!-- Tabs -->
+    <div class="brands-tabs">
+      <div class="brands-tabs-left">
+        <button class="tab-btn active" data-category="all">
+          {{ section.settings.all_text }}
+        </button>
+        <button class="tab-btn" data-category="makeup">
+          {{ section.settings.makeup_text }}
+        </button>
+        <button class="tab-btn" data-category="skincare">
+          {{ section.settings.skincare_text }}
+        </button>
+        <button class="tab-btn" data-category="fragrance">
+          {{ section.settings.fragrance_text }}
+        </button>
+      </div>
+      <div class="brands-tabs-right brand-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#99A1AF" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17.5013 17.5001L13.918 13.9167" stroke="#99A1AF" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <input type="text"
+          class=""
+          placeholder="{{ section.settings.search_placeholder }}">
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="brands-grid page-width">
+      {% for block in section.blocks %}
+        <div 
+          class="brand-card"
+          data-category="{{ block.type }}"
+          data-name="{{ block.settings.brand_name | downcase }}"
+          {{ block.shopify_attributes }}
+        >
+
+          <div class="brand-image">
+            {{ block.settings.brand_image 
+              | image_url: width: 600 
+              | image_tag: loading: 'lazy' }}
+          </div>
+
+          <div class="brand-logo">
+            {{ block.settings.brand_logo 
+              | image_url: width: 300 
+              | image_tag: loading: 'lazy' }}
+          </div>
+
+          <p class="brand-description-top">
+            {{ block.settings.top_description }}
+          </p>
+          <p class="brand-description">
+            {{ block.settings.description }}
+          </p>
+
+          <a href="{{ block.settings.redirect_url }}" class="brand-btn">
+            <span class="meet-our-brabd-svg">{{ block.settings.button_text }}</span>
+            <span class="meet-our-brabd-svg"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M0.624998 3.97746C0.279821 3.97746 0 4.25728 0 4.60246C0 4.94765 0.279821 5.22749 0.624998 5.22749V4.60246V3.97746ZM9.81691 5.04439C10.061 4.80036 10.061 4.4046 9.81691 4.16052L5.83944 0.183051C5.59537 -0.061017 5.19964 -0.061017 4.95557 0.183051C4.71149 0.427128 4.71149 0.822855 4.95557 1.06693L8.49109 4.60246L4.95557 8.13795C4.71149 8.38207 4.71149 8.77779 4.95557 9.02182C5.19964 9.26594 5.59537 9.26594 5.83944 9.02182L9.81691 5.04439ZM0.624998 4.60246V5.22749H9.37497V4.60246V3.97746H0.624998V4.60246Z" fill="white"/>
+            </svg></span>
+          </a>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const section = document.querySelector(".brands-section-{{ section.id }}");
+  if(!section) return;
+
+  const tabs = section.querySelectorAll(".tab-btn");
+  const cards = section.querySelectorAll(".brand-card");
+  const searchInput = section.querySelector(".brand-search input");
+
+  let activeCategory = "all";
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", function(){
+
+      tabs.forEach(t => t.classList.remove("active"));
+      this.classList.add("active");
+
+      activeCategory = this.dataset.category;
+      filterBrands();
+
+    });
+  });
+
+  if(searchInput){
+    searchInput.addEventListener("input", filterBrands);
+  }
+
+  function filterBrands(){
+
+    const searchValue = searchInput ? searchInput.value.toLowerCase() : "";
+
+    cards.forEach(card => {
+
+      const category = card.dataset.category || "";
+      const name = card.dataset.name || "";
+
+      const matchCategory = activeCategory === "all" || category === activeCategory;
+      const matchSearch = name.includes(searchValue);
+
+      if(matchCategory && matchSearch){
+        card.classList.remove("hidden");
+      } else {
+        card.classList.add("hidden");
+      }
+
+    });
+
+  }
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Meet Our Brands",
+  "settings": [
+    { "type": "text", "id": "section_title", "label": "Section Title", "default": "Meet Our Brands" },
+    { "type": "text", "id": "all_text", "label": "All Brands Text", "default": "All Brands" },
+    { "type": "text", "id": "makeup_text", "label": "Makeup Text", "default": "Makeup" },
+    { "type": "text", "id": "skincare_text", "label": "Skincare Text", "default": "Skincare" },
+    { "type": "text", "id": "fragrance_text", "label": "Fragrance Text", "default": "Fragrance" },
+    { "type": "text", "id": "search_placeholder", "label": "Search Placeholder", "default": "Search brands..." }
+  ],
+  "blocks": [
+    {
+      "type": "makeup",
+      "name": "Makeup Brand",
+      "settings": [
+        { "type": "text", "id": "brand_name", "label": "Brand Name" },
+        { "type": "image_picker", "id": "brand_image", "label": "Brand Image" },
+        { "type": "image_picker", "id": "brand_logo", "label": "Brand Logo" },
+        { "type": "textarea", "id": "top_description", "label": "top description", "default": "UK beauty brand" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop Now" },
+        { "type": "url", "id": "redirect_url", "label": "Redirect URL" }
+      ]
+    },
+    {
+      "type": "skincare",
+      "name": "Skincare Brand",
+      "settings": [
+        { "type": "text", "id": "brand_name", "label": "Brand Name" },
+        { "type": "image_picker", "id": "brand_image", "label": "Brand Image" },
+        { "type": "image_picker", "id": "brand_logo", "label": "Brand Logo" },
+        { "type": "textarea", "id": "top_description", "label": "top description", "default": "UK beauty brand" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop Now" },
+        { "type": "url", "id": "redirect_url", "label": "Redirect URL" }
+      ]
+    },
+    {
+      "type": "fragrance",
+      "name": "Fragrance Brand",
+      "settings": [
+        { "type": "text", "id": "brand_name", "label": "Brand Name" },
+        { "type": "image_picker", "id": "brand_image", "label": "Brand Image" },
+        { "type": "image_picker", "id": "brand_logo", "label": "Brand Logo" },
+        { "type": "textarea", "id": "top_description", "label": "top description", "default": "UK beauty brand" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop Now" },
+        { "type": "url", "id": "redirect_url", "label": "Redirect URL" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Meet Our Brands" }
+  ]
+}
+{% endschema %}

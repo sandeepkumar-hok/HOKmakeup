@@ -1,0 +1,446 @@
+{% comment %}
+  Featured Brand of the Month
+  Large background image with brand info and product carousel
+{% endcomment %}
+
+<style>
+  .featured-brand-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    margin-top: {{ section.settings.padding_top_mobile }}px;
+    margin-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  @media (min-width: 768px) {
+    .featured-brand-{{ section.id }} {
+      min-height: 750px;
+      margin-top: {{ section.settings.padding_top_desktop }}px;
+      margin-bottom: {{ section.settings.padding_bottom_desktop }}px;
+    }
+  }
+
+  .featured-brand-{{ section.id }} .featured-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-brand-{{ section.id }} .featured-content {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    z-index: 0;
+    max-width: 454px;
+  }
+
+  @media (min-width: 768px) {
+    .featured-brand-{{ section.id }} .featured-content {
+      left: 62px;
+      top: 121px;
+    }
+  }
+
+  .featured-brand-{{ section.id }} .featured-title {
+    font-size: 40px;
+    line-height: 1.1;
+    color: {{ section.settings.title_color }};
+    margin-bottom: 8px;
+    letter-spacing: -2.4px;
+    font-weight: 400;
+    font-family: "Vinila Condensed";
+  }
+
+  @media (min-width: 768px) {
+    .featured-brand-{{ section.id }} .featured-title {
+      font-size: 56px;
+    }
+  }
+
+  .featured-brand-{{ section.id }} .featured-badge-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .featured-brand-{{ section.id }} .featured-image-badge {
+    background: rgba(82, 107, 69, 0.94);
+    width: 194px;
+    height: 52px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featured-brand-{{ section.id }} .badge-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-brand-{{ section.id }} .featured-rating {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Elza Trial";
+  }
+
+  .featured-brand-{{ section.id }} .featured-cta {
+    position: absolute;
+    bottom: 260px;
+    left: 20px;
+    z-index: 0;
+  }
+
+  .featured-brand-{{ section.id }} .background_image_desktop {
+    display: block;
+  }
+  .featured-brand-{{ section.id }} .background_image_mobile {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .featured-brand-{{ section.id }} .featured-cta {
+      bottom: 250px;
+      left: 60px;
+    }
+  }
+
+  .featured-brand-{{ section.id }} .featured-button {
+    display: inline-block;
+    background: rgba(95, 140, 94, 0.53);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid #abb8a7;
+    color: #c4c4c4;
+    padding: 5px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Elza Trial";
+    transition: all 0.3s ease;
+  }
+
+  .featured-brand-{{ section.id }} .featured-button:hover {
+    background: rgba(95, 140, 94, 0.7);
+  }
+
+  .featured-brand-{{ section.id }} .products-carousel {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (min-width: 768px) {
+    .featured-brand-{{ section.id }} .products-carousel {
+      left: 60px;
+      right: 60px;
+    }
+  }
+
+  .featured-brand-{{ section.id }} .products-carousel::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .featured-brand-{{ section.id }} .products-carousel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+
+  .featured-brand-{{ section.id }} .products-carousel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .featured-brand-{{ section.id }} .product-card {
+    background: rgba(255, 255, 255, 0.64);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .featured-brand-{{ section.id }} .product-name {
+    font-size: 12px;
+    color: #313131;
+    line-height: 1.2;
+    width: min-content;
+    min-width: 100%;
+    font-family: "Elza Trial";
+  }
+
+  .featured-brand-{{ section.id }} .product-name strong {
+    font-weight: 800;
+  }
+
+  .featured-brand-{{ section.id }} .product-image {
+    width: 164px;
+    height: 164px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #d9d9d9;
+  }
+
+  @media screen and (max-width: 768px) {
+    .featured-brand-{{ section.id }} .background_image_desktop {
+        display: none;
+    }
+    .featured-brand-{{ section.id }} .background_image_mobile {
+        display: block;
+    }
+     .featured-brand-{{ section.id }} {
+        min-height: 684px;
+    }
+
+    .featured-brand-{{ section.id }} .featured-content {
+      top: 32px;
+      left: 28px;
+    }
+    .featured-brand-{{ section.id }} .featured-title {
+      margin-bottom: 24px;
+      font-size: 32px;
+    }
+    .featured-brand-{{ section.id }} .featured-badge-wrapper {
+      gap: 16px;
+    }
+  }
+</style>
+
+<section class="featured-brand-{{ section.id }}">
+    <div class="background_image_desktop">
+    {% if section.settings.background_image_desktop %}
+    {{ section.settings.background_image_desktop
+    | image_url: width: 1920
+    | image_tag:
+    class: 'featured-bg featured-bg-desktop',
+    loading: 'lazy',
+    alt: section.settings.brand_title }}
+    {% endif %}
+    </div>
+<div class="background_image_mobile">
+    {% if section.settings.background_image_mobile %}
+    {{ section.settings.background_image_mobile
+    | image_url: width: 1000
+    | image_tag:
+    class: 'featured-bg featured-bg-mobile',
+    loading: 'lazy',
+    alt: section.settings.brand_title }}
+    {% endif %}
+
+    </div>
+
+    <div class="featured-content">
+        {% if section.settings.brand_title %}
+        <h2 class="featured-title">{{ section.settings.brand_title }}</h2>
+        {% endif %}
+
+        <div class="featured-badge-wrapper">
+            {% if section.settings.badge_image %}
+            <div class="featured-image-badge">
+                {{ section.settings.badge_image | image_url: width: 400 | image_tag: class: 'badge-image', loading:
+                'lazy', alt: 'Featured badge' }}
+            </div>
+            {% endif %}
+
+            {% if section.settings.rating_text %}
+            <p class="featured-rating">{{ section.settings.rating_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="featured-cta">
+        {% if section.settings.cta_text and section.settings.cta_url %}
+        <a href="{{ section.settings.cta_url }}" class="featured-button">
+            {{ section.settings.cta_text }}
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="products-carousel">
+        {% for block in section.blocks %}
+        <a href="{{ block.settings.featured_product.url }}">
+            <div class="product-card" {{ block.shopify_attributes }}>
+                {% if block.settings.product_name %}
+                <p class="product-name"><strong>Product</strong> - {{ block.settings.product_name }}</p>
+                {% endif %}
+
+                {% if block.settings.featured_product %}
+                {{ block.settings.featured_product.featured_image | image_url: width: 400 | image_tag: class:
+                'product-image', loading: 'lazy', alt: block.settings.product_name }}
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Brand Month",
+  "tag": "section",
+  "class": "section-featured-brand",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+   {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background Image - Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image - Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Brand Information"
+    },
+    {
+      "type": "text",
+      "id": "brand_title",
+      "label": "Brand Title",
+      "default": "Brand of the Month"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#89b58b"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Badge Image",
+      "info": "Optional decorative image for badge area"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "★ 4.5+ Rated by 10,000+ Beauty Lovers"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Explore Revolution"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile Padding Bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Featured Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "info": "Short product description"
+        },
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "Product Image",
+          "info": "Recommended: 400x400px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Brand Month",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

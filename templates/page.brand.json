@@ -28,13 +28,149 @@
         "small_text": "SINCE 2012",
         "heading": "Beauty is a",
         "highlitedHeading": "conversation",
-        "subtext": "Between you and the brands that understand your story. Each one crafted by dreamers, believers, and artists.",
+        "subtext": "Between you and the brands that understand your story.<br>\nEach one crafted by dreamers, believers, and artists.",
         "desktop_image": "shopify://shop_images/header_banne_r.jpg",
         "mobile_image": "shopify://shop_images/mobile_banner_a3f5447d-0f42-4756-8f7e-9c7ebb4be43f.jpg",
-        "padding_top_desktop": 80,
-        "padding_bottom_desktop": 80,
-        "padding_top_mobile": 50,
-        "padding_bottom_mobile": 50
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 55,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 25
+      }
+    },
+    "brand_image_with_logo_qRamCF": {
+      "type": "brand-image-with-logo",
+      "blocks": {
+        "content_qngrRa": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/REVOLUTION.jpg",
+            "card_background_color": "#ffffff",
+            "url": "",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_17-2.png"
+          }
+        },
+        "content_xGERz8": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/LA_Girl_7f2ac64c-9dc8-4987-8c3f-0725807d22ff.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/la-girl-without-combo",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_21.png"
+          }
+        },
+        "content_eEVkpH": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/Milani_aee6fc62-a588-4a18-bade-1e60db43e0e8.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/milani-without-combo",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_19_51f7a817-21d5-4785-94ab-760803f8cb98.png"
+          }
+        },
+        "content_6WV4bw": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/focallure_fe9b8fd2-2092-4802-82c9-96964df1f371.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/trending-in-focallure",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_20.png"
+          }
+        },
+        "content_QXg7jK": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/Eveline_b7b240be-f770-4799-ba4f-b18f0802a7e5.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/eveline-cosmetics-sale",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_17_c874e435-a8aa-4635-90ce-bb981b29b00b.png"
+          }
+        },
+        "content_9zay4P": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/Pinkflash_1.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/pinkflash-trending",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_18_edac3208-7b0d-4a11-a66f-509f3aee91a8.png"
+          }
+        },
+        "content_DfRXdp": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/lamel_65834e0b-6c8d-49c7-98a2-0a2ce09031fc.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/lamel-without-combo",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/image_17-1.png"
+          }
+        },
+        "content_e9qt7a": {
+          "type": "content",
+          "settings": {
+            "image": "shopify://shop_images/jessup_92a69eda-77a3-432e-ac0c-1ad501f5293a.jpg",
+            "card_background_color": "#ffffff",
+            "url": "shopify://collections/jessup-beauty-sale",
+            "title": "",
+            "subtitle": "",
+            "logo": "shopify://shop_images/JESSUP-3.png"
+          }
+        }
+      },
+      "block_order": [
+        "content_qngrRa",
+        "content_xGERz8",
+        "content_eEVkpH",
+        "content_6WV4bw",
+        "content_QXg7jK",
+        "content_9zay4P",
+        "content_DfRXdp",
+        "content_e9qt7a"
+      ],
+      "custom_css": [
+        ".b-product_promo_tile {width: 100%; height: auto; display: block; transition: transform 0.5s ease; transform-origin: center center; backface-visibility: hidden; will-change: transform;}",
+        ".content-item:hover .b-product_promo_tile {transform: scale3d(1.1, 1.1, 1);}",
+        ".arrow_handler {display: none;}",
+        ".content-item {padding: 10px; border: 1px solid #e7e7e7;}",
+        "@media (min-width: 1400px) and (max-width: 1680px) {.container {max-width: 1200px !important; }}"
+      ],
+      "name": "brand image with logo",
+      "settings": {
+        "showContainer": "container",
+        "background_color": "#f6f4ff",
+        "coll-title": "Browse leading Brands",
+        "button-title": "",
+        "button-url": "",
+        "slide_speed": 500,
+        "showCenter": false,
+        "showFreeScroll": false,
+        "loop": false,
+        "margin_top_desktop": 0,
+        "margin_bottom_desktop": 0,
+        "padding_text_top_desktop": 40,
+        "padding_text_bottom_desktop": 80,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0,
+        "padding_text_top_mobile": 40,
+        "padding_text_bottom_mobile": 80,
+        "slides-limit": 7,
+        "num-slides-sm": "1.5",
+        "num-slides-md": "3",
+        "num-slides-lg": "3",
+        "num-slides-xl": "5.3",
+        "num-slides-2xl": "5.5"
       }
     },
     "brand_grid_MBzAit": {
@@ -247,6 +383,54 @@
         "text_color": "#d887ad"
       }
     },
+    "custom_rich_text_9qkJ6Y": {
+      "type": "custom-rich-text",
+      "blocks": {
+        "heading_wpMrYW": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_ncAiLa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Your one-stop destination for the most luxurious and high-quality beauty brands from all over the world. We believe that beauty should be accessible to everyone, and we strive to bring you the latest and most innovative products from around the globe.</p>"
+          }
+        },
+        "button_GA6fJp": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_wpMrYW",
+        "text_ncAiLa",
+        "button_GA6fJp"
+      ],
+      "name": "Custom Rich Text",
+      "settings": {
+        "background_color": "#000",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 20
+      }
+    },
     "brand_grid_g98dCV": {
       "type": "brand-grid",
       "blocks": {
@@ -359,17 +543,259 @@
     },
     "floating_nav_qQHLND": {
       "type": "floating-nav",
+      "disabled": true,
       "name": "Floating Bar",
       "settings": {
         "menu": "main-menu"
+      }
+    },
+    "featured_brand_month_Je4EKT": {
+      "type": "featured-brand-month",
+      "blocks": {
+        "product_q4tf3H": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "absolute-new-york-freshly-bitten-gloss"
+          }
+        },
+        "product_NM8da7": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "glassy-dew-tinted-lip-balm"
+          }
+        },
+        "product_MLDWMH": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "absolute-new-york-glassy-pout-lip-oil"
+          }
+        },
+        "product_yKUyAn": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "air-blur-matte-liquid-lipstick-pack-of-3"
+          }
+        },
+        "product_YrkrrN": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "all-in-one-lip-tinted-plumping-oil-pack-of-4"
+          }
+        },
+        "product_L8HkMx": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "ardell-3d-faux-mink-858"
+          }
+        },
+        "product_bc6Vte": {
+          "type": "product",
+          "settings": {
+            "product_name": "2% Salicylic Acid Exfoliating Body Wash 2%",
+            "featured_product": "ardell-demi-wispies-6-pack"
+          }
+        }
+      },
+      "block_order": [
+        "product_q4tf3H",
+        "product_NM8da7",
+        "product_MLDWMH",
+        "product_yKUyAn",
+        "product_YrkrrN",
+        "product_L8HkMx",
+        "product_bc6Vte"
+      ],
+      "name": "Featured Brand Month",
+      "settings": {
+        "background_image_desktop": "shopify://shop_images/Rectangle_4417.png",
+        "background_image_mobile": "shopify://shop_images/Rectangle_4417_b6995eb1-d760-4d8c-a422-0f4ede7b5c99.png",
+        "brand_title": "Brand of the Month",
+        "title_color": "#89b58b",
+        "badge_image": "shopify://shop_images/Frame_38897.png",
+        "rating_text": "★ 4.5+ Rated by 10,000+ Beauty Lovers",
+        "cta_text": "Explore Revolution",
+        "cta_url": "shopify://collections/best-seller-all-time",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "brand_page_grid_riadHr": {
+      "type": "brand-page-grid",
+      "blocks": {
+        "makeup_aKeFyg": {
+          "type": "makeup",
+          "settings": {
+            "brand_name": "Revolution",
+            "brand_image": "shopify://shop_images/Rectangle_4410_f23d93ed-4d8c-470c-b70c-63d6614f0b02.png",
+            "brand_logo": "shopify://shop_images/image_17-2.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "makeup_qmxrcz": {
+          "type": "makeup",
+          "settings": {
+            "brand_name": "Revolution",
+            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
+            "brand_logo": "shopify://shop_images/Frame_38918.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "makeup_Arc9tb": {
+          "type": "makeup",
+          "settings": {
+            "brand_name": "Revolution",
+            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
+            "brand_logo": "shopify://shop_images/Frame_38918.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "makeup_zWDtUR": {
+          "type": "makeup",
+          "settings": {
+            "brand_name": "UK beauty brand",
+            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
+            "brand_logo": "shopify://shop_images/Frame_38918.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "skincare_9VhjjD": {
+          "type": "skincare",
+          "settings": {
+            "brand_name": "UK beauty brand",
+            "brand_image": "shopify://shop_images/Rectangle_4410_2c99a024-eab8-43eb-8fad-606a1a45fbe2.png",
+            "brand_logo": "shopify://shop_images/image_17_4bc1d9b3-6025-4a51-937d-0f01436f1dab.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "skincare_YMQtg4": {
+          "type": "skincare",
+          "settings": {
+            "brand_name": "Lamel",
+            "brand_image": "shopify://shop_images/Rectangle_4410_2c99a024-eab8-43eb-8fad-606a1a45fbe2.png",
+            "brand_logo": "shopify://shop_images/image_17_4bc1d9b3-6025-4a51-937d-0f01436f1dab.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "skincare_JzC4g8": {
+          "type": "skincare",
+          "settings": {
+            "brand_name": "Lamel",
+            "brand_image": "shopify://shop_images/Rectangle_4410_2c99a024-eab8-43eb-8fad-606a1a45fbe2.png",
+            "brand_logo": "shopify://shop_images/image_17_4bc1d9b3-6025-4a51-937d-0f01436f1dab.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "skincare_Fg9xTK": {
+          "type": "skincare",
+          "settings": {
+            "brand_name": "Lamel",
+            "brand_image": "shopify://shop_images/Rectangle_4410_2c99a024-eab8-43eb-8fad-606a1a45fbe2.png",
+            "brand_logo": "shopify://shop_images/image_17_4bc1d9b3-6025-4a51-937d-0f01436f1dab.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "fragrance_EyC4AC": {
+          "type": "fragrance",
+          "settings": {
+            "brand_name": "HOK",
+            "brand_image": "shopify://shop_images/Rectangle_4410_938461ed-4b6f-4b4f-b0bf-a8d9e9cb6064.png",
+            "brand_logo": "shopify://shop_images/Frame_38918_8a66f6dd-b2cf-4c89-aa97-7efc88bfbc72.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "fragrance_g6JQNk": {
+          "type": "fragrance",
+          "settings": {
+            "brand_name": "HOK",
+            "brand_image": "shopify://shop_images/Rectangle_4410_938461ed-4b6f-4b4f-b0bf-a8d9e9cb6064.png",
+            "brand_logo": "shopify://shop_images/Frame_38918_8a66f6dd-b2cf-4c89-aa97-7efc88bfbc72.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        },
+        "fragrance_zUUGmr": {
+          "type": "fragrance",
+          "settings": {
+            "brand_name": "HOK",
+            "brand_image": "shopify://shop_images/Rectangle_4410_938461ed-4b6f-4b4f-b0bf-a8d9e9cb6064.png",
+            "brand_logo": "shopify://shop_images/Frame_38918_8a66f6dd-b2cf-4c89-aa97-7efc88bfbc72.png",
+            "top_description": "UK beauty brand",
+            "description": "Iconic palettes High-pigment makeup",
+            "button_text": "Shop Revolution",
+            "redirect_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "makeup_aKeFyg",
+        "makeup_qmxrcz",
+        "makeup_Arc9tb",
+        "makeup_zWDtUR",
+        "skincare_9VhjjD",
+        "skincare_YMQtg4",
+        "skincare_JzC4g8",
+        "skincare_Fg9xTK",
+        "fragrance_EyC4AC",
+        "fragrance_g6JQNk",
+        "fragrance_zUUGmr"
+      ],
+      "name": "Brands Page Grid",
+      "settings": {
+        "section_title": "Meet Our Brands",
+        "all_text": "All Brands",
+        "makeup_text": "Makeup",
+        "skincare_text": "Skincare",
+        "fragrance_text": "Fragrance",
+        "search_placeholder": "Search brands..."
       }
     }
   },
   "order": [
     "main",
     "new_brand_top_banner_t8tRgU",
+    "brand_image_with_logo_qRamCF",
     "brand_grid_MBzAit",
+    "custom_rich_text_9qkJ6Y",
     "brand_grid_g98dCV",
-    "floating_nav_qQHLND"
+    "floating_nav_qQHLND",
+    "featured_brand_month_Je4EKT",
+    "brand_page_grid_riadHr"
   ]
 }

@@ -800,6 +800,21 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
     100% { background-position: 200% 0; }
   }
 
+  @font-face {
+    font-family: 'Vinila Condensed';
+    src: url('https://cdn.shopify.com/s/files/1/0789/3060/8312/files/Vinila-Condensed.otf?v=1772515145') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Elza Trial';
+    src: url('https://cdn.shopify.com/s/files/1/0789/3060/8312/files/Elza-Regular.otf?v=1772526180') format('opentype');
+    font-style: normal;
+    font-display: swap;
+  }
+
 .skip-to-content-link:focus {
   z-index: 9999;
   position: inherit;
