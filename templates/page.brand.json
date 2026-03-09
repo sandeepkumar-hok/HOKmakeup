@@ -420,7 +420,7 @@
       ],
       "name": "Custom Rich Text",
       "settings": {
-        "background_color": "#000",
+        "background_color": "#000000",
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
@@ -633,45 +633,45 @@
         "makeup_aKeFyg": {
           "type": "makeup",
           "settings": {
-            "brand_name": "Revolution",
-            "brand_image": "shopify://shop_images/Rectangle_4410_f23d93ed-4d8c-470c-b70c-63d6614f0b02.png",
-            "brand_logo": "shopify://shop_images/image_17-2.png",
-            "top_description": "UK beauty brand",
-            "description": "Iconic palettes High-pigment makeup",
-            "button_text": "Shop Revolution",
-            "redirect_url": ""
+            "brand_name": "Ardell",
+            "brand_image": "shopify://shop_images/Rectangle_4410_4757fab9-3d4c-40eb-8c22-73ecd887021b.png",
+            "brand_logo": "shopify://shop_images/Frame_38918_2b646d3c-e3b7-411b-bcf6-e43bfcfc20c3.png",
+            "top_description": "UK lash brand",
+            "description": "False lashes Lash innovation",
+            "button_text": "Shop brand",
+            "redirect_url": "shopify://collections/ardell"
           }
         },
         "makeup_qmxrcz": {
           "type": "makeup",
           "settings": {
-            "brand_name": "Revolution",
-            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
-            "brand_logo": "shopify://shop_images/Frame_38918.png",
-            "top_description": "UK beauty brand",
-            "description": "Iconic palettes High-pigment makeup",
-            "button_text": "Shop Revolution",
-            "redirect_url": ""
+            "brand_name": "Eveline",
+            "brand_image": "shopify://shop_images/Rectangle_4410_63e9459a-4a73-47a9-bb39-3c0b9ca9ec7a.png",
+            "brand_logo": "shopify://shop_images/image_17_9e5f9940-3f56-4363-b493-30efd55f852f.png",
+            "top_description": "UK beauty brand- makeup",
+            "description": "Advanced skincare & cosmetics",
+            "button_text": "Shop brand",
+            "redirect_url": "shopify://collections/eveline-hair"
           }
         },
         "makeup_Arc9tb": {
           "type": "makeup",
           "settings": {
-            "brand_name": "Revolution",
-            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
-            "brand_logo": "shopify://shop_images/Frame_38918.png",
-            "top_description": "UK beauty brand",
-            "description": "Iconic palettes High-pigment makeup",
-            "button_text": "Shop Revolution",
-            "redirect_url": ""
+            "brand_name": "Focallure",
+            "brand_image": "shopify://shop_images/Rectangle_4410_a756e25b-4f00-419f-9dbb-34e35069f5f4.png",
+            "brand_logo": "shopify://shop_images/Frame_38918_f506a91e-9b24-4d53-92df-fc75a4bad9c3.png",
+            "top_description": "Global beauty brand",
+            "description": "Affordable trend-driven makeup",
+            "button_text": "Shop brand",
+            "redirect_url": "shopify://collections/trending-in-focallure"
           }
         },
         "makeup_zWDtUR": {
           "type": "makeup",
           "settings": {
             "brand_name": "UK beauty brand",
-            "brand_image": "shopify://shop_images/Rectangle_4410_bcd8e2fb-d649-4244-8d3d-1091de467ba6.png",
-            "brand_logo": "shopify://shop_images/Frame_38918.png",
+            "brand_image": "shopify://shop_images/Rectangle_4410_1ee830e9-4d2b-475b-97a0-f767326b862f.png",
+            "brand_logo": "shopify://shop_images/image_17_f05abc13-9b08-46bc-a323-1f3650fdfcb8.png",
             "top_description": "UK beauty brand",
             "description": "Iconic palettes High-pigment makeup",
             "button_text": "Shop Revolution",
